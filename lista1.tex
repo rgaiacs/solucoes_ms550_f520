@@ -1,0 +1,174 @@
+%        File: lista1.tex
+%     Created: qua mar 07 04:00  2012 HodB
+% Last Change: qua mar 07 04:00  2012 HodB
+%
+\documentclass[a4paper,12pt,answers]{exam}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+
+\newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\begin{document}
+\title{M\'{e}todos I - 1S12 - Lista 1 Resolvida}
+\author{Raniere Gaia Costa da Silva}
+\maketitle
+\begin{questions}
+  \question Seja $\vec{V} = z\vec{i} - 2x\vec{j} + y \vec{k}$. Mostre que as componentes de $\vec{V}$ em coordenadas cil\'{i}ndricas circulares s\~{a}o dadas por
+  \begin{align*}
+	V_\rho &= z \cos \theta - 2 \rho \cos \theta \sin \theta, \\
+	V_\theta &= -z \sin \theta - 2 \rho \cos^2 \theta, \\
+	V_z &= \rho \sin \theta
+  \end{align*}
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Seja o campo vetorial
+  \[
+  \vec{V} = V_\rho(\rho, \theta) \vec{e}_\rho + V_\theta(\rho, \theta) \vec{e}_\theta.
+  \]
+  Mostre que $\nabla \times \vec{V} = \mbox{rot } \vec{V}$ possui componente apenas na dire\c{c}\~{a}o $z$.
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Seja o campo vetorial $\vec{V} = \rho \vec{e}_z$. Mostre que
+  \begin{align*}
+	\nabla \times \vec{V} = -\vec{e}_\theta, \\
+	\nabla \times (\vec{V} \times (\nabla \times \vec{V})) = 0.
+  \end{align*}
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Calcule $\devp{\vec{e}_{q_i}}{q_j}$ com $i,j = 1, 2, 3$ quando $q_i$ s\~{a}o as coordenadas cil\'{i}ndricas e mostre que as únicas derivadas n\~{a}o nulas s\~{a}o
+  \begin{align*}
+	\devp{\vec{e}_\rho}{\theta} &= \vec{e}_\theta, \\
+	\devp{\vec{e}_\theta}{\theta} &= - \vec{e}\rho.
+  \end{align*}
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Sejam as coordenadas esferoidais achatadas $(\xi, \eta, \phi)$ dadas por
+  \begin{align*}
+	x &= a \cosh \xi \cos \eta \cos \phi, \\
+	y &= a \cosh \xi \cos \eta \sin \phi, \\
+	z &= a \sinh \eta \sin \eta,
+  \end{align*}
+  onde $\xi \geq 0$, $-\pi/2 \leq \eta \leq \pi/2$, $0 \leq \phi \leq 2\pi$.
+  
+  Mostre que os fatores de escala s\~{a}o dados por
+  \begin{align*}
+	h_\xi = h\eta &= a \sqrt{\sinh^2 \xi + \sin^2 \eta}, \\
+	h_\phi &= a \cosh \xi \cos \eta.
+  \end{align*}
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas, definidas como
+  \[
+  x = \frac{1}{2} (u^2 - v^2), \ y = uv, \ z = z,
+  \]
+  com $-\infty < u < +\infty$, $v \geq 0$, $-\infty < z < +\infty$, e $\vec{r}$ o vetor posi\c{c}\~{a}o, $\vec{r} = x \vec{i} + y \vec{j} + z \vec{k}$. Mostre que em coordenadas cil\'{i}ndricas parab\'{o}licas temos
+  \[
+  \vec{r} = \frac{1}{2} \sqrt{u^2 + v^2} (u \vec{e}_u + v \vec{e}_v) + z \vec{e}_z.
+  \]
+  Usando essas coordenadas, mostre que $\mbox{div } \vec{r} = 3$.
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas e o campo vetorial
+  \[
+  \vec{V} = \frac{1}{4} \sqrt{u^2 + v^2} (-v \vec{e}_u + u \vec{e}_v).
+  \]
+  Mostre que $\mbox{rot } \vec{V} = \vec{e}_z$.
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Sejam as coordenadas $(u, v, z)$ definidas como
+  \[
+  x = \frac{1}{2} (u^2 + v^2), \ y = uv, \ z = z.
+  \]
+  Mostre que esse sistema de coordenadas n\~{a}o \'{e} ortogonal.
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Calcule $\devp{\vec{e}_{q_i}}{q_j}$ com $i, j = 1, 2, 3$ quando $q_i$ s\~{a}o as coordenads esf\'{e}ricas e mostre que as únicas derivadas n\~{a}o nulas s\~{a}o
+  \begin{align*}
+	\devp{\vec{e}_r}{\phi} &= \sin \theta \vec{e}_\phi, \\
+	\devp{\vec{e}_\phi}{\phi} &= -\cos \theta \vec{e}_\theta - \sin \theta \vec{e}_r, \\
+	\devp{\vec{e}_\theta}{\phi} &= \cos \theta \vec{e}_\phi, \\
+	\devp{\vec{e}_\theta}{\theta} &= -\vec{e}_r.
+  \end{align*}
+  \begin{solution}
+	
+  \end{solution}
+
+  \question Seja o campo vetorial
+  \[
+  \vec{V} = \frac{y z}{r(x^2 + y^2} \vec{i} - \frac{x z}{r (x^2 + y^2)} \vec{j},
+  \]
+  onde $r = \sqrt{x^2 + y^2 + z^2}$.
+  \begin{parts}
+	\part Usando coordenadas cartesianas, mostre que
+	\[
+	\nabla \times \vec{V} = \frac{\vec{r}}{r^3}.
+	\]
+	\begin{solution}
+	  
+	\end{solution}
+
+	\part Mostre que em termos de coordenadas esf\'{e}ricas
+	\[
+	\vec{V} = - \frac{\cot \theta}{r} \vec{e}_\phi.
+	\]
+	\begin{solution}
+	  
+	\end{solution}
+
+	\part Obtenha o resultado acima para $\nabla \times \vec{V}$ usando coordenadas esf\'{e}ricas.
+	\begin{solution}
+	  
+	\end{solution}
+  \end{parts}
+
+  \question Seja $f(r)$ uma fun\c{c}\~{a}o de $r = \sqrt{x^2 + y^2 + z^2}$. Mostre que
+  \begin{align*}
+	\nabla f(r) &= f'(r) \vec{e}_r, \\
+	\nabla \cdot (\vec{e}_r f(r)) &= \frac{2}{r} f(r) + f'(r), \\
+	\nabla \times (\vec{e}_r f(r)) &= 0
+  \end{align*}
+  usando:
+  \begin{parts}
+	\part coordenadas cartesianas,
+	\begin{solution}
+	  
+	\end{solution}
+
+	\part coordenads esf\'{e}ricas.
+	\begin{solution}
+	  
+	\end{solution}
+  \end{parts}
+
+  \question Sejam
+  \begin{align*}
+	\nabla &= \vec{e}_r \devp{}{r} + \vec{e}_\theta \frac{1}{r} \devp{}{\theta} + \vec{e}_\phi \frac{1}{r \sin \theta} \devp{}{\phi}, \\
+	\vec{V} &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi,
+  \end{align*}
+  e $\vec{V} \cdot \nabla$ o operador dado por
+  \[
+  \vec{V} \cdot \nabla = V_r \devp{}{r} + \frac{V_\theta}{r} \devp{}{\theta} + \frac{V_\phi}{r \sin \theta} \devp{}{\phi}.
+  \]
+  Mostre que $(\vec{V} \cdot \nabla) r = \vec{V}$.
+  \begin{solution}
+	
+  \end{solution}
+\end{questions}
+\end{document}
+
+

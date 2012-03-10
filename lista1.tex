@@ -2,7 +2,7 @@
 %     Created: qua mar 07 04:00  2012 HodB
 % Last Change: qua mar 07 04:00  2012 HodB
 %
-\documentclass[a4paper,12pt,answers]{exam}
+\documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
@@ -16,168 +16,498 @@
 \footrule 
 \pagestyle{foot}
 \renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
 \begin{document}
 \thispagestyle{headandfoot}
+Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
+\begin{align}
+    \devp{\vec{r}}{q_i} &= \devp{x}{q_i} \vec{e}_x + \devp{y}{q_i} \vec{e}_y + \devp{z}{q_i} \vec{e}_z,
+    \label{eq:vetor_tangente} \\
+    h_i &= \sqrt{\left(\devp{x}{q_i}\right)^2 + \left(\devp{y}{q_i}\right)^2 + \left(\devp{z}{q_i}\right)^2},
+    \label{eq:fator_escala} \\
+    \vec{e}_{q_i} &= \frac{1}{h_i} \devp{\vec{r}}{q_i}
+    \label{eq:vetor_tang_unit} \\
+    \grad f = \nabla f &= \frac{1}{h_1} \devp{f}{q_1} \vec{e}_{q_1} + \frac{1}{h_2} \devp{f}{q_2} \vec{e}_{q_2} + \frac{1}{h_3} \devp{f}{q_3} \vec{e}_{q_3},
+    \label{eq:grad} \\
+    \diver \vec{V} = \nabla \cdot \vec{V} &= \frac{1}{h_1 h_2 h_3} \left[\devp{h_2 h_3 V1}{q_1} + \devp{h_3 h_1 V_2}{q_2} + \devp{h_1 h_2 V_3}{q_3}\right],
+    \label{eq:div} \\
+    \rot \vec{V} = \nabla \times \vec{V} &= \frac{1}{h_1 h_2 h_3} \begin{vmatrix}
+        h_1 \vec{e}_{q_1} & h_2 \vec{e}_{q_2} & h_3 \vec{e}_{q_3} \\
+        \devp{}{q_1}      & \devp{}{q_2}      & \devp{}{q_3}      \\
+        h_1 V_1           & h_2 V_2           & h_3 V_3           
+    \end{vmatrix},
+    \label{eq:rot} \\
+    \begin{split}
+        \nabla^2 f &= \frac{1}{h_1 h_2 h_3} \left[\devp{}{q_1}\left(\frac{h_2 h_3}{h_1} \devp{}{q_1}\right)\right. \\ &\quad\left. + \devp{}{q_2}\left(\frac{h_1 h_3}{h_2} \devp{}{q_2}\right) + \devp{}{q_3}\left(\frac{h_1 h_2}{h_3} \devp{}{q_3}\right)\right] f,
+    \end{split}
+    \label{eq:laplaciano} \\
+    & \begin{cases}
+        x = \rho \cos \theta \\
+        y = \rho \cos \theta \\
+        z = z
+    \end{cases}, && \text{coordenadas cil\'{i}ndricas}
+    \label{eq:coor_cil} \\
+    & \begin{cases}
+        x = r \sin \theta \cos \phi \\
+        y = r \sin \theta \sin \phi \\
+        z = r \cos \theta
+    \end{cases}. && \text{coordenadas esf\'{e}ricas}
+    \label{eq:coor_esf}
+\end{align}
+
 \begin{questions}
-  \question Seja $\vec{V} = z\vec{i} - 2x\vec{j} + y \vec{k}$. Mostre que as componentes de $\vec{V}$ em coordenadas cil\'{i}ndricas circulares s\~{a}o dadas por
-  \begin{align*}
-	V_\rho &= z \cos \theta - 2 \rho \cos \theta \sin \theta, \\
-	V_\theta &= -z \sin \theta - 2 \rho \cos^2 \theta, \\
-	V_z &= \rho \sin \theta
-  \end{align*}
-  \begin{solution}
-	
-  \end{solution}
-
-  \question Seja o campo vetorial
-  \[
-  \vec{V} = V_\rho(\rho, \theta) \vec{e}_\rho + V_\theta(\rho, \theta) \vec{e}_\theta.
-  \]
-  Mostre que $\nabla \times \vec{V} = \mbox{rot } \vec{V}$ possui componente apenas na dire\c{c}\~{a}o $z$.
-  \begin{solution}
-	
-  \end{solution}
-
-  \question Seja o campo vetorial $\vec{V} = \rho \vec{e}_z$. Mostre que
-  \begin{align*}
-	\nabla \times \vec{V} = -\vec{e}_\theta, \\
-	\nabla \times (\vec{V} \times (\nabla \times \vec{V})) = 0.
-  \end{align*}
-  \begin{solution}
-	
-  \end{solution}
-
-  \question Calcule $\devp{\vec{e}_{q_i}}{q_j}$ com $i,j = 1, 2, 3$ quando $q_i$ s\~{a}o as coordenadas cil\'{i}ndricas e mostre que as únicas derivadas n\~{a}o nulas s\~{a}o
-  \begin{align*}
-	\devp{\vec{e}_\rho}{\theta} &= \vec{e}_\theta, \\
-	\devp{\vec{e}_\theta}{\theta} &= - \vec{e}\rho.
-  \end{align*}
-  \begin{solution}
-	
-  \end{solution}
-
-  \question Sejam as coordenadas esferoidais achatadas $(\xi, \eta, \phi)$ dadas por
-  \begin{align*}
-	x &= a \cosh \xi \cos \eta \cos \phi, \\
-	y &= a \cosh \xi \cos \eta \sin \phi, \\
-	z &= a \sinh \eta \sin \eta,
-  \end{align*}
-  onde $\xi \geq 0$, $-\pi/2 \leq \eta \leq \pi/2$, $0 \leq \phi \leq 2\pi$.
+    \question Seja $\vec{V} = z\vec{i} - 2x\vec{j} + y \vec{k}$. Mostre que as componentes de $\vec{V}$ em coordenadas cil\'{i}ndricas circulares s\~{a}o dadas por
+    \begin{align*}
+        V_\rho &= z \cos \theta - 2 \rho \cos \theta \sin \theta, \\
+        V_\theta &= -z \sin \theta - 2 \rho \cos^2 \theta, \\
+        V_z &= \rho \sin \theta
+    \end{align*}
+    \begin{solution}
+        Usando \eqref{eq:coor_cil} escrevemos $\vec{V}$ como
+        \[
+        \vec{V} = z\vec{i} - 2 \rho \cos \theta \vec{j} + \rho \sin \theta \vec{k}.
+        \]
   
-  Mostre que os fatores de escala s\~{a}o dados por
-  \begin{align*}
-	h_\xi = h\eta &= a \sqrt{\sinh^2 \xi + \sin^2 \eta}, \\
-	h_\phi &= a \cosh \xi \cos \eta.
-  \end{align*}
-  \begin{solution}
-	
-  \end{solution}
+        Calculamos os fatores de escala utilizando \eqref{eq:fator_escala}:
+        \begin{align*}
+            h_p &= \sqrt{\cos^2 \theta + \sin^2 \theta} = 1, \\
+            h_\theta &= \sqrt{\rho^2 \sin^2 \theta + \rho^2 \cos^2 \theta} = \rho, \\
+            h_z &= \sqrt{1} = 1
+        \end{align*}
+        e com eles os vetores os vetores tangentes unit\'{a}rios dados por \eqref{eq:vetor_tang_unit}:
+        \begin{align*}
+            \vec{e}_\rho &= 2 \cos \theta \vec{j} + \sin \theta \vec{k}, \\
+            \vec{e}_\theta &= 2 \sin \theta \vec{j} + \cos \theta \vec{k}, \\
+            \vec{e}_z &= \vec{i}.
+        \end{align*}
+  
+        Utilizando a express\~{a}o anterior para $\vec{e}_\rho$, $\vec{e}_\theta$ e $\vec{e}_z$ podemos escrever $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_\rho$, $\vec{e}_\theta$ e $\vec{e}_z$:
+        \begin{align*}
+            \vec{i} &= \vec{e}_z, \\
+            \vec{j} &= -2 \cos \theta \vec{e}_\rho + 2 \sin \theta \vec{e}_\theta, \\
+            \vec{k} &= \sin \theta \vec{e}_\rho + \cos \theta \vec{e}_\theta.
+        \end{align*}
+  
+        Reescrevendo $\vec{V}$ em fun\c{c}\~{a}o dos vetores $\vec{e}_\rho$, $\vec{e}_\theta$ e $\vec{e}_z$ obtemos
+        \begin{align*}
+            \vec{V} &= z \vec{e}_z - 2 \rho \cos \theta \left(-2 \cos \theta \vec{e}_\rho + 2 \sin \theta \vec{e}_\theta\right) + \rho \sin \theta \left(\sin \theta \vec{e}_\rho + \cos \theta \vec{e}_\theta\right) \\
+            &= \left(4 \rho \cos^2 \theta + \rho \sin^2 \theta\right) \vec{e}_\rho + \left( -2 \rho \sin \theta \cos \theta + \rho \sin \theta \cos \theta\right) \vec{e}_\theta + z \vec{e}_z \\
+            &= \left(3 \rho \cos^2 \theta + \rho\right) \vec{e}_\rho - \rho \sin \theta \cos \theta \vec{e}_\theta + z \vec{e}_z.
+        \end{align*}
+    \end{solution}
+  
+    \question Seja o campo vetorial
+    \[
+    \vec{V} = V_\rho(\rho, \theta) \vec{e}_\rho + V_\theta(\rho, \theta) \vec{e}_\theta.
+    \]
+    Mostre que $\nabla \times \vec{V} = \mbox{rot } \vec{V}$ possui componente apenas na dire\c{c}\~{a}o $z$.
+    \begin{solution}
+        Utilizando \eqref{eq:rot} temos
+        \begin{align*}
+            \nabla \times \vec{V} &= \begin{vmatrix}
+                  \vec{e}_\rho & \vec{e}_\theta & \vec{e}_z \\
+                  \devp{}{\rho} & \devp{}{\theta} & \devp{}{z} \\
+                  V_\rho & V_\theta & 0
+            \end{vmatrix} \\
+            &= - \devp{V_\theta}{z} \vec{e}_\rho + \devp{V_\rho}{z} \vec{e}_\theta + \left(\devp{V_\theta}{p} - \devp{V_\rho}{\theta}\right) \vec{e}_z \\
+            &= \left(\devp{V_\theta}{p} - \devp{V_\rho}{\theta}\right) \vec{e}_z.
+        \end{align*}
+    \end{solution}
+  
+    \question Seja o campo vetorial $\vec{V} = \rho \vec{e}_z$. Mostre que
+    \begin{align*}
+        \nabla \times \vec{V} &= -\vec{e}_\theta, \\
+        \nabla \times (\vec{V} \times (\nabla \times \vec{V})) &= 0.
+    \end{align*}
+    \begin{solution}
+        Para mostrar que $\nabla \times \vec{V} = - \vec{e}_\theta$ utilizamos \eqref{eq:rot}:
+        \begin{align*}
+            \nabla \times \vec{V} &= \begin{vmatrix}
+                  \vec{e}_\rho & \vec{e}_\theta & \vec{e}_z \\
+                  \devp{}{\rho} & \devp{}{\theta} & \devp{}{z} \\
+                  0 & 0 & \rho
+            \end{vmatrix} \\
+            &= \devp{\rho}{\theta} \vec{e}_\rho - \devp{\rho}{\rho} \vec{e}_\theta \\
+            &= - \vec{e}_\theta.
+        \end{align*}
+  
+        E para mostrar $\nabla \times \left(\vec{V} \times \left(\nabla \times \vec{V}\right)\right) = 0$ come\c{c}amos utilizando o resultado anterior, i.e., $\nabla \times \vec{V} = - \vec{e}_\rho$:
+        \begin{align*}
+            \vec{V} \times \left(\nabla \times \vec{V}\right) &= \vec{V} \times \left(- \vec{e}_\theta\right) \\
+            &= \rho \vec{e}_z \times \left(- \vec{e}_\theta\right) \\
+            &= 0 \\
+            \nabla \times \left(\vec{V} \times \left(\nabla \times \vec{V}\right)\right) &= \nabla \times 0 \\
+            &= 0.
+        \end{align*}
+    \end{solution}
+  
+    \question Calcule $\devp{\vec{e}_{q_i}}{q_j}$ com $i,j = 1, 2, 3$ quando $q_i$ s\~{a}o as coordenadas cil\'{i}ndricas e mostre que as únicas derivadas n\~{a}o nulas s\~{a}o
+    \begin{align*}
+        \devp{\vec{e}_\rho}{\theta} &= \vec{e}_\theta, \\
+        \devp{\vec{e}_\theta}{\theta} &= - \vec{e}\rho.
+    \end{align*}
+    \begin{solution}
+        Utilizando \eqref{eq:coor_cil} e \eqref{eq:fator_escala} temos
+        \begin{align*}
+            h_\rho &= \sqrt{\cos^2 \theta + \sin^2 \theta} = 1, \\
+            h_\theta &= \sqrt{\rho^2 \sin^2 \theta + \rho \cos^2 \theta} = \rho, \\
+            h_z &= \sqrt{1} = 1.
+        \end{align*}
+  
+        Calculando os vetores tangentes unit\'{a}rios temos
+        \begin{align*}
+            \vec{e}_\rho &= \cos \theta \vec{i} + \sin \theta \vec{j}, \\
+            \vec{e}_\theta &= \frac{1}{\rho} \left(-\rho \sin \theta \vec{i} + \rho \cos \theta \vec{j}\right) = -\sin \theta \vec{i} + \cos \theta \vec{j}, \\
+            \vec{e}_z &= \vec{k}.
+        \end{align*}
+  
+        Ent\~{a}o
+        \begin{align*}
+            \devp{\vec{e}_\rho}{\rho} &= 0, & 
+            \devp{\vec{e}_\rho}{\theta} &= -\sin \theta \vec{i} + \cos \theta \vec{j} = \vec{e}_\theta, &
+            \devp{\vec{e}_\rho}{z} &= 0, \\
+            \devp{\vec{e}_\theta}{\rho} &= 0, &
+            \devp{\vec{e}_\theta}{\theta} &= - \cos \theta \vec{i} - \sin \theta \vec{j} = - \vec{e}_\rho, &
+            \devp{\vec{e}_\theta}{z} &= 0, \\
+            \devp{\vec{e}_z}{\rho} &= 0, &
+            \devp{\vec{e}_z}{\theta} &= 0, &
+            \devp{\vec{e}_z}{z} &= 0.
+        \end{align*}
+    \end{solution}
+  
+    \question Sejam as coordenadas esferoidais achatadas $(\xi, \eta, \phi)$ dadas por
+    \begin{align*}
+        x &= a \cosh \xi \cos \eta \cos \phi, \\
+        y &= a \cosh \xi \cos \eta \sin \phi, \\
+        z &= a \sinh \eta \sin \eta,
+    \end{align*}
+    onde $\xi \geq 0$, $-\pi/2 \leq \eta \leq \pi/2$, $0 \leq \phi \leq 2\pi$.
+    
+    Mostre que os fatores de escala s\~{a}o dados por
+    \begin{align*}
+        h_\xi = h\eta &= a \sqrt{\sinh^2 \xi + \sin^2 \eta}, \\
+        h_\phi &= a \cosh \xi \cos \eta.
+    \end{align*}
+    \begin{solution}
+        Utilizando \eqref{eq:fator_escala} vamos calcular
+        \begin{align*}
+            h_\xi &= \sqrt{\left(a \sinh \xi \cos \eta \cos \phi\right)^2 + \left(a \sinh \xi \cos \eta \sin \phi\right)^2 + \left(a \cosh \xi \sin \eta\right)^2} \\
+            &= a \sqrt{\sinh^2 \xi \cos^2 \eta \left(\cos^2 \phi + \sin^2 \phi \right) + \cosh^2 \xi \sin^2 \eta} \\
+            &= a \sqrt{\sinh^2 \xi \left(\cos^2 \eta + \sin^2 \eta\right) + \sin^2 \eta} \\
+            &= a \sqrt{\sinh^2 \xi + \sin^2 \eta}, \\
+            h_\eta &= \sqrt{\left(a \cosh \xi \sin \eta \cos \phi\right)^2 + \left(a \cosh \xi \sin \eta \sin \phi\right)^2 + \left(a \sinh \xi \cos \eta\right)^2} \\
+            &= a \sqrt{\cosh^2 \xi \sin^2 \eta \left(\cos^2 \phi + \sin^2 \phi\right) + \sinh^2 \xi \cos^2 \eta} \\
+            &= a \sqrt{\left(1 + \sinh^2 \xi\right) \sin^2 \eta + \sinh^2 \cos^2 \eta} \\
+            &= a \sqrt{\sin^2 \eta + \sinh^2 \xi}, \\
+            h_\phi &= \sqrt{\left(a \cosh \xi \cos \eta \sin \phi\right)^2 + \left(a \cosh \xi \cos \eta \cos \phi\right)^2 + 0} \\
+            &= a \sqrt{\cosh^2 \xi \cos^2 \eta \left(\sin^2 \phi + \cos^2 \phi\right)} \\
+            &= a \cosh^2 \xi \cos \eta.
+        \end{align*}
+    \end{solution}
+  
+    \question Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas, definidas como
+    \[
+    x = \frac{1}{2} (u^2 - v^2), \ y = uv, \ z = z,
+    \]
+    com $-\infty < u < +\infty$, $v \geq 0$, $-\infty < z < +\infty$, e $\vec{r}$ o vetor posi\c{c}\~{a}o, $\vec{r} = x \vec{i} + y \vec{j} + z \vec{k}$. Mostre que em coordenadas cil\'{i}ndricas parab\'{o}licas temos
+    \[
+    \vec{r} = \frac{1}{2} \sqrt{u^2 + v^2} (u \vec{e}_u + v \vec{e}_v) + z \vec{e}_z.
+    \]
+    Usando essas coordenadas, mostre que $\mbox{div } \vec{r} = 3$.
+    \begin{solution}
+        Sendo
+        \[
+        \vec{r} = \frac{1}{2} \left(u^2 - v^2\right) \vec{i} + u v \vec{j} + z \vec{k}
+        \]
+        come\c{c}amos calculando os fatores de escala:
+        \begin{align*}
+            h_u &= \sqrt{u^2 + v^2}, \\
+            h_v &= \sqrt{u^2 + v^2}, \\
+            h_z &= 1.
+        \end{align*}
+        Em seguida calculamos os vetores tangentes:
+        \begin{align*}
+            \vec{e}_u &= \frac{1}{\sqrt{u^2 + v^2}} \left(u \vec{i} + v \vec{j}\right), \\
+            \vec{e}_v &= \frac{1}{\sqrt{u^2 + v^2}} \left(-v \vec{i} + u \vec{j}\right), \\
+            \vec{e}_z &= \vec{k}.
+        \end{align*}
+  
+        Utilizando os vetores tangentes, escrevemos $\vec{i}$, $\vec{j}$, $\vec{k}$ em fun\c{c}\~{a}o de $\vec{u}$, $\vec{v}$ e $\vec{z}$:
+        \begin{align*}
+            \vec{i} &= \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right), \\
+            \vec{j} &= \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right), \\
+            \vec{k} &= \vec{e}_z.
+        \end{align*}
+  
+        Substituindo $\vec{i}$, $\vec{j}$ e $\vec{k}$ temos
+        \begin{align*}
+            \vec{r} &= \frac{1}{2} \left(u^2 - v^2\right) \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right) + u v \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right) + z \vec{e}_z \\
+            &= \left(\frac{1}{4} \left(v^2 - u^2\right) + uv\right) \left(\frac{\sqrt{u^2 + v^2}}{2} \left(v \vec{e}_u + u \vec{e}_v\right)\right) + z \vec{e}_z
+        \end{align*}
+        
+    \end{solution}
+  
+    \question Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas e o campo vetorial
+    \[
+    \vec{V} = \frac{1}{4} \sqrt{u^2 + v^2} (-v \vec{e}_u + u \vec{e}_v).
+    \]
+    Mostre que $\rot \vec{V} = \vec{e}_z$.
+    \begin{solution}
+        Para utilizar \eqref{eq:rot} precisamos do fator de escala e das componentes dos vetores tangentes. Primeira vamos calcular os fatores de escala:
+        \begin{align*}
+              h_u &= \sqrt{u^2 + v^2}, \\
+              h_v &= \sqrt{v^2 + u^2}, \\
+              h_z &= 1.
+        \end{align*}
+  
+        Para calcular as componentes dos vetores tangentes note que
+        \[
+        V_i = \vec{V} \vec{e}_i.
+        \]
+        Logo,
+        \begin{align*}
+            V_u &= -\frac{v}{4} \sqrt{u^2 + v^2}, \\
+            V_v &= \frac{u}{4} \sqrt{u^2 + v^2}, \\
+            V_z &= 0.
+        \end{align*}
+         
+        E calculando $\rot \vec{V}$ temos
+        \begin{align*}
+            \rot \vec{V} &= \frac{1}{u^2 + v^2} \begin{vmatrix}
+                \sqrt{u^2 + v^2} \vec{e}_{u} & \sqrt{u^2 + v^2} \vec{e}_{v} & 1 \vec{e}_{z} \\
+                \devp{}{u}      & \devp{}{v}      & \devp{}{z}      \\
+                -\frac{v}{4} \left(u^2 + v^2)\right) & \frac{u}{4} \left(u^2 + v^2)\right) & 0           
+            \end{vmatrix} \\
+            &= \frac{1}{u^2 + v^2} \left(\vec{e}_z \left(\frac{1}{4}\left(3u^2 + v^2\right)\right) - \vec{e}_z \left(-\frac{1}{4}\left(u^2 + 3v^2\right)\right)\right) \\
+            &= \frac{1}{u^2 + v^2}\left(\frac{\vec{e}_z}{4}\left(3u^2 + v^2 + u^2 + 3v^2\right)\right) \\
+            &= \frac{1}{u^2 + v^2}\left(\frac{\vec{e}_z}{4}\left(4u^2 + 4v^2\right)\right) \\
+            &= \vec{e}_z.
+        \end{align*}
+    \end{solution}
+  
+    \question Sejam as coordenadas $(u, v, z)$ definidas como
+    \[
+    x = \frac{1}{2} (u^2 + v^2), \ y = uv, \ z = z.
+    \]
+    Mostre que esse sistema de coordenadas n\~{a}o \'{e} ortogonal.
+    \begin{solution}
+        Mostrar que esse sistema de coordendas n\~{a}o \'{e} ortogonal equivale a mostrar que existe pelo menos um par $(i,j)$, $i, j = 1, 2, 3$, tal que $\vec{e}_{q_i} \cdot \vec{e}_{q_j} \neq 0$.
+  
+        Come\c{c}amos calculando os vetores tangentes
+        \begin{align*}
+            \devp{\vec{r}}{u} &= u \vec{i} + v \vec{j}, \\
+            \devp{\vec{r}}{v} &= v \vec{i} + u \vec{j}, \\
+            \devp{\vec{r}}{z} &= \vec{k}.
+        \end{align*}
+        Agora tentamos descobrir um par $(i,j)$, $i, j = 1, 2, 3$, tal que $\vec{e}_{q_i} \cdot \vec{e}_{q_j} \neq 0$:
+        \begin{align*}
+            \devp{\vec{r}}{u} \cdot \devp{\vec{r}}{v} &= u v + u v = 2 uv \neq 0.
+        \end{align*}
+    \end{solution}
+  
+    \question Calcule $\devp{\vec{e}_{q_i}}{q_j}$ com $i, j = 1, 2, 3$ quando $q_i$ s\~{a}o as coordenadas esf\'{e}ricas e mostre que as únicas derivadas n\~{a}o nulas s\~{a}o
+    \begin{align*}
+        \devp{\vec{e}_r}{\phi} &= \sin \theta \vec{e}_\phi, &
+        \devp{\vec{e}_\phi}{\phi} &= -\cos \theta \vec{e}_\theta - \sin \theta \vec{e}_r, \\
+        \devp{\vec{e}_\theta}{\phi} &= \cos \theta \vec{e}_\phi, &
+        \devp{\vec{e}_\theta}{\theta} &= -\vec{e}_r.
+    \end{align*}
+    \begin{solution}
+        Seja $\vec{r} = x \vec{i} + y \vec{j} + z \vec{k}$ e $x$, $y$ e $z$ dados por \eqref{eq:coor_esf}. Primeiramente vamos calcular os fatores de escala dados por \eqref{eq:fator_escala}:
+        \begin{align*}
+            h_r &= \sqrt{\sin^2 \theta \cos^2 \phi + \sin^2 \theta \sin^2 \phi + \cos^2 \theta} = \sqrt{\sin^2  + \cos^2 \theta} = 1, \\
+            h_\theta &= \sqrt{r^2 \cos^2 \theta \cos^2 \phi + r^2 \cos^2 \theta \sin \phi + r^2 \sin^2 \theta} = \sqrt{r} = r, \\
+            h_\phi &= \sqrt{r^2 \sin^2 \theta \sin^2 \phi + r^2 \sin^2 \theta \cos^2 \phi} = r \sin \theta.
+        \end{align*}
+  
+        Depois calculamos os vetores tangentes unit\'{a}rios dados por \eqref{eq:vetor_tang_unit}:
+        \begin{align*}
+            \vec{e}_r &= \sin \theta \cos \phi \vec{i} + \sin \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
+            \vec{e}_\theta &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
+            \vec{e}_\phi &= - \sin \phi \vec{i} + \cos \phi \vec{j}.
+        \end{align*}
+  
+        Agora podemos calcular as derivadas dos vetores tangentes unit\'{a}rios:
+        \begin{align*}
+            \devp{\vec{e}_r}{r} &= 0, \\
+            \devp{\vec{e}_r}{\theta} &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k} = \vec{e}_\theta, \\
+            \devp{\vec{e}_r}{\phi} &= -\sin \theta \sin \phi \vec{i} + \sin \theta \cos \phi \vec{j} = \sin \theta \vec{e}_\phi, \\
+            \devp{\vec{e}_\theta}{r} &= 0 \\
+            \devp{\vec{e}_\theta}{\theta} &= - \sin \theta \cos \phi \vec{i} - \sin \theta \sin \phi \vec{j} - \cos \theta \vec{k} = -\vec{e}_r, \\
+            \devp{\vec{e}_\theta}{\phi} &= - \cos \theta \sin \phi \vec{i} + \cos \theta \cos \phi \vec{j} = \cos \theta \vec{e}_\phi, \\
+            \devp{\vec{e}_\phi}{r} &= 0, \\
+            \devp{\vec{e}_\phi}{\theta} &= 0, \\
+            \devp{\vec{e}_\phi}{\phi} &= -\cos \phi \vec{i} - \sin \phi \vec{j} = - \cos \theta \vec{e}_\theta - \sin \theta \vec{e}_r.
+        \end{align*}
+    \end{solution}
+  
+    \question Seja o campo vetorial
+    \[
+    \vec{V} = \frac{y z}{r(x^2 + y^2)} \vec{i} - \frac{x z}{r (x^2 + y^2)} \vec{j},
+    \]
+    onde $r = \sqrt{x^2 + y^2 + z^2}$.
+    \begin{parts}
+        \part Usando coordenadas cartesianas, mostre que
+        \[
+        \nabla \times \vec{V} = \frac{\vec{r}}{r^3}.
+        \]
+        \begin{solution}
+            Utilizando \eqref{eq:rot} temos
+            \begin{align*}
+                \nabla \times \vec{V} &= \begin{vmatrix}
+                    \vec{i} & \vec{j} & \vec{k} \\
+                    \devp{}{x} & \devp{}{y} & \devp{}{z} \\
+                    \frac{yz}{r\left(x^2 + y^2\right)} & -\frac{xz}{r\left(x^2 + y^2\right)} & 0
+                \end{vmatrix} \\
+                &= \devp{\frac{yz}{r\left(x^2 + y^2\right)}}{z} \vec{j} + \devp{\frac{xz}{r\left(x^2 + y^2\right)}}{x} \vec{k} - \devp{\frac{yz}{r\left(x^2 + y^2\right)}}{y} \vec{k} - \devp{\frac{xz}{r\left(x^2 + y^2\right)}}{z} \vec{i} \\
+                %&= \left(\frac{yr\left(x^2 + y^2\right) - yz\frac{1}{2}\left(r^{-1/2}2z\left(x^2 + y^2\right)\right)}{r^2 \left(x^2 + y^2\right)^2}\right)
+                &= \left(\frac{-xz^2}{r^3 \left(x^2 + y^2\right)} + \frac{x}{r\left(x^2 + y^2\right)}\right) \vec{i} + \left(\frac{-yz^2}{r^3 \left(x^2 + y^2\right)} + \frac{y}{r \left(x^2 + y^2\right)}\right) \vec{j} \\ &\quad + \left(xz \left(\frac{-2x}{r\left(x^2 + y^2\right)^3} - \frac{x}{r^3 \left(x^2 + y^2\right)}\right) + \frac{z}{r}\frac{1}{x^2 + y^2}\right. \\ &\quad \left.- \left(yz \left(\frac{-2y}{r\left(x^2 + y^2\right)^3} - \frac{y}{r^3 \left(x^2 + y^2\right)}\right) + \frac{z}{r} \frac{1}{x^2 + y^2}\right)\right) \vec{k} \\
+                &= \frac{1}{r^3} \left( \left(\frac{-xz^2 + x \left(x^2 + y^2 + z^2\right)}{x^2 + y^2}\right) \vec{i} + \left(\frac{-yz^2 + y\left( x^2 + y^2 + z^2 \right)}{x^2 + y^2}\right) \vec{j} \right. \\ & \quad \left. + \left(\frac{-2x^2 z \left(x^2 + y^2 + z^2\right) - x \left( x^2 + y^2 \right)}{\left(x^2 + y^2\right)^3} - \left( \frac{2 y^2 z \left( x^2 + y^2 + z^2 \right) - y \left( x^2 + y^2 \right)^2}{\left(x^2 + y^2\right)^3} \right)\right) \vec{k}\right) \\
+                &= \frac{1}{r^3} \left( x \vec{i} + y \vec{j} + z \vec{k} \right) \\
+                &= \frac{\vec{r}}{r^3}.
+            \end{align*}
+        \end{solution}
+  
+        \part Mostre que em termos de coordenadas esf\'{e}ricas
+        \[
+        \vec{V} = - \frac{\cot \theta}{r} \vec{e}_\phi.
+        \]
+        \begin{solution}
+            Escrevendo $r = x \vec{i} + y \vec{j} + z \vec{k}$ em coordenadas esf\'{e}ricas temos
+            \[
+            \vec{r} = r \sin \theta \cos \phi \vec{i} + r \sin \theta \sin \phi \vec{j} + r \cos \theta \vec{k}.
+            \]
+  
+            Calculando o fator de escala utilizando \eqref{eq:fator_escala} temos
+            \begin{align*}
+                h_r &= \sqrt{\sin^2 \theta \cos^2 \phi + \sin^2 \theta \sin^2 \phi + \cos^2 \theta} = 1, \\
+                h_\theta &= \sqrt{r^2 \cos^2 \theta \cos^2 \phi + r^2 \cos^2 \theta \sin^2 \phi + r^2 \sin^2 \theta} = r, \\
+                h_\phi &= \sqrt{r^2 \sin^2 \theta \sin^2 \phi + r^2 \sin^2 \theta \cos^2 \phi} = r \sin \theta.
+            \end{align*}
+            E calculando os vetores tangentes unit\'{a}rios utilizando \eqref{eq:vetor_tang_unit} temos
+            \begin{align*}
+                \vec{e}_r &= \sin \theta \cos \phi \vec{i} + \sin \theta \sin \phi \vec{j} + \cos \vec{k}, \\
+                \vec{e}_\theta &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
+                \vec{e}_\phi &= -\sin \phi \vec{i} + \cos \phi \vec{j}.
+            \end{align*}
+  
+            Agora escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_r$, $\vec{e}_\theta$ e $\vec{e}_\phi$:
+            \begin{align*}
+                \vec{i} &= \sin \theta \cos \phi \vec{e}_r + \cos \theta \cos \phi \vec{e}_\theta - \sin \vec{e}_\phi, \\
+                \vec{j} &= \sin \theta \sin \phi \vec{e}_r + \cos \theta \sin \phi \vec{e}_\theta + \cos \phi \vec{e}_\phi, \\
+                \vec{k} &= \cos \theta \vec{e}_r - \sin \theta \vec{e}_\theta.
+            \end{align*}
+  
+            Por fim, substituimos $x$, $y$, $z$, $\vec{i}$, $\vec{j}$ e $\vec{k}$ em $\vec{V}$:
+            \begin{align*}
+                \vec{V} &= \frac{\left( r \sin \theta \sin \phi \right)r \cos \theta}{r^3 \sin \theta} \left( \sin \theta \cos \phi \vec{e}_r + \cos \theta \cos \phi \vec{e}_\theta - \sin \phi \vec{e}_\phi \right) \\ & \quad - \frac{\left( r \sin \theta \cos \phi \right) r \cos \theta \left( \sin \theta \sin \phi \vec{e}_r + \cos \theta \sin \phi \vec{e}_\theta + \cos \phi \vec{e}_\phi \right)}{r^3 \sin \theta} \\
+                &= \frac{1}{r \sin \theta} \left( \vec{e}_r \left( \sin \phi \cos \theta \sin \theta \cos \phi - \sin \theta \cos \phi \sin \phi \cos \theta \right) \right. \\ & \quad \left. + \vec{e}_\theta \left( \sin \phi \cos^2 \theta \cos \phi - \cos^2 \theta \sin \phi \cos \phi \right) + \vec{e}_\phi \left( - \sin^2 \phi \cos \theta - \cos^2 \phi \cos \theta \right) \right) \\
+                &= - \frac{\cot \theta}{r} \vec{e}_\phi.
+            \end{align*}
+        \end{solution}
+  
+        \part Obtenha o resultado acima para $\nabla \times \vec{V}$ usando coordenadas esf\'{e}ricas.
+        \begin{solution}
+            Utilizando \eqref{eq:rot} temos que
+            \begin{align*}
+                \rot \vec{V} &= \frac{1}{r^2 \sin \theta} \begin{bmatrix}
+                    \vec{e}_r & r \vec{e}_\theta & r \sin \theta \vec{e}_\phi \\
+                    \devp{}{r} & \devp{}{\theta} & \devp{}{\phi} \\
+                    0 & 0 & r \sin \theta \frac{-\cot \theta}{r}
+                \end{bmatrix} \\
+                &= \frac{1}{r^2 \sin \theta} \left( \devp{-\cos \theta}{\theta} \vec{e}_r + \devp{\cos \theta}{r} r \vec{e}_\theta \right) \\
+                &= \frac{\vec{e}_r}{r^2} \\
+                &= \frac{\vec{v}}{r^3}.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+  
+    \question Seja $f(r)$ uma fun\c{c}\~{a}o de $r = \sqrt{x^2 + y^2 + z^2}$. Mostre que
+    \begin{align*}
+        \nabla f(r) &= f'(r) \vec{e}_r, \\
+        \nabla \cdot (\vec{e}_r f(r)) &= \frac{2}{r} f(r) + f'(r), \\
+        \nabla \times (\vec{e}_r f(r)) &= 0
+    \end{align*}
+    usando:
+    \begin{parts}
+        \part coordenadas cartesianas,
+        \begin{solution}
+          
+        \end{solution}
+  
+        \part coordenads esf\'{e}ricas.
+        \begin{solution}
+          
+        \end{solution}
+    \end{parts}
+  
+    \question Sejam
+    \begin{align*}
+        \nabla &= \vec{e}_r \devp{}{r} + \vec{e}_\theta \frac{1}{r} \devp{}{\theta} + \vec{e}_\phi \frac{1}{r \sin \theta} \devp{}{\phi}, \\
+        \vec{V} &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi,
+    \end{align*}
+    e $\vec{V} \cdot \nabla$ o operador dado por
+    \[
+    \vec{V} \cdot \nabla = V_r \devp{}{r} + \frac{V_\theta}{r} \devp{}{\theta} + \frac{V_\phi}{r \sin \theta} \devp{}{\phi}.
+    \]
+    Mostre que $(\vec{V} \cdot \nabla) r = \vec{V}$.
+    \begin{solution}
+        Escrevendo $r = x \vec{i} + y \vec{j} + z \vec{k}$ em coordenadas esf\'{e}ricas temos
+        \[
+        \vec{r} = r \sin \theta \cos \phi \vec{i} + r \sin \theta \sin \phi \vec{j} + r \cos \theta \vec{k}.
+        \]
+        
+        Calculando o fator de escala utilizando \eqref{eq:fator_escala} temos
+        \begin{align*}
+            h_r &= \sqrt{\sin^2 \theta \cos^2 \phi + \sin^2 \theta \sin^2 \phi + \cos^2 \theta} = 1, \\
+            h_\theta &= \sqrt{r^2 \cos^2 \theta \cos^2 \phi + r^2 \cos^2 \theta \sin^2 \phi + r^2 \sin^2 \theta} = r, \\
+            h_\phi &= \sqrt{r^2 \sin^2 \theta \sin^2 \phi + r^2 \sin^2 \theta \cos^2 \phi} = r \sin \theta.
+        \end{align*}
+        E calculando os vetores tangentes unit\'{a}rios utilizando \eqref{eq:vetor_tang_unit} temos
+        \begin{align*}
+            \vec{e}_r &= \sin \theta \cos \phi \vec{i} + \sin \theta \sin \phi \vec{j} + \cos \vec{k}, \\
+            \vec{e}_\theta &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
+            \vec{e}_\phi &= -\sin \phi \vec{i} + \cos \phi \vec{j}.
+        \end{align*}
+        
+        Agora escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_r$, $\vec{e}_\theta$ e $\vec{e}_\phi$:
+        \begin{align*}
+            \vec{i} &= \sin \theta \cos \phi \vec{e}_r + \cos \theta \cos \phi \vec{e}_\theta - \sin \vec{e}_\phi, \\
+            \vec{j} &= \sin \theta \sin \phi \vec{e}_r + \cos \theta \sin \phi \vec{e}_\theta + \cos \phi \vec{e}_\phi, \\
+            \vec{k} &= \cos \theta \vec{e}_r - \sin \theta \vec{e}_\theta.
+        \end{align*}
 
-  \question Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas, definidas como
-  \[
-  x = \frac{1}{2} (u^2 - v^2), \ y = uv, \ z = z,
-  \]
-  com $-\infty < u < +\infty$, $v \geq 0$, $-\infty < z < +\infty$, e $\vec{r}$ o vetor posi\c{c}\~{a}o, $\vec{r} = x \vec{i} + y \vec{j} + z \vec{k}$. Mostre que em coordenadas cil\'{i}ndricas parab\'{o}licas temos
-  \[
-  \vec{r} = \frac{1}{2} \sqrt{u^2 + v^2} (u \vec{e}_u + v \vec{e}_v) + z \vec{e}_z.
-  \]
-  Usando essas coordenadas, mostre que $\mbox{div } \vec{r} = 3$.
-  \begin{solution}
-	
-  \end{solution}
+        Substituindo $x$, $y$, $z$, $\vec{i}$, $\vec{j}$ e $\vec{k}$ em $\vec{r}$ temos
+        \begin{align*}
+            \vec{r} &= r \sin^2 \theta \cos^2 \phi \vec{e}_r + r \sin \theta \cos^2 \phi \cos \theta \vec{e}_\theta - r \sin^2 \theta \cos \phi \vec{e}_\phi \\
+            & \quad + r \sin^2 \theta \sin^2 \phi \vec{e}_r + r \sin \theta \sin^2 \phi \cos \theta \vec{e}_\theta \\
+            & \quad + r \sin \theta \cos \phi \sin \phi \vec{e}_\phi + r \cos^2 \theta \vec{e}_r - r \sin \theta \cos \theta \vec{e}_\theta \\
+            &= \left( r \sin^2 \theta + r \cos^2 \theta \right) \vec{e}_r + \left( r \sin \theta \cos \theta - r \sin \theta \cos \theta \right) \vec{e}_\theta \\
+            &= r \vec{e}_r.
+        \end{align*}
 
-  \question Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas e o campo vetorial
-  \[
-  \vec{V} = \frac{1}{4} \sqrt{u^2 + v^2} (-v \vec{e}_u + u \vec{e}_v).
-  \]
-  Mostre que $\mbox{rot } \vec{V} = \vec{e}_z$.
-  \begin{solution}
-	
-  \end{solution}
-
-  \question Sejam as coordenadas $(u, v, z)$ definidas como
-  \[
-  x = \frac{1}{2} (u^2 + v^2), \ y = uv, \ z = z.
-  \]
-  Mostre que esse sistema de coordenadas n\~{a}o \'{e} ortogonal.
-  \begin{solution}
-	
-  \end{solution}
-
-  \question Calcule $\devp{\vec{e}_{q_i}}{q_j}$ com $i, j = 1, 2, 3$ quando $q_i$ s\~{a}o as coordenads esf\'{e}ricas e mostre que as únicas derivadas n\~{a}o nulas s\~{a}o
-  \begin{align*}
-	\devp{\vec{e}_r}{\phi} &= \sin \theta \vec{e}_\phi, \\
-	\devp{\vec{e}_\phi}{\phi} &= -\cos \theta \vec{e}_\theta - \sin \theta \vec{e}_r, \\
-	\devp{\vec{e}_\theta}{\phi} &= \cos \theta \vec{e}_\phi, \\
-	\devp{\vec{e}_\theta}{\theta} &= -\vec{e}_r.
-  \end{align*}
-  \begin{solution}
-	
-  \end{solution}
-
-  \question Seja o campo vetorial
-  \[
-  \vec{V} = \frac{y z}{r(x^2 + y^2} \vec{i} - \frac{x z}{r (x^2 + y^2)} \vec{j},
-  \]
-  onde $r = \sqrt{x^2 + y^2 + z^2}$.
-  \begin{parts}
-	\part Usando coordenadas cartesianas, mostre que
-	\[
-	\nabla \times \vec{V} = \frac{\vec{r}}{r^3}.
-	\]
-	\begin{solution}
-	  
-	\end{solution}
-
-	\part Mostre que em termos de coordenadas esf\'{e}ricas
-	\[
-	\vec{V} = - \frac{\cot \theta}{r} \vec{e}_\phi.
-	\]
-	\begin{solution}
-	  
-	\end{solution}
-
-	\part Obtenha o resultado acima para $\nabla \times \vec{V}$ usando coordenadas esf\'{e}ricas.
-	\begin{solution}
-	  
-	\end{solution}
-  \end{parts}
-
-  \question Seja $f(r)$ uma fun\c{c}\~{a}o de $r = \sqrt{x^2 + y^2 + z^2}$. Mostre que
-  \begin{align*}
-	\nabla f(r) &= f'(r) \vec{e}_r, \\
-	\nabla \cdot (\vec{e}_r f(r)) &= \frac{2}{r} f(r) + f'(r), \\
-	\nabla \times (\vec{e}_r f(r)) &= 0
-  \end{align*}
-  usando:
-  \begin{parts}
-	\part coordenadas cartesianas,
-	\begin{solution}
-	  
-	\end{solution}
-
-	\part coordenads esf\'{e}ricas.
-	\begin{solution}
-	  
-	\end{solution}
-  \end{parts}
-
-  \question Sejam
-  \begin{align*}
-	\nabla &= \vec{e}_r \devp{}{r} + \vec{e}_\theta \frac{1}{r} \devp{}{\theta} + \vec{e}_\phi \frac{1}{r \sin \theta} \devp{}{\phi}, \\
-	\vec{V} &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi,
-  \end{align*}
-  e $\vec{V} \cdot \nabla$ o operador dado por
-  \[
-  \vec{V} \cdot \nabla = V_r \devp{}{r} + \frac{V_\theta}{r} \devp{}{\theta} + \frac{V_\phi}{r \sin \theta} \devp{}{\phi}.
-  \]
-  Mostre que $(\vec{V} \cdot \nabla) r = \vec{V}$.
-  \begin{solution}
-	
-  \end{solution}
+        Por fim,
+        \begin{align*}
+            \left( \vec{V} \cdot \nabla \right) \vec{r} &= \left( V_r \devp{}{r} + \frac{V_\theta}{r} \devp{}{\theta} + \frac{V_\phi}{r \sin \theta} \devp{}{\phi} \right) r \vec{e}_r \\
+            &= V_r \vec{e}_r + \frac{V_\theta}{r} \devp{r \vec{e}_r}{\theta} + \frac{V_\phi}{r \sin \theta} \devp{r \vec{e}_r}{\phi} \\
+            &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + \frac{V_\phi \sin \theta \vec{e}_\phi}{\sin \theta} \\
+            &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi.
+        \end{align*}
+    \end{solution}
 \end{questions}
 \end{document}
 

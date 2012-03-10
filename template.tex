@@ -2,7 +2,7 @@
 %     Created: qua mar 07 04:00  2012 HodB
 % Last Change: qua mar 07 04:00  2012 HodB
 %
-\documentclass[a4paper,12pt,answers]{exam}
+\documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
@@ -16,9 +16,21 @@
 \footrule 
 \pagestyle{foot}
 \renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
 \begin{document}
 \thispagestyle{headandfoot}
 \begin{questions}

@@ -18,6 +18,7 @@
 \renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
 \SolutionEmphasis{\itshape}
 \unframedsolutions
+\pointname{}
 
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
@@ -41,9 +42,11 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
     \label{eq:fator_escala} \\
     \vec{e}_{q_i} &= \frac{1}{h_i} \devp{\vec{r}}{q_i}
     \label{eq:vetor_tang_unit} \\
+    \vec{e}_{q_i} &= \sum_j \left( \vec{e}_{q_i} \cdot \vec{e}_{p_j} \right) \vec{e}_{p_j}
+    \label{eq:vetor_mud_coor} \\
     \grad f = \nabla f &= \frac{1}{h_1} \devp{f}{q_1} \vec{e}_{q_1} + \frac{1}{h_2} \devp{f}{q_2} \vec{e}_{q_2} + \frac{1}{h_3} \devp{f}{q_3} \vec{e}_{q_3},
     \label{eq:grad} \\
-    \diver \vec{V} = \nabla \cdot \vec{V} &= \frac{1}{h_1 h_2 h_3} \left[\devp{h_2 h_3 V1}{q_1} + \devp{h_3 h_1 V_2}{q_2} + \devp{h_1 h_2 V_3}{q_3}\right],
+    \diver \vec{V} = \nabla \cdot \vec{V} &= \frac{1}{h_1 h_2 h_3} \left[\devp{h_2 h_3 V_1}{q_1} + \devp{h_3 h_1 V_2}{q_2} + \devp{h_1 h_2 V_3}{q_3}\right],
     \label{eq:div} \\
     \rot \vec{V} = \nabla \times \vec{V} &= \frac{1}{h_1 h_2 h_3} \begin{vmatrix}
         h_1 \vec{e}_{q_1} & h_2 \vec{e}_{q_2} & h_3 \vec{e}_{q_3} \\
@@ -95,7 +98,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
             \vec{e}_z &= \vec{i}.
         \end{align*}
   
-        Utilizando a express\~{a}o anterior para $\vec{e}_\rho$, $\vec{e}_\theta$ e $\vec{e}_z$ podemos escrever $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_\rho$, $\vec{e}_\theta$ e $\vec{e}_z$:
+        Utilizando \eqref{eq:vetor_mud_coor} escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_\rho$, $\vec{e}_\theta$ e $\vec{e}_z$:
         \begin{align*}
             \vec{i} &= \vec{e}_z, \\
             \vec{j} &= -2 \cos \theta \vec{e}_\rho + 2 \sin \theta \vec{e}_\theta, \\
@@ -203,7 +206,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
         h_\phi &= a \cosh \xi \cos \eta.
     \end{align*}
     \begin{solution}
-        Utilizando \eqref{eq:fator_escala} vamos calcular
+        Utilizando \eqref{eq:fator_escala} vamos calcular os fatores de escala:
         \begin{align*}
             h_\xi &= \sqrt{\left(a \sinh \xi \cos \eta \cos \phi\right)^2 + \left(a \sinh \xi \cos \eta \sin \phi\right)^2 + \left(a \cosh \xi \sin \eta\right)^2} \\
             &= a \sqrt{\sinh^2 \xi \cos^2 \eta \left(\cos^2 \phi + \sin^2 \phi \right) + \cosh^2 \xi \sin^2 \eta} \\
@@ -215,7 +218,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
             &= a \sqrt{\sin^2 \eta + \sinh^2 \xi}, \\
             h_\phi &= \sqrt{\left(a \cosh \xi \cos \eta \sin \phi\right)^2 + \left(a \cosh \xi \cos \eta \cos \phi\right)^2 + 0} \\
             &= a \sqrt{\cosh^2 \xi \cos^2 \eta \left(\sin^2 \phi + \cos^2 \phi\right)} \\
-            &= a \cosh^2 \xi \cos \eta.
+            &= a \cosh \xi \cos \eta.
         \end{align*}
     \end{solution}
   
@@ -233,32 +236,44 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
         \[
         \vec{r} = \frac{1}{2} \left(u^2 - v^2\right) \vec{i} + u v \vec{j} + z \vec{k}
         \]
-        come\c{c}amos calculando os fatores de escala:
+        come\c{c}amos utilizando \eqref{eq:fator_escala} para calcular os fatores de escala:
         \begin{align*}
             h_u &= \sqrt{u^2 + v^2}, \\
             h_v &= \sqrt{u^2 + v^2}, \\
             h_z &= 1.
         \end{align*}
-        Em seguida calculamos os vetores tangentes:
+        Em seguida utilizamos \eqref{eq:vetor_tangente} para calcular os vetores tangentes:
         \begin{align*}
             \vec{e}_u &= \frac{1}{\sqrt{u^2 + v^2}} \left(u \vec{i} + v \vec{j}\right), \\
             \vec{e}_v &= \frac{1}{\sqrt{u^2 + v^2}} \left(-v \vec{i} + u \vec{j}\right), \\
             \vec{e}_z &= \vec{k}.
         \end{align*}
   
-        Utilizando os vetores tangentes, escrevemos $\vec{i}$, $\vec{j}$, $\vec{k}$ em fun\c{c}\~{a}o de $\vec{u}$, $\vec{v}$ e $\vec{z}$:
+        Utilizando \eqref{eq:vetor_mud_coor}, escrevemos $\vec{i}$, $\vec{j}$, $\vec{k}$ em fun\c{c}\~{a}o de $\vec{u}$, $\vec{v}$ e $\vec{z}$:
         \begin{align*}
-            \vec{i} &= \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right), \\
-            \vec{j} &= \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right), \\
+            \vec{i} &= \frac{1}{\sqrt{u^2 + v^2}} \left(u \vec{e}_u - v \vec{e}_v\right), \\
+            \vec{j} &= \frac{1}{\sqrt{u^2 + v^2}} \left(v \vec{e}_u + u \vec{e}_v\right), \\
             \vec{k} &= \vec{e}_z.
         \end{align*}
   
-        Substituindo $\vec{i}$, $\vec{j}$ e $\vec{k}$ temos
+        Substituindo $\vec{i}$, $\vec{j}$ e $\vec{k}$ em $\vec{r}$ temos
         \begin{align*}
-            \vec{r} &= \frac{1}{2} \left(u^2 - v^2\right) \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right) + u v \frac{\sqrt{u^2 + v^2}}{2} \left(\vec{e}_u + \vec{e}_v\right) + z \vec{e}_z \\
-            &= \left(\frac{1}{4} \left(v^2 - u^2\right) + uv\right) \left(\frac{\sqrt{u^2 + v^2}}{2} \left(v \vec{e}_u + u \vec{e}_v\right)\right) + z \vec{e}_z
+            \vec{r} &= \frac{u^2 - v^2}{2 \sqrt{u^2 + v^2}} \left( u \vec{e}_u - v \vec{e}_v \right) + \frac{u v}{\sqrt{u^2 + v^2}} \left( v \vec{e}_u + u \vec{e}_v \right) + z \vec{e}_z \\
+            &= \frac{1}{2 \sqrt{u^2 + v^2}} \left( u^3 \vec{e}_u - u^2 v \vec{e}_v - u v^2 \vec{e}_u + v^3 \vec{e}_v + 2 u v^2 \vec{e}_u + 2 u^2 v \vec{e}_v \right) + z \vec{e}_z \\
+            &= \frac{1}{2 \sqrt{u^2 + v^2}} \left( u^3 \vec{e}_u + u^2 v \vec{e}_v + u v^2 \vec{e}_u + v^3 \vec{e}_v \right) + z \vec{e}_z \\
+            &= \frac{1}{2 \sqrt{u^2 + v^2}} \left( u^2 \left( u \vec{e}_u + v \vec{e}_v \right) + v^2 \left( u \vec{e}_u + v \vec{e}_v \right) \right) + z \vec{e}_z \\
+            &= \frac{u^2 + v^2}{2 \sqrt{u^2 + v^2}} \left( u \vec{e}_u + v \vec{e}_v \right) + z \vec{e}_z \\
+            &= \frac{\sqrt{u^2 + v^2}}{2} \left( u \vec{e}_u + v \vec{e}_v \right) + z \vec{e}_z
         \end{align*}
         
+        Por \'{u}ltimo, utilizando \eqref{eq:div} temos
+        \begin{align*}
+            \diver \vec{r} &= \frac{1}{h_u h_v h_z} \left[\devp{h_v h_z V_u}{u} + \devp{h_z h_u V_v}{v} + \devp{h_u h_v V_z}{q_z}\right] \\
+            &= \frac{1}{u^2 + v^2} \left( \devp{\left( u^2 + v^2 \right) u \ 2}{u} + \devp{\left( u^2 + v^2 \right) v \ 2}{v} + \devp{\left( u^2 + v^2 \right) z}{z} \right) \\
+            &= \frac{1}{u^2 + v^2} \left( \frac{2 u^2 + u^2 + v^2}{2} + \frac{2 v^2 + u^2 + v^2}{2} + \left( u^2 + v^2 \right) \right) \\
+            &= \frac{1}{u^2 + v^2} \left( \frac{6 \left( u^2 + v^2 \right)}{2} \right) \\
+            &= 3
+        \end{align*}
     \end{solution}
   
     \question Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas e o campo vetorial
@@ -267,7 +282,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
     \]
     Mostre que $\rot \vec{V} = \vec{e}_z$.
     \begin{solution}
-        Para utilizar \eqref{eq:rot} precisamos do fator de escala e das componentes dos vetores tangentes. Primeira vamos calcular os fatores de escala:
+        Para utilizar \eqref{eq:rot} precisamos do fator de escala e das componentes dos vetores tangentes. Primeira vamos calcular os fatores de escala utilizando \eqref{eq:fator_escala}:
         \begin{align*}
               h_u &= \sqrt{u^2 + v^2}, \\
               h_v &= \sqrt{v^2 + u^2}, \\
@@ -285,7 +300,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
             V_z &= 0.
         \end{align*}
          
-        E calculando $\rot \vec{V}$ temos
+        Por fim, calculando $\rot \vec{V}$ temos
         \begin{align*}
             \rot \vec{V} &= \frac{1}{u^2 + v^2} \begin{vmatrix}
                 \sqrt{u^2 + v^2} \vec{e}_{u} & \sqrt{u^2 + v^2} \vec{e}_{v} & 1 \vec{e}_{z} \\
@@ -324,6 +339,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
         \devp{\vec{e}_r}{\phi} &= \sin \theta \vec{e}_\phi, &
         \devp{\vec{e}_\phi}{\phi} &= -\cos \theta \vec{e}_\theta - \sin \theta \vec{e}_r, \\
         \devp{\vec{e}_\theta}{\phi} &= \cos \theta \vec{e}_\phi, &
+        \devp{\vec{e}_r}{\theta} &= \vec{e}_\theta, &
         \devp{\vec{e}_\theta}{\theta} &= -\vec{e}_r.
     \end{align*}
     \begin{solution}
@@ -343,13 +359,13 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
   
         Agora podemos calcular as derivadas dos vetores tangentes unit\'{a}rios:
         \begin{align*}
+            \devp{\vec{e}_r}{\theta} &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k} = \vec{e}_\theta, &
             \devp{\vec{e}_r}{r} &= 0, \\
-            \devp{\vec{e}_r}{\theta} &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k} = \vec{e}_\theta, \\
-            \devp{\vec{e}_r}{\phi} &= -\sin \theta \sin \phi \vec{i} + \sin \theta \cos \phi \vec{j} = \sin \theta \vec{e}_\phi, \\
+            \devp{\vec{e}_r}{\phi} &= -\sin \theta \sin \phi \vec{i} + \sin \theta \cos \phi \vec{j} = \sin \theta \vec{e}_\phi, &
             \devp{\vec{e}_\theta}{r} &= 0 \\
-            \devp{\vec{e}_\theta}{\theta} &= - \sin \theta \cos \phi \vec{i} - \sin \theta \sin \phi \vec{j} - \cos \theta \vec{k} = -\vec{e}_r, \\
-            \devp{\vec{e}_\theta}{\phi} &= - \cos \theta \sin \phi \vec{i} + \cos \theta \cos \phi \vec{j} = \cos \theta \vec{e}_\phi, \\
+            \devp{\vec{e}_\theta}{\theta} &= - \sin \theta \cos \phi \vec{i} - \sin \theta \sin \phi \vec{j} - \cos \theta \vec{k} = -\vec{e}_r, &
             \devp{\vec{e}_\phi}{r} &= 0, \\
+            \devp{\vec{e}_\theta}{\phi} &= - \cos \theta \sin \phi \vec{i} + \cos \theta \cos \phi \vec{j} = \cos \theta \vec{e}_\phi, &
             \devp{\vec{e}_\phi}{\theta} &= 0, \\
             \devp{\vec{e}_\phi}{\phi} &= -\cos \phi \vec{i} - \sin \phi \vec{j} = - \cos \theta \vec{e}_\theta - \sin \theta \vec{e}_r.
         \end{align*}
@@ -387,7 +403,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
         \vec{V} = - \frac{\cot \theta}{r} \vec{e}_\phi.
         \]
         \begin{solution}
-            Escrevendo $r = x \vec{i} + y \vec{j} + z \vec{k}$ em coordenadas esf\'{e}ricas temos
+            Utilizando \eqref{eq:coor_esf}, escrevemos $r = x \vec{i} + y \vec{j} + z \vec{k}$ em coordenadas esf\'{e}ricas:
             \[
             \vec{r} = r \sin \theta \cos \phi \vec{i} + r \sin \theta \sin \phi \vec{j} + r \cos \theta \vec{k}.
             \]
@@ -405,7 +421,11 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
                 \vec{e}_\phi &= -\sin \phi \vec{i} + \cos \phi \vec{j}.
             \end{align*}
   
+<<<<<<< HEAD
             Agora escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_r$, $\vec{e}_\theta$ e $\vec{e}_\phi$:
+=======
+            Agora, por meio de \eqref{eq:vetor_mud_coor}, escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_r$, $\vec{e}_\theta$ e $\vec{e}_\phi$:
+>>>>>>> work
             \begin{align*}
                 \vec{i} &= \sin \theta \cos \phi \vec{e}_r + \cos \theta \cos \phi \vec{e}_\theta - \sin \vec{e}_\phi, \\
                 \vec{j} &= \sin \theta \sin \phi \vec{e}_r + \cos \theta \sin \phi \vec{e}_\theta + \cos \phi \vec{e}_\phi, \\
@@ -466,7 +486,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
     \]
     Mostre que $(\vec{V} \cdot \nabla) r = \vec{V}$.
     \begin{solution}
-        Escrevendo $r = x \vec{i} + y \vec{j} + z \vec{k}$ em coordenadas esf\'{e}ricas temos
+        Utilizando \eqref{eq:coor_esf}, escrevemos $r = x \vec{i} + y \vec{j} + z \vec{k}$ em coordenadas esf\'{e}ricas: 
         \[
         \vec{r} = r \sin \theta \cos \phi \vec{i} + r \sin \theta \sin \phi \vec{j} + r \cos \theta \vec{k}.
         \]
@@ -484,7 +504,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
             \vec{e}_\phi &= -\sin \phi \vec{i} + \cos \phi \vec{j}.
         \end{align*}
         
-        Agora escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_r$, $\vec{e}_\theta$ e $\vec{e}_\phi$:
+        Agora, por meio de \eqref{eq:vetor_mud_coor}, escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_r$, $\vec{e}_\theta$ e $\vec{e}_\phi$:
         \begin{align*}
             \vec{i} &= \sin \theta \cos \phi \vec{e}_r + \cos \theta \cos \phi \vec{e}_\theta - \sin \vec{e}_\phi, \\
             \vec{j} &= \sin \theta \sin \phi \vec{e}_r + \cos \theta \sin \phi \vec{e}_\theta + \cos \phi \vec{e}_\phi, \\

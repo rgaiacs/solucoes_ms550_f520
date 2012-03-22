@@ -1,6 +1,6 @@
 %        File: lista2.tex
 %     Created: Sat Mar 10 08:00 PM 2012 B
-% Last Change: Sat Mar 10 08:00 PM 2012 B
+% Last Change: 21.03.12 10:06:35 PM
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
@@ -18,6 +18,7 @@
 \renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
 \SolutionEmphasis{\itshape}
 \unframedsolutions
+\pointname{}
 
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
@@ -26,6 +27,9 @@
 \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
+\newcommand{\devd}[2]{\frac{\text{d} #1}{\text{d} #2}}
+\newcommand{\devdt}[2]{\frac{\text{d$^2$} #1}{\text{d} #2^2}}
+\newcommand{\devdtm}[3]{\frac{\text{d$^2$} #1}{\text{d} #2 \text{d} #3}}
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\grad}{\mbox{grad }}
 \newcommand{\diver}{\mbox{div }}
@@ -37,62 +41,752 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
 \begin{questions}
     \question $x^2 y'' + x y' + \left( x^2 - 1/4 \right) y = 0$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y'' + \frac{1}{x} y' + \left( 1 -\frac{1}{4x^2} \right) x^2 = 0.
+        \]
+        Verificamos que $p\left( x \right) = \frac{1}{x}$ e $q\left( x \right) = \left( 1 - \frac{1}{4x^2} \right)$ n\~{a}o s\~{a}o anal\'{i}ticas em $x_0 = 0$ mas $x p\left( x \right)$ e $x^2 q\left( x \right)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1}, \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \begin{align*}
+            \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r} + \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r} + \sum_{n = 0}^\infty a_n x^{n + r + 2} &= 0 \\
+            \sum_{n = 0}^\infty \left[ \left( n + r \right) \left( n + r - 1 \right) + \left( n + r) \right) - \frac{1}{4} \right] a_n x^{n + r} + \sum_{n = 2}^\infty a_{n - 2} x^{n + r} &= 0 \\
+            \begin{split}
+                \left[ r \left( r - 1 \right) + r - \frac{1}{4} \right] a_0 x^r + \left[ r \left( r + 1 \right) + r + 1 - \frac{1}{4} \right] a_1 x^{r + 1} \\ {}+ \sum_{n = 2}^\infty \left[ \left( n + r \right)^2 - \frac{1}{4} \right] a_n x^{n + r} + \sum_{n = 2}^\infty a_{n - 2} x^{n + r} &= 0.
+            \end{split}
+        \end{align*}
+
+        Como $x \neq 0$, temos
+        \[
+        \begin{cases}
+            \left[ r \left( r - 1 \right) + r - \frac{1}{4} \right] a_0 = 0 \\
+            \left[ \left( r + 1 \right)^2 - \frac{1}{4} \right] a_1 = 0 \\
+            \left[ \left(n + r \right)^2 - \frac{1}{4} \right] a_n + a_{n-2} = 0
+        \end{cases}
+        \]
+        Para $a_0 \neq 0$ temos que $r \left( r - 1 \right) + r - \frac{1}{4} = 0$ e portanto $r_1 = \frac{1}{2}$ e $r_2 = - \frac{1}{2}$.
+
+        Para $r = r_1 = \frac{1}{2}$, temos
+        \begin{align*}
+            \left[ \left( \frac{1}{2} + 1 \right)^2 - \frac{1}{4} \right] a_1 &= 0 \\
+            a_1 &= 0
+        \end{align*}
+        e
+        \begin{align*}
+            \left[ \left( \frac{1}{2} + n \right)^2 - \frac{1}{4} \right] a_n + a_{n - 2} &=0 \\
+            a_n &= - \frac{a_{n - 2}}{n \left( n + 1 \right)}, \ n = 2, 3, \ldots
+        \end{align*}
+        Logo, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e} expressa por
+        \[
+        a_{2k} = \frac{\left( -1 \right)^k a_0}{\left( 2k _ 1 \right)!}, \ k = 0, 1, 2, \ldots
+        \]
+        e a solu\c{c}\~{a}o $y_1$ assume a seguinte forma:
+        \begin{align*}
+            y_1\left( x \right) &= \sum_{k = 0}^\infty a_{2k} x^{2k + \frac{1}{2}} \\
+            &= \sum_{n = 0}^\infty \frac{\left( -1 \right)^n a_0 x^{2n + 1}}{\left( 2n + 1 \right)!} \\
+            &= x^{-\frac{1}{2}} \sum_{n = 0}^\infty \frac{\left( -1 \right) a_0 x^{2n + 1}}{\left( 2 n + 1 \right)!} \\
+            &= x^{-\frac{1}{2}} \sin x.
+        \end{align*}
+
+        Para $r = r_2 = -\frac{1}{2}$, temos
+        \begin{align*}
+            \left[ \left( 1 - \frac{1}{2} \right)^2 - \frac{1}{4} \right] a_1 &= 0 \\
+            0 a_1 &= 0 && \text{$a_1$ \'{e} livre}
+        \end{align*}
+        e
+        \begin{align*}
+            \left[ \left( n - \frac{1}{2} \right)^2 - \frac{1}{4} \right] a_n + a_{n - 2} &= 0 \\
+            \left( n^2 - n \right) a_n + a_N{n - 2} &= 0 \\
+            a_n &= \frac{- a_{n - 2}}{n \left( n - 1 \right)}, \ n = 2, 3, 4, \ldots
+        \end{align*}
+        Logo, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e} expressa por
+        \begin{align*}
+            a_{2k} &= \frac{\left( -1 \right)^k a_0}{\left( 2k \right)!}, \ k = 0, 1, 2, \ldots \\
+            a_{2k + 1} &= \frac{\left( -1 \right)^k a_1}{\left( 2k + 1 \right)!}, \ k = 0, 1, 2, \ldots
+        \end{align*}
+        e a solu\c{c}\~{a}o assume a seguinte forma:
+        \begin{align*}
+            y_2\left( x \right) &= \sum_{n = 0}^\infty a_{2n} x^{2n - \frac{1}{2}} + \sum_{n = 0}^\infty a_{2n + 1} x^{2n + 1 - \frac{1}{2}} \\
+            &= x^{- \frac{1}{2}} \sum_{n = 0}^\infty \frac{\left( -1 \right)^k a_0 x^{2n}}{\left( 2 n \right)!} + x^{- \frac{1}{2}} \sum_{n = 0}^\infty \frac{\left( -1 \right)^n a_1 x^{2n + 1}}{\left( 2 n + 1 \right)!} \\
+            &= x^{- \frac{1}{2}} \sin x + x^{- \frac{1}{2}} \cos x.
+        \end{align*}
+
+        E por último a solu\c{c}\~{a}o geral \'{e}
+        \[
+        y\left( x \right) = x^{- \frac{1}{2}} \left( \sin x + \cos x \right).
+        \]
     \end{solution}
 
     \question $x\left( 1 - x \right) y'' - 3 y' + 2y = 0$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y11 - \frac{3}{x \left( 1 - x \right)} y' + \frac{2}{x \left( 1 - x \right)} y = 0.
+        \]
+        Verificamos que $p(x) = \frac{-3}{x \left( 1 - x \right)}$ e $q(x) = \frac{2}{1 \left( 1 - x \right)}$ n\~{a}o s\~{a}o ana\'{i}liticas em $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o \'{e} do tipo
+        \[
+        y(x) = \sum_{n = 0}^\infty a_n x^{r + n}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \begin{align*}
+            \begin{split}
+                \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} - \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r} \\  {}- 3 \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} + 2 \sum_{n = 0}^\infty a_n x^{n + r} &= 0
+            \end{split} \\
+            \begin{split}
+                \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} - \sum_{n = 1}^\infty \left( n + r - 1 \right) \left( n + r - 2 \right) a_{n + 1} x^{n + r - 1} \\  {}- 3 \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} + 2 \sum_{n = 1}^\infty a_{n + 1} x^{n + r - 1} &= 0
+            \end{split} \\
+            \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 4 \right) a_n x^{n + r - 1} + \sum_{n = 1}^\infty \left[ 2 - \left( n + r - 1 \right) \left( n + r - 2 \right) \right] a_{n - 1} x^{n + r - 1} &= 0 \\
+            \begin{split}
+                r \left( r - 4 \right) a_0 x^{r - 1} + \sum_{n = 1}^\infty \left( n + r \right) \left( n + r - 4 \right) a_n x^{n + r - 1} \\ {}+ \sum_{n = 1}^\infty \left[ 2 - \left( n + r - 1 \right) \left( n + r - 2 \right) \right] a_{n - 1} x^{n + r - 1} &= 0.
+            \end{split}
+        \end{align*}
+
+        Como $x \neq 0$, como equa\c{c}\~{a}o indicial
+        \[
+        r \left( r - 4 \right) a_0 = 0, \ a_0 \neq 0
+        \]
+        e como rela\c{c}\~{a}o de recorr\^{e}ncia
+        \[
+        a_n = \frac{\left( n + r - 1 \right) \left( n + r - 2 \right) - 2}{\left( n + r \right) \left( n + r - 4 \right)} a_{n - 1}, \ n = 1, 2, 3, \ldots.
+        \]
+
+        Pela equa\c{c}\~{a}o indicial obtemos $r_1 = 0$ e $r_2 = 4$.
+
+        Para $r = r_1 = 0$, temos
+        \[
+        a_n = \frac{\left( n - 1 \right) \left( n - 2 \right) - 2}{n \left( n - 4 \right)} a_{n - 1}
+        \]
+        que n\~{a}o est\'{a} definida para $n \geq 4$. Logo, para $1 \leq n \leq 3$ temos
+        \begin{align*}
+            a_1 &= \frac{-2}{-3} a_0 = \frac{2}{3} a_0, \\
+            a_2 &= \frac{-2}{2 \left( -2 \right)} a_1 = \frac{1}{2} a_1 = \frac{1}{3} a_0, \\
+            a_3 &= \frac{\left( 2 \right) \left( 1 \right) - 2}{3\left( -1 \right)} a_2 = 0.
+        \end{align*}
+        Portanto,
+        \begin{align*}
+            y_1(x) &= a_0 + a_1 x + a_2 x^2 + a_3 x^3 \\
+            &= a_0 + \frac{2}{3} a_0 x + \frac{1}{3} a_0 x^3 + 0 \\
+            &= x^2 + 2 x + 3.
+        \end{align*}
+
+        Para $r = r_2 = 4$, temos
+        \[
+        a+n = \frac{\left( n + 3 \right) \left( n + 2 \right) - 2}{\left( n + 4 \right) n} a_{n - 1} = \frac{\left( n + 4 \right) \left( n + 1 \right)}{n \left( n + 4 \right)} a_{n - 1} = \frac{n + 1}{n} a_{n - 1}.
+        \]
+        Logo, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e} expressa por
+        \[
+        a_n = \left( n + 1 \right) a_0.
+        \]
+        Portanto,
+        \begin{align*}
+            y_2 (x) &= \sum_{n = 0}^\infty \left( n + 1 \right) a_0 x^{n + 4} \\
+            &= x^4 \sum_{n = 0}^\infty \left( n + 1 \right) a_0 x^n \\
+            &= \frac{x^4}{\left( 1 - x \right)^2}.
+        \end{align*}
     \end{solution}
 
     \question $x y'' + y' = 0$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y11 + \frac{1}{x} y' = 0.
+        \]
+        Verificamos que $q(x) = \frac{1}{x}$ n\~{a}o \'{e} anal\'{i}tica em $x_0 = 0$ mas $x p(x) = x$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} da forma
+        \[
+        y(x) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1}, \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \[
+        \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} + \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} = 0.
+        \]
+        Como $x \neq 0$, temos como equa\c{c}\~{a}o indicial
+        \[
+        r^2 a_0 = 0, \ a_0 \neq 0
+        \]
+        e como rela\c{c}\~{a}o de recorr\^{e}ncia
+        \[
+        \left( n + r \right)^2 a_n = 0.
+        \]
+
+        Pela equa\c{c}\~{a}o indicial obtemos $r_1 = r_2 = 0$.
+
+        Para $r = r_1 = r_2 = 0$, temos
+        \[
+        y_1(x) = a_0 x^0 + \sum_{n = 1}^\infty 0 x^0 = a_0.
+        \]
+
+        Pelo M\'{e}todo de Frobenius,
+        \[
+        y_2(x) = y_1(x) \ln x + \sum_{n = 0}^\infty b_n x^n.
+        \]
+        Portanto, temos
+        \begin{align*}
+            y_2 &= \ln x + \sum_{n = 0}^\infty b_n x^n, \\
+            y_2' &= \frac{1}{x} + \sum_{n = 0}^\infty n b_n x^{n - 1}, \\
+            y_2'' &= -\frac{1}{x^2} + \sum_{n = 0}^\infty n \left( n - 1 \right) b_n x^{n - 2}.
+        \end{align*}
+
+        Substituindo a segunda solu\c{c}\~{a}o na equa\c{c}\~{a}o inicial, temos
+        \begin{align*}
+            \sum_{n = 0}^\infty n \left( n -1 \right) b_n x^{n - 1} + \sum_{n = 0}^\infty n b_n x^{n - 1} - \frac{1}{x} + \frac{1}{x} &= 0 \\
+            \sum_{n = 0}^\infty n \left( n - 1 + 1 \right) b_n x^{n - 1} &= 0 \\
+            \sum_{n = 0}^\infty n^2 b_n x^{n - 1} &= 0.
+        \end{align*}
+        Como $x \neq 0$, temos que $b_n = 0$ e $y_2(x) = \ln x$.
     \end{solution}
 
     \question $x^4 y'' + 2 x^3 y' - w^2 y = 0$, $x_0 = + \infty$.
     \begin{solution}
-        
+        Primeiramente fa\c{c}amos uma mudan\c{c}a de vari\'{a}vel:
+        \[
+        x = \frac{1}{z} \leftrightarrow z = \frac{1}{x}.
+        \]
+        Para essa mudan\c{c}a de vari\'{a}vel temos
+        \begin{align*}
+            \devd{y}{x} &= \devd{y}{z} \devd{z}{x} = \devd{y}{z} \left( \frac{-1}{x^2} \right), \\
+            \devdt{y}{x} &=\devd{}{x} \left[ \frac{-1}{x^2} \devd{y}{z} \right] = \frac{2}{x^3} \devd{y}{z} + \devdtm{y}{x}{y}, \\
+            \devdtm{y}{x}{z} &= \devd{}{z} \left[ \devd{y}{x} \right] = \devd{}{z} \left[ \devd{y}{z} \left( \frac{-1}{x^2} \right) \right] = \frac{1}{x^4} \devdt{y}{z}.
+        \end{align*}
+
+        Efetuando a mudan\c{c}\~{a}o de vari\'{a}vel temos
+        \begin{align*}
+            \frac{1}{z^4} \left( 2 z^3 \devd{y}{z} + z^4 \devdt{y}{z} \right) + \frac{2}{z^3} \left( - z^2 \devd{y}{z} \right) - w^2 z &= 0 \\
+            \devdt{y}{z} - w^2 y &= 0.
+        \end{align*}
+
+        Ent\~{a}o a solu\c{c}\~{a}o \'{e} da forma
+        \[
+        y = \sum_{n = 0}^\infty a_n z^n.
+        \]
+        Consequentemente
+        \begin{align*}
+            y' &= \sum_{n = 1}^\infty n a_n z^{n - 1}, \\
+            y'' &= \sum_{n = 2}^\infty n \left( n - 1 \right) a_n z^{n - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \[
+        \sum_{n = 0}^\infty \left( n + 2 \right) \left( n + 1 \right) a_{n + 2} z^n - \sum_{n = 0}^\infty w^2 a_n z^n = 0.
+        \]
+
+        Como $z \neq 0$, temos
+        \[
+        \left( n + 2 \right) \left( n + 1 \right) a_{n + 2} - w^2 a_n = 0.
+        \]
+        Logo, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e}
+        \[
+        a_{n + 2} = \frac{w^2 a_n}{\left( n + 2 \right) \left( n + 1 \right)}, \ n = 0, 1, 2, \ldots.
+        \]
+        Concluimos que
+        \begin{align*}
+            a_{2k} &= \frac{w^{2k} a_0}{\left( 2k \right)!}, \ k = 0, 1, 2, \ldots, \\
+            a_{2k + 1} &= \frac{w^{2 k - 1} a_1}{\left( 2k + 1 \right)!}, \ k = 0, 1, 2, \ldots
+        \end{align*}
+        e a solu\c{c}\~{a}o \'{e}
+        \[
+        y(z) = \sum_{n = 0}^\infty a_{2n} z^{2n} + \sum_{n = 0}^\infty a_{2n + 1} z^{2n + 1}.
+        \]
+
+        Como $z = \frac{1}{x}$, temos
+        \begin{align*}
+            y(x) &= \sum_{n = 0}^\infty a_{2n} x^{-2n} + \sum_{n = 0}^\infty a_{2n + 1} x^{-\left( 2n + 1 \right)}, \\
+            y_1(x) &= \sum_{n = 0}^\infty \frac{w^{2n} a_0 x^{-2n}}{\left( 2n \right)!} = \left( \sum_{n = 0}^\infty a_0 w^{4n} \right) \sum_{n = 0}^\infty \frac{\left( w x \right)^{-2n}}{\left( 2n \right)!}, \\
+            y_2(x) &= \sum_{n = 0}^\infty \frac{w^{2n - 1} a_1 x^{-\left( 2n + 1 \right)}}{\left( 2n + 1 \right)!} = \left( \sum_{n = 0}^\infty a_1 w^{4n} \right) \sum_{n = 0}^\infty \frac{\left( w x \right)^{-\left( 2n - 1 \right)}}{\left( 2n + 1 \right)!}.
+        \end{align*}
     \end{solution}
 
     \question $y'' + x y' + y = 0$.
     \begin{solution}
-        
+        Inicialmente verificamos que $p(x) = 1$ e $q(x) = x$ s\~{a}o fun\c{c}\~{o}es anal\'{i}ticas em torno de $x_0 = 0$. Ent\~{a}o a solu\c{c}\~{a}o \'{e} do tipo
+        \[
+        y(x) = \sum_{n = 0}^\infty a_n x^n.
+        \]
+        Logo, temos
+        \begin{align*}
+            y'(x) &= \sum_{n = 1}^\infty n a_n x^{n - 1}, \\
+            y''(x) &= \sum_{n = 2}^\infty n \left( n -1 \right) a_n x^{n -2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o obtemos
+        \begin{align*}
+            \sum_{n = 2}^\infty n \left( n - 1 \right) a_n x^{n -2} + \sum_{n = 1}^\infty x a_n x^n + \sum_{n = 0}^\infty a_n x^n &= 0 \\
+            \sum_{n = 0}^\infty \left( n + 2 \right) \left( n + 1 \right) a_{n + 2} x^n + \sum_{n = 1}^\infty n a_n x^n + \sum_{n = 0}^\infty a_n x^n &= 0 \\
+            2 a_2 + a_0 + \sum_{n = 1}^\infty \left( n + 2 \right) \left( n + 1 \right) a_{n + 2} x^n + \sum_{n = 1}^\infty \left( n + 1 \right) a_n x^n = 0.
+        \end{align*}
+
+        Deste modo, temos que
+        \[
+        2 a_2 + a_0 = 0 \rightarrow a_2 = - \frac{a_0}{2}
+        \]
+        e
+        \[
+        \left( n + 2 \right) \left( n + 1 \right) a_{n + 2} + \left( n + 1 \right) a_n = 0 \leftarrow a_{n + 2} = - \frac{a_n}{n + 2}.
+        \]
+        Portanto, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e} expressa por
+        \begin{align*}
+            a_{2k} &= \frac{\left( -1 \right)^k a_0}{\left( 2k \right)!!}, \\
+            a_{2k + 1} &= \frac{\left( -1 \right)^k a_1}{\left( 2k + 1 \right)!!}.
+        \end{align*}
+        e as solu\c{c}\~{o}es independentes s\~{a}o
+        \begin{align*}
+            y_1(x) &= \sum_{n = 0}^\infty \frac{\left( -1 \right)^k a_0 x^{2n}}{\left( 2n \right)!!}, \\
+            y_2(x) &= \sum_{n = 0}^\infty \frac{\left( -1 \right)^k a_1 x^{2n + 1}}{\left( 2n + 1 \right)!!}.
+        \end{align*}
     \end{solution}
 
     \question $y'' + 5 x^3 y = 0$.
     \begin{solution}
-        
+        Inicialmente verificamos que $p(x) = 1$ e $q(x) = 0$ s\~{a}o fun\c{c}\~{o}es anal\'{i}ticas em torno de $x_0$. Logo, a solu\c{c}\~{a}o \'{e} do tipo
+        \[
+        y(x) = \sum_{n = 0}^\infty a_n x^n.
+        \]
+        Logo, temos
+        \begin{align*}
+            y'(x) &= \sum_{n = 1}^\infty n a_n x^{n -1}, \\
+            y''(x) &= \sum_{n = 2}^\infty \left( n -1 \right) n a_n x^{n -2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o obtemos
+        \begin{align*}
+            \sum_{n = 2} n \left( n -1 \right) a_n x^{n -2} + 5  \sum_{n = 0}^\infty a_n x^{n + 3} &= 0 \\
+            \sum_{n = -3}^\infty \left( n + 5 \right) \left( n + 4 \right) a_{n + 5} x^{n +3} + 5 \sum_{n = 0}^\infty a_n x^{n + 3} &= 0 \\
+            2 a_2 + 3 \cdot 2 a_3 x + 4 \cdot 3 a_4 x^2 + \sum_{n = 0}^\infty \left( n + 5 \right) \left( n + 4 \right) a_{n + 5} x^{n + 3} + 5 \sum_{n = 0}^\infty a_n x^{n + 3} &= 0.
+        \end{align*}
+
+        Deste modo,
+        \begin{align*}
+            2 a_2 = 0 &\rightarrow a_2 = 0, \\
+            6 a_3 = 0 &\rightarrow a_3 = 0, \\
+            12 a_4 = 0 &\rightarrow a_4 = 0, \\
+            \left( n + 5 \right) \left( n + 4 \right) a_{n + 5} + 5 a_n = 0 &\rightarrow a_{n + 5} = \frac{-5 a_n}{\left( n + 5 \right) \left( n + 4 \right).}
+        \end{align*}
+
+        Portanto, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e} expressa por
+        \begin{align*}
+            a_{5k} &= \frac{\left( -1 \right)^k 5^k a_0}{5k \left( 5k - 1 \right) \left( 5k - 5 \right) \left( 5k - 6 \right) \ldots 5 \cdot 4}, \\
+            a_{5k + 1} &= \frac{\left( -1 \right)^k 5^k a_1}{\left( 5k + 1 \right) \left( 5k \right) \left( 5k - 4 \right) \ldots 6 \cdot 5},
+        \end{align*}
+        e as solu\c{c}\~{o}es independentes s\~{a}o
+        \begin{align*}
+            y_1(x) &= \sum_{n = 0}^\infty a_{5n} x^{5n}, \\
+            y_2(x) &= \sum_{n = 0}^\infty a_{5n + 1} x^{5n + 1}.
+        \end{align*}
     \end{solution}
 
     \question $4 x y'' + 2 \left( 1 - x \right) y' - y = 0$.
     \begin{solution}
-        
+        Inicialmente manipulamos a equa\c{c}\~{a}o tal que
+        \[
+        y'' + \frac{1 - x}{2 x} y' - \frac{1}{4x} y = 0.
+        \]
+        Verificamos que $p(x) = \frac{1 - x}{2x}$ e $q(x) = \frac{-1}{4x}$ n\~{a}o s\~{a}o anal\'{i}ticas em torno de $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solul\c{c}\~{a}o na equa\c{c}\~{a}o original, temos
+        \begin{align*}
+            \begin{split}
+                4 \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} + 2 \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} \\ {}- 2 \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r} - \sum_{n = 0}^\infty a_n x^{n + r} &= 0
+            \end{split} \\
+            \sum_{n = 0}^\infty \left[ 4 \left( n + r \right) \left( n + r - 1 \right) + 2 \left( n + r \right) \right] a_n x^{n + r - 1} - \sum_{n = 1}^\infty \left[ 2 \left( n + r - 1 \right) a_{n - 1} x^{n + r - 1} \right] &= 0 \\
+            \begin{split}
+                \left[ 4 r \left( r - 1 \right) + 2 r \right] a_0 x^{r - 1} + \sum_{n = 1}^\infty 2 \left( n + r \right) \left( 2 n + 2 r - 1 \right) a_n x^{n + r - 1} \\ {}- \sum{n = 1}^\infty \left( 2 n + 2 r - 1 \right) a_{n - 1} x^{n + r - 1} &= 0.
+            \end{split}
+        \end{align*}
+
+        Para $n \neq 0$ temos que
+        \begin{align*}
+            \left[ 4 r \left( r - 1 \right) + 2 r \right] a_0 &= 0, \\
+            2 \left( n + r \right) \left( 2n + 2 r - 1 \right) a_n - \left( 2 n + 2 r - 1 \right) a_{n - 1} &= 0.
+        \end{align*}
+        E para $a_0 \neq 0$
+        \[
+        4 r \left( r - 1 \right) + 2 r = 4r^2 - 2r = 2r \left( 2 r - 1 \right) = 0
+        \]
+        de onde concluimos que $r_1 = 0$ e $r_2 = \frac{1}{2}$.
+
+        Para $r = r_1 = 0$, temos
+        \begin{align*}
+            2 n \left(2 n - 1 \right) a_n - \left( 2 n - 1 \right) a_{n - 1} &= 0 \\
+            a_n &= \frac{a_{n = 1}}{2 n}.
+        \end{align*}
+        Consequentemente,
+        \[
+        a_n = \frac{a_0}{2^n n!}
+        \]
+        e
+        \[
+        y_1(x) = \sum_{n = 0}^\infty \frac{a_0 x^n}{2^n n!} = e^x \sum_{n = 0}^\infty \frac{a_0}{2^n}.
+        \]
+
+
+        Para $r = r_2 = \frac{1}{2}$, temos
+        \begin{align*}
+            \left( 2 n + 1 \right) \left( 2 n + 1 - 1 \right) a_n - \left( 2 n + 1 - 1 \right) a_{n - 1} &= 0 \\
+            a_n = \frac{a_{n - 1}}{2 n + 1}.
+        \end{align*}
+        Consequentemente,
+        \[
+        a_n = \frac{a_{n - 1}}{\left( n + 1 \right)!!}
+        \]
+        e
+        \[
+        y_2(x) = \sum_{n = 0}^\infty \frac{a_0 x^{n + \frac{1}{2}}}{\left( n + 1 \right)!!}.
+        \]
     \end{solution}
 
     \question $x^2 y'' + x y' + \left( x^3 - 2 \right) y = 0$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y'' + \frac{1}{x} y' + \frac{x^3 - 2}{x^2} y = 0.
+        \]
+        Verificamos que $p(x) = \frac{1}{x}$ e $q(x) = \frac{x^3 - 2}{x^2}$ n\~{a}o s\~{a}o anal\'{i}ticas em torno de $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Lofo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o inicial temos
+        \begin{align*}
+            \begin{split}
+                \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r} + \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r} \\ {}+ \sum_{n = 0}^\infty a_n x^{n + r - 3} - 2 \sum_{n = 0}^\infty a_n x^{n + r} &= 0
+            \end{split} \\
+            \sum_{n = 0}^\infty \left[ \left( n + r \right)^2 - 2 \right] a_n x^{n + r} + \sum_{n = 3}^\infty a_{n - 3} x^{n + r} &= 0 \\
+            \begin{split}
+                \left( r^2 - 2 \right) a_0 x^r + \left[ \left( r + 1 \right)^2 - 2 \right] a_1 x^{r + 1} + \left[ \left( r + 2 \right)^2 - 2 \right] a_2 x^{r + 2} \\ {}+ \sum_{n = 3}^\infty \left[ \left( n + r \right)^2 - 2 \right] a_n x^{n + r} + \sum_{n = 0}^\infty a_n - 3 x^{n + r} &= 0.
+            \end{split}
+        \end{align*}
+
+        Como $x \neq 0$, temos
+        \begin{align*}
+            \left( r^2 - 2 \right) a_0 &= 0, \\
+            \left[ \left( r + 1 \right)^2 - 2 \right] a_1 &= 0, \\
+            \left[ \left( r + 2 \right)^2 - 2 \right] a_2 &= 0, \\
+            \left[ \left( n + r \right)^2 - 2 \right] a_n + a_{n - 3} &= 0.
+        \end{align*}
+        E como $a_0 \neq 0$,
+        \[
+        \left( r^2 - 2 \right) = 0 \rightarrow r_1 = \sqrt{2}, r_2 = -\sqrt{2}.
+        \]
+
+        Para $r = r_1 = -\sqrt{2}$, temos
+        \begin{align*}
+            \left[ \left( \sqrt{2} + 1 \right)^2 = 2 \right] a_1 = 0 &\rightarrow a_1 = 0, \\
+            \left[ \left( \sqrt{2} + 2 \right)^2 - 2 \right] a_2 = 0 &\rightarrow a_2 = 0, \\
+            \left[ n^2 + 2\sqrt{2} n + 2 - 2 \right] a_n + a_{n - 3} = 0 &\rightarrow a_n = \frac{- a_{n - 3}}{n \left( n + 2 \sqrt{2} \right)}.
+        \end{align*}
+        Logo,
+        \[
+        a_{3n} = \frac{\left( -1 \right)^k a_0}{3^n n! \left( 3 n + 2\sqrt{2} \right) \left( 3 \left( n - 1 \right) + 2\sqrt{2} \right) \ldots \left( 3 + 2 \sqrt{2} \right)}
+        \]
+        e
+        \[
+        y_1(x) = x^{\sqrt{2}} \sum_{n = 0}^\infty a_{3n} x^{3n}.
+        \]
+
+        Para $r = r_2 = -\sqrt{2}$, temos
+        \begin{align*}
+            \left[ \left( -\sqrt{2} + 1 \right)^2 - 2 \right] a_1 = 0 &\rightarrow a_1 = 0, \\
+            \left[ \left( -\sqrt{2} + 2 \right)^2 - 2 \right] a_2 = 0 &\rightarrow a_2 = 0, \\
+            \left[ \left( -\sqrt{2} + n \right)^2 - 2 \right] a_n + a_{n - 3} = 0 &\rightarrow a_n = \frac{- a_{n - 3}}{n \left( n - 2 \sqrt{2} \right)}.
+        \end{align*}
+        Logo,
+        \[
+        a_{3n} = \frac{\left( -1 \right)^n a_0}{3^n n! \left( 3n - 2\sqrt{2} \right) \left( 3\left( n - 1 \right) - 2\sqrt{2} \right) \ldots \left( 3 - 2\sqrt{2} \right)}
+        \]
+        e
+        \[
+        y_2(x) = x^{-\sqrt{2}} \sum_{n = 0}^\infty a_{3n} x^{3n}.
+        \]
     \end{solution}
 
     \question $3 \left( x^2 + x \right) y'' + \left( x + 2 \right) y' - y = 0$.
     \begin{solution}
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y'' + \frac{x + 2}{3 x \left( x + 1 \right)} y' - \frac{1}{3x \left( x + 1 \right)} y = 0.
+        \]
+        Verificamos que $P(x) = \frac{x + 2}{3 x \left( x + 1 \right)}$ e $q(x) = \frac{1}{3x \left( x + 1 \right)}$ n\~{a}o s\~{a}o anal\'{i}ticas em $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o inicial, temos
+        \begin{align*}
+            \begin{split}
+                3 \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r} + 3 \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} \\ {}+ \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r} + 2 \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} - \sum_{n = 0}^\infty a_n x^{n + r} &= 0
+            \end{split} \\
+            \begin{split}
+                3 \sum_{n = 1}^\infty \left( n + r - 1 \right) \left( n + r - 2 \right) a_{n - 1} x^{n + r - 1} + 3 \sum_{n + r}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} \\ {}+ \sum_{n = 1}^\infty \left( n + r - 1 \right) a_{n - 1} x^{n + r - 1} + 2 \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} - \sum_{n = 1}^\infty a_{n - 1} x^{n + r - 1} &= 0
+            \end{split} \\
+            \begin{split}
+                3 r \left( r - 1 \right) a_o x^{r - 1} + 2 r a_0 x^{r - 1} + 3 \sum_{n = 1}^\infty \left( n + r - 1 \right) \left( n + r - 2 \right) a_{n - 1} x^{n + r - 1} \\ {}+ 3 \sum_{n = 1}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} + \sum_{n = 1}^\infty \left( n + r - 1 \right) a_{n - 1} x^{n + r -1} \\ {}+ 2 \sum_{n = 1}^\infty \left( n + r \right) a_n x^{n + r - 1} - \sum_{n = 1}^\infty a_{n - 1} x^{n + r - 1} &= 0.
+            \end{split}
+        \end{align*}
+
+        Como $x \neq 0$,
+        \[
+        \left[ 3 r \left( r - 1 \right) + 2r \right] a_0 = 0
+        \]
+        e
+        \begin{align*}
+            \begin{split}
+                \left[ 3 \left( n + r - 1 \right) \left( n + r - 2 \right) + \left( n + r - 1 \right) - 1 \right] a_{n - 1} \\ {}+ \left[ 3 \left( n + r \right) \left( n + r - 1 \right) + 2 \left( n + r \right) \right] a_n &= 0
+            \end{split} \\
+            a_n &= \frac{- \left[ 3 \left( n + r - 1 \right)^2 - 1 \right]}{3 \left( n + r \right) \left( n + r - 1 \right)} a_{n - 1}.
+        \end{align*}
+        E como $a_0 \neq 0$, temos
+        \[
+        3 r^2 - 3 r + 2 r = 0 \rightarrow r\left( 3r - 1 \right) = 0 \rightarrow r_1 = 0, r_2 = \frac{1}{3}.
+        \]
         
+        Para $r = r_1 = 0$, temos
+        \[
+        a_{n + 1} = \frac{-3 \left( n^2 - 1 \right)}{3 \left( n + 1 \right) \left( n + 2 \right)} a_n = \frac{-\left( n - 1 \right)}{n + 2} a_n
+        \]
+        e consequentemente
+        \[
+        y_1(x) = a_0 + a_1 x = 1 + \frac{x}{2}.
+        \]
+
+        Para $r = r_2 = \frac{1}{3}$, temos
+        \[
+        a_{n + 1} = \frac{-3\left[ \left( n + \frac{1}{3} \right)^2 - 1 \right]}{3 \left( n + \frac{4}{3} \right) \left( n + \frac{7}{3} \right)} a_n = \frac{9n^2 + 6n - 8}{9n^2 + 33 n + 28} a_n.
+        \]
+        Consequentemente,
+        \[
+        a_n = \frac{\left( -1 \right)^n \left( 3n - 2 \right) \left( 3n - 5 \right) \ldots \left( 3n - 1 \right) \ldots 2}{\left( 3n + 4 \right) \left( 4n + 1 \right) \ldots 4 \left( 3n + 3 \right) \left( 3n \right) 3} a_0
+        \]
+        e
+        \[
+        y_2(x) = x^{\frac{1}{3}} \sum_{n = 0}^\infty a_n x^n.
+        \]
     \end{solution}
 
     \question $2 x y'' + y' - y = 0$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y'' + \frac{1}{2x} y' - \frac{1}{2x} y = 0.
+        \]
+        Verificamos que $p(x) = \frac{1}{2x}$ e $q(x) = \frac{1}{2x}$ n\~{a}o s\~{a}o anal\'{i}ticas em torno de $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \begin{align*}
+            2 \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} + \sum){n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} - \sum_{n = 0}^\infty a_n x^{n + r} &=0 \\
+            2 \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 1} + \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} - \sum_{n = 1}^\infty a_{n - 1} x^{n + r - 1} &= 0 \\
+            2 r \left( r - 1 \right) a_0 x^{r - 1} + r a_0 x^{r - 1} + \sum_{n = 0}^\infty \left[ \left( n + r \right) \left( 2n + 2r - 1 \right) \right] a_n x^{n + r - 1} - \sum_{n = 1}^\infty a_{n - 1} x^{n + r - 1} &= 0.
+        \end{align*}
+
+        Como $x \neq 0$, temos
+        \begin{align*}
+            \left( 2 r \left( r - 1 \right) + r \right) a_0 &= 0, \\
+            \left( n + r \right) \left( 2 n + 2 r - 1 \right) a_n - a_{n - 1} &= 0.
+        \end{align*}
+        Como $a_0 \neq 0$,
+        \[
+        \left( 2 r^2 - r \right) = r (2 r - 1) = 0 \rightarrow r_1 = 0, r_2 = \frac{1}{2}.
+        \]
+
+        Para $r = r_1 = 0$, temos
+        \[
+        n \left( 2 n - 1 \right) a_n - a_{n - 1} = 0 \rightarrow a_n = \frac{a_{n - 1}}{n \left( 2n - 1 \right)}.
+        \]
+        Logo, $a_n = \frac{a_0}{n! \left( 2n - 1 \right)!!}$ e
+        \[
+        y_1(x) = \sum_{n = 0}^\infty \frac{1}{n! \left( 2 n - 1 \right)!!} x^n = e^x \sum_{n = 0}^\infty \frac{1}{\left( 2n - 1 \right)!!}.
+        \]
+
+        Para $r = r_2 = \frac{1}{2}$, temos
+        \[
+        \left( n + \frac{1}{2} \right) \left( 2n \right) a_n - a_{n - 1} = 0 \rightarrow a_n = \frac{a_{n - 1}}{n \left( 2n + 1 \right)}.
+        \]
+        Logo, $a_n = \frac{a_0}{n! \left( 2 n + 1 \right)!!}$ e
+        \[
+        y_2(x) = x^{\frac{1}{2}} \sum_{n = 0}^\infty \frac{x^n}{n! \left( 2 n + 1 \right)!!} = x^2 e^x \sum_{n = 0}^\infty \frac{1}{\left( 2n + 1 \right)!!}.
+        \]
     \end{solution}
 
     \question $8 x^2 y'' + 2 x y' + \left( 1 - x \right) y = 0$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y'' + \frac{1}{4x} y' + \frac{\left( 1 - x \right)}{8x^2} y = 0.
+        \]
+        Verificamos que $p(x) = \frac{1}{4x}$ e $q(x) = \frac{1 - x}{8x^2}$ n\~{a}o s\~{a}o fun\c{c}\~{o}es anal\'{i}ticas em $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1}, \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \begin{align*}
+            8 \sum_{n = 0}^\infty \left( n + r - 1 \right) \left( n + r \right) a_n x^{n + r} + 2 \sum_{n = 0}^\infty \left( n + r \right) x^{n + r} + \sum_{n = 0}^\infty a_n x^{n + r} - \sum_{n = 0}^\infty a_n x^{n + r + 1} &= 0 \\
+            \sum_{n = 0}^\infty \left[ 2 \left( n + r - 1 \right) \left( n + r \right) + 2 \left( n + r \right) + 1 \right] a_n x^{n + r} - \sum_{n = 1}^\infty a_{n - 1} x^{n + r} &= 0 \\
+            \left[ 2 r \left( r - 1) \right) 2 r + 1 \right] a_0 x^r + \sum_{n = 0}^\infty \left[ 8 \left( n + r - 1 \right) \left( n + r \right) + 2 \left( n + r \right) + 1 \right] a_n x^{n + r} - \sum_{n = 0}^\infty a_{n - 1} x^{n + r} &= 0.
+        \end{align*}
+
+        Como $x \neq 0$, temos
+        \begin{align*}
+            \left[ 8 r^2 - 6 r + 1 \right] a_0 &= 0,
+            \left[ 8 \left( n + r - 1 \right) \left( n + r \right) + 2 \left( n + r \right) + 1 \right] a_n - a_{n - 1} &= 0.
+        \end{align*}
+        Para $a_0 \neq 0$
+        \[
+        8 r^2 - 6 r + 1 = 0 \rightarrow r_1 = \frac{1}{2}. r_2 = \frac{1}{4}
+        \]
+        e
+        \[
+        a_n = \frac{a_{n - 1}}{8 \left( n + r \right) \left( n + r - 1 \right) + 2\left( n + r \right) + 1}.
+        \]
+
+        Para $r = r_1 = \frac{1}{2}$, temos
+        \[
+        a_n = \frac{a_{n - 1}}{8 \left( n + \frac{1}{2} \right) \left( n - \frac{1}{2} \right) + 2n + 2} = \frac{a_{n - 1}}{2\left( 4 n^2 + n \right)} = \frac{a_{n - 1}}{2n\left( 4 n + 1 \right)}.
+        \]
+        Logo, $a_n = \frac{a_0}{n \left( 4n + 1 \right)\left( 2n \right)!!}$ e
+        \[
+        y_1(x) = x^{\frac{1}{2}} \sum_{n = 0}^\infty \frac{x^n}{n \left( 4n + 1 \right) \left( 2n \right)!!}.
+        \]
+
+        Para $r = r_2 = \frac{1}{4}$, temos
+        \[
+        a_n = \frac{a_{n - 1}}{\left( 4 n + 1 \right) \left( 2n - \frac{3}{2} \right) + 2n + \frac{1}{2} + 1} = \frac{a_{n - 1}}{2n \left( 4n - 1 \right)}.
+        \]
+        Logo, $a_n = \frac{a_0}{\left( 3 n + 1 \right) n!}$ e
+        \begin{align*}
+            y_2(x) = x^{\frac{1}{4}} e^x \sum_{n = 0}^\infty \frac{1}{\left( 3n + 1 \right)}.
+        \end{align*}
     \end{solution}
 
-    \question $\left( x - 1 \right) y'' - x y' + y = 0$.
+    \question $\left( x - 1 \right) y'' - x y' + y = 0$, $x_0 = 1$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y'' - \frac{x}{x - 1} y' + \frac{1}{x - 1} y = 0.
+        \]
+        Verificamos que $p(x) = \frac{x}{x - 1}$ e $q(x) = \frac{1}{x - 1}$ n\~{a}o s\~{a}o anal\'{i}ticas em $x_0 = 1$ mas $\left( x - 1 \right) p(x)$ e $\left( x - 1 \right)^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n \left( x - 1 \right)^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n \left( x - 1 \right)^{n + r - 1}, \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n \left( x - 1 \right)^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \begin{align*}
+            \begin{split}
+                \sum_{n = 0}^\infty \left( n + r 0 1 \right) \left( n + r \right) a_n \left( x - 1 \right)^{n + r - 1} - \sum_{n = 0}^\infty \left( n + r \right) a_n \left( x - 1 \right)^{n + r} \\ {}- \sum_{n = 0}^\infty \left( n + r \right) a_n \left( x - 1 \right)^{n + r - 1} + \sum_{n = 0}^\infty a_n \left(x - 1 \right)^{n + r} &= 0
+            \end{split} \\
+            \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 2 \right) a_n \left( x - 1 \right)^{n + r - 1} - \sum_{n = 1}^\infty \left( n + r - 2 \right) a_{n - 1} \left( x - 1 \right)^{n + r - 1} &= 0 \\
+            \begin{split}
+                r\left( r - 2 \right) a_0 \left( x - 1 \right)^{r - 1} + \sum_{n = 1}^\infty \left( n + r \right) \left( n + r - 2 \right) a_n \left( x - 1 \right)^{n + r - 1} \\ {}- \sum_{n = 1}^\infty \left( n + r - 2 \right) a_{n - 1} \left( x - 1 \right)^{n + r - 1} &= 0.
+            \end{split}
+        \end{align*}
+
+        Como $x - 1 \neq 0$, temos
+        \begin{align*}
+            r \left( r - 2 \right) a_0 &= 0, \\
+            \left( n + r \right) \left( n + r - 2 \right) a_n - \left( n + r - 2 \right) a_{n - 1} &= 0.
+        \end{align*}
+        Para $a_0 \neq 0$,
+        \[
+        r \left( r - 2 \right) = 0 \rightarrow r_1 = 2, r_2 = 0.
+        \]
+
+        Para $r = r_1 = 2$, temos
+        \[
+        a_n = \frac{a_{n - 1}}{n + 2}.
+        \]
+        Consequentemente, $a_n = \frac{2 a_0}{\left( n + 2 \right)!}$ e
+        \[
+        y_1(x) = \sum_{n = 0}^\infty \left( x - 1 \right)^{n + 2} \frac{2}{\left( n + 2 \right)!}.
+        \]
+
+        Para $r = r_2 = 0$, temos
+        \[
+        y_2 = k y_1 \ln \left( x - 1 \right) + \sum_{n = 0}^\infty b_n \left( x - 1 \right)^n
+        \]
+        e consequentemente
+        \begin{align*}
+            y_2' &= k y_1' \ln \left( x - 1 \right) + \frac{k y_1}{x - 1} + \sum_{n = 1}^\infty n b_n \left( x - 1 \right)^{n - 1}, \\
+            y_2'' &= k y_1 '' \ln \left( x - 1 \right) + \frac{2 k y_1'}{x - 1} - \frac{k y_1}{\left( x - 1 \right)^2} + \sum_{n = 2}^\infty \left( n + 1 \right) n b_n \left( x - 1 \right)^{n - 2}.
+        \end{align*}
+
+        Substituindo na equa\c{c}\~{a}o temos
+        \begin{align*}
+            \begin{split}
+                k \left( x - 1 \right) \ln \left( x - 1 \right) y_1'' + 2 k y_1' - \frac{k y_1}{x - 1} + \sum_{n = 2}^\infty \left( n - 1 \right) n b_n \left( n - 1 \right)^{n - 1} \\ {}- k \left( n - 1 \right) y_1' \ln \left(  x - 1 \right) + k y_1 + \sum_{n = 1}^\infty n b_n \left( x - 1 \right)^n - k y_1' \ln \left( x - 1 \right) \\ {}- \frac{k y_1}{x - 1} - \sum_{n = 1}^\infty n b_n \left( x - 1 \right)^{n - 1} + k y_1 \ln \left( x - 1 \right) + \sum_{n = 0}^\infty b_n \left( x - 1 \right)^n &= 0
+            \end{split}
+        \end{align*}
     \end{solution}
 
     \question $x^2 \left( 1 + x \right) y'' + x \left( 1 + x \right) y' - y = 0$.

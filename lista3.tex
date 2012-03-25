@@ -1,0 +1,125 @@
+% Filename: lista3.tex
+% This code is part of solu\c{c}\~{o}es de m\'{e}todos.
+% 
+% Description: Lista 03.
+% 
+% Created: 25.03.12 10:25:19 AM
+% Last Change: 25.03.12 10:43:43 AM
+% 
+% Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
+% Organization: UNICAMP
+% 
+% Copyright (c) 2012, Raniere Gaia C. da Silva. All rights reserved.
+% 
+% This file is license under the terms of the 
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MS550, F520}{Solu\c{c}\~{a}o da Lista 3}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+\newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Mostre que a solu\c{c}\~{a}o de
+    \[
+    y' + z^{-2} y = 0
+    \]
+    possui uma singularidade essencial em $z = 0$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que nenhuma solu\c{c}\~{a}o n\~{a}o trivial da equa\c{c}\~{a}o
+    \[
+    z^2 y'' + z y' + y = 0
+    \]
+    que \'{e} real no semieixo real positivo do plano complexo pode ser real no semieixo real negativo.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question {}
+    \begin{parts}
+        \part Mostre que, se
+        \begin{equation}
+            y'' + p(z) y' + q(z) y = 0
+            \label{eq:q02:orig}
+        \end{equation}
+        possui um ponto singular regular em $z = 0$ e $q(0) \neq 0$, ent\~{a}o
+        \begin{equation}
+            y'' + \left[ p - \left( q' / q \right) \right] y' + \left[ p' - \left( p q' / q \right) + q \right] y = 0
+            \label{eq:q02:mod}
+        \end{equation}
+        possui um ponto singular regular em $z = 0$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Mostre que, se $\left\{ y_1, y_2 \right\}$ \'{e} um conjunto fundamental de solu\c{c}\~{o}es de \eqref{eq:q02:orig} ent\~{a}o $\left\{ y_1', y_2' \right\}$ \'{e} um conjunto fundamental de solu\c{c}\~{o}es de \eqref{eq:q02:mod}.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Seja a equa\c{c}\~{a}o
+    \[
+    y'' + p(z) y' q(z) y = 0
+    \]
+    e tal que $z = 0$ \'{e} um ponto singular regular. Mostre que uma mudan\c{c}a de vari\'{a}vel dependente $y \rightarrow w$ da forma $y(z) = z^\rho \phi (z) w(z)$, onde $\phi (0) \neq 0$ e $\phi (z)$ regular em torno de $z = 0$, leva o ponto singular regular $z = 0$ com equa\c{c}\~{a}o indicial $I(r) = 0$ nesse ponto com equa\c{c}\~{a}o indicial $I(r + \rho) = 0$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que a única equa\c{c}\~{a}o diferencial linear de segunda ordem que possui apenas dois pontos singulares regulares e localizados em $z = 0$ e $z = \infty$ \'{e} a equa\c{c}\~{a}o diferencial de Euler
+    \[
+    z^2 y'' + \alpha z y' + \beta y = 0.
+    \]
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que a equa\c{c}\~{a}o de Bessel
+    \[
+    z^2 y'' + z y' + \left( z^2 - v^2 \right) y = 0
+    \]
+    possui um ponto singular irregular em $z = \infty$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que, se $f(0) = 0$ mas $f'(0) \neq 0$, a mudan\c{c}a de vari\'{a}vel $z = f(t)$ leva uma equa\c{c}\~{a}o diferencial
+    \[
+    y''  p(z) y' + q(z) y = 0
+    \]
+    com ponto singular regular localizado em $z = 0$ em uma equa\c{c}\~{a}o diferencial com um ponto singular regular localizado em $t = 0$ satisfazendo a mesma equa\c{c}\~{a}o indicial.
+    \begin{solution}
+        
+    \end{solution}
+\end{questions}
+\end{document}

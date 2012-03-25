@@ -1,6 +1,6 @@
 %        File: lista2.tex
 %     Created: Sat Mar 10 08:00 PM 2012 B
-% Last Change: 21.03.12 10:06:35 PM
+% Last Change: 25.03.12 10:24:35 AM
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
@@ -785,18 +785,189 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
         \begin{align*}
             \begin{split}
                 k \left( x - 1 \right) \ln \left( x - 1 \right) y_1'' + 2 k y_1' - \frac{k y_1}{x - 1} + \sum_{n = 2}^\infty \left( n - 1 \right) n b_n \left( n - 1 \right)^{n - 1} \\ {}- k \left( n - 1 \right) y_1' \ln \left(  x - 1 \right) + k y_1 + \sum_{n = 1}^\infty n b_n \left( x - 1 \right)^n - k y_1' \ln \left( x - 1 \right) \\ {}- \frac{k y_1}{x - 1} - \sum_{n = 1}^\infty n b_n \left( x - 1 \right)^{n - 1} + k y_1 \ln \left( x - 1 \right) + \sum_{n = 0}^\infty b_n \left( x - 1 \right)^n &= 0
+            \end{split} \\
+            \begin{split}
+                2 k y_2' - \frac{2 k y_2}{x - 1} + k y_1 + \sum_{n = 2}^\infty \left( n - 1 \right) n b_n \left( x - 1^{n - 1} \right) \\ {}+ \sum_{n = 0}^\infty b_n \left( x -  \right)^n &= 0
             \end{split}
+        \end{align*}
+
+        Como $y_1 = \sum_{n = 0}^\infty \left( x - 1 \right)^{n + 2} \frac{2}{\left( n + 2 \right)!}$ e $y_1' = \sum_{n = 0}^\infty \left( x - 1 \right)^{n + 1} \frac{2 \left( n + 2 \right)}{\left( n + 2 \right)!}$ temos
+        \begin{align*}
+            \begin{split}
+                4 k \sum_{n = 0}^\infty \frac{\left( n - 1 \right)^{n + 1}}{\left( n + 1 \right)!} - 4 k \sum_{n = 0}^\infty \frac{\left( x - 1 \right)^{n + 1}}{\left( n + 2 \right)!} + 2 k \sum_{n = 0}^\infty \frac{\left( x - 1 \right)^{n + 2}}{\left( n + 2 \right)!} \\ {}+ \sum_{n = 2}^\infty \left( n - 1 \right) n b_n \left( x - 1 \right)^{n - 1} + \sum_{n = 0}^\infty b_n \left( x - 1 \right)^n &= 0
+            \end{split} \\
+            \begin{split}
+                4 k \left( x - 1 \right) + 2 k \left( x - 1 \right)^2 - 2 k \left( x - 1 \right) \\ {}- \frac{2 k \left( x - 1 \right)^2}{3} + k \left( x - 1 \right)^2 + \frac{k \left( x - 1 \right)^3}{3} + b_n + b_n \left( x - 1 \right) \\ {}+ \sum_{n = 2}^\infty \left[ \frac{4 k \left( x + 1 \right)^{n + 1}}{\left( n + 1 \right)!} \left( 1 - \frac{1}{n + 2} \right) + \frac{2 k \left( x - 1 \right)^{n + 2}}{\left( n + 2 \right)!} + \left[ \left( n - 1 \right) n + 1 \right] b_n \left( x - 1 \right)^n \right] &= 0
+            \end{split} \\
+            y_2 &= x.
         \end{align*}
     \end{solution}
 
     \question $x^2 \left( 1 + x \right) y'' + x \left( 1 + x \right) y' - y = 0$.
     \begin{solution}
-        
+        Manipulando a equa\c{c}\~{a}o temos
+        \[
+        y'' + \frac{1}{x} y' - \frac{y}{x \left( 1 + x \right)} = 0.
+        \]
+        Verificamos que $p(x) = \frac{1}{x}$ e $q(x) = \frac{1}{x \left( 1 + x \right)}$ n\~{a}o s\~{a}o anal\'{i}ticas em torno de $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1}, \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
+
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \begin{align*}
+            \begin{split}
+                \sum_{n = 0}^\infty \left( n + r - 1 \right) \left( n + r \right) a_n x^{n + r} + \sum_{n = 0}^\infty \left( n + r - 1 \right) \left( n + r \right) a_n x^{n + r + 1} \\ {}+ \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r} + \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r + 1} - \sum_{n = 0}^\infty a_n x^{n + r} &= 0
+            \end{split} \\
+            \sum_{n = 0}^\infty \left[ \left( n + r \right)^2 - 1 \right] a_n x^{n + r} + \sum_{n = 0}^\infty \left( n + r \right)^2 a_n x^{n + r + 1} &= 0 \\
+            \sum_{n = 0}^\infty \left[ \left( n + r \right)^2 - 1 \right] a_n x^{n + r} + \sum_{n = 0}^\infty \left( n + r - 1 \right)^2 a_{n - 1} x^{n + r} &= 0 \\
+                \left( r^2 - 1 \right) a_0 x^r + \sum_{n = 1}^\infty \left[ \left( n + r \right)^2 - 1 \right] a_n x^{n + r} + \sum_{n = 1}^\infty \left( n + r - 1 \right)^2 a_{n - 1} x^{n + r} &= 0.
+        \end{align*}
+
+        Como $x \neq 0$ temos
+        \begin{align*}
+            \left( r^2 - 1 \right) a_0 &= 0, \\
+            \left[ \left( n + r \right)^2 - 1 \right] a_n + \left( n + r - 1 \right)^2 a_{n - 1} &= 0.
+        \end{align*}
+        Para $a_0 \neq 0$ temos
+        \[
+        r^2 - 1 = 0 \rightarrow r_1 = 1, r_2 = -1.
+        \]
+
+        Para $r = r_1 = 1$:
+        \[
+        \left[ \left( n + 1 \right)^2 - 1 \right] a_n + n^2 a_{n - 1} = 0 \rightarrow a_n = \frac{- n a_{n - 1}}{n + 2}.
+        \]
+        Logo,
+        \begin{align*}
+            a_n &= \frac{\left( -1 \right)^n a_0}{\left( n + 2 \right) \left( n + 1 \right)}, \\
+            y_1(x) &= x \sum_{n = 0}^\infty \frac{\left( -1 \right)^n x^n}{\left( n + 1 \right) \left( n + 2 \right)}.
+        \end{align*}
+
+        Para $r = r_2 = -1$:
+        \begin{align*}
+            y_2(x) &= k y_1 \ln \left( x \right) + \sum_{n = 0}^\infty b)n x^{n - 1}, \\
+            y_2'(x) &= k y_1' \ln \left( x \right) + \frac{k y_1}{x} + \sum_{n = 0}^\infty \left( n - 1 \right) b_n x^{n - 2}, \\
+            y_2''(x) &= k y_1'' \ln \left( x \right) + \frac{2 k y_1'}{x} - \frac{k y_1}{x^2} + \sum_{n = 0}^\infty \left( n - 1 \right) \left( n - 2 \right) b_n x^{n - 3}.
+        \end{align*}
+        Substituindo na equa\c{c}\~{a}o inicial,
+        \begin{align*}
+            \begin{split}
+                k x^2 y_1'' \ln x + 2 k x y_1' - k y_1 + \sum{n = 0}^\infty \left( n - 1 \right) \left( n - 2 \right) b_n x^{n - 1} \\ {}+ k x^3 y_1'' \ln x + 2 k x^2 y_1' - k x y_1 + \sum_{n = 0}^\infty \left( n - 1 \right) \left( n - 2 \right) b_n x^n \\ {}+ k x'' y_1' \ln x + k y_1 + \sum_{n = 0}^\infty \left( n - 1 \right) b_n x^{n - 1} + k x^2 y_1' \ln x \\ {}+ k x y_1' + \sum_{n = 0}^\infty \left( n - 1 \right) b_n x^n - k y_1 \ln x - \sum_{n = 0}^\infty b_n x^{n - 1} &= 0
+            \end{split} \\
+            \begin{split}
+                \left[ x^2 \left( 1 + x \right) y_1'' + x \left( 1 + x \right) y_1' - y_1 \right] k \ln x \\ {}+ \left[ 2 k x + 2 k x^2 \right] y_1' + \sum_{n = 0}^\infty \left[ \left( n - 1 \right)^2 - 1 \right] b_n x^{n - 1} + \sum_{n = 0}^\infty \left( n - 1 \right)^2 b_n x^n &= 0.
+            \end{split}
+        \end{align*}
+        Como $y_1 = \sum_{n = 0}^\infty \frac{\left( -1 \right)^n x^{n + 1}}{\left( n + 1 \right) \left( n + 2 \right)}$ e $y_1' = \sum_{n = 0}^\infty \frac{ \left( -1 \right)^n x^n}{\left( n + 2 \right)}$ temos
+        \begin{align*}
+            \sum_{n = 0}^\infty \frac{\left( -1 \right)^n 2 k x^{n + 1}}{n + 2} + \sum_{n = 0}^\infty \frac{\left( -1 \right)^n 2 k x^{n + 2}}{n + 2} + \sum_{n = 0}^\infty n \left( n + 2 \right) b_n x^{n - 1} + \sum_{n = 0}^\infty \left( n - 1 \right)^2 b_n x^n &= 0 \\
+            \sum_{n = 1}^\infty \frac{\left( -1 \right)^{n - 1} 2 k x^n}{n + 1} + \sum_{n = 2}^\infty \frac{\left( -1 \right)^n 2 k x^n}{n} + \sum_{n = -1}^\infty \left( n - 1 \right) \left( n + 1 \right) b_{n + 1} x^n + \sum_{n = 0}^\infty \left( n - 1 \right)^2 b_n x^n &= 0 \\
+            \begin{split}
+                b_1 + b_0 + \frac{2 k x}{2} + 4 \cdot 2 b_2 x^2 + \sum_{n = 2}^\infty \frac{\left( -1 \right)^{n - 1} 2 k x^n}{\left( n + 1 \right)} + \sum_{n = 0}^\infty \frac{\left( -1 \right)^n 2 k x^n}{n} \\ {}+ \sum_{n = 2}^\infty \left( n + 1 \right) \left( n - 3 \right) b_{n + 1} x^n + \sum_{n = 2}^\infty \left( n - 1 \right)^2 b_n x^n &= 0.
+            \end{split}
+        \end{align*}
+        Como $x \neq 0$,
+        \begin{align*}
+            b_1 - b_0 &= 0 \rightarrow b_1 = b_0, \\
+            k &= 0, \\
+            8 b_2 &= 0 \rightarrow b_2 = 0, \\
+            \left( n + 1 \right) \left( n - 1 \right) b_{n + 1} + \left( n - 1 \right)^2 b_n &= 0 \rightarrow b_{n + 1} = \frac{- \left( n - 1 \right) b_n}{n + 1}.
+        \end{align*}
+        Logo,
+        \[
+        y_2(x) = x^{-1} \left( b_0 b_1 x \right) = 1 + x^{-1}.
+        \]
     \end{solution}
 
     \question $x y'' + \left( x - 1 \right) y' - y = 0$.
     \begin{solution}
+        Manipulando a equa\c{c}\~{a}o temos
+        \begin{align*}
+            y'' + \frac{x - 1}{x} y' - \frac{y}{x} = 0.
+        \end{align*}
+        Verificamos que $p(x) = \frac{x - 1}{x}$ e $q(x) = \frac{1}{x}$ n\~{a}o s\~{a}o anal\'{i}ticas em $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
+        \[
+        y\left( x \right) = \sum_{n = 0}^\infty a_n x^{n + r}.
+        \]
+        Consequentemente
+        \begin{align*}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1}, \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
+        \end{align*}
         
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
+        \begin{align*}
+            \begin{split}
+                \sum_{n = 0}^\infty \left( n + r - 1 \right) \left( n + r \right) a_n x^{n + r - 1} + \sum{n = 0}^\infty \left( n + r \right) a_n x^{n + r} \\ {}- \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1} - \sum_{n = 0}^\infty a_n x^{n + r} &= 0
+            \end{split} \\
+            \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 2 \right) a_n x^{n + r - 1} + \sum_{n = 0}^\infty \left( n + r - 1 \right) a_n x^{n + r} &= 0 \\
+            r \left( r - 2 \right) a_0 x^{r - 1} + \sum_{n = 1}^\infty \left[ \left( n + r \right) \left( n + r - 2 \right) a_n + \left( n + r - 2 \right) a_{n - 1} \right] x^{n + r - 1} &= 0.
+        \end{align*}
+
+        Como $x \neq 0$ temos
+        \begin{align*}
+            r \left( r - 2 \right) a_0 &= 0, \\
+            \left( n + r \right) a_n &= -a_{n - 1}.
+        \end{align*}
+        Para $a_0 \neq 0$ temos $r_1 = 2$ e $r_2 = 0$.
+
+        Para $r = r_1 = 2$:
+        \begin{align*}
+            a_n &= \frac{- a_{n - 1}}{n + 2}.
+        \end{align*}
+        Logo,
+        \begin{align*}
+            a_n &= \frac{\left( -1 \right)^n 2 a_0}{\left( n + 2 \right)!}, zz
+            y_1(x) &= x^2 \sum_{n = 0}^\infty \frac{2 \left( -1 \right)^n x^n}{\left( n + 2 \right)!}.
+        \end{align*}
+
+        Para $r = r_2 = 0$:
+        \begin{align*}
+            y_2(x) &= k y_1 \ln \left( x \right) + \sum_{n = 0}^\infty b)n x^{n - 1}, \\
+            y_2'(x) &= k y_1' \ln \left( x \right) + \frac{k y_1}{x} + \sum_{n = 0}^\infty \left( n - 1 \right) b_n x^{n - 2}, \\
+            y_2''(x) &= k y_1'' \ln \left( x \right) + \frac{2 k y_1'}{x} - \frac{k y_1}{x^2} + \sum_{n = 0}^\infty \left( n - 1 \right) \left( n - 2 \right) b_n x^{n - 3}.
+        \end{align*}
+        Substituindo na equa\c{c}\~{a}o original,
+        \begin{align*}
+            \begin{split}
+                k x y_1'' \ln x + 2 k y_1' - \frac{k y_1}{x} + \sum_{n = 2}^\infty n \left( n - 1 \right) b_n x^{n - 1} + k x y_1' \ln x \\ {}+ k y_1 + \sum_{n = 1}^\infty n b_n x^n - k y_1' \ln x - \frac{k y_1}{x} - \sum_{n = 1}^\infty n b_n x^{n - 1} \\ {}- k y_1 \ln x + \sum_{n = 0}^\infty b_n x^n &= 0
+            \end{split} \\
+            \begin{split}
+                2 k y_1' + \left( k - \frac{2 k}{x} \right) y_2 + \sum_{n = 2}^\infty n \left( n - 1 \right) b_n x^{n - 1} + \sum_{n = 1}^\infty n b_n x^{n} \\ {}- \sum_{n = 1}^\infty n b_n x^{n - 1} + \sum_{n = 0}^\infty b_n x^{n} &= 0
+            \end{split} \\
+            \begin{split}
+                2 k y_1' - \left( k - \frac{2 k}{x} \right) y_1 + \sum_{n = 2}^\infty n \left( n - 1 \right) b_n x^{n - 1} + \sum_{n = 2}^\infty \left( n - 1 \right) b_{n - 1} x^{n - 1} \\ {}- \sum_{n = 1}^\infty n b_n x^{n - 1} + \sum_{n = 1}^\infty b_{n - 1} x^{n - 1} &= 0
+            \end{split} \\
+            \begin{split}
+                2 k y_1' - \left( k - \frac{2 k}{x} \right) y_1 - b_1 + b_0 \\ {}+ \sum_{n = 2}^\infty n \left( n - 2 \right) b_n x^{n - 1} + \sum_{n = 2}^\infty n b_{n - 1} x^{n - 1} &= 0
+            \end{split} \\
+            \begin{split}
+                \sum_{n = 0}^\infty \frac{\left( -1 \right)^n 4 k x^{n + 1}}{\left( n + 1 \right)!} - \sum_{n = 0}^\infty \frac{\left( -1 \right)^n 2 k x^{n + 2}}{\left( n + 2 \right)!} + \sum_{n = 0}^\infty \frac{\left( -1 \right)^n 4 k x^{n + 1}}{\left( n + 2 \right)!} \\ {}+ b_0 + b_1 + \sum_{n = 2}^\infty n \left( n - 2 \right) b_n x^{n - 1} + \sum_{n = 2}^\infty n b_{n - 1} x^{n - 1} &= 0
+            \end{split} \\
+            \begin{split}
+                \sum_{n = 2}^\infty \frac{\left( -1 \right)^n 4 k x^{n - 1}}{\left( n - 1 \right)!} - \sum_{n = 3}^\infty \frac{\left( -1 \right)^{n + 1} 2 k x^{n - 1}}{\left( n - 1 \right)!} + \sum_{n = 2}^\infty \frac{\left( -1 \right)^n 4 k x^{n - 1}}{\left( n \right)!} \\ {}+ b_0 + b_1 + \sum_{n = 2}^\infty n \left( n - 2 \right) b_n x^{n - 1} + \sum_{n = 2}^\infty n b_{n - 1} x^{n - 1} &= 0
+            \end{split} \\
+            \begin{split}
+                b_0 + b_1 + 4 k x + \frac{4 k }{2} + 2 b_2 x \\ {}+ \sum_{n = 3}^\infty \frac{\left( -1 \right)^n 4 k x^{n - 1}}{\left( n - 1 \right)!} - \sum_{n = 3}^\infty \frac{\left( -1 \right)^{n + 1} 2 k x^{n -1}}{\left( n - 1 \right)!} \\ {}+ \sum{n = 3}^\infty \frac{\left( -1 \right)^n 4 k x^{n - 1}}{n!} + \sum_{n = 3}^\infty n \left( n - 2 \right) b_n x^{n - 1} + \sum_{n = 3}^\infty n b_{n - 1} x^{n - 1} &= 0.
+            \end{split}
+        \end{align*}
+        Como $x \neq 0$ temos
+        \begin{align*}
+            b_0 + b_1 &= 0 \rightarrow b_0 = b_1, \\
+            2 k &= 0 \rightarrow k = 0, \\
+            4 k + 2 b_2 &= 0 \rightarrow b_2 = 0 = b_3 = b_4 = \ldots, \\
+            y_2(x) &= b_0 + b_1 x = 1 - x.
+        \end{align*}
     \end{solution}
 \end{questions}
 \end{document}

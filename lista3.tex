@@ -4,7 +4,7 @@
 % Description: Lista 03.
 % 
 % Created: 25.03.12 10:25:19 AM
-% Last Change: 25.03.12 10:43:43 AM
+% Last Change: 10.04.12 07:28:40 PM
 % 
 % Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
 % Organization: UNICAMP
@@ -18,7 +18,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{hyperref}
+\usepackage{tikz}
 
 % Customiza\c{c}\~{a}o da classe exam
 \firstpageheader{MS550, F520}{Solu\c{c}\~{a}o da Lista 3}{1º semestre de 2012}
@@ -45,6 +47,12 @@
 
 \begin{document}
 \thispagestyle{headandfoot}
+Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de nota\c{c}\~{a}o utilizados:
+\begin{itemize}
+    \item $\mathbb{R} \geq 0$ representa os números reais mai\'{o}res ou iguais a zero,
+    \item $\mathbb{R} > 0$ representa os números reais estritamente maiores que zero,
+    \item $\mathbb{R} \neq 0$ represente os números reais diferentes de zero, \ldots
+\end{itemize}
 \begin{questions}
     \question Mostre que a solu\c{c}\~{a}o de
     \[
@@ -52,7 +60,26 @@
     \]
     possui uma singularidade essencial em $z = 0$.
     \begin{solution}
+        Antes de apresentar a solu\c{c}\~{a}o para esta quest\~{a}o vamos lembrar a defini\c{c}\~{a}o de singularidade essencial:
+        \begin{quote}
+            A s\'{e}rie de Laurent, v\'{a}lida para $0 < | z - a | < R$ (para algum $R$) deve possuir uma parte principal infinita (para maiores detalhes ver p\'{a}gina 82 do Butikov).
+        \end{quote}
+
+        Manipulando a equa\c{c}\~{a}o temos
+        \begin{align*}
+            y' &= \frac{-1}{z^2}y \\
+            \frac{y'}{y} &= \frac{-1}{z^2} \\
+            \ln y &= z^{-1} + c_1 \\
+            y&= c \exp\left(z^{-1}\right).
+        \end{align*}
         
+        Como $\exp\left( z \right) = \sum_{n = 0}^\infty \left( z^n \right) / n!$ podemos reescrever a express\~{a}o anterior como uma s\'{e}rie de Laurent em torno de $z_0 = 0$:
+        \begin{align*}
+            y\left( z \right) &= c' \sum_{n = 0}^\infty \frac{1}{z^n n!} \\
+            y\left( z \right) &= c' + \sum_{n = 1}^\infty \frac{b_n}{z^n n!}.
+        \end{align*}
+
+        Da\'{i}, fazendo $z = 0$ na  equa\c{c}\~{a}o anterior temos que $\lim_{z \to 0} \sum_{n = 1}^\infty b_n / \left( z^n n! \right) = \infty$, que \'{e} a parte principal. Logo, $z = 0$ \'{e} uma singularidade essencial.
     \end{solution}
 
     \question Mostre que nenhuma solu\c{c}\~{a}o n\~{a}o trivial da equa\c{c}\~{a}o
@@ -61,7 +88,54 @@
     \]
     que \'{e} real no semieixo real positivo do plano complexo pode ser real no semieixo real negativo.
     \begin{solution}
-        
+        Al\'{e}m da solu\c{c}\~{a}o trivial ($z = 0$) temos que as demais solu\c{c}\~{o}es s\~{a}o do tipo $y(z) = z^r$ e portanto $y'(z) = r z^{r - 1}$ e $y''(z) = r (r - 1) z^{r -2}$.
+
+        Da\'{i},
+        \begin{align*}
+            r \left( r - 1 \right) z^r + r z^r + z^r &= 0.
+        \end{align*}
+        Como $z \neq 0$
+        \begin{align*}
+            r \left( r - 1 \right) + r + 1 &= 0 \leftarrow r^2 + 1 = 0 \leftarrow r = \pm i.
+        \end{align*}
+        Consequentemente
+        \begin{align*}
+            y(z) &= A z^i + b z^{-i}, \quad  A, B \in \mathbb{C} \\
+            &= A \exp\left( i \ln z \right) + B \exp\left( -i \ln z \right) \\
+            &= A \left( \cos\left( \ln z \right) + i \sin\left( \ln z \right) \right) + B \left( \cos\left( \ln z \right) - i \sin \left( \ln z \right) \right) \\
+            &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right)r,
+        \end{align*}
+        onde $A, B \in \mathbb{C}$, $r \in \mathbb{R} \geq 0$, $A = \alpha_1 + i \beta_1$, $B = \alpha_2 + i \beta_2$ e $\alpha_1, \alpha_2, \beta_1, \beta_2 \in \mathbb{R}$ (ver detalhes na figura abaixo).
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[->] (-1,0) -- (4,0) node[above right] {$\text{Re}(z)$};
+                \draw[->] (0,-1) -- (0,4) node[above right] {$\text{Im}(z)$};
+                \draw (0,0) -- (60:3) node[above right] {$r$};
+                \draw (1,0) arc (0:60:1);
+            \end{tikzpicture}
+        \end{center}
+
+        Para $\theta = 0$ temos $z = r$ e
+        \begin{align*}
+            y(z) &= \left( A + B \right) \cos\left( \ln r \right) + \left( A - B \right) i \sin \left( \ln r \right) \\
+            &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right) \cos \left( \ln r \right) + \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i \sin\left( \ln r \right), \\
+            \text{Re} y\left( z \right) &= \alpha_1 \cos\left( \ln x \right) + \alpha_2 \cos\left( \ln r \right) - \beta_1 \sin\left( \ln r \right) + \beta_2 \sin\left( \ln r \right), \\
+            \text{Im} y\left( z \right) &= \beta_1 \cos\left( \ln r \right) + \beta_2 \cos\left( \ln r \right) + \alpha_1 \sin\left( \ln r \right) - \alpha_2 \sin\left( \ln r \right).
+        \end{align*}
+        Para que a solu\c{c}\~{a}o da equa\c{c}\~{a}o seja real, $\text{Im} y\left( z) \right) = 0$. Da\'{i}, $\beta_1 = -\beta_2$ e $\alpha_1 = \alpha_2$. Substituindo na express\~{a}o anterior para $\text{Re} y\left( z \right)$, tem-se
+        \begin{align*}
+            \text{Re} y\left( z \right) &= 2\alpha_1 \cos\left( \ln r \right) + 2 \beta_2 \sin\left( \ln r \right).
+        \end{align*}
+
+        E para $\theta = \pi$ temos $z = r e^{i \pi} = -r$ e
+        \begin{align*}
+            y\left( z \right) &= \left( A + B \right) \cos\left( \ln\left( -r \right) \right) + \left( A - B \right) i \sin\left( \ln\left( -r \right) \right).
+        \end{align*}
+        Como $\ln\left( -r \right)$ n\~{a}o existe, a solu\c{c}\~{a}o
+        \begin{align*}
+            y\left( z \right) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right)
+        \end{align*}
+        n\~{a}o pode ser definida para $\theta = \pi$. Logo, n\~{a}o \'{e} real no semi-eixo real negativo.
     \end{solution}
 
     \question {}
@@ -78,22 +152,119 @@
         \end{equation}
         possui um ponto singular regular em $z = 0$.
         \begin{solution}
+            Se \eqref{eq:q02:orig} possui um ponto singular em $z = 0$ e $q(0) \neq 0$, tem-se:
+            \begin{align*}
+                p(z) &= \frac{A}{z} + \sum_{n = 0}^\infty a_n z^n, \quad A, a_n \in \mathbb{R} \neq 0, \\
+                q(z) &= \frac{B_1}{z^2} + \frac{B_2}{z} + \sum_{n = 0}^\infty b_n z^n, \quad B_1, B_2, b_n \in \mathbb{R} \neq 0.
+            \end{align*}
+            Reescrevendo \eqref{eq:q02:mod} temos
+            \begin{align*}
+                y'' + P(z) y' + Q(z) y &= 0
+            \end{align*}
+            com $P(z) = p - q'/q$ e $Q(z) = p' - \left( p q' \right)/q + q$. Como $p(z)$ e $q(z)$ possuem pontos singulares em $z = 0$, elas s\~{a}o anal\'{i}ticas em torno de $z=0$. Logo, $q'$ e $p'$ est\~{a}o definidas em $z = 0$. 
             
+            Da\'{i},
+            \begin{align*}
+                P(z) &= \frac{A}{z} + \sum_{n = 0}^\infty a_n z^n - \left( \frac{2 B_1 + z B_2 - \sum_{n = 1}^\infty n b_n z^{n + 2}}{z^3} \right) \left( \frac{1}{B_1 /z^2 + B_2/z + \sum_{n = 0}^\infty b_n z^n} \right) \\
+                &= \frac{A}{z} + \sum_{n = 0}^\infty a_n z^n + \frac{1}{z} \underbrace{\left( \frac{2 B_1 + z B_2 - \sum_{n = 1}^\infty n b_n z^{n + 2}}{B_1 + B_2 z + \sum_{n = 0}^\infty b_n z^{n + 2}} \right)}_{h(z) \text{ \'{e} anal\'{i}tica em } z = 0} \\
+                &= \frac{A}{z} + \frac{h(z)}{z} + \sum_{n = 0}^\infty a_n z^n.
+            \end{align*}
+            Portanto, $P(z)$ possui, no m\'{a}ximo, um p\'{o}lo simples.
+
+            E
+            \begin{align*}
+                \begin{split}
+                    Q(z) &= -\frac{A}{z^2} + \sum_{n = 0}^\infty n a_n z^n + \frac{B_1}{z^2} + \frac{B_2}{z} + \sum_{n = 0}^\infty b_n z^n \\
+                    & \quad - \frac{1}{z^2} \underbrace{\left( \frac{\star}{B_1 + B_2 z + \sum_{n = 0}^\infty b_n z^{n + 2}} \right)}_{g(z) \text{ \'{e} anal\'{i}tica em } z = 0} 
+                \end{split} \\
+                &= \frac{B_1 - A - g(z)}{z^2} + \frac{B_2}{z} + \sum_{n = 0}^\infty b_n z^n + \sum_{n = 1}^\infty n a_n z^n,
+            \end{align*}
+            onde $\star = -2A B_1 - A B_2 z + A \sum_{n = 1}^\infty n b_n z^{n + 1} - 2 B_1 \sum_{n = 0}^\infty a_n z^{n + 1} - B_2 \sum_{n = 0}^\infty z^{n + 2} + \left( \sum_{n = 1}^\infty n b_n z^n \right) \left( \sum_{n = 0}^\infty a_n z^{n + 3} \right)$. Portanto, $Q(z)$ possui, no m\'{a}ximo, um p\'{o}lo de ordem $2$.
+
+            Da\'{i}, \eqref{eq:q02:mod} possui um ponto singular regular em $z = 0$.
         \end{solution}
 
         \part Mostre que, se $\left\{ y_1, y_2 \right\}$ \'{e} um conjunto fundamental de solu\c{c}\~{o}es de \eqref{eq:q02:orig} ent\~{a}o $\left\{ y_1', y_2' \right\}$ \'{e} um conjunto fundamental de solu\c{c}\~{o}es de \eqref{eq:q02:mod}.
         \begin{solution}
-            
+            Se $y = \left\{ y_1, y_2 \right\}$ \'{e} um conjunto fundamental de solu\c{c}\~{o}es de \eqref{eq:q02:orig}, ent\~{a}o
+            \begin{align*}
+                y_1'' + p y_1' + q y &= 0.
+            \end{align*}
+            Fazendo $y' = \left\{ y_1', y_2' \right\}$ em \eqref{eq:q02:mod}, tem-se
+            \begin{align*}
+                y_1''' + \left( p - q'/q \right) y_1'' + \left[ p' - \left( p q' \right)/q + q \right] y_1' &= 0 \\
+                y_1''' + p y_1'' - \frac{q'}{q} y_1'' + p' y_1' - \frac{p q}{q} y_1' + q y_1' &= 0 \\
+                y_1''' + p y_1'' - \frac{q'}{q}\left( y_1'' + p y_1' \right) + p' y_1' + q y_1' &= 0 \\
+                y_1''' + \left( p y_1' \right)' + q y_1' + q' y_1 &= 0 \\
+                y_1''' + \left( p y_1' \right)' + \left( q y_1' \right)' &= 0 \\
+                \left( y_1'' + p y_1' + q y_1' \right)' &= 0.
+            \end{align*}
+            Logo, $y_1$ \'{e} solu\c{c}\~{a}o de \eqref{eq:q02:mod}. Para $y_2'$ o procedimento \'{e} an\'{a}logo.
         \end{solution}
     \end{parts}
 
     \question Seja a equa\c{c}\~{a}o
     \[
-    y'' + p(z) y' q(z) y = 0
+    y'' + p(z) y' + q(z) y = 0
     \]
     e tal que $z = 0$ \'{e} um ponto singular regular. Mostre que uma mudan\c{c}a de vari\'{a}vel dependente $y \rightarrow w$ da forma $y(z) = z^\rho \phi (z) w(z)$, onde $\phi (0) \neq 0$ e $\phi (z)$ regular em torno de $z = 0$, leva o ponto singular regular $z = 0$ com equa\c{c}\~{a}o indicial $I(r) = 0$ nesse ponto com equa\c{c}\~{a}o indicial $I(r + \rho) = 0$.
     \begin{solution}
-        
+        Para a equa\c{c}\~{a}o do enunciado temos
+        \begin{align*}
+            \lim_{z \to 0} z p(z) = p_0 \neq \infty, \quad \lim_{z \to 0} z^2 q(z) = q_0 \neq \infty,
+        \end{align*}
+        como $p(z) = A/z + \sum_n a_n z^n$ e $q(z) = B_1/z^2 + B_2/z + \sum_n b_n z^n$.
+
+        A equa\c{c}\~{a}o indicial \'{e}
+        \begin{align*}
+            I(r) &= r\left( r - 1 \right) + p_0 r + q_0 = 0 \\
+            I(r) &= r\left( r - 1 \right) + A r + B_1 = 0.
+        \end{align*}
+
+        Fazendo $y \to w$ com $y = z^\rho \phi\left( z \right) w\left( z \right)$, $\phi\left( 0 \right) \neq 0$, temos
+        \begin{align*}
+            \frac{d y}{d z} &= w \frac{d}{d z}\left( z^\rho \phi\left( z \right) \right) + z^\rho \phi w',
+            \frac{d^2 y}{d z^2} &= w\left( z^\rho \phi\left( z \right) \right)'' + 2 \left( z^\rho \phi \right) w' + \left( z^\rho \phi \right) w''.
+        \end{align*}
+        Substituindo na equa\c{c}\~{a}o inicial
+        \begin{align*}
+            \begin{split}
+                w \left( z^\rho \phi \right)'' + 2 \left( z^\rho \phi \right)' w' + \left( z^\rho \phi \right) w'' + p \left( z^\rho \phi \right)' w \\ {}+ p \left( z^\rho \phi \right) w' + q \left( z^\rho \phi \right) w &= 0
+            \end{split} \\
+            \begin{split}
+                \left( z^\rho \phi \right) w'' + \left[ 2 \left( z^\rho \phi \right)' + p \left( z^\rho \phi \right) \right] w' \\ {}+ \left[ \left( z^\rho \phi \right)'' + p \left( z^\rho \phi \right)' + q \left( z^\rho \phi \right) \right] w &= 0.
+            \end{split}
+        \end{align*}
+        Como $z \neq 0$ e $\phi(0) \neq 0$
+        \begin{align*}
+            w'' + \underbrace{\frac{2\left( z^\rho \phi \right)' + p \left( z^\rho \phi \right)}{z^\rho \phi}}_{P(z)} w' + \underbrace{\frac{\left( z^\rho \phi \right)'' + p \left( z^\rho \phi \right)' + q\left( z^\rho \phi \right)}{z^\rho \phi}}_{Q(z)} w &= 0.
+        \end{align*}
+        Ent\~{a}o
+        \begin{align*}
+            I'(r) &= r \left( r - 1 \right) r P(0) + Q(0) = 0, \\
+            P(0) &= \lim_{z \to 0} z P(z) = \lim_{z \to 0} 2 z \phi' / \phi + \lim_{z \to 0} 2\rho + \lim_{z \to 0} p z = 0 \\
+            &= 2\rho + \lim_{z \to 0} z \left( A / z + \sum_{n = 0}^\infty \underbrace{a_n}_0 z^n \right) \\
+            &= 2 \rho + A, \\
+            Q(0) &= \lim_{z \to 0} z^ Q(z) \\
+            \begin{split}
+                &= \lim_{z \to 0} \frac{z^2 \left[ z^\rho \phi'' + \rho z^{\rho - 1} \phi' + \rho z^{\rho - 1} \phi' + \rho \left( \rho - 1 \right) z^{\rho -2} \phi  \right]}{z^\rho \phi} \\ & \quad + \lim_{z \to 0} \frac{z^2 p \left[ z^\rho \phi' + \rho z^{\rho- 1} \phi \right]}{z^\rho \phi} + \lim_{z \to 0} z^2 q
+            \end{split} \\
+            \begin{split}
+                &= \lim_{z \to 0} \frac{z^2 \phi''}{\phi} + 2 \lim_{z \to 0} \frac{\rho z \phi'}{\phi} + \lim_{z \to 0} \rho \left( \rho - 1 \right) \\ & \quad + \lim_{z \to 0} \frac{z^2 p \phi'}{\phi} + \lim{z \to 0} \rho p z + \lim_{z \to 0} z^2 q
+            \end{split} \\
+            \begin{split}
+                &= \rho \left( \rho - 1 \right) + \lim_{z \to 0} \frac{z^2 \phi'}{ \phi} \left( \frac{A}{z} + \sum_n a_n z^n \right) \\ & \quad + \lim_{z \to 0} \rho z \left( \frac{A}{z} + \sum_n a_n z^n \right) + \lim_{z \to 0} z^2 \left( \frac{B_1}{z^2} + \frac{B_2}{z} + \sum_{n = 0}^\infty b_n z^n \right)
+            \end{split} \\
+            &= \rho \left( \rho - 1 \right) + \rho A + B_1.
+        \end{align*}
+        Portanto,
+        \begin{align*}
+            I'(r) &= r \left( r - 1 \right) + r 2 \rho + A r + \rho \left( \rho - 1 \right) + \rho A + B_1 \\
+            &= r^2 - r + 2 \rho r + A r + \rho^2 - \rho + \rho A + B_1 \\
+            &= \left( r + \rho \right)^2 - \left( r + \rho \right) + \left( r + \rho \right) A + B_1 \\
+            &= \left( r + \rho \right)\left( r + p - 1 \right) + \left( r + \rho \right) A + B_1 \\
+            &= I(r + \rho).
+        \end{align*}
     \end{solution}
 
     \question Mostre que a única equa\c{c}\~{a}o diferencial linear de segunda ordem que possui apenas dois pontos singulares regulares e localizados em $z = 0$ e $z = \infty$ \'{e} a equa\c{c}\~{a}o diferencial de Euler
@@ -101,7 +272,45 @@
     z^2 y'' + \alpha z y' + \beta y = 0.
     \]
     \begin{solution}
-        
+        Considere a equa\c{c}\~{a}o
+        \begin{align*}
+            y'' + p(z) y' + q(z) y &= 0,
+        \end{align*}
+        onde
+        \begin{align*}
+            p(z) &= A / z + \sum_{n = 0}^\infty a_n z^n, \quad A, a_n \in \mathbb{R} \neq 0, \\
+            q(z) &= B_1 / z^2 + B_2 / z + \sum_{n = 0}^\infty b_n z^n, \quad B_1, B_2, b_n \in \mathbb{R} \neq 0,
+        \end{align*}
+        com $p(z)$ e $q(z)$ anal\'{i}ticas em $z = 0$ ($z = 0$ \'{e} ponto singular regular).
+
+        Fazendo $z = 1 / t$ temos
+        \begin{align*}
+            \frac{d y}{d z} &= \frac{d y}{d t} \frac{d t}{d z} = \frac{1}{z^2} \frac{d y}{d t} = - t^2 \frac{d y}{d t}, \\
+            \frac{d^2 y}{d z^2} &= \frac{d}{d z} \left( - t^2 \frac{d y}{d z} \right) = - t^2 \left( - t^2 \frac{d y}{d t} \right) = t^1 \frac{d^2 y}{d t^2} + 2 t^3 \frac{d y}{d t}.
+        \end{align*}
+
+        Substituindo na equa\c{c}\~{a}o inicial temos
+        \begin{align*}
+            t^4 \frac{d^2 y}{d t^2} + 2 t^3 \frac{d y}{d t} - p \left( 1 / t \right) t^2 \frac{d y}{d t} + q \left( 1 / t \right) y &= 0 \\
+            t^4 \frac{d^2 y}{d t^2} + \left( 2 t^3 - p \left( 1 / t \right) t^2 \right) \frac{d y}{d t} + q \left( 1 / t \right) y &= 0.
+        \end{align*}
+        Ent\~{a}o
+        \begin{align*}
+            p(t) &= \frac{2}{t} - \frac{1}{t^2} p \left( 1 / t \right) \\
+            &= \frac{2}{t} - \frac{1}{t^2} \left( A t + \sum_{n = 0}^\infty \frac{a_n}{t^n} \right) \\
+            &= \frac{2}{t} - \frac{A}{t} + \sum_{n = 0}^\infty \frac{a_n}{t^{n + 2}}, \\
+            q(t) &= \frac{1}{t^4} \left[ B_1 t^2 + B_2 t + \sum_{n = 0}^\infty \frac{b_n}{t^n} \right] \\
+            &= \frac{B_1}{t^2} + \frac{B_2}{t^3} + \sum_{n = 0}^\infty \frac{b_n}{t^{n + 4}}.
+        \end{align*}
+
+        Para que $p(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty a_n / t^{n + 2} = 0$ e $t = 0$ ser ponto singular regular. J\'{a} para que $q(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty b_n / t^{n + 4} = B_2 / t^3 = 0$ e $t = 0$ ser $t = 0$ ser ponto singular regular. Logo, $a_n = 0$, $b_n = 0$, $B_2 = 0$ e consequentemente $p(z) = A / z$ e $q(z) = B_1 / z^2$.
+
+        Substituindo $p(z)$e $q(z)$ na equa\c{c}\~{a}o inicial temos
+        \begin{align*}
+            y'' + \left( A / z \right) y' + \left( B_1 /z^2 \right) y &= 0 \\
+            z^2 y'' + A z y' + B_1 y &= 0
+        \end{align*}
+        que corresponde a $z^2 y'' + \alpha z y' + \beta y = 0$ quando $\alpha = A$ e $\beta = B_1$.
     \end{solution}
 
     \question Mostre que a equa\c{c}\~{a}o de Bessel
@@ -110,7 +319,27 @@
     \]
     possui um ponto singular irregular em $z = \infty$.
     \begin{solution}
-        
+        Considerando a equa\c{c}\~{a}o de Bessel apresentada no enunciado temos, para $z = \infty$,
+        \begin{align*}
+            z &= 1 / t, \\
+            \frac{d y}{d z} &= \frac{d y}{d t} \frac{d t}{d z} = -t^2 \frac{d y}{d t}, \\
+            \frac{d^2 y}{d z^2} &= \frac{d}{d z} \left( - t^2 \frac{d y}{d z} \right) \\
+            &= t^4 \frac{d^2 y}{d t^2} + 2 t^3 \frac{d y}{d t}.
+        \end{align*}
+
+        Substituindo na equa\c{c}\~{a}o de Bessel:
+        \begin{align*}
+            \frac{1}{t^2} \left( t^4 \frac{d^2 y}{d t^2} + 2 t^3 \frac{d y}{d t} \right) + \frac{1}{t} \left( - t^2 \frac{d y}{d t} \right) + \frac{1}{t^2} y - v^2 y &= 0 \\
+            \frac{d^2 y}{d t^2} + \left( \frac{2}{t} - \frac{1}{t} \right) \frac{d y}{d t} + \frac{1}{t^4} y - \frac{v^2}{t^2} y &= 0 \\
+            \frac{d^2 y}{d t^2} + \frac{1}{t} \frac{d y}{d t} + \left( \frac{1}{t^4} - \frac{v^2}{t^2} \right) y &= 0.
+        \end{align*}
+
+        Os pontos singulares irregulares s\~{a}o $t p(t)$ e $t^2 q(t)$ tal que
+        \begin{itemize}
+            \item $t p(z) = 1$ \'{e} anal\'{i}tica em $t = 0$,
+            \item $t^2 q(t) = 1 / t^2 - v^2$ n\~{a}o \'{e} anal\'{i}tica em $t = 0$.
+        \end{itemize}
+        Logo, a equa\c{c}\~{a}o de Bessel possui ponto singular irregular em $t = 0$ que equivale a um ponto singular em $z = \infty$.
     \end{solution}
 
     \question Mostre que, se $f(0) = 0$ mas $f'(0) \neq 0$, a mudan\c{c}a de vari\'{a}vel $z = f(t)$ leva uma equa\c{c}\~{a}o diferencial
@@ -119,7 +348,64 @@
     \]
     com ponto singular regular localizado em $z = 0$ em uma equa\c{c}\~{a}o diferencial com um ponto singular regular localizado em $t = 0$ satisfazendo a mesma equa\c{c}\~{a}o indicial.
     \begin{solution}
+        Pela quest\~{a}o 4 desta lista temos que a equa\c{c}\~{a}o do enunciado possui ponto singular regular em $z = 0$.
+
+        Fazendo $z = f(t)$, com $f(0) = 0$ e $f'(0) = 0$, tem-se
+        \begin{align*}
+            \frac{d y}{d z} = \frac{d y}{d t} \frac{d t}{d z} \\
+            &= \frac{d y}{d z} \frac{d z}{d t} \\
+            &= \frac{d y}{d z} f'(t), \\
+            \frac{d y}{d z} &= \frac{1}{f} \frac{d y}{d t}, \\
+            \frac{d^2 y}{d z^2} &= \frac{1}{f'} \frac{d}{d t} \left( \frac{1}{f'} \frac{d y}{d t} \right) \\
+            &= \frac{1}{f} \left( - \frac{f''}{\left( f' \right)^2} \frac{d y}{d t} + \frac{1}{f'} \frac{d^2 y}{d t^2} \right) \\
+            &= \frac{-f''}{\left( f' \right)^3} \frac{d y}{d t} + \frac{1}{\left( f' \right)^2} \frac{d^2 y}{d t^2}.
+        \end{align*}
         
+        Substituindo na equa\c{c}\~{a}o do enunciado temos
+        \begin{align*}
+            \frac{1}{\left( f' \right)^2} \frac{d^2 y}{d t^2} + \left( \frac{p\left( f \right)}{f'} - \frac{f''}{\left( f' \right)^3} \right) \frac{d y}{d t} + q\left( f \right) z &= 0 \\
+            \frac{d^2 y}{d t^2} + \left( p(f) f' + \frac{f''}{f'} \right) \frac{d y}{d t} + \left( f' \right)^2 q(f) y &= 0. 
+        \end{align*}
+        Logo,
+        \begin{align*}
+            p(f(t)) &= A / f(t) + \sum_{n = 0}^\infty a_n \left( f(t) \right)^n, \\
+            q(f(t)) &= B_1 / \left( f(t) \right)^2 + B_2 / f(t) + \sum_{n = 0}^\infty b_n \left( f(t) \right)^n.
+        \end{align*}
+
+        Verficando se $t = 0$ \'{e} ponto singular temos
+        \begin{align*}
+            p_0 &= \lim_{t \to 0} f(t) \left( \frac{A f'(t)}{f(t)} + \sum_{n = 0}^\infty a_n f(t) f'(t) + \frac{f''}{f'} \right) \\
+            &= \lim_{t \to 0} A f'(t) \\
+            &= A f'(0), && A f'(0) \neq 0, \\
+            q_0&= \lim_{t \to 0} \left( f(t) \right)^2 \left( \frac{B_1}{\left( f(t) \right)^2} + \frac{B_2}{f(t)} + \sum_{n = 0}^\infty b_n \left( f(t) \right)^n \right) \left( f'(t) \right)^2 \\
+            &= B_1 \left( f'(0) \right)^2, && B_1 \left( f'(0) \right)^2 \neq 0.
+        \end{align*}
+        Logo, $t - 0$ \'{e} ponto singular regular.
+
+        Para calcular a equa\c{c}\~{a}o indicial de
+        \begin{align*}
+            \frac{d^2 y}{d t^2} + \left( p(f) f' + \frac{f''}{f'} \right) \frac{d y}{d t} + \left( f' \right)^2 q(f) y &= 0
+        \end{align*}
+        temos primeiro que
+        \begin{align*}
+            y &= \left( f(t) \right)^r, \\
+            y' &= r \left( f(t) \right)^{r -1} f'(t), \\
+            y'' &= r\left( f(t) \right)^{r - 1} f''(t) + r \left( r - 1 \right) \left( f(t) \right)^{r - 2} \left( f'(t) \right)^2
+        \end{align*}
+        e ao substituirmos na equa\c{c}\~{a}o
+        \begin{align*}
+            \begin{split}
+                r f^{r - 1} f'' + r \left( r - 1 \right) f^{r - 2} \left( f' \right)^2 + r f' r f^{r - 1} f' \\ {}+ r f'' f^{r - 1} + \left( f' \right)^2 q f^r &= 0
+            \end{split} \\
+            \begin{split}
+                2 r f^{r - 1} f'' + r \left( r - 1 \right) f^{r - 2} \left( f' \right)^2 + r A f^{r - 2} \left( f' \right)^2 + r \left( f' \right)^2 \sum_{n = 0}^\infty a_n f^{n + r -1} \\ {}+ \left( f' \right)^2 B_1 f^{r -2} + \left( f' \right)^2 B_2 f^{r - 1} + \left( f' \right)^2 \sum_{n = 0}^\infty b_n f^{n + r} &= 0
+            \end{split} \\
+            \begin{split}
+                2f''+ \left[ r \left( r - 1 \right) + r A + B_1 \right] \left( f' \right)^2 + r \left( f' \right)^2 \sum_{n = 0}^\infty a_n f^{n + 1} \\ {}+ \left( f' \right)^2 B_1 f + \left( f' \right)^2 \sum_{n = 0}^\infty b_n f^{n + 2} &= 0.
+            \end{split}
+        \end{align*}
+
+        Logo, quando $t = 0$, $f(0) = 0$ e $f'(0) \neq 0$. Da\'{i}, $\left[ r \left( r - 1 \right) + r A + B_1 \right] \left( f'(0) \right)^2 = 0$ e portanto $r \left( r - 1 \right) + r A + B_1 = 0$ que \'{e} a equa\c{c}\~{a}o indicial.
     \end{solution}
 \end{questions}
 \end{document}

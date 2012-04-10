@@ -1,12 +1,13 @@
 %        File: lista2.tex
 %     Created: Sat Mar 10 08:00 PM 2012 B
-% Last Change: 25.03.12 10:24:35 AM
+% Last Change: 08.04.12 10:15:08 PM
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{hyperref}
 
 % Customiza\c{c}\~{a}o da classe exam
@@ -37,6 +38,42 @@
 
 \begin{document}
 \thispagestyle{headandfoot}
+O Teorema de Frobenius ser\'{a} útil na resolu\c{c}\~{a}o das quest\~{o}es e por isso vamos enunci\'{a}-lo:
+\begin{quote}
+    Seja $x_0 = 0$ um ponto singular regular da equa\c{c}\~{a}o
+    \begin{align*}
+        y'' + p(x) y' + q(x) y &= 0.
+    \end{align*}
+    Seja $\rho$ o menor dos raios de converg\^{e}ncia das s\'{e}ries
+    \begin{align*}
+        x p(x) &= \sum_{n = 0}^\infty p_n x^n, & x^2 q(x) &= \sum_{n = 0}^\infty q_n x^n.
+    \end{align*}
+    Seja ainda a equa\c{c}\~{a}o indicial
+    \begin{align*}
+        F(r) &= r \left( r - 1 \right) + p_0 r + q_0 = 0
+    \end{align*}
+    com ra\'{i}zes $r_1$ e $r_2$ com $r_1 \geq r_2$ no caso de ra\'{i}zes reais. Ent\~{a}o em cada um dos intervalos $-\rho < x < 0$ e $0 < x < \rho$ a equa\c{c}\~{a}o tem uma solu\c{c}\~{a}o $y_1(x)$ da forma
+    \begin{align*}
+        y_1(x) &= |x|^{r_1} \left( 1 + \sum_{n = 1}^\infty a_n(r_1) x^n \right).
+    \end{align*}
+    Al\'{e}m disso, temos tamb\'{e}m uma segunda solu\c{c}\~{a}o LI $y_2(x)$ de acordo com os casos:
+    \begin{enumerate}
+        \item Se $r_1 - r_2 \not\in \mathbb{N}$ temos
+            \begin{align*}
+                y_x(x) &= |x|^{r_2} \left( 1 + \sum_{n = 1}^\infty a_n(r_2) x^n \right).
+            \end{align*}
+        \item Se $r_1 - r_2 = 0$ temos
+            \begin{align*}
+                y_2(x) &= y_1(x) \ln |x| + |x|^{r_2} \sum_{n = 1}^\infty b_n(r_2) x^n.
+            \end{align*}
+        \item Se $r_1 - r_2 \in \mathbb{N}$ temos
+            \begin{align*}
+                y_2(x) = k y_1(x) \ln |x| + |x|^{r_2} \sum_{n = 0}^\infty c_n(r_2) x^n.
+            \end{align*}
+    \end{enumerate}
+    onde a constante $k$ pode ser nula. Os coeficientes $a_n(r_1)$, $a_n(r_2)$, $b_n(r_2)$, $c_n(r_2)$ e a constante $k$ s\~{a}o determinados substituindo as s\'{e}ries em quest\~{a}o na equa\c{c}\~{a}o. Al\'{e}m disso, as s\'{e}ries s\~{a}o convergentes em $-\rho < x < \rho$, de modo que as eventuais singularidades das solu\c{c}\~{o}es devem-se ao termo $|x|^r$ e $\ln |x|$, ou seja, podemos ter p\'{o}los ou pontos de ramifica\c{c}\~{a}o.
+\end{quote}
+
 Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 = 0$ exceto quando indicado).
 \begin{questions}
     \question $x^2 y'' + x y' + \left( x^2 - 1/4 \right) y = 0$.
@@ -131,7 +168,7 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
-        y11 - \frac{3}{x \left( 1 - x \right)} y' + \frac{2}{x \left( 1 - x \right)} y = 0.
+        y'' - \frac{3}{x \left( 1 - x \right)} y' + \frac{2}{x \left( 1 - x \right)} y = 0.
         \]
         Verificamos que $p(x) = \frac{-3}{x \left( 1 - x \right)}$ e $q(x) = \frac{2}{1 \left( 1 - x \right)}$ n\~{a}o s\~{a}o ana\'{i}liticas em $x_0 = 0$ mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
 

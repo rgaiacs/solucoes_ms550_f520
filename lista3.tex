@@ -103,7 +103,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
             y(z) &= A z^i + b z^{-i}, \quad  A, B \in \mathbb{C} \\
             &= A \exp\left( i \ln z \right) + B \exp\left( -i \ln z \right) \\
             &= A \left( \cos\left( \ln z \right) + i \sin\left( \ln z \right) \right) + B \left( \cos\left( \ln z \right) - i \sin \left( \ln z \right) \right) \\
-            &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right)r,
+            &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right),
         \end{align*}
         onde $A, B \in \mathbb{C}$, $r \in \mathbb{R} \geq 0$, $A = \alpha_1 + i \beta_1$, $B = \alpha_2 + i \beta_2$ e $\alpha_1, \alpha_2, \beta_1, \beta_2 \in \mathbb{R}$ (ver detalhes na figura abaixo).
         \begin{center}
@@ -114,42 +114,67 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
                 \draw (1,0) arc (0:60:1);
             \end{tikzpicture}
         \end{center}
+        
+        Agora queremos observar as solu\c cões dessa E.D.O. em dois ramos especificos da fun\c cão $\ln z$, no semi-eixo real positivo ($\theta = 0$) e no semi-eixo real negativo ($\theta = \pi$). Nosso objetivo é mostrar que uma solu\c cão totalmente real na parte positiva do eixo real não pode ser real na parte negativa.
 
-        Para $\theta = 0$ temos $z = r$ e
+        Como $z \in \mathbb{C}$, podemos escrever $z = r.e^{i.\theta}$, o que implica que $\ln z = \ln r + i.\theta$. Com isso, para $\theta = 0$ temos $\ln z = \ln r$. Logo,
         \begin{align*}
-            y(z) &= \left( A + B \right) \cos\left( \ln r \right) + \left( A - B \right) i \sin \left( \ln r \right) \\
+            y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln z \right) \\
             &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right) \cos \left( \ln r \right) + \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i \sin\left( \ln r \right), \\
-            \text{Re} y\left( z \right) &= \alpha_1 \cos\left( \ln x \right) + \alpha_2 \cos\left( \ln r \right) - \beta_1 \sin\left( \ln r \right) + \beta_2 \sin\left( \ln r \right), \\
+            \text{Re} y\left( z \right) &= \alpha_1 \cos\left( \ln r \right) + \alpha_2 \cos\left( \ln r \right) - \beta_1 \sin\left( \ln r \right) + \beta_2 \sin\left( \ln r \right), \\
             \text{Im} y\left( z \right) &= \beta_1 \cos\left( \ln r \right) + \beta_2 \cos\left( \ln r \right) + \alpha_1 \sin\left( \ln r \right) - \alpha_2 \sin\left( \ln r \right).
         \end{align*}
-        Para que a solu\c{c}\~{a}o da equa\c{c}\~{a}o seja real, $\text{Im} y\left( z) \right) = 0$. Da\'{i}, $\beta_1 = -\beta_2$ e $\alpha_1 = \alpha_2$. Substituindo na express\~{a}o anterior para $\text{Re} y\left( z \right)$, tem-se
-        \begin{align*}
-            \text{Re} y\left( z \right) &= 2\alpha_1 \cos\left( \ln r \right) + 2 \beta_2 \sin\left( \ln r \right).
-        \end{align*}
+        
+        Para que a solu\c{c}\~{a}o da equa\c{c}\~{a}o seja real, $\text{Im} y\left( z) \right) = 0$. Da\'{i}, $\beta_1 = -\beta_2$ e $\alpha_1 = \alpha_2$ $\left(*\right)$.
 
-        E para $\theta = \pi$ temos $z = r e^{i \pi} = -r$ e
+        Para $\theta = \pi$ temos $\ln z = \ln r + i.\pi$. Com isso temos:
         \begin{align*}
-            y\left( z \right) &= \left( A + B \right) \cos\left( \ln\left( -r \right) \right) + \left( A - B \right) i \sin\left( \ln\left( -r \right) \right).
+            y\left( z \right) &= \left( A + B \right) \cos\left( \ln\left( r \right) + i.\pi\right) + \left( A - B \right) i \sin\left( \ln\left( r \right) +i.\pi\right) \\
+            & = \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right) \cos \left( \ln r + i.\pi \right) + \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i \sin\left( \ln r + i.\pi \right).
         \end{align*}
-        Como $\ln\left( -r \right)$ n\~{a}o existe, a solu\c{c}\~{a}o
+        
+       Sabemos que,   
+       \begin{align*}
+	\sin\left(\ln r + i.\pi\right) = \sin\left(\ln r\right).\cos\left(i.\pi\right) - \cos\left(\ln r\right).\sin\left(i.\pi\right)\\
+       	\cos\left(\ln r + i.\pi\right) = \cos\left(\ln r\right).\cos\left(i.\pi\right) - \sin\left(\ln r\right).\sin\left(i.\pi\right).
+       \end{align*}
+       
+       Além disso, lembrando que $\cos\left(z\right) = \frac{e^{iz}+e^{-iz}}{2}$, $\sin\left(z\right) = \frac{e^{iz}-e^{-iz}}{2i}$, $\cosh\left(z\right) = \frac{e^{-z}+e^{z}}{2}$, $\sinh\left(z\right) = \frac{e^{-z}-e^{z}}{2}$, então $\cos\left(i.\pi\right) = i\cosh \pi$ e $\sin\left(i.\pi\right) = i\sinh \pi$. Como $\cosh \text{e } \sinh \in \mathbb{R}$, então,  
         \begin{align*}
-            y\left( z \right) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right)
+         y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln z \right) \\
+            &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)\left( \cos\left(\ln r\right).\cos\left(i.\pi\right) - \sin\left(\ln r\right).\sin\left(i.\pi\right)\right) +\\
+            &+ \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i\left( \sin\left(\ln r\right).\cos\left(i.\pi\right) + \cos\left(\ln r\right).\sin\left(i.\pi \right)\right). \\
+          &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)\left( \cos\left(\ln r\right).i\cosh\left(\pi\right) - \sin\left(\ln r\right).i\sinh\left(\pi\right)\right) +\\
+            &+ \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i\left( \sin\left(\ln r\right).i\cosh\left(\pi\right) + \cos\left(\ln r\right).i\sinh\left(\pi \right)\right). \\
+          &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)i \omega\left(r \right) - \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right)  \psi\left(r \right). \\
+        \end{align*}        
+        Com $\omega\left(r\right) \text{ e } \psi\left(r\right) \in \mathbb{R}$. Com isso,
+        \begin{align*}
+            \text{Re}y\left( z \right) &= -\left[\left(\beta_1 + \beta_2 \right)\omega \left(r\right) + \left(\alpha_1 - \alpha_2\right)\psi \left(r\right)\right]\\
+            \text{Im}y\left( z \right) &= \left(\alpha_1 + \alpha_2\right)\omega \left(r\right) - \left(\beta_1 - \beta_2\right)\psi \left(r\right).
         \end{align*}
-        n\~{a}o pode ser definida para $\theta = \pi$. Logo, n\~{a}o \'{e} real no semi-eixo real negativo.
+        
+      Para que a solu\c cão seja real, $\text{Im} y\left(z\right) = 0$, o que implica que $\alpha_1 = - \alpha_2$ e $\beta_1 = \beta_2$ $\left(**\right)$. 
+      
+      Como $\left(*\right)$ e $\left(**\right)$ não podem ser satisfeitas ao mesmo tempo, então nenhuma solu\c cão real no semi-eixo real positivo do plano complexo pode ser real no semi-eixo real negativo, como queriamos demonstrar.
     \end{solution}
 
     \question {}
     \begin{parts}
         \part Mostre que, se
+        
         \begin{equation}
             y'' + p(z) y' + q(z) y = 0
             \label{eq:q02:orig}
         \end{equation}
+        
         possui um ponto singular regular em $z = 0$ e $q(0) \neq 0$, ent\~{a}o
+        
         \begin{equation}
             y'' + \left[ p - \left( q' / q \right) \right] y' + \left[ p' - \left( p q' / q \right) + q \right] y = 0
             \label{eq:q02:mod}
         \end{equation}
+        
         possui um ponto singular regular em $z = 0$.
         \begin{solution}
             Se \eqref{eq:q02:orig} possui um ponto singular em $z = 0$ e $q(0) \neq 0$, tem-se:

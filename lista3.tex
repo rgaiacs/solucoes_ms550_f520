@@ -306,7 +306,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
             p(z) &= A / z + \sum_{n = 0}^\infty a_n z^n, \quad A, a_n \in \mathbb{R} \neq 0, \\
             q(z) &= B_1 / z^2 + B_2 / z + \sum_{n = 0}^\infty b_n z^n, \quad B_1, B_2, b_n \in \mathbb{R} \neq 0,
         \end{align*}
-        com $p(z)$ e $q(z)$ anal\'{i}ticas em $z = 0$ ($z = 0$ \'{e} ponto singular regular).
+        com $zp(z)$ e $z^{2}q(z)$ anal\'{i}ticas em $z = 0$ ($z = 0$ \'{e} ponto singular regular).
 
         Fazendo $z = 1 / t$ temos
         \begin{align*}
@@ -328,7 +328,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
             &= \frac{B_1}{t^2} + \frac{B_2}{t^3} + \sum_{n = 0}^\infty \frac{b_n}{t^{n + 4}}.
         \end{align*}
 
-        Para que $p(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty a_n / t^{n + 2} = 0$ e $t = 0$ ser ponto singular regular. J\'{a} para que $q(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty b_n / t^{n + 4} = B_2 / t^3 = 0$ e $t = 0$ ser $t = 0$ ser ponto singular regular. Logo, $a_n = 0$, $b_n = 0$, $B_2 = 0$ e consequentemente $p(z) = A / z$ e $q(z) = B_1 / z^2$.
+        Vemos que $p(t)$ e $q(t)$ são claramente não-analíticas em $t=0$. Para que $tp(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty a_n / t^{n + 2} = 0$. J\'{a} para que $t^{2}q(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty b_n / t^{n + 4} = B_2 / t^3 = 0$. Logo, $a_n = 0$, $b_n = 0$, $B_2 = 0$ e consequentemente $p(z) = A / z$ e $q(z) = B_1 / z^2$.
 
         Substituindo $p(z)$e $q(z)$ na equa\c{c}\~{a}o inicial temos
         \begin{align*}
@@ -369,7 +369,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
 
     \question Mostre que, se $f(0) = 0$ mas $f'(0) \neq 0$, a mudan\c{c}a de vari\'{a}vel $z = f(t)$ leva uma equa\c{c}\~{a}o diferencial
     \[
-    y''  p(z) y' + q(z) y = 0
+    y''  + p(z) y' + q(z) y = 0
     \]
     com ponto singular regular localizado em $z = 0$ em uma equa\c{c}\~{a}o diferencial com um ponto singular regular localizado em $t = 0$ satisfazendo a mesma equa\c{c}\~{a}o indicial.
     \begin{solution}

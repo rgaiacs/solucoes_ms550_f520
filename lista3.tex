@@ -213,7 +213,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         \begin{solution}
             Se $y = \left\{ y_1, y_2 \right\}$ \'{e} um conjunto fundamental de solu\c{c}\~{o}es de \eqref{eq:q02:orig}, ent\~{a}o
             \begin{align*}
-                y_1'' + p y_1' + q y &= 0.
+                y_1'' + p y_1' + q y_1 &= 0.
             \end{align*}
             Fazendo $y' = \left\{ y_1', y_2' \right\}$ em \eqref{eq:q02:mod}, tem-se
             \begin{align*}
@@ -248,8 +248,8 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
 
         Fazendo $y \to w$ com $y = z^\rho \phi\left( z \right) w\left( z \right)$, $\phi\left( 0 \right) \neq 0$, temos
         \begin{align*}
-            \frac{d y}{d z} &= w \frac{d}{d z}\left( z^\rho \phi\left( z \right) \right) + z^\rho \phi w',
-            \frac{d^2 y}{d z^2} &= w\left( z^\rho \phi\left( z \right) \right)'' + 2 \left( z^\rho \phi \right) w' + \left( z^\rho \phi \right) w''.
+            \frac{d y}{d z} &= w \frac{d}{d z}\left( z^\rho \phi\left( z \right) \right) + \left(z^\rho \phi \left(z\right)\right) w',\\
+            \frac{d^2 y}{d z^2} &= w\left( z^\rho \phi\left( z \right) \right)'' + 2 \left( z^\rho \phi \left(z\right) \right) w' + \left( z^\rho \phi \left(z\right) \right) w''.
         \end{align*}
         Substituindo na equa\c{c}\~{a}o inicial
         \begin{align*}
@@ -267,10 +267,10 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         Ent\~{a}o
         \begin{align*}
             I'(r) &= r \left( r - 1 \right) r P(0) + Q(0) = 0, \\
-            P(0) &= \lim_{z \to 0} z P(z) = \lim_{z \to 0} 2 z \phi' / \phi + \lim_{z \to 0} 2\rho + \lim_{z \to 0} p z = 0 \\
+            P(0) &= \lim_{z \to 0} z P(z) = \lim_{z \to 0} 2 z \phi' / \phi + \lim_{z \to 0} 2\rho + \lim_{z \to 0} zp \left(z\right) = 0 \\
             &= 2\rho + \lim_{z \to 0} z \left( A / z + \sum_{n = 0}^\infty \underbrace{a_n}_0 z^n \right) \\
             &= 2 \rho + A, \\
-            Q(0) &= \lim_{z \to 0} z^ Q(z) \\
+            Q(0) &= \lim_{z \to 0} z^2 Q(z) \\
             \begin{split}
                 &= \lim_{z \to 0} \frac{z^2 \left[ z^\rho \phi'' + \rho z^{\rho - 1} \phi' + \rho z^{\rho - 1} \phi' + \rho \left( \rho - 1 \right) z^{\rho -2} \phi  \right]}{z^\rho \phi} \\ & \quad + \lim_{z \to 0} \frac{z^2 p \left[ z^\rho \phi' + \rho z^{\rho- 1} \phi \right]}{z^\rho \phi} + \lim_{z \to 0} z^2 q
             \end{split} \\

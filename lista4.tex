@@ -1,0 +1,311 @@
+% Filename: lista4.tex
+% This code is part of 
+% 
+% Description: lista 4 de m\'{e}todos
+% 
+% Created: 18.04.12 05:32:59 PM
+% Last Change: 30.04.12 01:11:41 PM
+% 
+% Author: , 
+% Organization: 
+% 
+% Copyright (c) , . All rights reserved.
+% 
+% This file is license under the terms of 
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MS550, F520}{Solu\c{c}\~{a}o da Lista 4}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+\newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Mostre que $\Gamma(z) = \int_0^1 \left[ \ln(1/t) \right]^{z - 1} dt$.
+    \begin{solution}
+        Fazendo $t = e^{-y}$ temos
+        \begin{align*}
+            \exp (y) &= 1 / t \\
+            y &= \ln \left( 1 / t \right) \\
+            dy &= \frac{\left( - 1 / t^2 \right)}{1 / t} dt = \frac{-1}{t} dt.
+        \end{align*}
+
+        Avaliando os extremos:
+        \begin{align*}
+            y \to 0, t \to 1, \\
+            y \to \infty, t \to 0.
+        \end{align*}
+        Ent\~{a}o
+        \begin{align*}
+            \Gamma(z) &= \int_1^0 t \left[ \ln \left( 1 / t \right) \right]^{z - 1} \left( -1 / t \right) dt \\
+            &= \int_0^1 \left[ \ln \left( 1 / t \right) \right]^{z - 1} dt.
+        \end{align*}
+    \end{solution}
+
+    \question Use a fun\c{c}\~{a}o gama para mostrar os seguintes resultados:
+    \begin{parts}
+        \part $\int_0^\infty \exp \left( - x^4 \right) dx = \Gamma(5/5)$.
+        \begin{solution}
+            Fazendo $x^4 = t$ ent\~{a}o $x = t^{1 / 4}$. E portanto $dt = 4 x^3 dx = 4 t^{3 / 4} dx$ implica que $dx = \left( 1 / 4 \right) t^{-3 / 4} dt$. Logo
+            \begin{align*}
+                \int_0^\infty \exp (-x^4) dx &= \int_0^\infty \exp (-t ) \frac{1}{4} t^{-3 / 4} dt \\
+                &= \frac{1}{4} \int_0^\infty \exp (-t) t^{-3 / 4} dt \\
+                &= \frac{1}{4} \Gamma \left( 1 / 4 \right).
+            \end{align*}
+
+            Como $\Gamma \left( z + 1 \right) = z \Gamma \left( z \right)$, $\left( 1 / 4 \right) \Gamma \left( 1 / 4 \right) = \Gamma \left( 5 / 4 \right)$ e portanto
+            \begin{align*}
+                \int_0^\infty exp (-x^4) dx = \Gamma \left( 5 / 4 \right).
+            \end{align*}
+        \end{solution}
+
+        \part $\int_0^\infty x^{2s + 1} \exp \left( -a x^2 \right) dx = \Gamma(s + 1_ / \left( 2 a^{s + 1} \right)$.
+        \begin{solution}
+            Fazendo $t = a x^2$, temos $dt = 2 a x dx$. E avaliando os extremos:
+            \begin{align*}
+                x \to 0, t \to 0, \\
+                x \to \infty, t \to \infty.
+            \end{align*}
+            
+            Logo,
+            \begin{align*}
+                \int_0^\infty \left( x^2 \right)^s \exp \left( -a x^2 \right) x dx &= \int_0^\infty \left( t / a \right)^s \exp \left( -t \right) \frac{dt}{2a} \\
+                &= \frac{1}{2 a^{s + 1}} \int_0^\infty \exp \left( -t \right) t^s \\
+                &= \frac{1}{2 a^{s + 1}} \Gamma \left( s + 1 \right).
+            \end{align*}
+        \end{solution}
+
+        \part $\int_0^1 x^k \ln x dx = -1 / \left( k + 1 \right)^2$.
+        \begin{solution}
+            Fazendo $x = \exp \left( -w \right)$, temos $w = \ln \left( 1 / x \right) = - \ln \left( x \right)$ e consequentemente $dw = \frac{-1}{x} dx = - \exp \left( w \right) dw$ que implica em $dx = - \exp \left( -w \right) dw$. Avaliando os extremos,
+            \begin{align*}
+                x \to 0, w \to \infty, \\
+                x \to 1, w \to 0.
+            \end{align*}
+
+            Logo,
+            \begin{align*}
+                \int_\infty^0 \exp \left( -w k \right) \left( -w \right) \left( -\exp \left( -w \right) \right) dw &= - \int_0^\infty \exp \left( -w \left( k + 1 \right) \right) w dw.
+            \end{align*}
+            Fazendo $w \left( k + 1 \right) = t$ temos $w = t / \left( k + 1 \right)$ e consequentemente $dt = \left( k + 1 \right) dw \to dw = dt / \left( k + 1 \right)$. Avaliando os extremos
+            \begin{align*}
+                w \to 0, t \to 0, \\
+                w \to \infty, t \to \infty.
+            \end{align*}
+
+            Logo,
+            \begin{align*}
+                - \int_0^\infty \exp \left( -t \right) \left( t / \left( k + 1 \right) \right) \left( 1 / \left( k + 1 \right) \right) dt &= \left( -1 / \left( k + 1 \right) \right) \int_0^\infty \exp \left( -t \right) t dt \\
+                &= \frac{-1}{\left( k + 1 \right)^2} \Gamma \left( 2 \right) \\
+                &= \frac{-1}{\left( k + 1 \right)^2} \Gamma \left( 1 + 1 \right) \\
+                &= - \Gamma \left( 1 \right) / \left( k + 1 \right)^2 \\
+                &= - 1 / \left( k + 1 \right)^2.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question Mostre que $\lim_{x \to 0} \Gamma(a x) / \Gamma(x) = a^{-1}$.
+    \begin{solution}
+        Usando a defini\c{c}\~{a}o de Weierstrass, tem-se
+        \begin{align*}
+            \frac{\Gamma(a x)}{\Gamma(x)} &= \frac{x \exp(\gamma x) \prod_{n = 1}^\infty \left( 1 + x / n \right) \exp(-a x / n)}{a x \exp(\gamma a x) \prod_{n = 1}^\infty \left( 1 + a x / n \right) \exp(-a x / n)} \\
+            &= \frac{\exp(\gamma x) \prod_{n = 1}^\infty \left( 1 + x / n \right) \exp(-x / n)}{\left( \exp(\gamma x) \right)^a a \prod \left( 1 + a x / n \right) \exp(-a x / n}, \\
+            \lim_{x \to 0} \frac{\Gamma(a x)}{\Gamma(x)} &= \lim_{x \to 0} \left( \frac{\exp(\gamma x (1 - a)}{a} \right) \lim_{x \to 0} \left( \frac{\prod_{n = 1}^\infty (1 + x / n)v \exp(- x / n)}{\prod_{n = 1}^\infty (1 + a x q n) \exp(-x / n)} \right) \\
+            &= \left( 1 / a \right).
+        \end{align*} \\
+    \end{solution}
+
+    \question Mostre que $\text{Res }_{z = -n} \Gamma(z) = \left( -1 \right)^n / n!, \quad n = 0, 1, 2, \ldots$
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            \text{Res}_{z = -n} \Gamma(z) &= \lim_{z \to - n} \left( z - (-n) \right) \Gamma(z) \\
+            &= \lim_{z \to -n} \left( z + n \right) \lim_{k \to \infty} \left( k! k^z \right) / \left( z (z + 1) \ldots \right) \\
+            &= \lim_{k \to \infty} \lim_{z \to -n} (z + n) k! k^z / \left( z (z + 1) \ldots (z + n - 1) (z + n) (z + n + 1) \ldots \right) \\
+            &= \lim_{k \to \infty} k! / \left( k^n (-1)^n (n) (n - 1) \ldots (1) (1) \ldots (k - n) \right) \\
+            &= \left( (-1)^ / n! \right) \lim_{k \to \infty} \left( k (k - 1) \ldots (k - n) \ldots (1) \right) / \left( k^n (k - n) \ldots (1) \right) \\
+            &= \left( (-1)^n / n! \right) \lim_{k \to \infty} \left( 1 - 1 /k \right) \ldots \left( 1 - (n - 1) / k \right) \\
+            &= (-1)^n / n!
+        \end{align*}
+    \end{solution}
+
+    \question Mostre que $| \left( i x \right)! |^2 = \left( \pi x \right) / \left( \sinh \pi x \right)$ onde $x! = \Gamma(x + 1)$.
+    \begin{solution}
+        Como $x! = \Gamma(x + 1) = x \Gamma(x)$, tem-se
+        \begin{align*}
+            (i x)! &= \Gamma(ix + 1) \\
+            &= ix \Gamma(i x), \\
+            | (i x)! |^2 &= \left( i x \Gamma(i x) \right) \left( -i x \Gamma(-i x) \right) \\
+            &= i x \Gamma(i x) \Gamma(-i x + 1) \\
+            &= (i x) \left( 2 \pi / \left( i ( \exp(-i \pi i x) - \exp(i \pi i x) \right) \right) && \text{pela f\'{o}rmula de reflex\~{a}o} \\
+            &=\left( 2 \pi x \right) / \left( \exp(\pi x) - \exp(-\pi x) \right) \\
+            &= \left( 2 \pi x \right) / \left( 2 \sinh(\pi x) \right).
+        \end{align*}
+
+        A f\'{o}rmula de reflex\~{a}o diz que
+        \begin{align*}
+            \Gamma(z) \Gamma(1 -z) &= \pi / \sin(\pi z) = 2 \pi / \left( i (\exp(-i \pi z) - \exp(i \pi z)) \right).
+        \end{align*}
+    \end{solution}
+
+    \question Mostre que $|x!| \geq |\left( x + iy \right)!|$, onde $x, y \in \mathbb{R}$, $x \neq -1, -2, \ldots$.
+    \begin{solution}
+        Temos que $x! = \Gamma(x + 1) = x \Gamma(x)$, portanto $| x! | = x \Gamma(x) = | \Gamma(x + 1) |$. E
+        \begin{align*}
+            (x + i y)! &= \Gamma(x + i y + 1), \\
+            | (x + i y)! | &= | \Gamma(x + i y + 1) | \\
+            &= \left| \int_0^\infty \exp(-t) t^{x + iy} dt \right| \\
+            &\leq \int_0^\infty | \exp(-t) t^{x + i y} | dy \\
+            &\leq \int_0^\infty | \exp(-t) t^x \exp(i y \ln t) | dt \\
+            &\leq \int_0^\infty | \exp(-t) t^x | | \exp(i y \ln t) | dt \\
+            &\leq \int_0^\infty | \exp(-t) t^x dt && | \exp(i y \ln t) | = 1 \\
+            &= x! \leq | x! |.
+        \end{align*}
+        Como $| \int_0^\infty \exp(-t) t^x dt | = | \Gamma(x + 1) | = | x! |$, tem-se que $ | (x + i y)! | \leq | x! |$.
+    \end{solution}
+
+    \question Seja $f(z) = \left( 1 + z \right)^\alpha$.
+    \begin{parts}
+        \part Mostre que
+        \begin{align*}
+            \left. \frac{d^n f}{d z^n} \right|_{z = 0} &= \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - n + 1}
+        \end{align*}
+        e use esse resultado para mostrar que $\left( 1 + z \right)^\alpha = \sum_{n= 0}^\infty \binom{\alpha}{n} z^n$, onde $\binom{\alpha}{n} = \alpha! / \left( n! \left( \alpha - n \right)! \right) = \Gamma(\alpha + 1) / \left( n! \Gamma(\alpha - n + 1) \right)$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \left[ \frac{d^n f}{d z^n} \right]_{z = 0} &= \left[ \frac{d^n \left[ (1 + z)^\alpha \right]}{d z^n} \right]_{z = 0} \\
+                &= \left[ \alpha (\alpha - 1) \ldots (\alpha - n + 1) (1 + z)^{\alpha - n} \right]_{z = 0} \\
+                &= \alpha (\alpha - 1) \ldots (\alpha - n + 1) && z = 0.
+            \end{align*}
+            Como $\Gamma(\alpha + 1) = \alpha \Gamma(\alpha)$ ent\~{a}o $\alpha = \Gamma(\alpha + 1) / \Gamma(\alpha)$ e portanto
+            \begin{align*}
+                \left[ \frac{d^n f}{d z^n} \right]_{z = 0} &= \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha)} \frac{\Gamma(\alpha)}{\Gamma(\alpha - 1)} \ldots \frac{\Gamma(\alpha - n - 1}{\Gamma(\alpha - n)} \frac{\Gamma(\alpha - n)}{\Gamma(\alpha - n + 1} \\
+                &= \Gamma(\alpha + 1) / \Gamma(\alpha - n + 1).
+            \end{align*}
+            Expandindo $(1 + z)^\alpha$ em s\'{e}rie de Taylor (em torno de $z = 0$):
+            \begin{align*}
+                \left( 1 + z \right)^\alpha &= \sum_{n = 0}^\infty (1 / n!) z^n \left[ \frac{d^n (1 + z)^\alpha}{d z^n} \right]_{z = 0}\\
+                &= \sum_{n = 0}^\infty \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - n + 1)} \frac{z^n}{n!} \\
+                &= \sum_{n = 0}^\infty (\alpha / n) z^n,
+            \end{align*}
+            onde $(\alpha / n) = \Gamma(\alpha + 1) / \left( n! \Gamma(\alpha - n + 1 \right)$.
+        \end{solution}
+
+        \part Generalize esse resultado para $a, b \in \mathbb{C}$ mostrando que $\left( a + b \right)^\alpha = \sum_{n = 0}^\infty \binom{\alpha}{n} a^n b^{\alpha - n}$.
+        \begin{solution}
+            Para $a, b \in \mathbb{C}$ temos
+            \begin{align*}
+                \left( a + b \right)^\alpha &= \left[ (1 + a / b) b \right]^\alpha.
+            \end{align*}
+            Fazendo $z = a / b$,
+            \begin{align*}
+                (a + b)^\alpha = (1 + z)^\alpha b^\alpha \\
+                &= \sum_{n = 0}^\infty \binom{\alpha}{n} z^n b^\alpha \\
+                &= \sum_{n = 0}^\infty \binom{\alpha}{n} (a^n / b^n) b^\alpha \\
+                &= \sum_{n = 0}^\infty \binom{\alpha}{n} a^n b^{\alpha - b}.
+            \end{align*}
+        \end{solution}
+        
+        \part Mostre que se $\alpha = m \in \mathbb{Z}$ ent\~{a}o essa s\'{e}rie \'{e} truncada no termo $n = m$.
+        \begin{solution}
+            Para $\alpha = m \in \mathbb{Z}$, no termo $n = m$, tem-se
+            \begin{align*}
+                \binom{m}{m} b^m \alpha^{m - m} = b^m.
+            \end{align*}
+            Analisando o termo seguinte da s\'{e}rie, ou seja, $n = m + 1$, com $\alpha = m$, tem-se
+            \begin{align*}
+                \binom{\alpha}{n} &= \binom{m}{m + 1} \\
+                &= \Gamma(m + 1) / \left( (m + 1)! \Gamma(m - (m + 1) + 1 \right) \\
+                &= \Gamma(m + 1) / \Gamma(0).
+            \end{align*}
+            Como $\Gamma(0)$ diverge, pois $0$ \'{e} um dos p\'{o}los temos que a s\'{e}rie \'{e} truncada em $n = m$.
+        \end{solution}
+    \end{parts}
+
+    \question Mostre que $\int_{-1}^n \left( 1 + x \right)^a \left( 1 - x \right)^b dx = 2^{a + b + 1} B(a + 1, b + 1)$, onde $B(a, b)$ \'{e} a fun\c{c}\~{a}o beta.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que
+    \begin{parts}
+        \part $B(a, b) = B(a + 1, b) + B(a, b + 1)$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $B(a, b( = \left( b - 1 \right)/a B(a + 1, b - 1)$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Mostre que
+    \begin{align*}
+        \int_{-1}^1 \left( 1 - x^2 \right)^{1/2} x^{2n} dx = \begin{cases}
+            \pi / 2, & n = 0; \\
+            \pi \left( 2n - 1 \right)!! / \left( 2n + 2 \right)!!, & n = 1, 2, \ldots
+        \end{cases}
+    \end{align*}
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que $\int_t^z dx \ \left( \left( z - x \right)^{1 - \alpha} \left( x - t \right)^{\alpha} \right) = \pi / \left( \sin \pi \alpha \right)$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que $d \left( z \right)_n / d z = \left( z \right)_n \left[ \psi_0 \left( z + n \right) - \psi_0\left( z \right) \right]$, onde $\left( z \right)_n = z \left( z + 1 \right) \cdots \left( z + n - 1 \right)$ \'{e} o s\'{i}mbolo de Pochammer e $\psi_0$ \'{e} a fun\c{c}\~{a}o digama.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que $\ln \sin \pi z = \ln \pi z - \sum_{n = 1}^\infty \zeta(2n) z^{2n} / n$, onde $\zeta(n)$ \'{e} a fun\c{c}\~{a}o zeta de Riemann.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que $\psi_n(1) = \left( -1 \right)^{n + 1} n! \zeta(n + 1)$, onde $\psi_n(z)$ \'{e} a fun\c{c}\~{a}o poligama (de ordem n).
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que $\psi_0(z) = -\gamma + \int_0^\infty dt / \left( e^t - 1 \right) - \int_0^\infty \left( e^{\left( 1 - z \right) t} \right) dt / \left( e^t - 1 \right)$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Mostre que $n! \zeta(n + 1) = \int_0^\infty t^n dt / \left( e^t - 1 \right)$.
+    \begin{solution}
+        
+    \end{solution}
+\end{questions}
+\end{document}

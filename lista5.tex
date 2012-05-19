@@ -1,0 +1,647 @@
+% Filename: lista3.tex
+% This code is part of solu\c{c}\~{o}es de m\'{e}todos.
+% 
+% Description: Lista 03.
+% 
+% Created: 25.03.12 10:25:19 AM
+% Last Change: 18.05.12 10:30:59 PM
+% 
+% Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
+% Organization: UNICAMP
+% 
+% Copyright (c) 2012, Raniere Gaia C. da Silva. All rights reserved.
+% 
+% This file is license under the terms of the 
+%
+\documentclass[a4paper,10pt, leqno, answers]{exam}  % Algumas express\~{o}es s\~{a}o muito longas e ao utilizar 12pt estava ocorrendo overflow.
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MS550, F520}{Solu\c{c}\~{a}o da Lista 5}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+\newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
+\begin{document}
+Equa\c{c}\~{o}es eventualmente útil:
+\begin{align}
+    & f(x) = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n \tag{ST} \label{eq:ser_taylor} \\
+    & \Gamma(z) = \int_0^\infty e^{-t} t^{z - 1} dt \tag{GE} \label{eq:gamma_euler} \\
+    & \Gamma(z + 1) = z \Gamma(z), \ \Gamma(z) \Gamma(1 - z) = \pi / \sin(\pi z) \label{eq:gamma_rel} \\
+    & 2^{2 z - 1} \Gamma(z) \Gamma(z + 1/2) = \sqrt{\pi} \Gamma(2 z) \label{eq:gamma_dup_legendre} \\
+    & B(z, w) = \frac{\Gamma(z) \Gamma(w)}{\Gamma(z + w)} \tag{BG} \label{eq:beta} \\
+    & B(z, w) = 2 \int_0^{\pi / 2} \cos^{2z - 1} \theta \sin^{2w - 1} \theta d\theta \tag{BT} \label{eq:beta_trig} \\
+    & B(z, w) = \int_0^1 t^{z - 1} (1 - t)^{w - 1} dt \tag{BI} \label{eq:beta_int} \\
+    & (\alpha)_n = \alpha (\alpha + 1) \ldots (\alpha + n - 1), \ (\alpha)_0 = 1 \tag{SP} \label{eq:sim_poch} \\
+    & (\alpha)_n = \frac{\Gamma(\alpha + n)}{\Gamma(\alpha)} \label{eq:sim_poch_gamma} \\
+    & \frac{(\alpha)_n}{m!} = \binom{\alpha + n - 1}{n}, \ \frac{(-\alpha)_n}{n!} = (-1)^n \binom{\alpha}{n} \label{eq:sim_poch_binom} \\
+    & z(1 - z)y'' + \left[ \gamma - (\alpha + \beta + 1) z \right] y' - \alpha \beta y = 0 \tag{EH} \label{eq:hiperg} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SH} \label{eq:ser_hiperg} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} dt \label{eq:hiperg_int} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{\alpha \beta}{\gamma} \,{}_2F_1(\alpha + 1, \beta + 1, \gamma + 1; z) \label{eq:hiperg_der} \\
+    & zy'' + (\gamma - z)y' - \alpha y = 0 \tag{EHC} \label{eq:hiper_con} \\
+    & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SHC} \label{eq:ser_hiperg_con}
+\end{align}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Mostre as rela\c{c}\~{o}es de Kumer listadas abaixo.
+    
+    Dica: Como indicado nas notas de aula a demonstra\c{c}\~{a}o pode ser realizada utilizando a representa\c{c}\~{a}o integram da fun\c{c}\~{a}o hipergeom\'{e}trica, \eqref{eq:hiperg_int}, com as mudan\c{c}as de vari\'{a}vel $t \to 1 - t$, $t \to (1 - z - tz)^{-1}$ e $t \to (1 - t)/(1 - tz)$, conhecidas como transforma\c{c}\~{o}es hipergeom\'{e}tricas de Euler.
+    \begin{parts}
+        \part $_2F_1(\alpha, \beta, \gamma; z) = (1 - z)^{\gamma - \alpha - \beta} {}_2F_1(\gamma - \alpha, \gamma - \beta, \gamma; z)$,
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} dt && \text{por \eqref{eq:hiperg_int}} \\
+                &= \frac{1}{B(\gamma - \beta, \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} dt && B(z,w) = B(w,z) \\
+                &= \frac{1}{B(\gamma - \beta, \beta)} \bigstar,
+            \end{align*}
+            onde
+            \begin{align*}
+                \bigstar &= \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} dt \\
+                &= \int_0^1 \left( \frac{1 - v}{1 - vz} \right)^{\beta - 1} \left( 1 - \frac{1 - v}{1 - vz} \right)^{\gamma - \beta - 1} \left( 1 - \frac{z (1 - v)}{1 - vz} \right)^{-\alpha} \frac{1 - z}{(1 - vz)^2} dv && t = \frac{1 - v}{1 - vz} \\
+                &= \int_0^1 \frac{(1 - v)^{\beta - 1} (1 - vz - 1 + v)^{\gamma - \beta - 1} (1 - vz - z + zv)^{-\alpha} (1 - z)}{(1 - vz)^{\beta - 1 + \gamma - \beta - 1 - \alpha + 2}} dz \\
+                &= \int_0^1 \frac{(1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z)^{\gamma - \beta - 1} (1 - z)^{-\alpha} (1 - z)}{(1 - vz)^{\gamma - \alpha}} dz \\
+                &= \int_0^1 (1 - vz)^{-\gamma + \alpha} (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z)^{\gamma - \beta - \alpha} dv \\
+                &= (1 - z)^{\gamma - \alpha - \beta} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} (1 - vz)^{- \gamma + \alpha} dv.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\gamma - \beta, \beta)} (1-z)^{\gamma - \alpha - \beta} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} (1 - vz)^{-\gamma + \alpha} dv \\
+                &= (1 - z)^{\gamma - \alpha - \beta} \,_2F_1(\gamma - \alpha, \gamma - \beta, \gamma; z).
+            \end{align*}
+        \end{solution}
+
+        \part $_2F_1(\alpha, \beta, \gamma; z) = (1 - z)^{- \alpha} {}_2F_1(\alpha, \gamma - \beta, \gamma; z / (z - 1))$,
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} dt && \text{por \eqref{eq:hiperg_int}} \\
+                &= \frac{1}{B(\gamma - \beta, \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} dt && B(z,w) = B(w,z) \\
+                &= \frac{1}{B(\gamma - \beta, \beta)} \bigstar,
+            \end{align*}
+            onde
+            \begin{align*}
+                \bigstar &= \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} dt \\
+                &= \int_1^0 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - (1-v)z)^{-\alpha} (-dv) && t = 1 - v \\
+                &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - (1-v)z)^{-\alpha} dv \\
+                &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z + vz)^{-\alpha} dv \\
+                &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} \left[ \frac{(1 - z)^{-\alpha}}{(1 - z)^{-\alpha}} \left( (1 - z) + vz \right)^{-\alpha} \right] dv \\
+                &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z)^{-\alpha} \left( 1 + \frac{vz}{1 - z} \right)^{-\alpha} dv \\
+                &= (1 - z)^{-\alpha} \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} \left( 1 + \frac{vz}{1 - z} \right)^{-\alpha} dv \\
+                &= (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} dv.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\gamma - \beta, \beta)} (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} dv \\
+                &= (1 - z)^{-\alpha} \,_2F_1(\alpha, \gamma - \beta, \gamma; z / (z - 1)).
+            \end{align*}
+        \end{solution}
+
+        \part $_2F_1(\alpha, \beta, \gamma; z) = (1 - z)^{- \beta} {}_2F_1(\gamma - \alpha, \beta, \gamma; z / (z - 1))$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(\alpha, \beta, \gamma; z) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty \frac{(\beta)_n (\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \\
+                &= \,_2F_1(\beta, \alpha, \gamma; z) && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \frac{1}{B(\alpha, \gamma - \alpha)} \int_0^1 t^{\alpha - 1} (1 - t)^{\gamma - \alpha - 1} (1 - tz)^{-\beta} dt && \text{por \eqref{eq:hiperg_int}} \\
+                &= \frac{1}{B(\alpha, \gamma - \alpha)} \bigstar,
+            \end{align*}
+            onde
+            \begin{align*}
+                \bigstar &= \int_0^1 t^{\alpha - 1} (1 - t)^{\gamma - \alpha - 1} (1 - tz)^{-\beta} dt \\
+                &= \int_1^0 (1 - v)^{\alpha - 1} v^{\gamma - \alpha - 1} \left( 1 - (1 - v)z \right)^{-\beta} (- dv) && t = 1 - v \\
+                &= \int_0^1 (1 - v)^{\alpha - 1} v^{\gamma - \alpha - 1} \left( 1 - (1 - v)z \right)^{-\beta} dv \\
+                &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z + vz)^{-\alpha} dv \\
+                &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} \left[ \frac{(1 - z)^{-\alpha}}{(1 - z)^{-\alpha}} \left( (1 - z) + vz \right)^{-\alpha} \right] dv \\
+                &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z)^{-\alpha} \left( 1 + \frac{vz}{1 - z} \right)^{-\alpha} dv \\
+                &= (1 - z)^{-\alpha} \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} \left( 1 + \frac{vz}{1 - z} \right)^{-\alpha} dv \\
+                &= (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} dv.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\alpha, \gamma - \alpha)} (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} dv \\
+                &= (1 - z)^{-\beta} \,_2F_1(\gamma - \alpha, \beta, \gamma; z / (z - 1)).
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[Exerc\'{i}cio 13.4.8 do Arfken\nocite{Arfken:2005:Mathematical}] Mostre que
+    \begin{align*}
+        _2F_1(\alpha, \beta, \gamma; 1) &= \frac{\Gamma(\gamma)\Gamma(\gamma - \alpha - \beta)}{\Gamma(\gamma - \alpha) \Gamma(\gamma - \beta)}, \gamma \neq 0, -1, -2, \ldots, \gamma > \alpha + \beta.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            {}_2F_1(\alpha, \beta, \gamma; 1) &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t)^{-\alpha} dt && \text{por \eqref{eq:hiperg_int}} \\
+            &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - \alpha - 1} dt \\
+            &= \frac{1}{B(\beta, \gamma - \beta)} B(\alpha - \beta - \alpha, \beta) && \text{por \eqref{eq:beta_int}} \\
+            &= \frac{\Gamma(\beta + \gamma - \beta)}{\Gamma(\beta) \Gamma(\gamma - \beta)} \frac{\Gamma(\beta) \Gamma(\gamma - \beta - \gamma)}{\Gamma(\beta + \gamma - \beta - \alpha)} && \text{por \eqref{eq:beta}} \\
+            &= \frac{\Gamma(\gamma)}{\Gamma(\beta) \Gamma(\gamma - \beta)} \frac{\Gamma(\beta) \Gamma(- \beta)}{\Gamma(\gamma - \alpha)} \\
+            &= \frac{\Gamma(\gamma) \Gamma(\gamma - \alpha - \beta)}{\Gamma(\gamma - \beta) \Gamma(\gamma - \alpha)}.
+        \end{align*}
+    \end{solution}
+
+    \question[Exame de 2006] Mostre que
+    \begin{align*}
+        \int_0^\infty e^{-s t} {}_1F_1(\alpha, \gamma; t) dt &= s^{-1} {}_2F_1(\alpha, 1, \gamma, s^{-1}).
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            % {}_1F_1(\alpha, \gamma; t) &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{t^n}{n!} 
+            \int_0^\infty e^{-st} \,_1F_1(\alpha, \gamma, t) dt &= \int_0^\infty e^{-st} \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{t^n}{n!} dt && \text{por \eqref{eq:ser_hiperg}} \\
+            % &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \int_0^\infty e^{-st} \frac{t^n}{n!} dt \\
+            &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \int_0^\infty e^{-st} t^n dt \\
+            &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \int_0^\infty e^{-u} \frac{u^n}{s^n} \frac{du}{s} && st = u \\
+            &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \frac{1}{s^{n + 1}} \int_0^\infty e^{-u} u^n du \\
+            &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \frac{1}{s^{n + 1}} \Gamma(n + 1) && \text{por \eqref{eq:gamma_euler}} \\
+            &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \frac{1}{s^{n + 1}} n! \\
+            &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{s^{n + 1}} \\
+            &= s^{-1} \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} s^{-n} \\
+            &= s^{-1} \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{(1)_n}{n!} s^{-n} \\
+            &= s^{-1} \sum_{n = 0}^\infty \frac{(\alpha)_n (1)_n}{(\gamma)_n} \frac{s^{-n}}{n!} \\
+            &= s^{-1} \,_2F_1(\alpha, 1, \gamma; s^{-1}) && \text{por \eqref{eq:ser_hiperg}}.
+        \end{align*}
+    \end{solution}
+
+    \question Mostre que a s\'{e}rie hipergeom\'{e}trica ${}_2F_1(\alpha, \beta, \gamma; z)$ reduz-se a um polin\^{o}mio quando $\alpha$ ou $\beta$ \'{e} um número inteiro negativo.
+    \begin{solution}
+        Quando $\alpha$ \'{e} inteiro negativo, i.e., $\alpha = -k$, $k \in \mathbb{N}$ e $k < n$ temos que
+        \begin{align*}
+            (\alpha)_n &= (-k)_n = (-k) (-k + 1) \ldots \underbrace{(-k + k)}_{= 0} (-k + k + 1) \ldots (-k + n + 1).
+        \end{align*}
+        Verificamos ent\~{a}o que a s\'{e}rie \'{e} n\~{a}o nula at\'{e} $n = k - 1$. Ent\~{a}o,
+        \begin{align*}
+            {}_2F_1(-k, \beta, \gamma; z) &= \sum_{n = 0}^{k - 1} \frac{(-k)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+            &= \sum_{n = 0}^{k - 1} \frac{(-k)_n (\beta)_n}{(\gamma)_n n!} z^n 
+        \end{align*}
+        que \'{e} um polinômio de grau $k - 1$.
+
+        Para o caso de $\beta$ ser um n\'{u}mero inteiro negativo basta substituir $\alpha$ por $\beta$ no racionc\'{i}nio acima.
+    \end{solution}
+
+    \question[Ver exerc\'{i}cio 18.11 do Riley\nocite{Riley:2006:Mathematical}] Mostre que:
+    \begin{parts}
+        \part $(1 - z)^{-\alpha} = \,_2F_1(\alpha, \beta, \beta; z)$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(\alpha, \beta, \beta; z) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\beta)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty (\alpha)_n \frac{z^n}{n!} \\
+                &= 1 + \alpha z + \frac{\alpha (\alpha + 1)}{2!}z^2 + \frac{\alpha (\alpha + 1) (\alpha + 2)}{3!}z^3 + \ldots \\
+                &= (1 - z)^{-\alpha}
+            \end{align*}
+            onde o \'{u}ltimo passo decorre da expans\~{a}o pela s\'{e}rie de Taylor da fun\c{c}\~{a}o $(1 - z)^{-\alpha}$ em $z = 0$.
+        \end{solution}
+
+        \part $z^n = {}_2F_1(-n, 1, 1; 1-z)$, para $n = 0, 1, 2, \ldots$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(-k, 1, 1; 1 - z) &= \sum_{n = 0}^\infty \frac{(-k)_n (1)_n}{(1)_n} \frac{(1 - z)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty (-k)_n \frac{(1 - z)^n}{n!} \\
+                &= \sum_{n = 0}^\infty \frac{(-k)_n}{n!} (1 - z)^n \\
+                % &= \sum_{n = 0}^\infty \frac{(-1)^n (k)_n}{n!} (1 - z)^n \\
+                &= \sum_{n = 0}^\infty (-1)^n \binom{k}{n} (1 - z)^n && \text{por \eqref{eq:sim_poch_binom}} \\
+                &= \sum_{n = 0}^\infty \binom{k}{n} (- 1 + z)^n \\
+                &= z^n
+            \end{align*}
+            onde o \'{u}ltimo passo decorre da expans\~{a}o pela s\'{e}rie de Taylor da fun\c{c}\~{a}o $z^n$ em $z = 0$.
+        \end{solution}
+
+        \part $1 + \binom{a}{1} z + \binom{a}{2} z^2 + \ldots \binom{a}{m} z^m = \binom{a}{m} z^m \,_2F_1(-m, 1, a - m + 1; - z^{-1})$;
+        \begin{solution}
+            % Temos que
+            % \begin{align*}
+            %     \binom{a}{m} z^m\,_2F_1(-m, 1, a - m + 1, -z^{-1}) &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n (1)_n}{(a - m + 1)_n} \frac{(-z)^{-n}}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} \frac{(1)_n}{n!} (-z)^{-n} \\
+            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} (-z)^{-n} && \text{por \eqref{eq:sim_poch}} \\
+            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-1)^n (m + n)!}{(m - 1)!}  (-1)^{-n}z^{-n} && \text{por ???} \\
+            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-1)^n (m + n)! (-1)^{-n}}{(m - 1)!} z^{-n} \\
+            %     &= \frac{a!}{m! (a - m)!} z^m \sum_{n = 0}^\infty \frac{(m + n)!}{(m - 1)!}z^{-n} \\
+            %     &= \bigstar
+            % \end{align*}
+            % onde
+            % \begin{align*}
+            %     \begin{split}
+            %         \bigstar &= \frac{a!}{m! (a - m)! (m - 1)!} z^m + \frac{a! (m + 1)!}{m! (a - m)! (m - 1)!} z^{m - 1} \\ &{}+  \frac{a! (m + 2)!}{m! (a - m)! (m - 1)!} z^{m - 2} + \ldots \\ &{}+ \frac{a! (m + m - 1)!}{m! (a - m)! (m - 1)!} z^{m - m + 1} + \frac{a! (m - m)!}{m! (a - m)! (m - 1)!} z^{m - m}
+            %     \end{split}
+            % \end{align*}
+            Temos que
+            \begin{align*}
+                \binom{a}{m} z^m \,_1F_1(-m, 1, a - m + 1; -z^{-1}) &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n (1)_n}{(a - m + 1)_n} \frac{(-z^{-1})^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} \frac{(1)_n}{n!} (-z^{-1})^n \\
+                &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} (-z^{-1})^n && (1)_n = n! \\
+                &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n (-1)^{n}}{(a - m + 1)_n} z^{-n} \\
+                &= \binom{a}{m} z^m \sum_{n = 0}^m \frac{m!}{(m - n)! (a - m + 1)_n} z^{-n} && \text{por $\bigstar$} \\
+                &= \binom{a}{m} \sum_{n = 0}^m \frac{m!}{(m - n)! (a - m + 1)_n} z^{m - n} \\
+                &= \frac{a!}{(a - m)! m!} \sum_{n = 0}^m \frac{m!}{(m - n)! (a - m + 1)_n} z^{m - n} \\
+                &= \sum_{n = 0}^m \frac{a! m!}{(a - m)! m! (m - n)! (a - m + 1)_n} z^{m - n} \\
+                &= \sum_{n = 0}^m \frac{a!}{(a - m)! (m - n)! (a - m + 1)_n} z^{m - n} \\
+                &= \sum_{n = 0}^m \binom{a}{m - n} z^{m - n} && \text{por $\bigstar\bigstar$}
+            \end{align*}
+            onde $\bigstar$ corresponde a
+            \begin{align*}
+                (-m)_n (-1)^n &= (-m) (-m + 1) (-m + 2) \ldots (-m + n - 1) (-1)^n \\
+                &= (-m) (-1) (-m + 1) (-1) (-m + 2) (-1) \ldots (-m + n - 1) (-1) \\
+                &= (m) (m - 1) (m - 2) \ldots (m - n + 1) = m! \\
+            \end{align*}
+            e $\bigstar\bigstar$ a
+            \begin{align*}
+                (a - m)! (a - m + 1)_n &= (a - m)! (a - m + 1) (a - m + 2) \ldots (a - m + n) \\
+                &= (a - (m - n))!.
+            \end{align*}
+        \end{solution}
+
+        \part[Exemplo4.6 das notas de aula] $\ln(1-z) = -z \,_2F_1(1, 1, 2; z)$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(1, 1, 2; z) &= \sum_{n = 0}^\infty \frac{(1)_n (1)_n}{(2)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty \frac{n! n!}{(n + 1)!} \frac{z^n}{n!} && (2)_n = (n + 1)! \\
+                &= \sum_{n = 0}^\infty \frac{z^n}{n + 1} \\
+                &= z^{-1} \sum_{n = 0}^\infty \frac{z^{n + 1}}{n + 1} \\
+                &= - z^{-1} \ln(1 - z)
+            \end{align*}
+            onde o \'{u}ltimo passo decorre da expans\~{a}o pela s\'{e}rie de Taylor da fun\c{c}\~{a}o $\ln(1 - z)$ em $z = 0$.
+        \end{solution}
+
+        \part $\ln\left( (1 + z)/(1 - z) \right) = 2 z \,_2F_1(1/2,1,3/2;z^2)$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(1/2, 1, 3/2; z^2) &= \sum_{n = 0}^\infty \frac{(1/2)_n (1)_n}{(3/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty \frac{(1/2)_n n!}{(3/2)_n} \frac{(z^2)^n}{n!} \\
+                &= \sum_{n = 0}^\infty \frac{(1/2)_n}{(3/2)_n} \frac{n!}{n!} (z^2)^n \\
+                &= \sum_{n = 0}^\infty \frac{(1/2)_n}{(3/2)_n} \frac{(z^2)^n}{n!} \\
+                &= 1 + \sum_{n = 1}^\infty \frac{(1/2) (3/2) (5/2) \ldots ((2n - 1)/2)}{(3/2) (5/2) \ldots ((2n + 1)/2)} (z^2)^n \\
+                &= 1 + \sum_{n = 1}^\infty \frac{1}{2n + 1} (z^2)^n \\
+                &= 1 + \sum_{n = 1}^\infty \frac{1}{2n + 1} z^{2n} \\
+                &= \left( \frac{1}{2z} \right) \left( \ln\left( \frac{1 + z}{1 - z} \right) \right)
+            \end{align*}
+            onde o \'{u}ltimo passo decorre da expans\~{a}o pela s\'{e}rie de Taylor da fun\c{c}\~{a}o $\ln\left( (1+z)/(1-z) \right)$ em $z = 0$.
+        \end{solution}
+
+        \part $\arcsin(z) = z \,_2F_1(1/2, 1/2, 3/2; z^2)$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(1/2, 1/2, 3/2; z^2) &= \sum_{n = 0}^\infty \frac{(1/2)_n (1/2)_n}{(3/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= 1 + \sum_{n = 1}^\infty \frac{( (1/2) (3/2) (5/2) \ldots ((2n - 1)/2) )^2}{(3/2) (5/2) \ldots ((2n + 1)/2)} (z^2)^n \\
+                &= 1 + \sum_{n = 1}^\infty \frac{(1/2) (3/2) (5/2) \ldots ((2n - 1)/2)}{2n + 1} (z^2)^n \\
+                &= 1 + \sum_{n = 1}^\infty \frac{(1)(3) \ldots (2n - 1)}{2^n (2n + 1)} (z^2)^n \\
+                &= z^{-1} \arcsin(z)
+            \end{align*}
+            onde o \'{u}ltimo passo decorre da expans\~{a}o pela s\'{e}rie de Taylor da fun\c{c}\~{a}o $\arcsin(z)$ no ponto $z = 0$.
+        \end{solution}
+
+        \part[Exemplo 4.7 das notas de aula] $\cos(az) = {}_2F_1(a/2, -a/2, 1/2; \sin^2 z)$;
+        \begin{solution}
+            % Temos que
+            % Considerando a expans\~{a}o pela s\'{e}rie de Taylor das fun\c{c}\~{o}es $\sin^{2n} z$ em torno de $z = 0$, temos
+            % \begin{align*}
+            %     {}_2F_1(a/2, -a/2, 1/2; \sin^2 z) &= 1 + \frac{-a^2}{1/2} \sum_{n = 0}^\infty b_n^{(2)} x^{2 + 2n} + \frac{-a^2 (-a^2 + 1)}{2! (1/2)(3/2)} \sum_{n = 0}^\infty b_n^{(4)} x^{4 + 2n} + \ldots
+            % \end{align*}
+            Para $z \to 0$ temos que $z \approx \sin z$ e portanto podemos dizer que ${}_2F_1(a/2, -a/2, 1/2; \sin^2 z) \approx \,_2F_1(a/2, -a/2, 1/2; z^2)$. Ent\~{a}o temos
+            \begin{align*}
+                {}_2F_1(a/2, -a/2, 1/2; \sin^2 z) &= \sum_{n = 0}^\infty \frac{(a/2)_n (-a/2)_n}{(1/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty \frac{(a/2)_n (-a/2)_n}{(1/2)_n} \frac{z^{2n}}{n!} \\
+                \begin{split}
+                    &= 1 + \frac{(a/2)(-a/2)}{(1/2)} z^2 z \\ &\quad {}+ \frac{(a/2)(-a/2)(a/2 + 1)(-a/2 + 1)}{2! (1/2)(3/2)} z^4 z + \ldots
+                \end{split} \\
+                &= 1 - \frac{a^2}{2} z^2 + \frac{a^2 (a^2 - 4)}{2 (3)} z^4 + \ldots \\
+                &\approx 1 - \frac{a^2}{2} z^2 + \frac{a^4}{2^3 (3)} z^4 + \ldots \\
+                &=  1 - \frac{1}{2} (az)^2 + \frac{1}{24} + (az)^4 + \ldots \\
+                &= \cos(az)
+            \end{align*}
+            onde o \'{u}ltimo passo decorre da expans\~{a}o pela s\'{e}rie de Taylor da fun\c{c}\~{a}o $\cos(az)$ no ponto $z = 0$.
+
+            Nota: Uma demonstra\c{c}\~{a}o mais formal encontra-se no Riley\nocite{Riley:2006:Mathematical} onde \'{e} determinado a constante do termo $z^6$ e um teste que consiste em transformar a equa\c{c}\~{a}o hipergeom\'{e}trica original utilizando a transforma\c{c}\~{a}o caracterizada por $z = \sin^2 z$.
+        \end{solution}
+
+        \part $B(x, y) x^{-1} \,_2F_1(x, 1- y, x + 1; 1)$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(x, 1 - y, x + 1; 1) &= \frac{1}{B(1 - y, x + y)} \int_0^1 t^{-y} (1 - t)^{x + y - 1} (1 - t)^{-x} dt && \text{por \eqref{eq:hiperg_int}} \\
+                &=\frac{1}{B(1 - y, x + y)} \int_0^1 t^{-y} (1 - t)^{y - 1} dt \\
+                &=\frac{1}{B(1 - y, x + y)} B(-y + 1, y) && \text{por \eqref{eq:beta_int}} \\
+                &= \frac{\Gamma(-y + 1) \Gamma(y)}{\Gamma(1)} \frac{\Gamma(x + 1)}{\Gamma(1 - y) \Gamma(x + y)} \\
+                &= \frac{\Gamma(1 -y) \Gamma(y) \Gamma(x + 1)}{\Gamma(1) \Gamma(1 - y) \Gamma(x + y)} && \text{por \eqref{eq:beta}} \\
+                &= \frac{\Gamma(y) \Gamma(x + 1)}{\Gamma(x + y)} \\
+                &= \frac{\Gamma(y) x \Gamma(x)}{\Gamma(x + y)} && \text{por \eqref{eq:gamma_rel}} \\
+                &= x B(x, y) && \text{por \eqref{eq:beta}}
+            \end{align*}
+        \end{solution}
+
+        \part $K(k) = \int_0^{\pi / 2} \left( 1 - k^2 \sin^2 \phi \right)^{-1/2} d\phi = (\pi/2) \,_2F_1(1/2, 1/2, 1; k^2)$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(1/2, 1/2, 1; k^2) &= \frac{1}{B(1/2,1 - 1/2)} \int_0^1 t^{1/2 - 1} (1 - t)^{1 - 1/2 - 1} (1 - tk^2)^{-1/2} dt && \text{por \eqref{eq:hiperg_int}} \\
+                &= \frac{1}{B(1/2, 1 - 1/2)} \int_0^1 t^{-1/2} (1 - t)^{-1/2} (1 - tk^2)^{-1/2} dt \\
+                &= \frac{1}{B(1/2, -1/2)} \bigstar,
+            \end{align*}
+            onde
+            \begin{align*}
+                \bigstar &= \int_0^{\pi/2} \frac{1}{\sin \phi} \frac{1}{\cos \phi} (1 - k^2 \sin^2 \phi)^{-1/2} 2 \sin \phi \cos \phi d\phi && t = \sin^2 \phi \\
+                &= 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{-1/2} d\phi.
+            \end{align*}
+            Portanto
+            \begin{align*}
+                {}_2F_1(1/2, 1/2, 1; k^2) &= \frac{1}{B(1/2, -1/2)} 2\int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{-1/2} d\phi \\
+                &= \frac{\Gamma(1/2 + 1/2)}{\Gamma(1/2) \Gamma(1/2)} 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{-1/2} d\phi && \text{por \eqref{eq:beta}}\\
+                &= \frac{\Gamma(1)}{\Gamma(1/2) \Gamma(1/2)} 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{-1/2} d\phi \\
+                &= \frac{1}{\sqrt{\pi} \sqrt{\pi}} 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{-1/2} d\phi && \text{por \eqref{eq:gamma_rel}} \\
+                &= \frac{2}{\pi} \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{-1/2} d\phi.
+            \end{align*}
+        \end{solution}
+
+        \part $E(k) = \int_0^{\pi / 2} (1 - k^2 \sin^2 \phi)^{1/2} d\phi = \left( \pi / 2 \right) \,_2 F_1(-1/2, 1/2, 1; k^2)$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_2F_1(-1/2, 1/2, 1; k^2) &= \frac{1}{B(1/2, 1 - 1/2)} \int_0^1 t^{1/2 - 1} (1 - t)^{1 - 1/2} (1 - k^2 t)^{1/2} dt && \text{por \eqref{eq:hiperg_int}} \\
+                &= \frac{1}{B(1/2, 1 - 1/2)} \int_0^1 t^{-1/2} (1 - t)^{1/2} (1 - k^2 t)^{1/2} dt \\
+                &= \frac{1}{B(1/2, 1/2)} \bigstar,
+            \end{align*}
+            onde
+            \begin{align*}
+                \bigstar &= \int_0^{\pi/2} \frac{1}{\sin \phi} \frac{1}{\cos \phi} (1 - k^2 \sin^2 \phi)^{1/2} 2 \sin \phi \cos \phi d\phi && t = \sin^2 \phi \\
+                &= 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{1/2} d\phi.
+            \end{align*}
+            Portanto
+            \begin{align*}
+                {}_2F_1(-1/2, 1/2, 1; k^2) &= \frac{1}{B(1/2, 1/2)} 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{1/2} d\phi \\
+                &= \frac{\Gamma(1/2 + 1/2)}{\Gamma(1/2) \Gamma(1/2)} 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{1/2} d\phi && \text{por \eqref{eq:beta}} \\
+                &= \frac{\Gamma(1)}{\Gamma(1/2) \Gamma(1/2)} 2 \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{1/2} d\phi \\
+                &= \frac{1}{\sqrt{\pi} \sqrt{\pi}} 2 \int_0^{\pi/2} (1 -k^2 \sin^2 \phi)^{1/2} d\phi && \text{por \eqref{eq:gamma_rel}} \\
+                &= \frac{2}{\pi} \int_0^{\pi/2} (1 - k^2 \sin^2 \phi)^{1/2} d\phi.
+            \end{align*}
+        \end{solution}
+
+        \part $\exp(z) \left( 1 + z / (a - 1) \right) = \,_1F_1(a, a - 1; z)$
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                {}_1F_1(a, a - 1; z) &= \sum_{n = 0}^\infty \frac{(a)_n}{(a - 1)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg_con}} \\
+                &= \sum_{n = 0}^\infty \frac{a (a + 1) \ldots (a + n - 1)}{(a - 1) a \ldots (a + n - 2)} \frac{z^n}{n!} && \text{por \eqref{eq:sim_poch}} \\
+                &= \sum_{n = 0}^\infty \frac{a + n - 1}{a - 1} \frac{z^n}{n!} \\
+                &= \sum_{n = 0}^\infty \left( 1 + \frac{n}{a - 1} \right) \frac{z^n}{n!} \\
+                &= \left( \sum_{n = 0}^\infty \frac{z^n}{n!} \right) + \frac{1}{a - 1} \left( \sum_{n = 0}^\infty \frac{n z^n}{n!} \right) \\
+                &= \left( \sum_{n = 0}^\infty \frac{z^n}{n!} \right) + \frac{1}{a - 1} \left( \sum_{n = 0}^\infty \frac{z^n}{(n - 1)!} \right) \\
+                &= \left( \sum_{n = 0}^\infty \frac{z^n}{n!} \right) + \frac{z}{a - 1} \left( \sum_{n = 1}^\infty \frac{z^{n - 1}}{(n - 1)!} \right) \\
+                &= \exp(z) + \frac{z}{a - 1} \exp(z)
+            \end{align*}
+            onde o \'{u}ltimo passo decorre da expans\~{a}o pela s\'{e}rie de Taylor da fun\c{c}\~{a}o $\exp(z)$ no ponto $z = 0$.
+        \end{solution}
+    \end{parts}
+
+    \question[Ver exemplo 4.7 das notas de aula] Os polin\^{o}mios de Jacobi $P_n^{(\alpha, \beta)}(z)$ est\~{a}o relacionados com a fun\c{c}\~{a}o hipergeom\'{e}trica por
+    \begin{align*}
+        P_n^{(\alpha, \beta)}(z) &= \frac{\Gamma(n + \alpha + 1)}{n! \Gamma(\alpha + 1)} \,_2F_1(-n, \alpha + \beta + n + 1, \alpha + 1; (1 - z) / 2).
+    \end{align*}
+    Mostre que esses polinômios satisfacem a equa\c{c}\~{a}o
+    \begin{align*}
+        (1 - z^2) y'' + (\beta - \alpha - (\alpha + \beta + 2)z)y' + n(n + \alpha + \beta + 1)y &= 0.
+    \end{align*}
+    \begin{solution}
+        Temos que $f(y) = \,_2F_1(-n, \alpha + \beta + n + 1, \alpha + 1; y)$ satisfaz a equa\c{c}\~{a}o hipergeom\'{e}trica dada por
+        \begin{align*}
+            y (1 - y) f''(y) + \left[ (\alpha + 1) - ( (-n) + (\alpha + \beta + n + 1) + 1)y \right] f'(y) - (-n) (\alpha + \beta + n + 1) f(y) &= 0 && \text{por \eqref{eq:hiperg}}
+        \end{align*}
+        que pode ser simplificada para
+        \begin{align*}
+            y (1 - y) f''(y) + \left[ (\alpha + 1) - (\alpha + \beta + 2)y \right] f'(y) + n (\alpha + \beta + n + 1) f(y) = 0.
+        \end{align*}
+        Para $y = (1 - z)/2$ temos que
+        \begin{align}
+            \frac{d}{dy} &= \left( \frac{-1}{2} \right) \frac{d}{dz}, \\
+            \frac{d^2}{dy^2} &= \left( \frac{-1}{2} \right) \left( \frac{-1}{2} \right) \frac{d^2}{dz^2} = \frac{1}{4} \frac{d^2}{dz^2}.
+        \end{align}
+        Ent\~{a}o para $\phi = f( (1 - z)/2 )$ temos a seguinte equa\c{c}\~{a}o hipergeom\'{e}trica
+        \begin{align*}
+            \frac{1 - z}{2} \left( 1 - \frac{1 - z}{2} \right) \phi'' + \left[ (\alpha + 1) - (\alpha + \beta + 2) \frac{1 - z}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi = 0
+        \end{align*}
+        que pode ser simplificada para
+        \begin{align*}
+            \frac{1 - z}{2} \left( \frac{1 + z}{2} \right) \phi'' + \left[ \frac{2(\alpha + 1) - (\alpha + \beta + 2) (1 - z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
+            \frac{1 - z}{2} \left( \frac{1 + z}{2} \right) \phi'' + \left[ \frac{2(\alpha + 1) - (\alpha + \beta + 2) (1 - z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
+            \frac{1 - z^2}{4} \phi'' + \left[ \frac{2\alpha + 2 - \alpha - \beta - 2 + (\alpha + \beta + 2)z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
+            \frac{1 - z^2}{4} \phi'' + \left[ \frac{\alpha - \beta + (\alpha + \beta + 2)z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
+            (1 - z^2) \frac{\phi''}{4} \phi'' + \left[ - \alpha + \beta - (\alpha + \beta + 2)z)\right] \frac{-\phi'}{2} + n (\alpha + \beta + n + 1) \phi &= 0 \\
+            (1 - z^2) y'' + \left[ - \alpha + \beta - (\alpha + \beta + 2)z)\right] y' + n (\alpha + \beta + n + 1) y &= 0.
+        \end{align*}
+    \end{solution}
+
+    \question[Ver exemplo 4.7 das notas de aula] Os polinômios de Hermite $H_n(z)$ podem ser escritos em termos da fun\c{c}\~{a}o hipergeom\'{e}trica confluente como
+    \begin{align*}
+        H_n(z) &= 2^n U(-n/2, 1/2, z^2).
+    \end{align*}
+    Mostre que esses polin\^{o}mios satisfazem a equa\c{c}\~{a}o
+    \begin{align*}
+        y'' - 2 zy' + 2ny &= 0.
+    \end{align*}
+    \begin{solution}
+        Temos que $f(y) = \,_1F_1(-n/2, 1/2; y)$ satisfaz a equa\c{c}\~{a}o hipergeom\'{e}trica confluente dada por
+        \begin{align*}
+            y f''(y) + \left( 1/2 - y \right) f'(y) - (-n/2) f(y) &= 0 && \text{por \eqref{eq:hiper_con}}
+        \end{align*}
+        que poder ser simplificada para
+        \begin{align*}
+            y f''(y) + \left( (1 - 2y) / 2 \right) f'(y) + (n/2) f(y) &= 0.
+        \end{align*}
+        Para $y = z^2$ temos que
+        \begin{align*}
+            \frac{d}{dy} &= 2 z \frac{d}{dz}, \\
+            \frac{d^2}{dy^2} &= 2 \frac{df}{dz} + 4 z^2 \frac{d}{dz}.
+        \end{align*}
+        Ent\~{a}o para $\phi = f(z^2)$ temos a seguinte equa\c{c}\~{a}o hipergeom\'{e}trica confluente
+        \begin{align*}
+            z^2 \phi'' + \left( (1 - 2z^2)/2 \right) \phi' + (n/2) \phi &= 0
+        \end{align*}
+        que pode ser simplificada para
+        \begin{align*}
+            4 z^2 \phi'' + \left( 2 - 4z^2 \right) \phi' + 2n \phi &= 0 \\
+            4 z^2 \phi'' + 2 \phi' - 4z^2 \phi' + 2n \phi &= 0 \\
+            ( 4 z^2 \phi'' + 2 \phi') - 2 z (2 z \phi') + 2n \phi &= 0 \\
+            y'' - 2 z y' + 2n y &= 0.
+        \end{align*}
+    \end{solution}
+
+    % Na quest\~{a}o a seguir utilizou-se a forma $e^{z/2}$ ao inv\'{e}s de $\exp(z/2)$ por quest\~{a}o de espa\c{c}o, i.e., estava ocorrendo overflow.
+    \question[Ver exemplo 4.7 das notas de aula] Mostre que
+    \begin{align*}
+        M_{k,m}(z) &= \exp(-z/2) z^{m + 1/2} \,_1F_1(1/2 + m - k, 1 + 2 m; z)
+    \end{align*}
+    satisfaz a equa\c{c}\~{a}o de Whittaker,
+    \begin{align*}
+        w'' + \left[ -\frac{1}{4} + \frac{k}{z} + \frac{1/4 - m^2}{z^2} \right] w &= 0.
+    \end{align*}
+    \begin{solution}
+        Temos que $f(z) = {}_1F_1(1/2 + m - k, 1 + 2m; z) = e^{z/2} z^{-m - 1/2} M_{k, m}(z)$ satisfaz a equa\c{c}\~{a}o hipergeom\'{e}trica confluente dada por
+        \begin{align*}
+            z f''(z) + (1 + 2m - z) f'(z) - (1/2 + m - k) f(z) &= 0 && \text{por \eqref{eq:hiper_con}}.
+        \end{align*}
+        Para $f(z) = e^{z/2} z^{-m - 1/2} M$ temos que
+        \begin{align*}
+            f'(z) &= \frac{1}{2} e^{z/2} z^{-m - 1/2} M + e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M + e^{z/2} z^{-m - 1/2} M', \\
+            \begin{split}
+                f''(z) &= \frac{1}{4} e^{z/2} z^{-m - 1/2} M + \frac{1}{2} e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M \\
+                &\quad {}+ \frac{1}{2} e^{z/2} z^{-m - 1/2} M' + \frac{1}{2} e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M \\
+                &\quad {}+ e^{z/2} \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-m - 5/2} M + e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M' \\
+                &\quad {}+ \frac{1}{2} e^{z/2} z^{-m - 1/2} M' + e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M' + e^{z/2} z^{-m - 1/2} M''.
+            \end{split}
+        \end{align*}
+        Substituido na equa\c{c}\~{a}o hipergeom\'{e}trica confluente temos que
+        \begin{align*}
+            \begin{split}
+                0 &= z \frac{1}{4} e^{z/2} z^{-m - 1/2} M + z \frac{1}{2} e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M \\
+                &\quad {}+ z \frac{1}{2} e^{z/2} z^{-m - 1/2} M' + z \frac{1}{2} e^{z/2} \left( -m - \frac{1}{2} \right)  z^{-m - 3/2} M \\
+                &\quad {}+ z e^{z/2} \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-m - 5/2} M + z e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M' \\
+                &\quad {}+ z \frac{1}{2} e^{z/2} z^{-m - 1/2} M' + z e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M' + z e^{z/2} z^{-m - 1/2} M'' \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} e^{z/2} z^{-m - 1/2} M + e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M + e^{z/2} z^{-m - 1/2} M' \right] \\
+                &\quad {}- (1/2 + m - k) e^{z/2} z^{-m - 1/2} M
+            \end{split} \\
+            \begin{split}
+                0 &= \frac{1}{4} e^{z/2} z^{-m + 1/2} M + \frac{1}{2} e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M \\
+                &\quad {}+ \frac{1}{2} e^{z/2} z^{-m + 1/2} M' + \frac{1}{2} e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M \\
+                &\quad {}+ e^{z/2} \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-m - 3/2} M + e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M' \\
+                &\quad {}+ \frac{1}{2} e^{z/2} z^{-m + 1/2} M' + e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M' + e^{z/2} z^{-m + 1/2} M'' \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} e^{z/2} z^{-m - 1/2} M + e^{z/2} \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M + e^{z/2} z^{-m - 1/2} M' \right] \\
+                &\quad {}- (1/2 + m - k) e^{z/2} z^{-m - 1/2} M
+            \end{split} \\
+            \begin{split}
+                0 &= \frac{1}{4} z^{-m + 1/2} M + \frac{1}{2} \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M \\
+                &\quad {}+ \frac{1}{2} z^{-m + 1/2} M' + \frac{1}{2} \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M \\
+                &\quad {}+ \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-m - 3/2} M + \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M' \\
+                &\quad {}+ \frac{1}{2} z^{-m + 1/2} M' + \left( -m - \frac{1}{2} \right) z^{-m - 1/2} M' + z^{-m + 1/2} M'' \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} z^{-m - 1/2} M + \left( -m - \frac{1}{2} \right) z^{-m - 3/2} M + z^{-m - 1/2} M' \right] \\
+                &\quad {}- (1/2 + m - k) z^{-m - 1/2} M
+            \end{split} && e^{z/2} \neq 0 \\
+            \begin{split}
+                0 &= \frac{1}{4} M + \frac{1}{2} \left( -m - \frac{1}{2} \right) z^{-1} M \\
+                &\quad {}+ \frac{1}{2} M' + \frac{1}{2} \left( -m - \frac{1}{2} \right) z^{-1} M \\
+                &\quad {}+ \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-2} M + \left( -m - \frac{1}{2} \right) z^{-1} M' \\
+                &\quad {}+ \frac{1}{2} M' + \left( -m - \frac{1}{2} \right) z^{-1} M' + M'' \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} z^{-1} M + \left( -m - \frac{1}{2} \right) z^{-2} M + z^{-1} M' \right] \\
+                &\quad {}- (1/2 + m - k) z^{-1} M
+            \end{split} && z^{-m + 1/2} \neq 0 \\
+            \begin{split}
+                0 &= \frac{1}{4} M + \frac{1}{2} \left( -m - \frac{1}{2} \right) z^{-1} M + \frac{1}{2} \left( -m - \frac{1}{2} \right) z^{-1} M \\
+                &\quad {}+ \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-2} M  \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} z^{-1} M + \left( -m - \frac{1}{2} \right) z^{-2} M \right] - (1/2 + m - k) z^{-1} M \\
+                &\quad {}+ \frac{1}{2} M' + (1 + 2 m - z) z^{-1} M' + \frac{1}{2} M' + \left( -m - \frac{1}{2} \right) z^{-1} M' \\
+                &\quad {}+ \left( -m - \frac{1}{2} \right) z^{-1} M' + M''
+            \end{split} \\
+            \begin{split}
+                0 &= \frac{1}{4} M + \left[ \frac{1}{2} \left( -m - \frac{1}{2}  \right) + \frac{1}{2} \left( -m - \frac{1}{2} \right) \right] z^{-1} M \\
+                &\quad {}+ \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-2} M  \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} z^{-1} M + \left( -m - \frac{1}{2} \right) z^{-2} M \right] - (1/2 + m - k) z^{-1} M \\
+                &\quad {}+ \left[ \frac{z}{2} + (1 + 2 m - z) + \frac{z}{2} + \left( -m - \frac{1}{2} \right) + \left( -m - \frac{1}{2} \right) \right] z^{-1} M' + M''
+            \end{split} \\
+            \begin{split}
+                0 &= \frac{1}{4} M + \left[ -m - \frac{1}{2} \right] z^{-1} M + \left( -m - \frac{1}{2} \right) \left( -m - \frac{3}{2} \right) z^{-2} M  \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} z - m - \frac{1}{2} \right] z^{-2} M - (1/2 + m - k) z^{-1} M \\
+                &\quad {}+ \left[ z + 1 + 2 m - z - 2m - 1 \right] z^{-1} M' + M''
+            \end{split} \\
+            \begin{split}
+                0 &= \frac{1}{4} M + \left[ -m - \frac{1}{2} \right] \left( z - m - \frac{3}{2} \right) z^{-2} M  \\
+                &\quad {}+ (1 + 2 m - z) \left[ \frac{1}{2} z - m - \frac{1}{2} \right] z^{-2} M - (1/2 + m - k) z^{-1} M + M''
+            \end{split} \\
+            % 0 &= \left[ -3m^2 + \frac{1}{4} + \frac{z}{2} - \frac{z^2}{2} \right] z^{-2}M - (1/2 + m - k + \frac{z}{4}) z^{-1} M + M'' \\
+            0 &= \left[ -\frac{1}{4} + \frac{k}{z} + \left( -m^2 + \frac{1}{4} \right) \frac{1}{z^2} \right] M + M'' \\
+            0 &= \left[ -\frac{1}{4} + \frac{k}{z} + \frac{(1/4 - m^2)}{z^2} \right] M + M'' \\
+        \end{align*}
+    \end{solution}
+
+    \question[P2 de 2006] Seja ${}_2F_1(a, b, c; z)$ a fun\c{c}\~{a}o hipergeom\'{e}trica. Mostre que
+    \begin{align*}
+        {}_2F_1(-n, b, b; z) &= (1 - z)^n,
+    \end{align*}
+    com $|z| < 1$ e $n \in \mathbb{N}$.
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            {}_2F_1(-n, b, b; z) &= \sum_{k = 0}^\infty \frac{(-n)_k (b)_k}{(b)_k} \frac{z^k}{k!} && \text{\eqref{eq:ser_hiperg}} \\
+            &= \sum_{k = 0}^\infty (-n)_k \frac{z^k}{k!} \\
+            &= \sum_{k = 0}^n (-n)_k \frac{z^k}{k!} && (-n)_k = 0, k = n + 1, n + 2, \ldots \\
+            &= \sum_{k = 0}^n \frac{(-1)^k n!}{(n - k)!} \frac{z^k}{k!} && \text{\eqref{eq:sim_poch}} \\
+            &= \sum_{k = 0}^n \binom{n}{k} (-z)^k \\
+            &= \sum_{k = 0}^n \binom{n}{k} 1^{n - k} (-z)^k \\
+            &= (1 - z)^n.
+        \end{align*}
+    \end{solution}
+
+    \question[P2 de 2011] Seja ${}_2F_1(\alpha, \beta, \gamma; x)$ a fun\c{c}\~{a}o hipergeom\'{e}trica. Motre que
+    \begin{align*}
+        {}_2F_1(\alpha, \beta, \beta - \alpha + 1; -1) &= \frac{\Gamma(1 + \beta - \alpha) \Gamma(1 + \beta/2)}{\Gamma(1 + \beta) \Gamma(1 + \beta/2 - \alpha}.
+    \end{align*}
+    \begin{solution}
+        Por \eqref{eq:hiperg_int} temos que
+        \begin{align*}
+            \begin{split}
+                {}_2F_1(\alpha, \beta, \beta - \alpha + 1; -1) &= \frac{1}{B(\beta, (\beta -\alpha + 1) - \beta)} \\ &\quad \int_0^1 t^{\beta - 1} (1 - t)^{(\beta - \alpha + 1) - \beta - 1} (1 - t(-1))^{-\alpha} dt \\
+            \end{split} \\
+            &= \frac{1}{B(\beta, 1 - \alpha} \int_0^1 t^{\beta - 1} (1 - t)^{-\alpha} (1 + t)^{-\alpha} dt \\
+            &= \frac{1}{B(\beta, 1 - \alpha} \int_0^1 t^{\beta - 1} (1 - t^2)^{-\alpha} dt && (1 - t)(1 + t) = 1 - t^2 \\
+            &= \frac{1}{B(\beta, 1 - \alpha} \int_0^1 (y^{1/2})^{\beta - 1} (1 - y)^{-\alpha} (1 / 2) y^{-1/2} dy && t = y^{1/2} \\
+            &= \frac{1}{2 B(\beta, 1 - \alpha} \int_0^1 y^{\beta / 2 - 1} (1 - y)^{-\alpha} dy \\
+            &= \frac{B(\beta / 2, -\alpha + 1)}{2 B(\beta, 1 - \alpha)} && \text{por \eqref{eq:beta_int}} \\
+            &= \frac{1}{2} \frac{\Gamma(\beta/2) \Gamma(1 - \alpha) \Gamma(1 - \alpha + \beta)}{\Gamma(1 - \alpha + \beta/2) \Gamma(\beta) \Gamma(1 - \alpha)} && \text{por \eqref{eq:beta}} \\
+            &= \frac{\beta}{2} \frac{\Gamma(\beta / 2) \Gamma(1 + \beta - \alpha)}{\Gamma(\beta) \Gamma(1 + \beta / 2 - \alpha)} \\
+            &= \frac{\Gamma(1 + \beta / 2) \Gamma(1 + \beta - \alpha)}{\Gamma(1 + \beta) \Gamma(1 + \beta / 2 - \alpha)}.
+        \end{align*}
+    \end{solution}
+
+    \question[Exame de 2011] Seja ${}_2F_1(\alpha, \beta, \gamma; x)$ a fun\c{c}\~{a}o hipergeom\'{e}trica. Mostre que
+    \begin{align*}
+        {}_2F_1(\alpha, \alpha/2 + 1, \alpha/2; x) &= (1 + x)(1 - x)^{-\alpha - 1}.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            {}_2F_1(\alpha, \alpha/2 + 1, \alpha/2; x) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\alpha/2 + 1)_n}{(\alpha/2)_n} \frac{x^n}{n!} && \text{\eqref{eq:ser_hiperg}} \\
+            &= \sum_{n = 0}^\infty \frac{(\alpha)_n (1 + 2 n / \alpha)(\alpha/2)_n}{(\alpha/2)_ n} \frac{x^n}{n!} && \star \\
+            &= \sum_{n = 0}^\infty (\alpha)_n \frac{x^2}{n!} \\
+            &= \sum_{n = 0}^\infty (\alpha)_n \frac{x^n}{n!} + \frac{2}{\alpha} \sum_{n = 1}^\infty n(\alpha)_n \frac{x^n}{n!} \\
+            &= \sum_{n = 0}^\infty (\alpha)_n \frac{x^n}{n!} + \frac{2}{\alpha} \sum_{n = 0}^\infty (\alpha)_{n + 1} \frac{x^{n + 1}}{n!} \\
+            &= \sum_{n = 0}^\infty (\alpha)_n \frac{x^n}{n!} + 2x \sum_{n = 0}^\infty (\alpha + 1)_n \frac{x^n}{n!} && (\alpha)_{n + 1} = \alpha (\alpha + 1)_n \\
+            &= (1 - x)^{-\alpha} + 2 x (1 - x)^{-\alpha - 1} \\
+            &= (1 - x)^{- \alpha - 1} (1 - x + 2x) \\
+            &=(1 + x)(1 - x)^{-\alpha - 1},
+        \end{align*}
+        onde
+        \begin{align*}
+            \star &= \left( \frac{\alpha}{2} + 1 \right)_n = \frac{\Gamma(\alpha/2 + 1 + n)}{\Gamma(\alpha/2 + 1)} = \frac{(\alpha/2 + n) \Gamma(\alpha/2 + n)}{(\alpha/2) \Gamma(\alpha/2)} = (1 + 2n/\alpha) (\alpha/2)_n.
+        \end{align*}
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

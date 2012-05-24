@@ -4,7 +4,7 @@
 % Description: Lista 03.
 % 
 % Created: 25.03.12 10:25:19 AM
-% Last Change: 10.04.12 07:28:40 PM
+% Last Change: 19.05.12 10:38:17 AM
 % 
 % Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
 % Organization: UNICAMP
@@ -82,7 +82,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         Da\'{i}, fazendo $z = 0$ na  equa\c{c}\~{a}o anterior temos que $\lim_{z \to 0} \sum_{n = 1}^\infty b_n / \left( z^n n! \right) = \infty$, que \'{e} a parte principal. Logo, $z = 0$ \'{e} uma singularidade essencial.
     \end{solution}
 
-    \question Mostre que nenhuma solu\c{c}\~{a}o n\~{a}o trivial da equa\c{c}\~{a}o
+    \question[T3 de 2012] Mostre que nenhuma solu\c{c}\~{a}o n\~{a}o trivial da equa\c{c}\~{a}o
     \[
     z^2 y'' + z y' + y = 0
     \]
@@ -114,67 +114,74 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
                 \draw (1,0) arc (0:60:1);
             \end{tikzpicture}
         \end{center}
+<<<<<<< HEAD
         
         Agora queremos observar as solu\c cões dessa E.D.O. em dois ramos especificos da fun\c cão $\ln z$, no semi-eixo real positivo ($\theta = 0$) e no semi-eixo real negativo ($\theta = \pi$). Nosso objetivo é mostrar que uma solu\c cão totalmente real na parte positiva do eixo real não pode ser real na parte negativa.
 
-        Como $z \in \mathbb{C}$, podemos escrever $z = r.e^{i.\theta}$, o que implica que $\ln z = \ln r + i.\theta$. Com isso, para $\theta = 0$ temos $\ln z = \ln r$. Logo,
+        Agora queremos observar as solu\c{c}\~{o}es dessa EDO em dois ramos especificos da fun\c{c}\~{a}o $\ln z$, no semi-eixo real positivo ($\theta = 0$) e no semi-eixo real negativo ($\theta = \pi$). Nosso objetivo \'{e} mostrar que uma solu\c{c}\~{a}o totalmente real na parte positiva do eixo real n\~{a}o pode ser real na parte negativa.
+
+        Como $z \in \mathbb{C}$, podemos escrever $z = r e^{i \theta}$, o que implica que $\ln z = \ln r + i \theta$. Com isso, para $\theta = 0$ temos $\ln z = \ln r$. Logo,
         \begin{align*}
-            y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln z \right) \\
+            y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln r \right) \\
             &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right) \cos \left( \ln r \right) + \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i \sin\left( \ln r \right), \\
             \text{Re} y\left( z \right) &= \alpha_1 \cos\left( \ln r \right) + \alpha_2 \cos\left( \ln r \right) - \beta_1 \sin\left( \ln r \right) + \beta_2 \sin\left( \ln r \right), \\
             \text{Im} y\left( z \right) &= \beta_1 \cos\left( \ln r \right) + \beta_2 \cos\left( \ln r \right) + \alpha_1 \sin\left( \ln r \right) - \alpha_2 \sin\left( \ln r \right).
         \end{align*}
-        
-        Para que a solu\c{c}\~{a}o da equa\c{c}\~{a}o seja real, $\text{Im} y\left( z) \right) = 0$. Da\'{i}, $\beta_1 = -\beta_2$ e $\alpha_1 = \alpha_2$ $\left(*\right)$.
+        Para que a solu\c{c}\~{a}o da equa\c{c}\~{a}o seja real, $\text{Im} y\left( z) \right) = 0$. Da\'{i}, $\beta_1 = -\beta_2$ e $\alpha_1 = \alpha_2$. Substituindo na express\~{a}o anterior para $\text{Re} y\left( z \right)$, tem-se
+        \begin{align*}
+            \text{Re} y\left( z \right) &= 2\alpha_1 \cos\left( \ln r \right) + 2 \beta_2 \sin\left( \ln r \right).
+        \end{align*}
 
-        Para $\theta = \pi$ temos $\ln z = \ln r + i.\pi$. Com isso temos:
+        Para $\theta = \pi$ temos $\ln z = \ln r + i \pi$. Com isso temos:
         \begin{align*}
-            y\left( z \right) &= \left( A + B \right) \cos\left( \ln\left( r \right) + i.\pi\right) + \left( A - B \right) i \sin\left( \ln\left( r \right) +i.\pi\right) \\
-            & = \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right) \cos \left( \ln r + i.\pi \right) + \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i \sin\left( \ln r + i.\pi \right).
+            y\left( z \right) &= \left( A + B \right) \cos\left( \ln\left( r \right) + i \pi\right) + \left( A - B \right) i \sin\left( \ln\left( r \right) +i \pi\right) \\
+            & = \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right) \cos \left( \ln r + i \pi \right) + \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i \sin\left( \ln r + i \pi \right).
         \end{align*}
-        
-       Sabemos que,   
-       \begin{align*}
-	\sin\left(\ln r + i.\pi\right) = \sin\left(\ln r\right).\cos\left(i.\pi\right) - \cos\left(\ln r\right).\sin\left(i.\pi\right)\\
-       	\cos\left(\ln r + i.\pi\right) = \cos\left(\ln r\right).\cos\left(i.\pi\right) - \sin\left(\ln r\right).\sin\left(i.\pi\right).
-       \end{align*}
-       
-       Além disso, lembrando que $\cos\left(z\right) = \frac{e^{iz}+e^{-iz}}{2}$, $\sin\left(z\right) = \frac{e^{iz}-e^{-iz}}{2i}$, $\cosh\left(z\right) = \frac{e^{-z}+e^{z}}{2}$, $\sinh\left(z\right) = \frac{e^{-z}-e^{z}}{2}$, então $\cos\left(i.\pi\right) = i\cosh \pi$ e $\sin\left(i.\pi\right) = i\sinh \pi$. Como $\cosh \text{e } \sinh \in \mathbb{R}$, então,  
+        % Como $\ln\left( -r \right)$ n\~{a}o existe, a solu\c{c}\~{a}o
+        % \begin{align*}
+        %     y\left( z \right) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right)
+        % \end{align*}
+        % n\~{a}o pode ser definida para $\theta = \pi$. Logo, n\~{a}o \'{e} real no semi-eixo real negativo.
+        Sabemos que,
         \begin{align*}
-         y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln z \right) \\
-            &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)\left( \cos\left(\ln r\right).\cos\left(i.\pi\right) - \sin\left(\ln r\right).\sin\left(i.\pi\right)\right) +\\
-            &+ \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i\left( \sin\left(\ln r\right).\cos\left(i.\pi\right) + \cos\left(\ln r\right).\sin\left(i.\pi \right)\right). \\
-          &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)\left( \cos\left(\ln r\right).i\cosh\left(\pi\right) - \sin\left(\ln r\right).i\sinh\left(\pi\right)\right) +\\
-            &+ \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i\left( \sin\left(\ln r\right).i\cosh\left(\pi\right) + \cos\left(\ln r\right).i\sinh\left(\pi \right)\right). \\
-          &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)i \omega\left(r \right) - \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right)  \psi\left(r \right). \\
+            \sin\left(\ln r + i \pi\right) = \sin\left(\ln r\right) \cos\left(i \pi\right) - \cos\left(\ln r\right) \sin\left(i \pi\right)\\
+            \cos\left(\ln r + i \pi\right) = \cos\left(\ln r\right) \cos\left(i \pi\right) - \sin\left(\ln r\right) \sin\left(i \pi\right).
+        \end{align*}
+
+        Al\'{e}m disso, lembrando que $\cos\left(z\right) = (e^{iz}+e^{-iz})/2$, $\sin\left(z\right) = (e^{iz}-e^{-iz})/(2i)$, $\cosh\left(z\right) = (e^{-z}+e^{z})/2$, $\sinh\left(z\right) = (e^{-z}-e^{z})/2$, ent\~{a}o $\cos\left(i \pi\right) = i\cosh \pi$ e $\sin\left(i \pi\right) = i\sinh \pi$. Como $\cosh$ e $\sinh \in \mathbb{R}$, ent\~{a}o,  
+        \begin{align*}
+            y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln z \right) \\
+            &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)\left( \cos\left(\ln r\right) \cos\left(i \pi\right) - \sin\left(\ln r\right) \sin\left(i \pi\right)\right) \\
+            &\quad {}+ \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i\left( \sin\left(\ln r\right) \cos\left(i \pi\right) + \cos\left(\ln r\right) \sin\left(i \pi \right)\right) \\
+            &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)\left( \cos\left(\ln r\right) i\cosh\left(\pi\right) - \sin\left(\ln r\right) i\sinh\left(\pi\right)\right) \\
+            &\quad {}+ \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i\left( \sin\left(\ln r\right) i\cosh\left(\pi\right) + \cos\left(\ln r\right) i\sinh\left(\pi \right)\right) \\
+            &\quad {}= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)i \omega\left(r \right) - \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right)  \psi\left(r \right)
         \end{align*}        
-        Com $\omega\left(r\right) \text{ e } \psi\left(r\right) \in \mathbb{R}$. Com isso,
+         Com $\omega\left(r\right) \text{ e } \psi\left(r\right) \in \mathbb{R}$. Com isso,
         \begin{align*}
-            \text{Re}y\left( z \right) &= -\left[\left(\beta_1 + \beta_2 \right)\omega \left(r\right) + \left(\alpha_1 - \alpha_2\right)\psi \left(r\right)\right]\\
-            \text{Im}y\left( z \right) &= \left(\alpha_1 + \alpha_2\right)\omega \left(r\right) - \left(\beta_1 - \beta_2\right)\psi \left(r\right).
+             y\left( z \right) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right) \\
+             \text{Re}y\left( z \right) &= -\left[\left(\beta_1 + \beta_2 \right)\omega \left(r\right) + \left(\alpha_1 - \alpha_2\right)\psi \left(r\right)\right]\\
+             \text{Im}y\left( z \right) &= \left(\alpha_1 + \alpha_2\right)\omega \left(r\right) - \left(\beta_1 - \beta_2\right)\psi \left(r\right).
         \end{align*}
-        
-      Para que a solu\c cão seja real, $\text{Im} y\left(z\right) = 0$, o que implica que $\alpha_1 = - \alpha_2$ e $\beta_1 = \beta_2$ $\left(**\right)$. 
-      
-      Como $\left(*\right)$ e $\left(**\right)$ não podem ser satisfeitas ao mesmo tempo, então nenhuma solu\c cão real no semi-eixo real positivo do plano complexo pode ser real no semi-eixo real negativo, como queriamos demonstrar.
+        n\~{a}o pode ser definida para $\theta = \pi$. Logo, n\~{a}o \'{e} real no semi-eixo real negativo.
+         
+        Para que a solu\c c\~{a}o seja real, $\text{Im} y\left(z\right) = 0$, o que implica que $\alpha_1 = - \alpha_2$ e $\beta_1 = \beta_2$.
+
+       Portanto n\~{a}o podem ser satisfeitas ao mesmo tempo, ent\~{a}o nenhuma solu\c c\~{a}o real no semi-eixo real positivo do plano complexo pode ser real no semi-eixo real negativo, como queriamos demonstrar.
     \end{solution}
 
     \question {}
     \begin{parts}
         \part Mostre que, se
-        
         \begin{equation}
             y'' + p(z) y' + q(z) y = 0
             \label{eq:q02:orig}
         \end{equation}
-        
         possui um ponto singular regular em $z = 0$ e $q(0) \neq 0$, ent\~{a}o
-        
         \begin{equation}
             y'' + \left[ p - \left( q' / q \right) \right] y' + \left[ p' - \left( p q' / q \right) + q \right] y = 0
             \label{eq:q02:mod}
         \end{equation}
-        
         possui um ponto singular regular em $z = 0$.
         \begin{solution}
             Se \eqref{eq:q02:orig} possui um ponto singular em $z = 0$ e $q(0) \neq 0$, tem-se:
@@ -248,7 +255,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
 
         Fazendo $y \to w$ com $y = z^\rho \phi\left( z \right) w\left( z \right)$, $\phi\left( 0 \right) \neq 0$, temos
         \begin{align*}
-            \frac{d y}{d z} &= w \frac{d}{d z}\left( z^\rho \phi\left( z \right) \right) + \left(z^\rho \phi \left(z\right)\right) w',\\
+            \frac{d y}{d z} &= w \frac{d}{d z}\left( z^\rho \phi\left( z \right) \right) + \left(z^\rho \phi \left(z\right)\right) w', \\
             \frac{d^2 y}{d z^2} &= w\left( z^\rho \phi\left( z \right) \right)'' + 2 \left( z^\rho \phi \left(z\right) \right) w' + \left( z^\rho \phi \left(z\right) \right) w''.
         \end{align*}
         Substituindo na equa\c{c}\~{a}o inicial
@@ -267,7 +274,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         Ent\~{a}o
         \begin{align*}
             I'(r) &= r \left( r - 1 \right) r P(0) + Q(0) = 0, \\
-            P(0) &= \lim_{z \to 0} z P(z) = \lim_{z \to 0} 2 z \phi' / \phi + \lim_{z \to 0} 2\rho + \lim_{z \to 0} zp \left(z\right) = 0 \\
+            P(0) &= \lim_{z \to 0} z P(z) = \lim_{z \to 0} 2 z \phi' / \phi + \lim_{z \to 0} 2\rho + \lim_{z \to 0} p z \left( z \right) = 0 \\
             &= 2\rho + \lim_{z \to 0} z \left( A / z + \sum_{n = 0}^\infty \underbrace{a_n}_0 z^n \right) \\
             &= 2 \rho + A, \\
             Q(0) &= \lim_{z \to 0} z^2 Q(z) \\
@@ -292,7 +299,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         \end{align*}
     \end{solution}
 
-    \question Mostre que a única equa\c{c}\~{a}o diferencial linear de segunda ordem que possui apenas dois pontos singulares regulares e localizados em $z = 0$ e $z = \infty$ \'{e} a equa\c{c}\~{a}o diferencial de Euler
+    \question[P1 de 2011] Mostre que a única equa\c{c}\~{a}o diferencial linear de segunda ordem que possui apenas dois pontos singulares regulares e localizados em $z = 0$ e $z = \infty$ \'{e} a equa\c{c}\~{a}o diferencial de Euler
     \[
     z^2 y'' + \alpha z y' + \beta y = 0.
     \]
@@ -306,7 +313,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
             p(z) &= A / z + \sum_{n = 0}^\infty a_n z^n, \quad A, a_n \in \mathbb{R} \neq 0, \\
             q(z) &= B_1 / z^2 + B_2 / z + \sum_{n = 0}^\infty b_n z^n, \quad B_1, B_2, b_n \in \mathbb{R} \neq 0,
         \end{align*}
-        com $zp(z)$ e $z^{2}q(z)$ anal\'{i}ticas em $z = 0$ ($z = 0$ \'{e} ponto singular regular).
+        com $z p(z)$ e $z^2 q(z)$ anal\'{i}ticas em $z = 0$ ($z = 0$ \'{e} ponto singular regular).
 
         Fazendo $z = 1 / t$ temos
         \begin{align*}
@@ -328,7 +335,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
             &= \frac{B_1}{t^2} + \frac{B_2}{t^3} + \sum_{n = 0}^\infty \frac{b_n}{t^{n + 4}}.
         \end{align*}
 
-        Vemos que $p(t)$ e $q(t)$ são claramente não-analíticas em $t=0$. Para que $tp(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty a_n / t^{n + 2} = 0$. J\'{a} para que $t^{2}q(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty b_n / t^{n + 4} = B_2 / t^3 = 0$. Logo, $a_n = 0$, $b_n = 0$, $B_2 = 0$ e consequentemente $p(z) = A / z$ e $q(z) = B_1 / z^2$.
+        Vemos que $p(t)$ e $q(t)$ s\~{a}o claramente n\~{a}o-anal\'{i}ticas em $t=0$. Para que $tp(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty a_n / t^{n + 2} = 0$. J\'{a} para que $t^{2}q(t)$ seja anal\'{i}tica devemos ter $\sum_{n = 0}^\infty b_n / t^{n + 4} = B_2 / t^3 = 0$. Logo, $a_n = 0$, $b_n = 0$, $B_2 = 0$ e consequentemente $p(z) = A / z$ e $q(z) = B_1 / z^2$.
 
         Substituindo $p(z)$e $q(z)$ na equa\c{c}\~{a}o inicial temos
         \begin{align*}
@@ -369,7 +376,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
 
     \question Mostre que, se $f(0) = 0$ mas $f'(0) \neq 0$, a mudan\c{c}a de vari\'{a}vel $z = f(t)$ leva uma equa\c{c}\~{a}o diferencial
     \[
-    y''  + p(z) y' + q(z) y = 0
+    y'' + p(z) y' + q(z) y = 0
     \]
     com ponto singular regular localizado em $z = 0$ em uma equa\c{c}\~{a}o diferencial com um ponto singular regular localizado em $t = 0$ satisfazendo a mesma equa\c{c}\~{a}o indicial.
     \begin{solution}
@@ -431,6 +438,15 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         \end{align*}
 
         Logo, quando $t = 0$, $f(0) = 0$ e $f'(0) \neq 0$. Da\'{i}, $\left[ r \left( r - 1 \right) + r A + B_1 \right] \left( f'(0) \right)^2 = 0$ e portanto $r \left( r - 1 \right) + r A + B_1 = 0$ que \'{e} a equa\c{c}\~{a}o indicial.
+    \end{solution}
+
+    \question[T3 de 2011] Mostre que nenhuma solu\c{c}\~{a}o n\~{a}o trivial da equa\c{c}\~{a}o
+    \begin{align*}
+        z^2 y'' + z y' + 2 y &= 0
+    \end{align*}
+    que \'{e} real no semieixo real positivo o plano complexo pode ser real no semieixo real negativo.
+    \begin{solution}
+        
     \end{solution}
 \end{questions}
 \end{document}

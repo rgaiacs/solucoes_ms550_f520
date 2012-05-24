@@ -1,0 +1,630 @@
+% Filename: lista5.tex
+% This code is part of solu\c{c}\~{o}es de m\'{e}todos.
+% 
+% Description: Lista 05.
+% 
+% Created: 25.03.12 10:25:19 AM
+% Last Change: 23.05.12 09:58:06 PM
+% 
+% Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
+% Organization: UNICAMP
+% 
+% Copyright (c) 2012, Raniere Gaia C. da Silva. All rights reserved.
+% 
+% This file is license under the terms of the 
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MS550, F520}{Solu\c{c}\~{a}o da Lista 5}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Para impress\~{a}o
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+
+% Para ereaders (Kindle, Nook, Kobo, ...) and tablets (iPad, GalaxyTab, ...)
+% \usepackage[papersize={180mm,240mm},margin=2mm]{geometry}
+% \sloppy
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+\newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
+\begin{document}
+Equa\c{c}\~{o}es eventualmente útil:
+\begin{align}
+    & f(x) = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n \tag{ST} \label{eq:ser_taylor} \\
+    & \Gamma(z) = \int_0^\infty e^{-t} t^{z - 1} dt \tag{GE} \label{eq:gamma_euler} \\
+    & \Gamma(z + 1) = z \Gamma(z), \ \Gamma(z) \Gamma(1 - z) = \pi / \sin(\pi z) \label{eq:gamma_rel} \\
+    & 2^{2 z - 1} \Gamma(z) \Gamma(z + 1/2) = \sqrt{\pi} \Gamma(2 z) \label{eq:gamma_dup_legendre} \\
+    & B(z, w) = \frac{\Gamma(z) \Gamma(w)}{\Gamma(z + w)} \tag{BG} \label{eq:beta} \\
+    & B(z, w) = 2 \int_0^{\pi / 2} \cos^{2z - 1} \theta \sin^{2w - 1} \theta d\theta \tag{BT} \label{eq:beta_trig} \\
+    & B(z, w) = \int_0^1 t^{z - 1} (1 - t)^{w - 1} dt \tag{BI} \label{eq:beta_int} \\
+    & (\alpha)_n = \alpha (\alpha + 1) \ldots (\alpha + n - 1), \ (\alpha)_0 = 1 \tag{SP} \label{eq:sim_poch} \\
+    & (\alpha)_n = \frac{\Gamma(\alpha + n)}{\Gamma(\alpha)} \label{eq:sim_poch_gamma} \\
+    & \frac{(\alpha)_n}{m!} = \binom{\alpha + n - 1}{n}, \ \frac{(-\alpha)_n}{n!} = (-1)^n \binom{\alpha}{n} \label{eq:sim_poch_binom} \\
+    & x^2 y'' + x y' + (x^2 - \nu^2) y = 0 \tag{FB} \label{eq:bessel} \\
+    & J_\nu(x) = \sum_{k = 0}^\infty \frac{(-1)^k}{k! \Gamma(k + \nu + 1)} \left( \frac{x}{2} \right)^{2k + \nu} \label{eq:bessel_pri_esp} \\
+    & J_\nu(x) = \frac{x^\nu \exp(-i x)}{2^\nu \Gamma(\nu + 1)} \,_1F_1(\nu + 1/2, 2\nu + 1; 2 i x) \label{eq:bessel_pri_esp_hiperg_con} \\
+    & J_{-\nu}(x) = (-1)^\nu J_\nu(x) \label{eq:bessel_prim_esp_neg} \\
+    & \exp(x (t - t^{-1}) / 2) = \sum_{k = -\infty}^{+\infty} t^k J_k(x) \tag{GFB} \label{eq:bessel_pri_esp_geratriz} \\
+    & x^2 y'' + x y' - (x^2 + v^2) y = 0 \tag{FBM} \label{eq:bessel_mod} \\
+    & I_\nu(x) = i^{-\nu} J_\nu(x) \label{eq:bessel_mod_pri_esp}
+    % & z(1 - z)y'' + \left[ \gamma - (\alpha + \beta + 1) z \right] y' - \alpha \beta y = 0 \tag{EH} \label{eq:hiperg} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SH} \label{eq:ser_hiperg} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} dt \label{eq:hiperg_int} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{\alpha \beta}{\gamma} \,{}_2F_1(\alpha + 1, \beta + 1, \gamma + 1; z) \label{eq:hiperg_der} \\
+    % & zy'' + (\gamma - z)y' - \alpha y = 0 \tag{EHC} \label{eq:hiper_con} \\
+    % & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SHC} \label{eq:ser_hiperg_con}
+\end{align}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Mostre, diretamente a partir da defini\c{c}\~{a}o, que
+    \begin{parts}
+        \part[Equa\c{c}\~{a}o 18.92 do Riley\nocite{Riley:2006:Mathematical}] $\mathrm{d}[x^\nu J_\nu(x)]/\mathrm{d}x = x^\nu J_{\nu - 1}(x)$
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^\nu J_\nu(x) \right] &= \frac{\mathrm{d}}{\mathrm{d}x} x^\nu \sum_{k = 0}^\infty \frac{(-1)^k }{k! \Gamma(k + \nu + 1)} \frac{x^{2k + \nu}}{2^{2k + \nu}} && \text{por \eqref{eq:bessel_pri_esp}} \\
+                &= \frac{\mathrm{d}}{\mathrm{d}x} \sum_{k = 0}^\infty x^\nu \frac{(-1)^k x^{2k + \nu}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu}} \\
+                &= \frac{\mathrm{d}}{\mathrm{d}x} \sum_{k = 0}^\infty \frac{(-1)^k x^{2 k + 2 \nu}}{k! \Gamma(k + \nu + 1) 2^{2 k + \nu}} \\
+                &= \sum_{k = 0}^\infty \frac{(-1)^k (2 k + 2 \nu) x^{2 k + 2 \nu - 1}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu}} \\
+                &= \sum_{k = 0}^\infty \frac{(-1)^k (k + \nu) x^{2 k + 2 \nu - 1}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu - 1}} \\
+                &= \sum_{n = 0}^\infty \frac{(-1)^k (k + \nu) x^{2 k + 2 \nu - 1}}{k! (k + \nu) \Gamma(k + \nu) 2^{2k + \nu - 1}} \\
+                &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2 k + 2 \nu - 1}}{k! \Gamma(k + \nu) 2^{2k + \nu - 1}} \\
+                &= x^\nu \sum_{k = 0}^\infty \frac{(-1)^k x^{2k + (\nu - 1)}}{k! \Gamma( k + ( \nu - 1) + 1 ) ) 2^{2k + (\nu - 1)}} \\
+                &= x^\nu J_{\nu - 1}(x) && \text{por \eqref{eq:bessel_pri_esp}}.
+            \end{align*}
+        \end{solution}
+
+        \part $\mathrm{d}[x^{-\nu} J_\nu(x)]/\mathrm{d}x = -x^{-\nu} J_{\nu + 1}(x)$
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^\nu J_\nu(x) \right] &= \frac{\mathrm{d}}{\mathrm{d}x} x^{-\nu} \sum_{k = 0}^\infty \frac{(-1)^k }{k! \Gamma(k + \nu + 1)} \frac{x^{2k + \nu}}{2^{2k + \nu}} && \text{por \eqref{eq:bessel_pri_esp}} \\
+                &= \frac{\mathrm{d}}{\mathrm{d}x} \sum_{k = 0}^\infty x^{-\nu} \frac{(-1)^k x^{2k + \nu}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu}} \\
+                &= \frac{\mathrm{d}}{\mathrm{d}x} \sum_{k = 0}^\infty \frac{(-1)^k x^{2 k}}{k! \Gamma(k + \nu + 1) 2^{2 k + \nu}} \\
+                &= \sum_{k = 0}^\infty \frac{(-1)^k (2 k) x^{2 k - 1}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu}} \\
+                &= \sum_{k = 0}^\infty \frac{(-1)^k (2 k) x^{-\nu} x^{2 k + \nu - 1}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu}} \\
+                &= x^{-\nu} \sum_{k = 0}^\infty \frac{(-1)^k (2 k) x^{2 k + \nu - 1}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu}} \\
+                &= x^{-\nu} \sum_{k = 0}^\infty \frac{(-1)^k k x^{2 k + \nu - 1}}{k! \Gamma(k + \nu + 1) 2^{2k + \nu - 1}} \\
+                &= x^{-\nu} \sum_{k = 0}^\infty \frac{(-1)^k x^{2 k + \nu - 1}}{(k - 1)! \Gamma(k + \nu + 1) 2^{2k + \nu - 1}} \\
+                &= -x^{-\nu} \sum_{k = 0}^\infty \frac{(-1)^{k - 1} x^{2 (k - 1) + \nu + 1}}{(k - 1)! \Gamma( (k - 1) + (\nu + 1) + 1) 2^{2(k - 1) + \nu + 1}} \\
+                &= x^{-\nu} J_{\nu + 1}(x) && \text{por \eqref{eq:bessel_pri_esp}}.
+            \end{align*}
+        \end{solution}
+
+        \part $J_{\nu - 1}(x) + J_{\nu + 1}(x) = (2\nu/x) J_\nu(x)$
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^\nu J_\nu(x) \right] &= \nu x^{\nu - 1} J_\nu(x) + x^\nu J'_\nu(x) = x^\nu J_{\nu - 1}(x), \\
+                \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-\nu} J_\nu(x) \right] &= -\nu x^{-\nu - 1} J_\nu(x) + x^{-\nu} J'_\nu(x) = - x^{-\nu} J_{\nu + 1}(x).
+            \end{align*}
+            Ent\~{a}o, para $x \neq 0$, temos que
+            \begin{align*}
+                \nu J_\nu(x) + x J'_\nu(x) &= x J_{\nu - 1}(x), \\
+                -\nu J_\nu(x) + x J'_\nu(x) &= - x J_{\nu + 1}(x).
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \nu J_\nu(x) + x J'_\nu(x) - \left( -\nu J_\nu(x) + x J'_\nu(x) \right) &= x J_{\nu - 1}(x) - \left( - x J_{\nu + 1}(x) \right) \\
+                2 \nu J_\nu(x) &= x J_{\nu - 1}(x) + x J_{\nu + 1}(x) \\
+                2 \nu x^{-1} J_\nu(x) &= J_{\nu - 1}(x) + J_{\nu + 1}(x).
+            \end{align*}
+
+            Tamb\'{e}m \'{e} poss\'{i}vel utilizar \eqref{eq:bessel_pri_esp_geratriz} para mostrar a igualdade pedida (ver detalhes em Riley\nocite{Riley:2006:Mathematical}).
+        \end{solution}
+
+        \part $J_{\nu - 1}(x) - J_{\nu + 1}(x) = 2 J'_\nu(x)$
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^\nu J_\nu(x) \right] &= \nu x^{\nu - 1} J_\nu(x) + x^\nu J'_\nu(x) = x^\nu J_{\nu - 1}(x), \\
+                \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-\nu} J_\nu(x) \right] &= -\nu x^{-\nu - 1} J_\nu(x) + x^{-\nu} J'_\nu(x) = - x^{-\nu} J_{\nu + 1}(x).
+            \end{align*}
+            Ent\~{a}o, para $x \neq 0$, temos que
+            \begin{align*}
+                \nu J_\nu(x) + x J'_\nu(x) &= x J_{\nu - 1}(x), \\
+                -\nu J_\nu(x) + x J'_\nu(x) &= - x J_{\nu + 1}(x).
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \nu J_\nu(x) + x J'_\nu(x) + \left( -\nu J_\nu(x) + x J'_\nu(x) \right) &= x J_{\nu - 1}(x) + \left( - x J_{\nu + 1}(x) \right) \\
+                2 x J'_\nu(x) &= x J_{\nu - 1}(x) - x J_{\nu + 1}(x) \\
+                2 J'_\nu(x) &= J_{\nu - 1}(x) - J_{\nu + 1}(x).
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[Exerc\'{i}cio 11.1.4 do Arfken\nocite{Arfken:2005:Mathematical}] Mostre que vale a express\~{a}o de Jacobi-Anger
+    \begin{align*}
+        \exp(i x \cos \theta) = \sum_{k = -\infty}^{+\infty} i^k J_k(x) \exp(i k \theta).
+    \end{align*}
+    \begin{solution}
+        Fazendo que $t = i \exp(i \theta)$, temos que
+        \begin{align*}
+            \frac{t - t^{-1}}{2} &= \frac{i \exp(i \theta)}{2} - \frac{\exp(-i \theta)}{2} \\
+            &= \frac{i \exp(i \theta)}{2} + \frac{i \exp(-i \theta)}{2} \\
+            &= i \left( \frac{\exp(i \theta) + \exp(-i \theta)}{2} \right) \\
+            &= i \cos \theta.
+        \end{align*}
+        Logo, por \eqref{eq:bessel_pri_esp_geratriz} para $t = i \exp(i \theta)$ temos
+        \begin{align*}
+            \exp(i x \cos \theta) &= \sum_{k = -\infty}^{+\infty} (i \exp(i \theta))^k J_k(x) \\
+            &= \sum_{k = -\infty}^{+\infty} i^k \exp(i k \theta) J_k(x).
+        \end{align*}
+    \end{solution}
+
+    \question[Exerc\'{i}cio 11.1.5 do Arfken\nocite{Arfken:2005:Mathematical}] Mostre que
+    \begin{parts}
+        \part $\cos x = J_0(x) + 2 \sum_{k = 1}^\infty (-1)^k J_{2k}(x)$,
+        \begin{solution}
+            Fazendo $(t - t^{-1}) 2^{-1} = i$ temos que
+            \begin{align*}
+                \exp(i x) = \sum_{k = -\infty}^{+\infty}  i^k J_k(x) && \text{por \eqref{eq:bessel_pri_esp_geratriz}},
+            \end{align*}
+            e fazendo $(t - t^{-1}) 2^{-1} = -i$ temos que
+            \begin{align*}
+                \exp(-i x) = \sum_{k = -\infty}^{+\infty} (-i)^k J_k(z). && \text{por \eqref{eq:bessel_pri_esp_geratriz}}
+            \end{align*}
+
+            Ent\~{a}o,
+            \begin{align*}
+                \cos(x) &= \left( \exp(i x) + \exp(-i x) \right) 2^{-1} \\
+                &= \left[ \sum_{k = -\infty}^{+\infty} J_k(x) (-1)^k i^k + \sum_{k = -\infty}^{+\infty} J_k(x) i^k \right] 2^{-1} \\
+                &= \left[ \sum_{k = -\infty}^{+\infty} J_{-k}(x) i^k + \sum_{k = -\infty}^{+\infty} J_k(x) i^k \right] 2^{-1} \\
+                &= \left[ \sum_{k = -\infty}^{+\infty} \left( J_{-k}(x) + J_{k}(x) \right) i^k \right] 2^{-1} && \text{por $\bigstar$} \\
+                &= \left[ 2 \sum_{k = -\infty}^{+\infty} J_{k}(x) i^k \right] 2^{-1} \\
+                &= \sum_{k = -\infty}^{+\infty} J_{k}(x) i^k \\
+                &= J_0(x) + 2 \sum_{k = 1}^\infty (-1)^k J_{2k}(x),
+            \end{align*}
+            onde $\bigstar$ corresponde a soma de $k$'s sim\'{e}tricos.
+
+            Para $k$ \'{i}mpar, i.e., $k = 2 \bar{k}$, temos
+            \begin{align*}
+                \sum_{k = 0}^\infty J_{2k + 1}(x) i^{-2k + 1} + \sum_{k = 0}^\infty J_{2k + 1}(x) i^{2k + 1} = 0
+            \end{align*}
+            e para $k$ par, i.e., $k = 2 \bar{k}$, temos
+            \begin{align*}
+                \sum_{k = 1}^\infty J_{2k}(x) i^{-2k} + \sum_{n = 1}^\infty J_{2k}(x) i^{2k} = 2 \sum_{n = 1}^\infty J_{2k}(z) i^{2k}.
+            \end{align*}
+
+            Logo,
+            \begin{align*}
+                \cos(x) &= J_0(x) + 2 \sum_{k = 0}^\infty (-1)^n J_{2n}(z).
+            \end{align*}
+        \end{solution}
+
+        \part $\sin x = 2 \sum_{n = 0}^\infty (-1)^n J_{2n + 1}(x)$.
+        \begin{solution}
+            Fazendo $t = i$ em \eqref{eq:bessel_pri_esp_geratriz} temos que
+            \begin{align*}
+                \exp(i x^m) &= \sum_{k = -\infty}^{+\infty} J_k(x) i^k,
+            \end{align*}
+            e fazendo $t = -i$ temos que
+            \begin{align*}
+                \exp(-i x) &= \sum_{k = -\infty}^{+\infty} J_k(x) (-1)^k i^k.
+            \end{align*}
+
+            Ent\~{a}o temos que
+            \begin{align*}
+                \sin(x) &= \left( \exp(i x) - \exp(-i x) \right) (2 i)^{-1} \\
+                &=  (-i) 2^{-1} \left( \exp(i x) - \exp(-i x) \right) \\
+                &= (-i) 2^{-1} \left[ \sum_{k = -\infty}^{+\infty} J_k(x) i^k - \sum_{k = -\infty}^{+\infty} J_k(x) (-1)^k i^k \right] \\
+                &= (-i) 2^{-1} \left[ J_0(x) + 2 \sum_{k = 1}^{+\infty} J_k(x) i^k - J_0(x) - 2 \sum_{k = 1}^{+\infty} J_k(x) (-1)^k i^k \right] \\
+                &= (-i) 2^{-1} \left[ 2 \sum_{k = 1}^{+\infty} J_k(x) i^k - 2 \sum_{k = 1}^{+\infty} J_k(x) (-1)^k i^k \right] \\
+                &= - \sum_{k = 1}^{+\infty} J_k(x) i^{k + 1} + \sum_{k = 1}^{+\infty} J_k(x) (-1)^k i^{k + 1}.
+            \end{align*}
+
+            Para $k$ par, i.e., $k = 2 \bar{k}$, temos
+            \begin{align*}
+                - \sum_{k = 1}^\infty J_{2k}(x) i^{2k + 1} + \sum_{k = 1}^\infty J_{2k}(x) i^{2k + 1} = 0
+            \end{align*}
+            e para $k$ \'{i}mpar, i.e., $k = 2 \bar{k} + 1$, temos
+            \begin{align*}
+                \begin{split}
+                    - \sum_{k = 0}^\infty J_{2k + 1}(x) i^{2k + 2} + \sum_{k = 0}^\infty J_{2k + 1}(x) (-1)^{2k + 1} i^{2k + 2} =& - \sum_{n = 0}^\infty J_{2k + 1} (-1)^k (-1)^k \\
+                    &\quad {}+ \sum_{k = 0}^\infty J_{2k + 1}(x) (-1) (-1)^k (-1)
+                \end{split} \\
+                &= 2 \sum_{k = 0}^\infty (-1)^k J_{2k + 1}(x).
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \sin(x) &= 2 \sum_{k = 0}^\infty (-1)^k J_{2k + 1}(x).
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[Exerc\'{i}cio 11.1.2 do Arfken\nocite{Arfken:2005:Mathematical}] Mostre, a partir da fun\c{c}\~{a}o geratriz, que vale a f\'{o}rumla de adi\c{c}\~{a}o para as fun\c{c}\~{o}es de Bessel: $J_n(u + v) = \sum_{m = -\infty}^{+\infty} J_m(u) J_{n - m}(v)$.
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            \sum_{n = -\infty}^{+\infty} t^n J_n(u + v) &= \exp\left( (u + v)(t - t^{-1})/2 \right) && \text{por \eqref{eq:bessel_pri_esp_geratriz}} \\
+            &=\exp(u(t - t^{-1})/2) \exp(v(t - t^{-1})/2) \\
+            &= \sum_{m = -\infty}^{+\infty} t^m J_m(u) \sum_{l = -\infty}^{+\infty} t^l J_l(v) && \text{por \eqref{eq:bessel_pri_esp_geratriz}} \\
+            &= \sum_{m = -\infty}^{+\infty} \sum_{l = -\infty}^{+\infty} t^{m + l} J_m(u) J_l(v) \\
+            &= \sum_{m = -\infty}^{+\infty} \sum_{n = -\infty}^{+\infty} t^{n} J_m(u) J_{n - m}(v) && n = l + m  \\
+            &= \sum_{n = -\infty}^{+\infty} t^{n} \sum_{m = -\infty}^{+\infty} J_m(u) J_{n - m}(v)
+        \end{align*}
+        Por compara\c{c}\~{a}o termo a termos, concluimos que
+        \begin{align*}
+            J_n(u + v) &= \sum_{m = - \infty}^{+\infty} J_m(u) J_{n - m}(v).
+        \end{align*}
+    \end{solution}
+
+    \question[Exerc\'{i}cio 11.1.10 do Arfken\nocite{Arfken:2005:Mathematical}] Mostre que
+    \begin{align*}
+        J_n(x) &= (-1)^n z^n \left( x^{-1} \,\mathrm{d}/\mathrm{d}x \right)^n J_0(x).
+    \end{align*}
+    \begin{solution}
+        Iremos mostrar por indu\c{c}\~{a}o finita.
+
+        Para $n = 0$ temos que
+        \begin{align*}
+            J_0(x) &= (-1)^0 (x)^0 \left( x^{-1} \,\mathrm{d}/\mathrm{d}x \right)^0 J_0(x) \\
+            &= J_0(x).
+        \end{align*}
+
+        Como hip\'{o}tese de indu\c{c}\~{a}o temos que
+        \begin{align*}
+            J_n(x) &= (-1)^n x^n \left( x^{-1} \,\mathrm{d}/\mathrm{d}x \right)^n J_0(x).
+        \end{align*}
+
+        E como tese de indu\c{c}\~{a}o
+        \begin{align*}
+            J_{n + 1}(x) &= (-1)^{n + 1} x^{n + 1} \left( x^{-1} \,\mathrm{d}/\mathrm{d}x \right)^{n + 1} J_0(x).
+        \end{align*}
+        Mas pelo exerc\'{i}cio 1(b) desta lista temos que
+        \begin{align*}
+            \left( \mathrm{d}/\mathrm{d}x \right) \left( x^{-n} J_n(x) \right) = - x^{-n} J_{n + 1}(x) && \nu = n
+        \end{align*}
+        e manipulando a express\~{a}o acima temos que
+        \begin{align*}
+            J_{n + 1}(x) &= - x^n \left( \mathrm{d}/\mathrm{d}x \right) \left( x^{-n} J_n(x) \right) \\
+            &= - x^n \left( \mathrm{d}/\mathrm{d}x \right) \left[ x^{-n} (-1)^n x^n \left( x^{-1} \mathrm{d}/\mathrm{d}x \right)^n J_0(x) \right] && \text{por $\bigstar$} \\
+            &= (-1)^{n + 1} x^n \left( \mathrm{d}/\mathrm{d}x \right) \left[ \left( x^{-1} \mathrm{d}/\mathrm{d}x \right)^n J_0(x) \right] \\
+            &= (-1)^{n + 1} x^{n + 1} z^{-1} \left( \mathrm{d}/\mathrm{d}z \right) \left[ \left( z^{-1} \mathrm{d}/\mathrm{d}z \right)^n J_0(z) \right] \\
+            &= (-1)^{n + 1} x^{n + 1} \left( z^{-1} \mathrm{d}/\mathrm{d}z \right)^{n + 1} J_0(z),
+        \end{align*}
+        onde a \'{u}ltima express\~{a}o corresponde a nossa tese de indu\c{c}\~{a}o e $\bigstar$ a hip\'{o}tese de indu\c{c}\~{a}o.
+    \end{solution}
+
+    \question[E de 2006, Exerc\'{i}cio 11.1.9 do Arfken\nocite{Arfken:2005:Mathematical}] Seja $J_0(z)$ a fun\c{c}\~{a}o de Bessel de primeira esp\'{e}cie e ordem zero. Mostre que
+    \begin{align*}
+        J_0(z) &= \frac{2}{\pi} \int_0^1 \frac{\cos(zt)}{\sqrt{1 - t^2}} \,\mathrm{d}t.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            \frac{2}{\pi} \int_0^1 \frac{\cos(zt)}{(1 - t^2)^{1/2}} \,\mathrm{d}t &= \frac{2}{\pi} \int_0^1 (1 - t^2)^{-1/2} \left[ \sum_{n = 0}^\infty \frac{(-1)^n (zt)^{2n}}{(2n)!} \right] \,\mathrm{d}t && \text{expans\~{a}o em s\'{e}rie} \\
+            &= \frac{2}{\pi} \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \int_0^1 (1 - t^2)^{-1/2} (t^2)^n \,\mathrm{d}t \\
+            &= \frac{2}{\pi} \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \int_0^1 (1 - y)^{-1/2} y^{n - 1/2} \,\mathrm{d}y && t^2 = y \\
+            &= \frac{1}{\pi} \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} B(n + 1/2, 1/2) && \text{por \eqref{eq:beta_int}} \\
+            &= \frac{1}{\pi} \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \frac{\Gamma(n + 1/2) \Gamma(1/2)}{\Gamma(n + 1)} && \text{por \eqref{eq:beta}} \\
+            &= \frac{1}{\pi} \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \frac{\sqrt{\pi} \sqrt{\pi} \Gamma(2n)}{n! \Gamma(n) 2^{2n - 1}} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \frac{\Gamma(2n)}{n! \Gamma(n) 2^{2n - 1}} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{2^{2n} n!} \frac{2n \Gamma(2n)}{(2n)! n \Gamma(n)} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{2^{2n} n!} \frac{\Gamma(2n + 1)}{(2n)! n \Gamma(n)} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{2^{2n} n!} \frac{\Gamma(2n + 1)}{(2n)! \Gamma(n + 1)} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{2^{2n} n!} \frac{1}{\Gamma(n + 1)} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{2^{2n} n! n!} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n}{n! \Gamma(n + 0 + 1)} \frac{z^{2n}}{2^{2n}} \\
+            &= J_0(z) && \text{por \eqref{eq:bessel_pri_esp}}.
+        \end{align*}
+    \end{solution}
+
+    \question Mostre que
+    \begin{align*}
+        J_v(x) &= \frac{2(x/2)^\nu}{\sqrt{\pi} \Gamma(\nu + 1/2)} \int_0^{\pi/2} \cos(x \sin \theta) \cos^{2\nu} \theta \,\mathrm{d}\theta.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            \int_0^{\pi/2} \cos(x \sin \theta) \cos^{2 \nu} \theta \,\mathrm{d}\theta &= \int_0^{\pi/2} \sum_{k = 0}^\infty \frac{(-1)^k (x \sin \theta)^{2k}}{(2k)!} \cos^{2\nu} \theta \,\mathrm{d}\theta && \text{s\'{e}rie de Taylor} \\
+            &= \sum_{k = 0}^\infty \int_0^{\pi/2} \frac{(-1)^k x^{2k} \sin^{2k} \theta}{(2k)!} \cos^{2\nu} \theta \,\mathrm{d}\theta \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{(2k)!} \int_0^{\pi/2} \sin^{2k} \theta \cos^{2\nu} \theta \,\mathrm{d}\theta \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{(2k)!} 2^{-1} B(k + 1/2, \nu + 1/2) && \text{por \eqref{eq:beta_trig}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{(2k)!} 2^{-1} \frac{\Gamma(k + 1/2) \Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} && \text{por \eqref{eq:beta}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{(2k)!} 2^{-1} \frac{\sqrt{\pi} \Gamma(2k)}{2^{2k - 1} \Gamma(k)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} && \text{por \eqref{eq:gamma_dup_legendre}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{(2k)!} \frac{\sqrt{\pi} \Gamma(2k)}{2^{2k} \Gamma(k)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} && \text{por \eqref{eq:gamma_dup_legendre}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k}}{(2k)!} \frac{\sqrt{\pi} \Gamma(2k)}{\Gamma(k)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k}}{\Gamma(2k + 1)} \frac{\sqrt{\pi} \Gamma(2k)}{\Gamma(k)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k}}{2k \Gamma(2k)} \frac{\sqrt{\pi} \Gamma(2k)}{\Gamma(k)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k}}{2k} \frac{\sqrt{\pi}}{\Gamma(k)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k}}{2} \frac{\sqrt{\pi}}{\Gamma(k + 1)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k}}{2} \frac{\sqrt{\pi}}{\Gamma(k + 1)} \frac{\Gamma(\nu + 1/2)}{\Gamma(k + \nu + 1)}
+        \end{align*}
+        Logo,
+        \begin{align*}
+            \frac{2 (x/2)^\nu}{\sqrt{\pi} \Gamma(\nu + 1/2)} \int_0^{\pi/2} \cos(x \sin \theta) \cos^{2 \nu} \,\mathrm{d}\theta &= \frac{2 (x/2)^\nu}{\sqrt{\pi} \Gamma(\nu + 1/2)} \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k} \sqrt{\pi} \Gamma(\nu + 1/2)}{2 \Gamma(k + 1) \Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{2 (x/2)^\nu (-1)^k (x/2)^{2k} \sqrt{\pi} \Gamma(\nu + 1/2)}{\sqrt{\pi} \Gamma(\nu + 1/2) 2 \Gamma(k + 1) \Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{2 (x/2)^\nu (-1)^k (x/2)^{2k} \sqrt{\pi}}{\sqrt{\pi} 2 \Gamma(k + 1) \Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{(x/2)^\nu (-1)^k (x/2)^{2k}}{\Gamma(k + 1) \Gamma(k + \nu + 1)} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k (x/2)^{2k + \nu}}{k! \Gamma(k + \nu + 1)} \\
+            &= J_\nu(x)
+        \end{align*}
+    \end{solution}
+
+    \question Mostre que
+    \begin{align*}
+        \mathcal{L}[J_0(x)](p) &= \int_0^\infty \exp(-px) J_0(x) dx = (1 + p^2)^{-1/2}.
+    \end{align*}
+    \begin{solution}
+        TODO
+    \end{solution}
+
+    \question Mostre que
+    \begin{align*}
+        \int_0^\infty J_n(ax) dx &= a^{-1}, n = 0, 1, 2, \ldots
+    \end{align*}
+    \begin{solution}
+        TODO
+    \end{solution}
+
+    \question Mostre que a equa\c{c}\~{a}o $x^4 y'' + (\exp(2/x) - v^2)y = 0$ \'{e} satisfeita por $y = x J_v(\exp(1/x))$.
+    \begin{solution}
+        Sabemos que $J_0(x)$ \'{e} solu\c{c}\~{a}o para \eqref{eq:bessel} e portanto $x J_0(x)$ tamb\'{e}m \'{e} solu\c{c}\~{a}o. Tomando $x = \exp(1/z)$ temos que
+        \begin{align*}
+            \frac{\mathrm{d}}{\mathrm{d}x} &= \frac{\mathrm{d}z}{\mathrm{d}x} \frac{\mathrm{d}}{\mathrm{d}z} \\
+            &= \frac{-z^{2}}{\exp(1/z)} \frac{\mathrm{d}}{\mathrm{d}z}, \\
+            \frac{\mathrm{d}^2}{\mathrm{d}x^2} &= \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\mathrm{d}}{\mathrm{d}x} \right) \\
+            &= \frac{z^2 (2z + 1)}{\exp(2/z)} \frac{\mathrm{d}}{\mathrm{d}z} + \frac{z^4}{\exp(2/z)} \frac{\mathrm{d}^2}{\mathrm{d}z^2}.
+        \end{align*}
+        TODO
+    \end{solution}
+
+    \question Mostre que a solu\c{c}\~{a}\~{o} geral de
+    \begin{align*}
+        x^2 \frac{d^2y}{dy^2} + (1 - 2\alpha)x\frac{dy}{dx} + \left[ \beta^2 \gamma^2 x^{2\gamma} + (\alpha^2 - n^2 \gamma^2) \right]y &= 0
+    \end{align*}
+    \'{e} dada por $A x^\alpha J_n(\beta x^\gamma) + B x^\alpha Y_n(\beta x^\gamma)$.
+    \begin{solution}
+        
+    \end{solution}
+
+    As fun\c{c}\~{o}es de Bessel esf\'{e}ricas $j_n(x)$ e $y_n(x)$ s\~{a}o definidas como
+    \begin{align}
+        j_{n}(x) &= \left( \frac{\pi}{2x} \right)^{-1/2} J_{n + 1/2}(x), \label{eq:bessel_esf_prim} \\
+        y_n(x) &= \left( \frac{\pi}{2x} \right)^{-1/2} Y_{n + 1/2}(x) = (-1)^{n + 1} \left( \frac{\pi}{2x} \right)^{-1/2} J_{-n - 1/2}(x). \label{eq:bessel_esf_seg}
+    \end{align}
+
+    \question Mostre que a $n$-\'{e}sima fun\c{c}\~{a}o de Bessel esf\'{e}rica \'{e} dado por
+    \begin{align*}
+        f_l(x) &= (-1)^l x^l \left( \frac{1}{x} \frac{\mathrm{d}}{\mathrm{d}x} \right)^l f_0(x),
+    \end{align*}
+    onde $f_l(x)$ denota tanto $j_l(x)$ como $y_n(x)$.
+    \begin{solution}
+        Pelo exerc\'{i}cio 1(a) desta lista temos que
+        \begin{align*}
+            J_{\nu + 1}(x) &= -x^\nu \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-\nu} J_\nu(x) \right].
+        \end{align*}
+        Tomando $\nu = l + 1/2$ na express\~{a}o acima temos
+        \begin{align*}
+            J_{l + 1/2 + 1}(x) &= -x^{l + 1/2} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-(l + 1/2)} J_{l + 1/2}(x) \right] \\
+            J_{l + 3/2}(x) &= -x^{l + 1/2} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l - 1/2)} J_{l + 1/2}(x) \right] \\
+            J_{l + 3/2}(x) &= - x^{l + 1/2} \frac{\mathrm{d}}{\mathrm{d}x} \left[ \frac{x^{-1/2} J_{l + 1/2}(x)}{x^l} \right] \\
+            x^{-1/2} J_{l + 3/2}(x) &= - x^l \frac{\mathrm{d}}{\mathrm{d}x} \left[ \frac{x^{-1/2} J_{l + 1/2}(x)}{x^l} \right] \\
+            j_{l + 1}(x) &= - x^l \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l} j_{l}(x) \right] && \text{por \eqref{eq:bessel_esf_prim}} \\
+            j_{l}(x) &= - x^{l - 1} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 1} j_{l - 1}(x) \right] && l + 1 \to l 
+        \end{align*}
+        Aplicando a express\~{a}o acima recursivamente temos
+        \begin{align*}
+            j_{l}(x) &= - x^{l - 1} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 1} j_{l - 1}(x) \right] \\
+            &= - x^{l - 1} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 1} (-1) x^{l - 2} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 2} j_{l - 2}(x) \right] \right] \\
+            &= (-1)^2 x^{l - 1} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 1} x^{l - 2} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 2} j_{l - 2}(x) \right] \right] \\
+            &= (-1)^2 x^{l - 1} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-1} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 2} j_{l - 2}(x) \right] \right] \\
+            &= (-1)^2 \frac{x^l}{x} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-1} \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^{-l + 2} j_{l - 2}(x) \right] \right] \\
+            &= \ldots \\
+            &= (-1)^l x^l \left( \frac{1}{x} \frac{\mathrm{d}}{\mathrm{d}x} \right)^l j_0(x).
+        \end{align*}
+
+        Para $y_l(x)$ o processo \'{e} an\'{a}logo tomando no in\'{i}cio $\nu = l - 1/2$ e utilizando que $Y_{l + 1/2}(x) = (-1)^{l + 1} J_{-l - 1/2}(x)$.
+    \end{solution}
+
+    \question Mostre que
+    \begin{parts}
+        \part $j_n(x) = (-1)^n x^n \left( x^{-1} d/dx \right)^n x^{-1} \sin x$,
+        \begin{solution}
+            Sabendo que $j_0(x) = \sin(x) x^{-1}$ e pelo exerc\'{i}cio anterior utilizamos uma simples substitui\c{c}\~{a}o para concluir que $j_n(x) = (-1)^n x^n \left( x^{-1} d/dx \right)^n x^{-1} \sin x$.
+        \end{solution}
+
+        \part $y_n(x) = (-1)^{n + 1} x^n \left( x^{-1} d/dx \right)^n x^{-1} \cos x$.
+        \begin{solution}
+            Sabendo que $y_0(x) = - \cos(x) x^{-1}$ e pelo exerc\'{i}cio anterior utilizamos uma simples substitui\c{c}\~{a}o para concluir que $y_n(x) = (-1)^{n + 1} x^n \left( x^{-1} d/dx \right)^n x^{-1} \cos x$.
+        \end{solution}
+    \end{parts}
+
+    \question Mostre que
+    \begin{parts}
+        \part $j_{n - 1}(x) + j_{n + 1}(x) = x^{-1} (2 n + 1) j_n(x)$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $n j_{n - 1}(x) - (n _ 1)j_{n + 1}(x) = (2n + 1)j'_n(x)$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $y_{n - 1}(x) + y_{n + 1}(x) = x^{-1} (2n + 1) y_n(x)$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $n y_{n - 1}(x) - (n + 1)y_{n + 1}(x) = (2n + 1) y'_n(x)$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    As fun\c{c}\~{o}es de Bessel esf\'{e}ricas modificadas $i_n(x)$ e $k_n(x)$ s\~{a}o definidas como
+    \begin{align}
+        i_n(x) &= \sqrt{\frac{\pi}{2x}} I_{n + 1/2}(x), \label{eq:bessel_esf_mod_prim} \\
+        k_n(x) &= \sqrt{\frac{2}{\pi x}} K_{n + 1/2}(x), \label{eq:bessel_esf_mod_seg}
+    \end{align}
+    onde $I_\nu(x)$ e $K_\nu(x)$ s\~{a}o as fun\c{c}\~{o}es de Bessel modificadas de primeira e segunda esp\'{e}cie.
+    \question Mostre que
+    \begin{parts}
+        \part $i_{n + 1}(x) = x^n \,\mathrm{d}(x^{-n} i_n(x)) / \mathrm{d}x$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $k_{n + 1}(x) = -x^n \,\mathrm{d}(x^{-n} k_n(x)) / \mathrm{d}x$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Mostre que
+    \begin{parts}
+        \part $i_n(x) = x^{n} (x^{-1} \,\mathrm{d} / \mathrm{d}x )^n (\sinh(x) x^{-1})$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $k_n(x) = (-1)^n x^{n} (x^{-1} \,\mathrm{d} / \mathrm{d}x )^n (\exp(-x) x^{-1})$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Mostre que
+    \begin{parts}
+        \part $i_{n - 1}(x) - i_{n + 1}(x) = (2n + 1) x^{-1} i_n(x)$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $n i_{n - 1}(x) + (n + 1) i_{n + 1}(x) = (2n + 1) i'_n(x)$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $k_{n - 1}(x) - k_{n + 1}(x) = - (2n + 1) x^{-1} k_n(x)$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $n k_{n - 1}(x) + (n + 1) k_{n + 1}(x) = - (2n + 1) k'_n(x)$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question[P2 de 2006] Fa\c{c}a um esbo\c{c}o do gr\'{a}fico das fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie e de ordem zero, um e dois.
+    \begin{solution}
+        Como apresentado nas notas de aula, as fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie apresentam comportamento oscilat\'{o}rio e que apenas $J_0(x)$ n\~{a}o se anula para $x = 0$.
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{BesselJPlot.png}
+        \end{center}
+    \end{solution}
+
+    \question[P3 de 2006] As fun\c{c}\~{o}es de Bessel esf\'{e}ricas $j_n(x)$ s\~{a}o definidas atrav\'{e}s de
+    \begin{align*}
+        j_n(x) &= (\pi / (2x) )^{1/2} J_{n + 1/2}(x),
+    \end{align*}
+    onde $J_\nu(x)$ s\~{a}o as fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie e de ordem $\nu$. Mostre que
+    \begin{align*}
+        j_0(x) &= \sin(x) / x.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            j_n(x) &= (\pi / (2x) )^{1/2} J_{n + 1/2}(x) \\
+            &= (\pi / (2x) )^{1/2} \sum_{k = 0}^\infty \frac{(-1)^k x^{2k + 1/2}}{2^{2k + 1/2} k! \Gamma(k + 1/2 + 1)} && \text{por \eqref{eq:bessel_pri_esp}} \\
+            &= \sqrt{\pi} \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{2^{2k + 1} \Gamma(k + 1) \Gamma(k + 1 + 1/2)} \\
+            &= \sqrt{\pi} \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{\sqrt{\pi} \Gamma(2k + 2)} && \text{por \eqref{eq:gamma_dup_legendre}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{\Gamma(2k + 2)} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k x^{2k}}{(2k + 1)!} \\
+            &= x^{-1} \sum_{k = 0}^\infty \frac{(-1)^k x^{2k + 1}}{(2k + 1)!} \\
+            &= x^{-1} \sin(x) && \text{pela s\'{e}rie de Taylor}
+        \end{align*}
+    \end{solution}
+
+    \question[P2 de 2010] Considere a equa\c{c}\~{a}o de Bessel $y''(x) + x^{-1} y'(x) + (1 - v^2 x^{-2}) y(x) = 0$ e suas solu\c{c}\~{o}es de primeira esp\'{e}cie $J_\nu, \nu \geq 0$.
+    \begin{parts}
+        \part Mostre que $J_0$ possui um n\'{u}mero infinito de zeros no intervalo $(0, \infty)$ (n\~{a}o vale usar a express\~{a}o assint\'{o}tica de $J_0$ sem deduz\'{i}-la). Dica: transforma\c{c}\~{a}o de vari\'{a}veis $y(x) = x^{-1/2} u(x)$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Deduza uma f\'{o}ruma para $J_{1/2}$ em termos de fun\c{c}\~{o}es elementares. Fa\c{c}a o mesmo para $J_{3/2}$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question[T5 de 2011] Mostre que
+    \begin{align*}
+        J_\nu(z) &= \frac{(z/2)^\nu}{\sqrt{\pi} \Gamma(\nu + 1/2)} \int_{-1}^1 (1 - t^2)^{\nu - 1/2} \exp(i z t) \, \mathrm{d}t.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            I &= \int_{-1}^1 (1 - t^2)^{\nu - 1/2} \exp(i z t) \,\mathrm{d}t \\
+            &= \int_{-1}^1 (1 - t^2)^{\nu - 1/2} \left( \cos(zt) + i \sin(zt) \right) \,\mathrm{d}t \\
+            &= \int_{-1}^1 \underbrace{(1 - t^2)^{\nu - 1/2} \cos(zt)}_{\text{fun\c{c}\~{a}o par}} \,\mathrm{d}t + i \int_{-1}^1 \underbrace{(1 - t^2)^{\nu - 1/2} \sin(zt)}_{= 0 \text{, fun\c{c}\~{a}o \'{i}mpar}} \,\mathrm{d}t \\
+            &= 2 \int_0^1 (1 - t^2)^{\nu - 1/2} \cos(zt) \,\mathrm{d}t \\
+            &= 2 \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \int_0^1 (1 - t^2)^{\nu - 1/2} t^{2n} \,\mathrm{d}t && \text{expans\~{a}o em s\'{e}rie} \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \int_0^1 (1-y)^{\nu - 1/2} y^{n - 1/2} \,\mathrm{d}t && t^2 = y \\
+            &= \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} B(\nu + 1/2, n + 1/2) && \text{por \eqref{eq:beta_int}} \\
+            &= \sum_{n = 0}\infty \frac{(-1)^n z^{2n}}{(2n)!} \frac{\Gamma(\nu + 1/2) \Gamma(n + 1/2)}{\Gamma(\nu + n + 1)} && \text{por \eqref{eq:beta}} \\
+            &= \sqrt{\pi} \Gamma(\nu + 1/2) \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} \frac{\Gamma(2n)}{\Gamma(n) 2^{2n - 1} \Gamma(\nu + n + 1)} && \text{por \eqref{eq:gamma_dup_legendre}} \\
+            &= \sqrt{\pi} \Gamma(\nu + 1/2) \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n) \Gamma(2n)} \frac{\Gamma(2n)}{\Gamma(n) 2^{n - 1} \Gamma(\nu + n + 1)} \\
+            &= \sqrt{\pi} \Gamma(\nu + 1/2) \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)} \frac{1}{\Gamma(n) 2^{n - 1} \Gamma(\nu + n + 1)} \\
+            &= \sqrt{\pi} \Gamma(\nu + 1/2) \sum_{n = 0}^\infty \frac{(-1)^n}{\Gamma(n + 1) \Gamma(\nu + n + 1)} \left( \frac{z}{2} \right)^{2n} \\
+            &= \sqrt{\pi} \Gamma(\nu + 1/2) \left( \frac{z}{2} \right)^{-\nu} \sum_{n = 0}^\infty \frac{(-1)^n}{n! \Gamma(\nu + n + 1)} \left( \frac{z}{2} \right)^{2 n + \nu} \\
+            &= \sqrt{\pi} \Gamma(\nu + 1/2) (z/2)^{- \nu} J_\nu(z).
+        \end{align*}
+    \end{solution}
+
+    \question[P2 de 2011, E de 2011] Seja $J_\nu(x)$ as fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie e ordem $n$ ($n = 0, 1, 2, \ldots$). Mostre que
+    \begin{align*}
+        \sum_{n = 0}^\infty \frac{t^n}{n!} J_n(x) = J_0(\sqrt{x^2 - 2xt}).
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            J_0(\sqrt{x^2 - 2 x t}) &= \sum_{m = 0}^\infty \frac{(-1)^m \left( 2^{-1} \sqrt{x^2 - 2 x t} \right)^{2m}}{(m!)^2} && \text{por \eqref{eq:bessel_pri_esp}} \\
+            &= \sum_{m = 0}^\infty \frac{(-1)^m}{2^{2m} (m!)^2} (x^2 - 2x t)^m \\
+            &= \sum_{m = 0}^\infty \frac{(-1)^m}{2^{2m} (m!)^2} \sum_{n = 0}^m \binom{m}{n} (x^2)^{m - n} (-2 x t)^n && \text{expans\~{a}o binomial} \\
+            &= \sum_{m = 0}^\infty \frac{(-1)^m}{2^{2m} (m!)^2} \sum_{n = 0}^m \frac{m!}{n! (m - n)!} (x^2)^{m - n} (-2 x t)^n \\
+            &= \sum_{m = 0}^\infty \frac{(-1)^m}{2^{2m} (m!)^2} \sum_{n = 0}^m \frac{m!}{n! (m - n)!} x^{2m - 2n} (-1)^n 2^n x^n t^n \\
+            &= \sum_{m = 0}^\infty \sum_{n = 0}^m \frac{(-1)^m}{2^{2m} (m!)^2} \frac{m!}{n! (m - n)!} x^{2m - 2n} (-1)^n 2^n x^n t^n \\
+            &= \sum_{m = 0}^\infty \sum_{n = 0}^m \frac{(-1)^m m! 2^n x^{2m - 2n} (-1)^n x^n t^n}{2^{2m} (m!)^2 n! (m - n)!} \\
+            &= \sum_{m = 0}^\infty \sum_{n = 0}^m \frac{(-1)^{m + n} x^{2m - n} t^n}{2^{2m - n} m! n! (m - n)!} \\
+            &= \sum_{n = 0}^\infty \sum_{m = n}^\infty \frac{(-1)^{m + n} x^{2m - n} t^n}{2^{2m - n} m! n! (m - n)!} \\
+            &= \sum_{n = 0}^\infty \sum_{k = 0}^\infty \frac{(-1)^{k + 2n} x^{2(n + k) - n} t^n}{2^{2(n + k) - n} (n + k)! n! k!} && m - n = k \\
+            &= \sum_{n = 0}^\infty \frac{t^n}{n!} \sum_{k = 0}^\infty \frac{(-1)^{k} x^{2k + n}}{2^{2k + n} (n + k)! k!} \\
+            &= \sum_{n = 0}^\infty \frac{t^n}{n!} J_n(x) && \text{por \eqref{eq:bessel_pri_esp}}.
+        \end{align*}
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

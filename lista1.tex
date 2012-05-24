@@ -1,6 +1,6 @@
 %        File: lista1.tex
 %     Created: qua mar 07 04:00  2012 HodB
-% Last Change: 08.04.12 10:35:05 AM
+% Last Change: 14.05.12 11:52:33 AM
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
@@ -61,7 +61,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
     \label{eq:laplaciano} \\
     & \begin{cases}
         x = \rho \cos \theta \\
-        y = \rho \cos \theta \\
+        y = \rho \sin \theta \\
         z = z
     \end{cases}, && \text{coordenadas cil\'{i}ndricas}
     \label{eq:coor_cil} \\
@@ -94,15 +94,14 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
         \end{align*}
         e com eles os vetores os vetores tangentes unit\'{a}rios dados por \eqref{eq:vetor_tang_unit}:
         \begin{align*}
-            \vec{e}_\rho &= 2 \cos \theta \vec{j} + \sin \theta \vec{k}, \\
-            \vec{e}_\theta &= 2 \sin \theta \vec{j} + \cos \theta \vec{k}, \\
+            \vec{e}_\rho &= \cos \theta \vec{j} + \sin \theta \vec{k}, \\
+            \vec{e}_\theta &= - \sin \theta \vec{j} + \cos \theta \vec{k}, \\
             \vec{e}_z &= \vec{i}.
         \end{align*}
   
         Utilizando \eqref{eq:vetor_mud_coor} escrevemos $\vec{i}$, $\vec{j}$ e $\vec{k}$ em fun\c{c}\~{a}o de $\vec{e}_\rho$, $\vec{e}_\theta$ e $\vec{e}_z$:
         \begin{align*}
             \vec{i} &= \vec{e}_z, \\
-            \vec{j} &= -2 \cos \theta \vec{e}_\rho + 2 \sin \theta \vec{e}_\theta, \\
             \vec{j} &= \cos \theta \vec{e}_\rho - \sin \theta \vec{e}_\theta, \\
             \vec{k} &= \sin \theta \vec{e}_\rho + \cos \theta \vec{e}_\theta.
         \end{align*}
@@ -354,7 +353,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
   
         Depois calculamos os vetores tangentes unit\'{a}rios dados por \eqref{eq:vetor_tang_unit}:
         \begin{align*}
-            \vec{e}_r &= \sin \theta \cos \phi \vec{i} + \sin \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
+            \vec{e}_r &= \sin \theta \cos \phi \vec{i} + \sin \theta \sin \phi \vec{j} + \cos \theta \vec{k}, \\
             \vec{e}_\theta &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
             \vec{e}_\phi &= - \sin \phi \vec{i} + \cos \phi \vec{j}.
         \end{align*}
@@ -525,6 +524,226 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
             &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + \frac{V_\phi \sin \theta \vec{e}_\phi}{\sin \theta} \\
             &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi.
         \end{align*}
+    \end{solution}
+
+    \question[T1 de 2011] Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas, definidas como
+    \begin{align*}
+        x &= (1/2)(u^2 - v^2), & y &= uv, & z &= z,
+    \end{align*}
+    com $-\infty < u < +\infty$, $v \geq 0$, $-\infty < z < +\infty$.
+    \begin{parts}
+        \part Mostre que esse sistema de coordenadas \'{e} ortogonal.
+        \begin{solution}
+           Temos que
+           \begin{align*}
+               r &= (1/2)(u^2 - v^2) \vec{i} + u v \vec{j} + z \vec{k}
+           \end{align*}
+           e portanto
+           \begin{align*}
+               \devp{\vec{r}}{u} &= u\vec{i} + v \vec{j}, \\
+               \devp{\vec{r}}{v} &= -v \vec{i} + v \vec{j}, \\
+               \devp{\vec{r}}{v} & = k.
+           \end{align*}
+           Logo,
+           \begin{align*}
+               h_u &= \sqrt{u^2 + v^2}, \\
+               h_v &= \sqrt{u^2 + v^2}, \\
+               h_z &= 1
+           \end{align*}
+           e
+           \begin{align*}
+               \vec{e}_u &= (u\vec{i} + v\vec{j})/ \sqrt{u^2 + v^2}, \\
+               \vec{e}_v &= (-v\vec{i} + u\vec{j})/ \sqrt{u^2 + v^2}, \\
+               \vec{e}_z &= \vec{k}.
+           \end{align*}
+           Ent\~{a}o
+           \begin{align*}
+               \vec{e}_u \vec{e}_v &= -uv + vu = 0, \\
+               \vec{e}_u \vec{e}_z &= 0, \\
+               \vec{e}_v \vec{e}_z &= 0
+           \end{align*}
+           e assim concluimos que o sistema de coordenadas \'{e} ortogonal.
+        \end{solution}
+
+        \part Seja $r$ o vetor posi\c{c}\~{a}o, $r = x\vec{i} + y\vec{j} + z\vec{k}$. Mostre que em coordenadas cil\'{i}ndricas parab\'{o}licas temos
+        \begin{align*}
+            r = (1/2) \sqrt{u^2 + v^2} (u\vec{e}_u + v\vec{e}_v) + z\vec{e}_z.
+        \end{align*}
+        \begin{solution}
+            Utilizando i\eqref{eq:vetor_mud_coor} temos que
+            \begin{align*}
+                \vec{i} &= \left( \vec{i} \cdot \vec{e}_u \right) \vec{e}_u + \left( \vec{i} \cdot \vec{e}_v \right) \vec{e}v + \left( \vec{i} \cdot \vec{e}_z \right) \vec{e}_z \\
+                &= \frac{u}{\sqrt{u^2 + v^2}} \vec{e}_u - \frac{u}{\sqrt{u^2 + v^2}} \vec{e}_v, \\
+                \vec{j} &= \left( \vec{j} \cdot \vec{e}_u \right) \vec{e}_u + \left( \vec{j} \cdot \vec{e}_v \right) \vec{e}_v + \left( \vec{j} + \vec{e}_z \right) \vec{e}_z \\
+                &= \frac{v}{\sqrt{u^2 + v^2}} \vec{e}_u + \frac{u}{\sqrt{u^2 + v^2}} \vec{e}_v, \\
+                \vec{k} &= \vec{e}_z.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                \begin{split}
+                    \vec{r} &= \left( (u^2 - v^2) / 2 \right) \left( \frac{u}{\sqrt{u^2 + v^2}} \vec{e}_u - \frac{v}{\sqrt{u^2 + v^2}} \vec{e}_v \right) \\
+                    &\quad {}+ uv \left( \frac{v}{\sqrt{u^2 + v^2}} \vec{e}_u + \frac{u}{\sqrt{u^2 + v^2}} \vec{e}_v \right) + z \vec{e}_z
+                \end{split} \\
+                &= \frac{u (u^2 - v^2}{2 \sqrt{u^2 + v^2}} \vec{e}_u - \frac{v (u^2 - v^2}{2 \sqrt{u^2 + v^2}} \vec{e}_v + \frac{u v^2}{\sqrt{u^2 + v^2}} \vec{e}_u + \frac{u^2 v}{\sqrt{u^2 + v^2}} \vec{e}_v + z \vec{e}_z \\
+                &= \frac{u (u^2 + v^2)}{2 \sqrt{u^2 + v^2}} \vec{e}_u + \frac{u (u^2 + v^2)}{2 \sqrt{u^2 + v^2}} \vec{e}_v + z \vec{e}_z \\
+                &= \frac{\sqrt{u^2 + v^2}}{2} (u \vec{e}_u + v \vec{e}_v) + z \vec{e}_z.
+            \end{align*}
+        \end{solution}
+
+        \part Usando as coordenas, e sabendo que em um sistema de coordenadas curvil\'{i}neas ortogonal temos
+        \begin{align*}
+            \nabla \cdot \vec{V} &= \frac{1}{h_1 h_2 h_ 3} \left[ \devp{}{q_1}(h_2 h_3 V_1) + \devp{}{q_2}(h_3 h_1 V_2) + \devp{}{q_3}(h_1 h_2 V_3) \right],
+        \end{align*}
+        mostre que $\nabla \cdot \vec{r} = 3$.
+        \begin{solution}
+            Pelo item anterior temos que $r_u = (1/2) u \sqrt{u^2 + v^2}$, $r_v = (1/2) v \sqrt{u^2 + v^2}$ e $r_z = z$. Logo,
+            \begin{align*}
+                \nabla \cdot \vec{r} &= \frac{1}{u^2 + v^2} \left[ \devp{}{u}\left( \frac{(u^2 + v^2)u}{2} \right) + \devp{}{v}\left( \frac{(u^2 + v^2)v}{2} + \devp{}{z}\left( (u^2 + v^2) z \right) \right) \right] \\
+                &= \frac{1}{u^2 + v^2} \left[ (3/2)u^2 + (1/2)v^2 + (1/2)u^2 + (3/2)v^2 + u^2 + v^2 \right] \\
+                &= \frac{1}{u^2 + v^2} \frac{6}{2} (v^2 + u^2) = 3.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[P1 de 2011]
+    \begin{parts}
+        \part Sejam as coordenadas esf\'{e}ricas $(r, \theta, \phi)$ dadas por
+        \begin{align*}
+            x &= r \sin \theta \cos \phi, & y &= r \sin \theta \cos \phi, & z &= r \cos \theta,
+        \end{align*}
+        onde $0 \leq r \leq \infty$, $0 \leq \theta \leq \pi$ e $0 \leq \phi \leq 2 \pi$. Mostre que os vetores tangentes unit\'{a}rios $\left\{ \vec{e}_r, \vec{e}_\theta, \vec{e}_\phi \right\}$ s\~{a}o dados por
+        \begin{align*}
+            \vec{e}_r &= \sin \theta \cos \phi \vec{i} + \sin \theta \sin \phi \vec{j} + \cos \theta \vec{k}, \\
+            \vec{e}_\theta &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
+            \vec{e}_\phi &= - \sin \phi \vec{i} + \cos \phi \vec{j}.
+        \end{align*}
+        onde $\left\{ \vec{i}, \vec{j}, \vec{k} \right\}$ s\~{a}o os vetores unit\'{a}rios cartesianos tais que $\vec{r} = x \vec{i} + y \vec{j} + z \vec{k}$.
+        \begin{solution}
+            Temos que $\vec{r} = r \sin \theta \cos \phi \vec{i} + r \sin \theta \cos \phi \vec{j} + r \cos \theta \vec{k}$ ent\~{a}o utilizando \eqref{eq:vetor_tangente} obtemos
+            \begin{align*}
+                \devp{\vec{r}}{r} &= \sin \theta \cos \phi \vec{i} + \sin \theta \sin \phi \vec{j} + \cos \theta \vec{k}, \\
+                \devp{\vec{r}}{\theta} &= r \cos \theta \cos \phi \vec{i} + r \cos \theta \sin \phi \vec{j} - r \sin \theta \vec{k}, \\
+                \devp{\vec{r}}{\phi} &= -r \sin \theta \sin \phi \vec{i} + r \sin \theta \cos \phi \vec{j}.
+            \end{align*}
+            Utilizando \eqref{eq:fator_escala} obtemos
+            \begin{align*}
+                h_r^2 &= \sin^2 \theta \cos^2 \phi + \sin^2 \theta \sin^2 \phi + \cos^2 \theta = 1, \\
+                h_\theta^2 &= r^2 \cos^2 \theta \cos^2 \phi + r^2 \cos^2 \theta \sin^2 \phi + r^2 \sin^2 \theta = r^2, \\
+                h_\phi^2 &= r^2 \sin^2 \theta \sin^2 \phi + r^2 \sin^2 \theta \cos^2 \phi = r^2 \sin^2 \theta.
+            \end{align*}
+            Utilizando \eqref{eq:vetor_tang_unit} obtemos
+            \begin{align*}
+                \vec{e}_r &= \sin \theta \cos \phi \vec{i} + \sin \theta \cos \phi \vec{j} + \cos \theta \vec{k}, \\
+                \vec{e}_\theta &= \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k}, \\
+                \vec{e}_\phi &= - \sin \phi \vec{i} + \cos \phi \vec{j}.
+            \end{align*}
+        \end{solution}
+
+        \part Sejam $\nabla$ e $\vec{V}$ dados por
+        \begin{align*}
+            \nabla &= \vec{e}_r \devp{}{r} + \vec{e}_\theta \frac{1}{r} \devp{}{\theta} + \vec{e}_\phi \frac{1}{r \sin \theta} \devp{}{\phi}, & \vec{V} &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi,
+        \end{align*}
+        e $\vec{V} \cdot \nabla$ o operador dado por
+        \begin{align*}
+            \vec{V} \cdot \nabla &= V_r \devp{}{r} + \frac{V_\theta}{r} \devp{}{\theta} + \frac{V_\phi}{r \sin \theta} \devp{}{\phi}.
+        \end{align*}
+        Mostre que $(\vec{V} \cdot \nabla) \vec{r} = \vec{V}$.
+        \begin{solution}
+            Tomemos que $\vec{r} = r \vec{e}_r$ e 
+            \begin{align*}
+                (\vec{V} \cdot \nabla) \vec{r} &= V_r \devp{r \vec{e}_r}{r} + \frac{V_\theta}{r} \devp{r \vec{e}_r}{\theta} + \frac{V\phi}{r \sin \theta} \devp{r \vec{e}_r}{\phi}.
+            \end{align*}
+            Mas
+            \begin{align*}
+                \devp{r \vec{e}_r}{r} &= \left( \devp{r}{r} \right) \vec{e}_r + r \left( \devp{\vec{e}_r}{r} \right) &= \vec{e}_r, \\
+                \devp{r \vec{e}_r}{\theta} &= \left( \devp{r}{\theta} \right) \vec{e}_r + r \left( \devp{\vec{e}_r}{\theta} \right) \\
+                &= r \left( \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k} \right) = r \vec{e}_\theta, \\
+                \devp{r \vec{e}_r}{\phi} &= \left( \devp{r}{\phi} \right) \vec{e}_r + r \left( \devp{\vec{e}_r}{\phi} \right) \\
+                &= r \left( - \sin \theta \sin \phi \vec{i} + \sin \theta \cos \phi \vec{j} \right) = r \sin \theta \vec{e}_\phi.
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \left( \vec{V} \cdot \nabla \right) \vec{r} &= V_r \vec{e}_r + \frac{V_\theta}{r} r \vec{e}_\theta + \frac{V_\phi}{r \sin \theta} r \sin \theta \vec{e}_\phi \\
+                &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi = \vec{V}.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[T1 de 2012] Sejam as coordenads esf\'{e}ricas $(r, \theta, \phi)$ dadas por
+    \begin{align*}
+        x &= r \sin \theta \cos \phi, & y &= r \sin \theta \cos \phi, & z &= r \cos \theta,
+    \end{align*}
+    onde $0 \leq r \leq \infty$, $0 \leq \theta \leq \pi$ e $0 \leq \phi \leq 2 \pi$.
+    \begin{parts}
+        \part Mostre que os fatores de escala s\~{a}o dados por
+        \begin{align*}
+            h_r &= 1, & h_\theta &= r, & h_\phi &= r \sin \theta.
+        \end{align*}
+        \begin{solution}
+            Utilizando \eqref{eq:fator_escala} temos que
+            \begin{align*}
+                h_r^2 &= (\sin \theta \cos \phi)^2 + (\sin \theta \cos \phi)^2 + \cos^2 \theta \\
+                &= \sin^2 \theta + \cos^2 \theta = 1, \\
+                h_\theta^2 &= (r \cos \theta \cos \phi)^2 + (r \cos \theta \sin \phi)^2 + (-r \sin \theta)^2 \\
+                &= r^2 \cos^2 \theta + r^2 \sin \theta = r^2, \\
+                h_\phi^2 &= (-r \sin \theta \sin \phi)^2 + (r \sin \theta \cos \phi)^2 \\
+                &= r^2 \sin^2 \theta.
+            \end{align*}
+        \end{solution}
+
+        \part Seja $\vec{A}$ o campo vetorial dado por
+        \begin{align*}
+            \vec{A} &= (r/3) \sin \theta \vec{e}_\phi.
+        \end{align*}
+        Usando coordenadas esf\'{e}ricas, calcule $\vec{B} = \nabla \times \vec{A}$ e $\rho = \nabla \cdot \vec{B}$.
+        \begin{solution}
+            Se $\vec{A} = (r/3) \sin \theta \vec{e}_\phi$ ent\~{a}o $A_r = 0$, $A_\theta = 0$ e $A_\phi = (r/3) \sin \theta$. Portanto
+            \begin{align*}
+                \nabla \times \vec{A} &= \frac{1}{r^2 \sin \theta} \begin{vmatrix}
+                    \vec{e}_r & r \vec{e}_\theta & r \sin \theta \vec{e}_\phi \\
+                    \devp{}{r} & \devp{}{\theta} & \devp{}{\phi} \\
+                    0 & 0 & (r^2 \sin^2 \theta) / 3
+                \end{vmatrix} \\
+                &= \frac{1}{r^2 \sin \theta} \left( \vec{e}_r (2r^2 / 3) \sin \theta \cos \theta - r \vec{e}_\theta (2r/3) \sin^2 \theta \right) \\
+                &= (2/3) \cos \theta \vec{e}_r - (2/3) \sin \theta \vec{e}_\theta.
+            \end{align*}
+            Ent\~{a}o $\vec{B} = (2/3) \cos \theta \vec{e}_r - (2/3) \sin \theta \vec{e}_\theta$ e portanto $B_r = (2/3) \cos \theta$, $B_\theta = (-2/3) \sin \theta$ e $B_\phi = 0$. Logo,
+            \begin{align*}
+                \nabla \cdot \vec{B} &= \frac{1}{r^2 \sin \theta} \left[ \devp{}{r}(r^2 \sin \theta (2/3) \cos \theta) + \devp{}{\theta} (r \sin \theta (-2/3) \sin \theta) \right] \\
+                &= \frac{1}{r^2 \sin \theta} \left[ (4/3) r \sin \theta \cos \theta - (4/3) r \sin \theta \cos \theta \right] = 0.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[P1 de 2012] Sejam as coordenadas esf\'{e}ricas $(r, \theta, \phi)$ dadas por
+    \begin{align*}
+        x &= r \sin \theta \cos \phi, & y &= r \sin \theta \cos \phi, & z &= r \cos \theta,
+    \end{align*}
+    onde $0 \leq r \leq \infty$, $0 \leq \theta \leq \pi$ e $0 \leq \phi \leq 2 \pi$. Mostre que
+    \begin{align*}
+        \nabla \times (\cos \theta \nabla \phi) = \nabla (1/r).
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            \nabla \times (\cos \theta \nabla \phi) &= \nabla(\cos \theta) \times \nabla \phi + \cos \theta \underbrace{\nabla \times (\nabla \phi)}_{= 0}.
+        \end{align*}
+        Como
+        \begin{align*}
+            \nabla(\cos \theta) &= \frac{1}{h_r} \underbrace{\devp{\cos \theta}{r}}_{= 0} \vec{e}_r + \frac{1}{h_\theta} \devp{\cos \theta}{\theta} \vec{e}_\theta + \frac{1}{h_\phi} \underbrace{\devp{\cos \theta}{\phi}}_{= 0} \vec{e}_\phi \\
+            &= \frac{1}{r} (- \sin \theta) \vec{e}_\theta, \\
+            \nabla \phi &= \frac{1}{h_r} \underbrace{\devp{\phi}{r}}_{= 0} \vec{e}_r + \frac{1}{h_\theta} \underbrace{\devp{\phi}{\theta}}_{= 0} \vec{e}_\theta + \frac{1}{h_\phi} \devp{\phi}{\phi} \vec{e}_\phi \\
+            &= \frac{1}{r \sin \theta} \vec{e}_\phi
+        \end{align*}
+        ent\~{a}o
+        \begin{align*}
+            \nabla \times (\cos \theta \nabla \phi) &= - \frac{\sin \theta}{r} \vec{e}_\theta \times \frac{1}{r \sin \theta} \vec{e}_\phi = - \frac{1}{r^2} \vec{e}_r.
+        \end{align*}
+        Por outro lado
+        \begin{align*}
+            \nabla\left( \frac{1}{r} \right) &= \frac{1}{h_r} \devp{}{r} \left( \frac{1}{r} \right) \vec{e}_r + \frac{1}{h_\theta} \underbrace{\devp{}{\theta} \left( \frac{1}{r} \right)}_{= 0} \vec{e}_\theta + \frac{1}{h_\phi} \underbrace{\devp{}{\phi} \left( \frac{1}{r} \right)}_{= 0} \vec{e}_\phi = - \frac{1}{r^2} \vec{e}_r.
+        \end{align*}
+        Portanto, concluimos que $\nabla \times (\cos \theta \nabla \phi) = \nabla(1/r)$.
     \end{solution}
 \end{questions}
 \end{document}

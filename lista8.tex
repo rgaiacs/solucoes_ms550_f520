@@ -1,0 +1,213 @@
+% Filename: lista8.tex
+% This code is part of 'Solutions for MS550, M\'{e}todos de Matem\'{a}tica Aplicada I, and F520, M\'{e}todos Matem\'{a}ticos da F\'{i}sica I'
+% 
+% Description: This file corresponds to the solutions of homework sheet 8.
+% 
+% Created: 21.05.12 08:46:45 PM
+% Last Change: 30.05.12 12:35:10 PM
+% 
+% Authors:
+% - Raniere Silva (2012): initial version
+% 
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
+% 
+% Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+% This document is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+% More details at <http://www.gnu.org/licenses/>
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 8 - Problema de Sturm-Liouville}
+\header{MS550, F520}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Para impress\~{a}o
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+
+% Para ereaders (Kindle, Nook, Kobo, ...) and tablets (iPad, GalaxyTab, ...)
+% \usepackage[papersize={180mm,240mm},margin=2mm]{geometry}
+% \sloppy
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+\newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
+\begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
+\begin{questions}
+    \question Encontre os autovalores e autofun\c{c}\~{o}es dos seguintes problemas de Sturm-Liouville:
+    \begin{parts}
+        \part $\begin{cases}
+            y'' + \lambda y = 0, & 0 < x < 1, \\
+            y(0) + y'(0) = 0, \\
+            y(1) = 0.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            x^2 y'' + x y' + \lambda y = 0, & 0 < x < 1, \\
+            y(1) = 0, \\
+            y(e) = 0.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' + y' + (1 + \lambda) y = 0, & 0 < x < 1, \\
+            y(0) = 0, \\
+            y(1) = 0.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' + \lambda y = 0, & -1 < x < 1, \\
+            y(-1) = y(1), \\
+            y'(-1) = y'(1).
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' - 3y' + 3(1 + \lambda)y = 0, & 0 < x < \pi, \\
+            y(0) = 0, \\
+            y(\pi) = 0.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            \frac{\mathrm{d}}{\mathrm{d}x} \left[ (2 + x)^2 \frac{\mathrm{d}y}{\mathrm{d}x} \right] = -\lambda y, & -1 < x < 1, \\
+            y(-1) = 0, \\
+            y(1) = 0.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            x^2 y'' + x y' + \lambda y = 0, & 0 < x < 1, \\
+            y(1) = 0, \\
+            \lim_{x \to 0^+} | y(x) | < \infty.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' + \lambda y = 0, & 0 < x < \infty, \\
+            y(0) = 0, \\
+            \lim_{x \to \infty} | y(x) | < \infty.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            x y '' + y' + \lambda x y = 0, & 0 < x < 1, \\
+            y(1) = 0, \\
+            \lim_{x \to 0^-} | y(x) | < \infty.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+        
+        \part $\begin{cases}
+            \frac{\mathrm{d}}{\mathrm{d}x} \left[ (x - a) (b - x) \frac{\mathrm{d}y}{\mathrm{d}x} \right] + \lambda y = 0, & a < x < b, \\
+            \lim_{x \to a} | y(x) | < \infty, \\
+            \lim_{x \to b} | y(x) | < \infty.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' - y = 0, & 0 < x < 1, \\
+            y(0) = 0, \\
+            y(1) = 1.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' + 4 y' + 7y = 0, & 0 < x < 1, \\
+            y(0) = 0, \\
+            y'(1) = 1.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' - 6 y' + 25 y = 0, & 0 < x < \pi/4, \\
+            y'(0) = 1, \\
+            y(\pi/4) = 0.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\begin{cases}
+            y'' + 2 y' + y = x, & 0 < x < 2, \\
+            y(0) = 0, \\
+            y(2) = 3.
+        \end{cases}$
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+    \question Determine quais das equa\c{c}\~{o}es abaixo possuem solu\c{c}\~{a}o oscilat\'{o}ria (isto \'{e}, com um n\'{u}mero infinitp de zeros) no intervalo $(0, \infty)$. Justifique detalhadamente suas respostas.
+    \begin{parts}
+        \part $y'' + (\cos x + 2) y = 0$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $y'' - \exp(-x) y = 0$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $y'' + x^{-1} y = 0$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+\end{questions}
+\end{document}

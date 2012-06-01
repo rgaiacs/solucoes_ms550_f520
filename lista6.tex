@@ -1,27 +1,30 @@
-% Filename: lista5.tex
-% This code is part of solu\c{c}\~{o}es de m\'{e}todos.
+% Filename: lista6.tex
+% This code is part of 'Solutions for MS550, M\'{e}todos de Matem\'{a}tica Aplicada I, and F520, M\'{e}todos Matem\'{a}ticos da F\'{i}sica I'
 % 
-% Description: Lista 05.
+% Description: This file corresponds to the solutions of homework sheet 6.
 % 
 % Created: 25.03.12 10:25:19 AM
-% Last Change: 23.05.12 09:58:06 PM
+% Last Change: 01.06.12 06:37:49 PM
 % 
-% Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
-% Organization: UNICAMP
+% Authors:
+% - Raniere Silva (2012): initial version
 % 
-% Copyright (c) 2012, Raniere Gaia C. da Silva. All rights reserved.
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 % 
-% This file is license under the terms of the 
+% Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+% This document is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+% More details at <http://www.gnu.org/licenses/>
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 % Customiza\c{c}\~{a}o da classe exam
-\firstpageheader{MS550, F520}{Solu\c{c}\~{a}o da Lista 5}{1º semestre de 2012}
-\firstpageheadrule
+\newcommand{\mycheader}{Lista 6 - Fun\c{c}\~{a}o de Bessel}
+\header{MS550, F520}{\mycheader}{\thepage/\numpages}
+\headrule
 \footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
 \footrule 
-\pagestyle{foot}
+\pagestyle{headandfoot}
 \renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
-\SolutionEmphasis{\itshape}
+\SolutionEmphasis{\slshape}
 \unframedsolutions
 \pointname{}
 
@@ -44,8 +47,8 @@
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
 
-%Novos ambientes
-\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
@@ -54,6 +57,11 @@
 \newcommand{\rot}{\mbox{rot }}
 
 \begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
 Equa\c{c}\~{o}es eventualmente útil:
 \begin{align}
     & f(x) = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n \tag{ST} \label{eq:ser_taylor} \\
@@ -369,12 +377,59 @@ Equa\c{c}\~{o}es eventualmente útil:
         \end{align*}
     \end{solution}
 
+    \question[Exerc\'{i}cio V-33 do Farrell\nocite{Farrell:1971:Solved}] Mostre que $\int_0^\infty J_0(x) \,\mathrm{d}x = 1$, assumindo que a integral $\int_0^\infty J_n(x) \,\mathrm{d}x$, $n = 0, 1, 2, \ldots$ \'{e} convergente e dado que
+    \begin{align}
+        \int_0^\pi \frac{\cos(n \phi) \,\mathrm{d}\phi}{a - i b \cos \phi} &= \frac{\pi i^n}{\sqrt{a^2 + b^2}} \left[ \frac{\sqrt{a^2 + b^2} - a}{b}^n \right], & b \neq 0, i = \sqrt{-1}, \tag{$\bigstar$} \label{eq:farrell:v-33.2} \\
+        J_n(x) &= \frac{(-i)^n}{\pi} \int_0^\pi \exp(i x \cos \phi) \cos(n \phi) \,\mathrm{d}\phi, & i = \sqrt{-1}, n = 0, 1, 2, \ldots. \tag{$\bigstar\bigstar$} \label{eq:farrell:v-33.3}
+    \end{align}
+    \begin{solution}
+        Se $a$ \'{e} qualquer constante maior que zero, ent\~{a}o a integral $\int_0^\infty \exp(-a x) J_n(bx) \,\mathrm{d}x$ \'{e} convergente. Ent\~{a}o, utilizando \eqref{eq:farrell:v-33.3} temos
+        \begin{align*}
+            \int_0^\infty \exp(-a x) J_n(bx) \,\mathrm{d}x &= \int_0^\infty \exp(-a x) \left[ \frac{(-i)^n}{n} \int_0^\pi \exp(i b x \cos \phi) \cos(n \phi) \,\mathrm{d}\phi \right] \,\mathrm{d}x \\
+            &= \frac{(-i)^n}{n} \int_0^\infty \exp(-a x) \left[ \int_0^\pi \exp(i b x \cos \phi) \cos(n \phi) \,\mathrm{d}\phi \right] \,\mathrm{d}x 
+        \end{align*}
+        Se considerarmos $x$ e $\phi$ como um plano de coordenadas retangulares, ent\~{a}o podemos considerar a integral multipla anterior equivalente a integral dupla na regi\~{a}o $R$ do plano $x\phi$ correspondente aos pontos $(x, \phi)$ tal que $x \geq 0$ e $0 \leq \phi \leq \phi$. E assim a integral dupla na regi\~{a}o $R$ pode ser igual a integral m\'{u}ltipla na qual a ordem de integra\c{c}\~{a}o encontra-se invertida. Ent\~{a}o
+        \begin{align*}
+            \int_0^\infty \exp(-a x) J_n(bx) \,\mathrm{d}x &= \frac{(-i)^n}{n} \int_0^\pi \left[ \int_0^\infty \exp(-a x) \exp(i b x \cos \phi) \cos(n \phi) \,\mathrm{d}x \right] \,\mathrm{d}\phi \\
+            &= \frac{(-i)^n}{n} \int_0^\pi \left[ \int_0^\infty \exp(-a x) \exp(i b x \cos \phi) \,\mathrm{d}x \right] \cos(n \phi) \,\mathrm{d}\phi \\
+            &= \frac{(-i)^n}{n} \int_0^\pi \left[ \int_0^\infty \exp(-(a - i b \cos \phi)x) \,\mathrm{d}x \right] \cos(n \phi) \,\mathrm{d}\phi \\
+            &= \frac{(-i)^n}{n} \int_0^\pi \left[ \left. \frac{\exp(-(a - ib \cos\phi)x)}{-(a - i b \cos\phi)} \right|_{x = 0}^{x = \infty} \right] \cos(n \phi) \,\mathrm{d}\phi \\
+            &= \frac{(-i)^n}{n} \int_0^\pi \frac{1}{a - i b \cos\phi} \cos(n \phi) \,\mathrm{d}\phi \\
+            &= \frac{1}{\sqrt{a^2 + b^2}} \left[ \frac{\sqrt{a^2 + b^2} - a}{b} \right]^n,
+        \end{align*}
+        onde a \'{u}ltima passagem corresponde a aplica\c{c}\~{a}o de \eqref{eq:farrell:v-33.2}.
+
+        A express\~{a}o
+        \begin{align}
+            \int_0^\infty \exp(-ax) J_n(bx) \,\mathrm{d}x &= \frac{1}{\sqrt{a^2 + b^2}} \left[ \frac{\sqrt{a^2 + b^2} - a}{b} \right]^n \label{eq:farrell:v-33.6}
+        \end{align}
+        foi obtida sob a hip\'{o}tese de que $a > 0$, mas a integral do lado esquerdo \'{e} convergente para $a \geq 0$ e fazendo $a = 0$ verificamos a validade da express\~{a}o. Tomando $a = 0$, $b = 1$ e $n = 0$ obtemos a igualdade desejada.
+    \end{solution}
+
     \question Mostre que
     \begin{align*}
         \mathcal{L}[J_0(x)](p) &= \int_0^\infty \exp(-px) J_0(x) dx = (1 + p^2)^{-1/2}.
     \end{align*}
     \begin{solution}
-        TODO
+        A rela\c{c}\~{a}o desejada decorre de \eqref{eq:farrell:v-33.6} ao tomar $a = p$, $b = 0$ e $n = 0$.
+
+        Tamb\'{e}m temos que
+        \begin{align*}
+            \mathcal{L}[J_0(x)](p) &= \int_0^\infty \exp(-p x) J_0(x) ,\mathrm{d}x \\
+            &= \int_0^\infty \exp(-p x) \sum_{k = 0}^\infty \frac{(-1)^k}{k! \Gamma(k + 1)} \left( \frac{x}{2} \right)^{2k} \,\mathrm{d}x && \text{por \eqref{eq:bessel_pri_esp}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k}{k! k! 2^{2k}} \int_0^\infty x^{2k} \exp(-p x) \,\mathrm{d}x && \text{por \eqref{eq:gamma_rel}} \\
+            &= \frac{p^{2k + 1}}{p^{2k + 1}} \sum_{k = 0}^\infty \frac{(-1)^k}{k! k! 2^{2k}} \int_0^\infty x^{2k} \exp(-p x) \,\mathrm{d}x \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k}{k! k! 2^{2k} p^{2k + 1}} \int_0^\infty (px)^{(2k + 1) - 1} \exp(-p x) \,\mathrm{d}(px) \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k}{k! k! 2^{2k} p^{2k + 1}} \Gamma(2 k + 1) && \text{por \eqref{eq:gamma_euler}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k}{k! k! 2^{2k} p^{2k + 1}} \frac{1}{\sqrt{\pi}} 2^{2k} \Gamma(k + 1/2) \Gamma(k + 1) && \text{por \eqref{eq:gamma_dup_legendre}} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k}{k! k! 2^{2k} p^{2k + 1}} \frac{1}{\sqrt{\pi}} 2^{2k} (1/2)_k \Gamma(1/2) k! \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^k}{k! k! 2^{2k} p^{2k + 1}} 2^{2k} (1/2)_k k! \\
+            &= \frac{1}{p} \sum_{k = 0}^\infty \frac{(-1)^k (1/2)_k}{K!} \left( \frac{1}{p} \right)^{2k} \\
+            &= \frac{1}{p} \sum_{k = 0}^\infty \frac{(-1)^k [(2k - 1)!!]^2}{(2k)!} \left( \frac{1}{p} \right)^{2k} \\
+            &= \frac{1}{p} \sum_{k = 0}^\infty (-1)^k [(2k - 1)!!]^2 \frac{(1/p)^{2k}}{(2k)!} \\
+            &= \frac{1}{\sqrt{1 + p^2}}
+        \end{align*}
+        onde o \'{u}ltimo passo \'{e} justificado pela expans\~{a}o de $(1 + z^2)^{-1/2}$, $z = 1/p$, em s\'{e}rie de Taylor.
     \end{solution}
 
     \question Mostre que
@@ -382,28 +437,61 @@ Equa\c{c}\~{o}es eventualmente útil:
         \int_0^\infty J_n(ax) dx &= a^{-1}, n = 0, 1, 2, \ldots
     \end{align*}
     \begin{solution}
-        TODO
+        A rela\c{c}\~{a}o desejada decorre de \eqref{eq:farrell:v-33.6} ao tomar $a = 0$, $b = a$ e $n = 0$.
+
+        Tamb\'{e}m temos que
+        \begin{align*}
+            \int_0^\infty J_n(a x) \,\mathrm{d}x &= a^{-1} \int_0^\infty J_n(z) \,\mathrm{d}z.
+        \end{align*}
+        Vamos mostrar que $\int_0^\infty J_n(z) \,\mathrm{d}z = 1$, ent\~{a}o
+        \begin{align*}
+            \int_0^\infty J_n(z) \,\mathrm{d}z &= \int_0^\infty \left[ J_{n - 2}(z) - 2 J'_{n - 1}(z) \right] \,\mathrm{d}z \\
+            &= \int_0^\infty J_{n - 2}(z) \,\mathrm{d}z - \left. 2 J_{n - 1}(z) \right|_0^\infty \\
+            &= \int_0^\infty J_{n - 2}(z) \,\mathrm{d}z.
+        \end{align*}
+        A express\~{a}o acima nos fornece uma rela\c{c}\~{a}o de recorr\^{e}ncia de modo que precisamos mostrar apenas que $\int_0^\infty J_0(z) \,\mathrm{d}z = 1$, ver gr\'{a}fico, e que $\int_0^\infty J_1(z) \,\mathrm{d}z = 1$, usar $J_1(x) = - J'_0(x)$.
     \end{solution}
 
     \question Mostre que a equa\c{c}\~{a}o $x^4 y'' + (\exp(2/x) - v^2)y = 0$ \'{e} satisfeita por $y = x J_v(\exp(1/x))$.
     \begin{solution}
-        Sabemos que $J_0(x)$ \'{e} solu\c{c}\~{a}o para \eqref{eq:bessel} e portanto $x J_0(x)$ tamb\'{e}m \'{e} solu\c{c}\~{a}o. Tomando $x = \exp(1/z)$ temos que
+        Temos que $J_\nu(z)$ satisfaz \eqref{eq:bessel}. Escrevendo $y(x) = x J_\nu(z)$, onde $z = \exp(1/x)$, temos
         \begin{align*}
-            \frac{\mathrm{d}}{\mathrm{d}x} &= \frac{\mathrm{d}z}{\mathrm{d}x} \frac{\mathrm{d}}{\mathrm{d}z} \\
-            &= \frac{-z^{2}}{\exp(1/z)} \frac{\mathrm{d}}{\mathrm{d}z}, \\
-            \frac{\mathrm{d}^2}{\mathrm{d}x^2} &= \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\mathrm{d}}{\mathrm{d}x} \right) \\
-            &= \frac{z^2 (2z + 1)}{\exp(2/z)} \frac{\mathrm{d}}{\mathrm{d}z} + \frac{z^4}{\exp(2/z)} \frac{\mathrm{d}^2}{\mathrm{d}z^2}.
+            \frac{\mathrm{d}y}{\mathrm{d}x} &= J_\nu(z) \frac{\mathrm{d}x}{\mathrm{d}x} + x J'\nu(z) \frac{\mathrm{d}z}{\mathrm{d}x} \\
+            &= J_\nu(z) + z x^{-1} J'_\nu(z) && \frac{\mathrm{d}z}{\mathrm{d}x} = \frac{-\exp(1/x)}{x^2} = \frac{-z}{x^2}, \\
+            \frac{\mathrm{d}^2y}{\mathrm{d}x^2} &= J'_\nu(z) \frac{\mathrm{d}z)}{\mathrm{d}x} - \frac{1}{x} J'_\nu(z) \frac{\mathrm{d} z}{\mathrm{d}x} + \frac{z}{x^2} J'_\nu(z) - \frac{z}{x} J''_v(z) \frac{\mathrm{d}z}{\mathrm{d}x} \\
+            &= \frac{z^2}{x^3} J''_\nu(z) + \frac{z}{x^3} J'_\nu(z).
         \end{align*}
-        TODO
+        Substituindo na equa\c{c}\~{a}o desejada temos
+        \begin{align*}
+            x^4 y'' + (\exp(2/x) - \nu^2) y &= x z^2 J''_\nu(z) + x \ J'_\nu(z) + (z^2 - \nu^2) x J_\nu(z) \\
+            &= x \left[ z^2 J''_\nu(z) + z J'_\nu(z) + (z^2 - \nu^2) J_\nu(z) \right] \\
+            &= x \left[ 0 \right] && \eqref{eq:bessel} \\
+            &= 0.
+        \end{align*}
     \end{solution}
 
-    \question Mostre que a solu\c{c}\~{a}\~{o} geral de
+    \question[Exerc\'{i}cio VI-2 do Farrell\nocite{Farrell:1971:Solved}] Mostre que a solu\c{c}\~{a}o geral de
     \begin{align*}
         x^2 \frac{d^2y}{dy^2} + (1 - 2\alpha)x\frac{dy}{dx} + \left[ \beta^2 \gamma^2 x^{2\gamma} + (\alpha^2 - n^2 \gamma^2) \right]y &= 0
     \end{align*}
     \'{e} dada por $A x^\alpha J_n(\beta x^\gamma) + B x^\alpha Y_n(\beta x^\gamma)$.
     \begin{solution}
-        
+        Devemos mostrarmos que $x^\alpha J_n(\beta x^\gamma)$ e $x^\alpha Y_n(\beta x^\gamma)$ s\~{a}o solu\c{c}\~{o}es da equa\c{c}\~{a}o desejada. Comecemos com $y = x^\alpha J_n(\beta x^\gamma)$. Ent\~{a}o
+        \begin{align*}
+            y' &= \frac{\mathrm{d}}{\mathrm{d}x} \left[ x^\alpha J_n \right] \\
+            &= x^\alpha \frac{\mathrm{d}}{\mathrm{d}x} J_n + J_n \frac{\mathrm{d}}{\mathrm{d}x} x^\alpha \\
+            &= x^\alpha (\beta \gamma x^{\gamma - 1}) J'_n + J_n \alpha x^{\alpha - 1} \\
+            &= \beta \gamma x^{\alpha + \gamma - 1} J'_n + \alpha x^{\alpha - 1} J_n \\
+            y'' &= \beta^2 \gamma^2 x^{\alpha + 2 \gamma - 2} J''_n + \beta \gamma \left[ (\alpha + \gamma - 1) x^{\alpha + \gamma - 2} + \alpha x^{\alpha + \gamma - 2} \right] J'_n + \alpha (\alpha - 1) x^{\alpha - 2} J_n
+        \end{align*}
+        Substituindo na equa\c{c}\~{a}o temos
+        \begin{align*}
+            \gamma^2 x^\alpha \left[ \beta^2 x^{2 \gamma} J''_n + \beta x^\gamma J'_n + (\beta^2 x^{2\gamma} - n^2) J_n \right] &= 0,\\
+            \gamma^2 x^\alpha \left[ (\beta^2 x^\gamma)^2 J''_n + \beta x^\gamma J'_n + ( (\beta x^\gamma)^2 - n^2) J_n \right] &= 0.
+        \end{align*}
+        Notamos que a express\~{a}o entre colchetes \'{e} \eqref{eq:bessel} e assim concluimos que $y = x^\alpha J_n(\beta x^\gamma)$ satisfaz a equa\c{c}\~{a}o desejada.
+
+        Para $y = x^\alpha Y_n(\beta x^\gamma)$ o processo \'{e} semelhante.
     \end{solution}
 
     As fun\c{c}\~{o}es de Bessel esf\'{e}ricas $j_n(x)$ e $y_n(x)$ s\~{a}o definidas como

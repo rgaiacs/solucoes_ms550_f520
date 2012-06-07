@@ -4,16 +4,16 @@
 % Description: This file corresponds to the solutions of homework sheet 7.
 % 
 % Created: 30.05.12 09:39:27 AM
-% Last Change: 30.05.12 04:41:53 PM
+% Last Change: 06.06.12 09:44:25 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
 % 
 % Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 % 
-% Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
-% This document is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-% More details at <http://www.gnu.org/licenses/>
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 % Customiza\c{c}\~{a}o da classe exam
@@ -62,6 +62,38 @@
 \input{cover.tex}
 \newpage
 \setcounter{page}{1}
+Equa\c{c}\~{o}es eventualmente útil:
+\begin{align}
+    & f(x) = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n \tag{ST} \label{eq:ser_taylor} \\
+    & \Gamma(z) = \int_0^\infty e^{-t} t^{z - 1} dt \tag{GE} \label{eq:gamma_euler} \\
+    & \Gamma(z + 1) = z \Gamma(z), \ \Gamma(z) \Gamma(1 - z) = \pi / \sin(\pi z) \label{eq:gamma_rel} \\
+    & 2^{2 z - 1} \Gamma(z) \Gamma(z + 1/2) = \sqrt{\pi} \Gamma(2 z) \label{eq:gamma_dup_legendre} \\
+    & B(z, w) = \frac{\Gamma(z) \Gamma(w)}{\Gamma(z + w)} \tag{BG} \label{eq:beta} \\
+    & B(z, w) = 2 \int_0^{\pi / 2} \cos^{2z - 1} \theta \sin^{2w - 1} \theta d\theta \tag{BT} \label{eq:beta_trig} \\
+    & B(z, w) = \int_0^1 t^{z - 1} (1 - t)^{w - 1} dt \tag{BI} \label{eq:beta_int} \\
+    & (\alpha)_n = \alpha (\alpha + 1) \ldots (\alpha + n - 1), \ (\alpha)_0 = 1 \tag{SP} \label{eq:sim_poch} \\
+    & (\alpha)_n = \frac{\Gamma(\alpha + n)}{\Gamma(\alpha)} \label{eq:sim_poch_gamma} \\
+    & \frac{(\alpha)_n}{m!} = \binom{\alpha + n - 1}{n}, \ \frac{(-\alpha)_n}{n!} = (-1)^n \binom{\alpha}{n} \label{eq:sim_poch_binom} \\
+    & z(1 - z)y'' + \left[ \gamma - (\alpha + \beta + 1) z \right] y' - \alpha \beta y = 0 \tag{EH} \label{eq:hiperg} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SH} \label{eq:ser_hiperg} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} dt \label{eq:hiperg_int} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{\alpha \beta}{\gamma} \,{}_2F_1(\alpha + 1, \beta + 1, \gamma + 1; z) \label{eq:hiperg_der} \\
+    % & zy'' + (\gamma - z)y' - \alpha y = 0 \tag{EHC} \label{eq:hiper_con} \\
+    % & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SHC} \label{eq:ser_hiperg_con}
+    % & x^2 y'' + x y' + (x^2 - \nu^2) y = 0 \tag{EB} \label{eq:bessel} \\
+    % & J_\nu(x) = \sum_{k = 0}^\infty \frac{(-1)^k}{k! \Gamma(k + \nu + 1)} \left( \frac{x}{2} \right)^{2k + \nu} \label{eq:bessel_pri_esp} \\
+    % & J_\nu(x) = \frac{x^\nu \exp(-i x)}{2^\nu \Gamma(\nu + 1)} \,_1F_1(\nu + 1/2, 2\nu + 1; 2 i x) \label{eq:bessel_pri_esp_hiperg_con} \\
+    % & J_{-\nu}(x) = (-1)^\nu J_\nu(x) \label{eq:bessel_prim_esp_neg} \\
+    % & \exp(x (t - t^{-1}) / 2) = \sum_{k = -\infty}^{+\infty} t^k J_k(x) \tag{GFB} \label{eq:bessel_pri_esp_geratriz} \\
+    % & x^2 y'' + x y' - (x^2 + v^2) y = 0 \tag{EBM} \label{eq:bessel_mod} \\
+    % & I_\nu(x) = i^{-\nu} J_\nu(x) \label{eq:bessel_mod_pri_esp} \\
+    & (1 - x^2) y'' - 2 x y' + \nu (\nu + 1) y = 0 \tag{EL} \label{eq:legendre} \\
+    & P_\nu(x) = \,_2F_1(- \nu, \nu + 1, 1; (1 - x)/2) \tag{FL} \label{eq:legendre_funcao_pri_esp} \\
+    & (1 - 2 x t + t^2)^{-1/2} = \sum_{n = 0}^\infty P_n(x) t^n \tag{FGL} \label{eq:legendre_funcao_geratriz} \\
+    & \int_{-1}^1 P_n(x) P_m(x) \,\mathrm{d}x = 2 \left( 2n + 1 \right)^{-1} \delta_{mn} \label{eq:legendre_ortog} \\
+    & F_{n}(x) = \frac{1}{\rho(x)} \frac{\mathrm{d}^n}{\mathrm{d} x^n}\left[ \rho(x) s^n(x) \right] \tag{FR} \label{eq:form_rodrigues}
+\end{align}
+
 \begin{questions}
     \question Mostre, a partir da rela\c{c}\~{a}o de recorr\^{e}ncia que segue derivando a fun\c{c}\~{a}o geratriz, que
     \begin{parts}
@@ -89,48 +121,180 @@
         \frac{\partial}{\partial z} \left[ \frac{P_n(\cos \theta)}{r^{n + 1}} \right] &= - (n + 1) \frac{P_{n + 1}(\cos \theta)}{r^{n + 2}}.
     \end{align*}
     \begin{solution}
-        
+        Como
+        \begin{align*}
+            P_n(\cos \theta) &= (-1)^n \frac{r^{n + 1}}{n!} \frac{\partial^n}{\partial z^n}\left( \frac{1}{r} \right)
+        \end{align*}
+        j\'{a} est\'{a} em coordenadas esf\'{e}ricas, temos:
+        \begin{align*}
+            \frac{\partial}{\partial z}\left[ \frac{P_n(\cos \theta)}{r^{n + 1}} \right] &= \frac{\partial}{\partial z}\left[ \frac{(-1)^n r^{n + 1}}{n! r^{n + 1}} \frac{\partial^n}{\partial z^n}\left( \frac{1}{r} \right) \right] \\
+            &= \frac{\partial}{\partial z}\left[ \frac{(-1)^n}{n!} \frac{\partial^n}{\partial z^n}\left( \frac{1}{r} \right) \right] \\
+            &= \frac{(-1)^n}{n!} \frac{\partial^{n + 1}}{\partial z^{n + 1}}\left( \frac{1}{r} \right). 
+        \end{align*}
+        Utilizando a express\~{a}o para $P_{n + 1}(\cos \theta)$ de um exerc\'{i}cio anterior temos
+        \begin{align*}
+            P_{n + 1}(\cos \theta) &= \frac{r^{n + 2} (-1)^{n + 1}}{(n + 1)!} \frac{\partial^{n + 1}}{\partial z^{n + 1}}\left( \frac{1}{r} \right), \\
+            \frac{\partial^{n + 1}}{\partial z^{n + 1}}\left( \frac{1}{r} \right) &= \frac{(n + 1)! P_{n + 1}(\cos \theta)}{(-1)^{n + 1} r^{n + 2}}.
+        \end{align*}
+        E substituindo na express\~{a}o anterior,
+        \begin{align*}
+            \frac{\partial}{\partial z}\left[ \frac{P_n(\cos \theta)}{r^{n + 1}} \right] &= \frac{(-1)}{n!} \frac{(n + 1)!}{(-1)^{n + 1}} \frac{P_{n + 1}(\cos \theta)}{r^{n + 2}} \\
+            &= \frac{-(n + 1) P_{n + 1}(\cos \theta)}{r^{n + 2}}.
+        \end{align*}
     \end{solution}
 
     \question Mostre que
     \begin{parts}
-        \part $\int_{-1}^1 P_n(x) \,\mathrm{d}x = 0, n \geq 1$,
+        \part[T6 de 2010] $\int_{-1}^1 P_n(x) \,\mathrm{d}x = 0, n \geq 1$,
         \begin{solution}
-            
+            Utilizando \eqref{eq:legendre_ortog} e fazendo $P_m(x) = 1 = P_0(x)$ temos
+            \begin{align*}
+                \int_{-1}^1 P_n(x) \,\mathrm{d}x = \frac{2}{2 n + 1} \delta_{0n} = \begin{cases}
+                    2, & \text{se $n = 0$,} \\
+                    0, & \text{se $n \geq 1$.}
+                \end{cases}
+            \end{align*}
         \end{solution}
 
         \part $\int_{-1}^1 x^{2n + 1} P_{2m}(x) \,\mathrm{d}x = 0, m \neq n$,
         \begin{solution}
-            
+            Sabemos que $x^{2n + 1}$ \'{e} uma fun\c{c}\~{a}o \'{i}mpar, $(-x)^{2n + 1} = (-1) x^{2n + 1}$, e que $P_{2m}(x)$ \'{e} uma fun\c{c}\~{a}o par, $P_{2m}(-x) = P_{2m}(x)$. Logo, $f(x) = x^{2n + 1} P_{2m}(x)$ \'{e} uma fun\c{c}\~{a}o \'{i}mpar, $m \neq n$, e portanto
+            \begin{align*}
+                \int_{-1}^1 f(x) \,\mathrm{d}x &= 0, m \neq n.
+            \end{align*}
         \end{solution}
 
         \part $\int_{-1}^1 x^m P_n(x) \,\mathrm{d}x = 0, m < n$,
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \int_{-1}^1 x^{m} P_n(x) \,\mathrm{d}x &= \int_{-1}^1 \sum_{k = 0}^m a_k P_k(x) P_n(x) \,\mathrm{d}x \\
+                &= \sum_{k = 0}^m a_k \int_{-1}^1 P_k(x) P_n(x) \,\mathrm{d}x \\
+                &= \sum_{k = 0}^m a_k \left[ \frac{2}{2n + 1} \delta_{mn} \right] && \text{por \eqref{eq:legendre_ortog}} \\
+                &=\sum_{k = 0}^m a_k \left[ 0 \right] \\
+                &= 0.
+            \end{align*}
         \end{solution}
 
         \part $\int_{-1}^1 x^n P_n(x) \,\mathrm{d}x = \left[ 2^{n + 1} (n!)^2 \right] / (2n + 1)!$.
         \begin{solution}
-            
+            Por \eqref{eq:form_rodrigues} temos que
+            \begin{align*}
+                P_n(x) &= \frac{1}{2^n n!} \frac{\mathrm{d}^n}{\mathrm{d} x^n}\left[ (x^2 - 1)^n \right]
+            \end{align*}
+            e portanto o $n$-\'{e}simo termo de $P_n$ corresponde a
+            \begin{align*}
+                \frac{\mathrm{d}^n}{\mathrm{d}x^n}(x^{2n}) &= (2n) (2n - 1) \ldots (2n - n + 1) x^n \\
+                &= (2n) \ldots (n + 1) x^n \\
+                &= \frac{(2n)!}{n!} x^n.
+            \end{align*}
+            Utilizando a express\~{a}o acima temos que
+            \begin{align*}
+                P_n &= \frac{1}{2^n n!} \frac{(2n)!}{n!} x^n, \\
+                x^n = \frac{2^n (n!)^2}{(2n)!} P_n.
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \int_{-1}^1 x^n P_n(x) \,\mathrm{d}x &= \int_{-1}^1 \frac{2^n (n!)^2}{(2n)!} P_n P_n \,\mathrm{d}x \\
+                &= \frac{2^n (n!)^2}{(2n)!} \int_{-1}^1 P_n(x) P_n(x) \,\mathrm{d}x \\
+                &= \frac{2^n (n!)^2}{(2n)!} \frac{2}{2n + 1} \delta_{nm} && \text{por \eqref{eq:legendre_ortog}} \\
+                &= \frac{2^n (n!)^2}{(2n)!} \frac{2}{2n + 1} \\
+                &= \frac{2^{n + 1} (n!)}{(2n + 1)!}
+            \end{align*}
         \end{solution}
     \end{parts}
 
     \question Mostre que
     \begin{parts}
-        \part $P'_n(1) = n (n + 1) / 2$,
+        \part[P3 de 2006, T6 de 2010, T6 de 2011] $P'_n(1) = n (n + 1) / 2$,
         \begin{solution}
-            
+            \textbf{M\'{e}todo 1}
+
+            Pela fun\c{c}\~{a}o geratriz temos que
+            \begin{align*}
+                \frac{1}{\sqrt{1 - 2 x t + t^2}} &= \sum_{n = 0}^\infty P_n(x) t^n.
+            \end{align*}
+            Derivando em rela\c{c}\~{a}o a $x$ obtemos
+            \begin{align*}
+                \frac{t}{\left( 1 - 2 x t + t^2 \right)^{3/2}} &= \sum_{n = 0}^\infty P'_n(x) t^n.
+            \end{align*}
+            Para $x = 1$ verifica-se que
+            \begin{align*}
+                \frac{t}{\left( 1 - 2 t + t^2 \right)^{3/2}} &= \frac{1}{\left[ \left( 1 - t \right)^2 \right]^{3/2}} \\
+                &= \frac{t}{\left( 1 - t \right)^3} \\
+                &= \sum_{n = 0}^\infty P'_n(1) t^n.
+            \end{align*}
+            Sabendo que
+            \begin{align*}
+                \left( 1 - t \right)^{-3} &= \sum_{k = 0}^\infty \frac{(3)_k}{k!} t^k \\
+                &= \sum_{k = 0}^\infty \frac{(k + 2)!}{2! k!} t^k \\
+                &= \sum_{k = 0}^\infty \frac{(k + 2) (k + 1)}{2} t^k
+            \end{align*}
+            temos ent\~{a}o que
+            \begin{align*}
+                \frac{t}{\left( 1 - t \right)^3} &= \sum_{k = 0}^\infty \frac{(k + 2) (k + 1)}{2} t^{k + 1} \\
+                &= \sum_{n = 1}^\infty \frac{(n + 1) n}{2} t^n \\
+                &= \sum_{n = 0}^\infty P'_n(1) t^n.
+            \end{align*}
+            Concluimos ent\~{a}o que $P'_0(1) = 0$ e $P'_n(1) = n \left( n + 1 \right) / 2$, $n = 1, 2, \ldots$, que equivale a $P'_n(1) = n \left( n + 1 \right) / 2$, $n = 0, 1, 2, \ldots$.
+
+            \textbf{M\'{e}todo 2}
+
+            Temos que
+            \begin{align*}
+                P_n(x) &= \,_2F_1(-n, n + 1, 1; (1 - x)/2) \\
+                P'_n(x) &= \,_2F'_1(-n, n + 1, 1; (1 - x)/2) \left( -1 / 2 \right)\\
+                &= \left( -1 / 2 \right) ( -n ) ( n + 1 ) ( 1 )^{-1} \,_2F_1(-n + 1, n + 2m, 2; (1 - x)/2) \\
+                P'_n(1) &= n (n + 1) (2)^{-1} \,_2F_1(-n + 1, n + 2, 2; 0) \\
+                &= n (n + 1) / 2.
+            \end{align*}
         \end{solution}
 
-        \part $P'_n(-1) = (-1)^{n + 1} n (n + 1) / 2$.
+        \part[E de 2006] $P'_n(-1) = (-1)^{n + 1} n (n + 1) / 2$.
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \frac{1}{\sqrt{1 - 2 x t + t^2}} &= \sum_{n = 0}^\infty P_n(x) t^n,
+            \end{align*}
+            derivando em rela\c{c}\~{a}o a $x$ obtemos
+            \begin{align*}
+                \frac{t}{\left[ 1 - 2 x t + t^2 \right]^{3/2}} &= \sum_{n = 0}^\infty P'_n(x) t^n
+            \end{align*}
+            e fazendo $x = -1$
+            \begin{align*}
+                \frac{t}{\left[ 1 + 2 t + t^2 \right]^{3/2}} &= \frac{t}{\left[ \left( 1 + t \right)^2 \right]^{3/2}} \\
+                &= \frac{t}{(1 + t)^3} \\
+                &= \sum_{n = 0}^\infty P'_n(-1) t^n.
+            \end{align*}
+            Sabendo que
+            \begin{align*}
+                \left( 1 + t \right)^{-3} &= \sum_{k = 0}^\infty \frac{(3)_k}{k!} (-t)^k \\
+                &= \sum_{k = 0}^\infty \frac{(k + 2)!}{2! k!} (-1)^k t^k \\
+                &= \sum_{k = 0}^\infty \frac{(k + 2) (k + 1)}{2} (-1)^k t^k
+            \end{align*}
+            temos ent\~{a}o que
+            \begin{align*}
+                \frac{t}{\left( 1 - t \right)^3} &= \sum_{k = 0}^\infty \frac{(k + 2) (k + 1)}{2} (-1)^k t^{k + 1} \\
+                &= \sum_{n = 1}^\infty \frac{(n + 1) n}{2} (-1)^{n - 1} t^n \\
+                &= \sum_{n = 0}^\infty P'_n(-1) t^n.
+            \end{align*}
+            Concluimos ent\~{a}o que $P'_0(-1) = 0$ e $P'_n(-1) = (-1)^{n - 1} n \left( n + 1 \right) / 2 = (-1)^{n + 1} n (n + 1) / 2$, $n = 1, 2, \ldots$, que equivale a $P'_n(1) = (-1)^{n + 1} n \left( n + 1 \right) / 2$, $n = 0, 1, 2, \ldots$.
         \end{solution}
     \end{parts}
 
     \question Construa (a menos de uma normaliza\c{c}\~{a}o) os polinômios de Legendre $P_n(x)$ utilizando o processo de ortogonaliza\c{c}\~{a}o de Gram-Schmidt aplicado \`{a} base $\left\{ 1, x, x^2, x^3, \ldots \right\}$ do espa\c{c}o dos polinômios no intervalo $(-1, 1)$ equipado com o produto escalar $(f, g) = \int_{-1}^1 f(x) g(x) \,\mathrm{d} x$.
     \begin{solution}
-        
+        Seja $\left\{ v_0, v_1, v_2, \ldots \right\} = \left\{ 1, x, x^2, \ldots \right\}$. Ent\~{a}o pelo processo de ortogonaliza\c{c}\~{a}o de Gram-Schmidt temos que
+        \begin{align*}
+            u_0 &= v_0 = 1 = P_0(x) \\
+            u_1 &= v_1 - \frac{v_1^t u_0}{\| u_0 \||^2} u_0 \\
+            &= x - \frac{1 \int_{-1}^1 x \,\mathrm{d}x}{\int_{-1}^1 \,\mathrm{d}x} \\
+            &= x - 0 / 2 = x = P_1(x) \\
+            u_2 &= v_2 - \frac{v_2^t u_0}{\| u_0 \|^2} u_0 - \frac{v_2^t u_1}{\| u_1 \|^2} u_1 \\
+            &= x^2 - \frac{1 \int_{-1}^1 x^2 \,\mathrm{d}x}{\int_{-1}^1 \,\mathrm{d}x} - \frac{x \int_{-1}^1 x^2 \,\mathrm{d}x}{\int_{-1}^1 \,\mathrm{d}x} \\
+            &= x^2 - 1/3 = (2/3) P_2(x) \\
+            \vdots
+        \end{align*}
     \end{solution}
 
     \question Mostre que as fun\c{c}\~{o}es de Legentre de segunda esp\'{e}cie $Q_n(x)$ satisfazem as seguintes rela\c{c}\~{o}es de recorr\^{e}ncia:
@@ -203,6 +367,156 @@
     \end{align*}
     \begin{solution}
         
+    \end{solution}
+
+    \question Sejam $P_n^m(x)$ as fun\c{c}\~{o}es associadas de Legendere de primeira es\'{e}cie. Mostre que
+    \begin{align*}
+        P_n^n(\cos \theta) &= \left( 2n - 1 \right)!! \sin^n \theta, & n = 0, 1, 2, \ldots.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            P_n^n(x) &= (1 - x^2)^{n / 2} \frac{\mathrm{d}^n}{\mathrm{d}x^n} P_n(x) \\
+            &= \frac{(1 - x^2)^{n / 2}}{2^n n!} \frac{\mathrm{d}^{2n}}{\mathrm{d}x^{2n}} (x^2 - 1)^n.
+        \end{align*}
+        Mas
+        \begin{align*}
+            (x^2 - 1)^n &= \sum_{k = 0}^n \binom{n}{k} (x^2)^{n - k} (-1)^k \\
+            &= x^{2n} \underbrace{- \binom{n}{1} x^{2n - 2} + \binom{n}{2} x^{2n - 4} - \ldots + (-1)^n}_{\text{nulo ao calcular $\mathrm{d}^2n/\mathrm{d}x^{2n}$}} \\
+            \frac{\mathrm{d} ^{2n}}{\mathrm{d}x^{2n}} \left[ \left( x^2 - 1 \right)^n \right] &= \frac{\mathrm{d}^{2n}}{\mathrm{d}x^{2n}} \left( x^{2n} \right) \\
+            &= 2n (2n - 1) \ldots 1 \\
+            &= (2n)!
+        \end{align*}
+        e portanto $P_n^n(x) = \left( 1 - x^2 \right)^{n / 2} (2n)! \left( 2^n n! \right)^{-1}$.
+        Como
+        \begin{align*}
+            \frac{(2n)!}{2^n n!} &= \frac{(2n) (2n - 1) (2n - 2) (2n - 3) \ldots 2 \cdot 1}{2^n n (n - 1) \ldots 1} \\
+            &= \frac{(2n) (2n - 1) (2n - 2) (2n - 3) \ldots 2 \cdot 1}{(2n - 2) \ldots 2} \\
+            &= (2n - 1) (2n - 3) \ldots 1 \\
+            &= (2n - 1)!!
+        \end{align*}
+        temos que $P_n^n(x) = \left( 1 - x^2 \right)^{n / 2} (2n - 1)!!$.
+
+        Fazendo $x = \cos \theta$ temos que $(1 - x^2)^{1/2} = \sin \theta$, $\theta \in [0, \pi]$. Se $x \in [-1, 1]$ ent\~{a}o $\theta \in [0, \pi]$ e portanto $P_n^n(\cos \theta) = (2n - 1)!! \sin^n \theta$.
+    \end{solution}
+
+    \question Seja $P_n$ o $n$-\'{e}simo polin\^{o}mio de Legendre ($n = 0, 1, 2, \ldots$). Calcule $P_n(0)$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question[E de 2010] Seja $P_n$ o $n$-\'{e}simo polin\^{o}mio de Legendre. Mostre que
+    \begin{align*}
+        \sum_{n = 0}^\infty \frac{2n + 1}{2} P_n(x) P_n(x') &= \delta(x - x'),
+    \end{align*}
+    $x, x' \in (-1, 1)$. Dica: lembre-se que os polin\^{o}mios de Legendere forma um conjunto ortogonal completo, com $\int_{-1}^1 P_n(x) P_m(x) \,\mathrm{d}x = 2 (2 n + 1)^{-1} \delta_{nm}$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question[T6 de 2011] Seja $P_n(x)$ ($n = 0, 1, 2, \ldots$) os polin\^{o}mios de Legendere. Mostre que
+    \begin{align*}
+        P'_n(x) &= (2n - 1) P_{n + 1}(x) + (2n - 5) P_{n - 3} + (2n - 9) P_{n - 5}(x) + \ldots + \Delta_n,
+    \end{align*}
+    onde $\Delta_n = 3 P_1(x)$ se $n$ for par e $\delta_n = P_0(x)$ se $n$ for \'{i}mpar.
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            (2n + 1) P_n(x) &= P'_{n + 1}(x) - P'_{n - 1}(x)
+        \end{align*}
+        e fazendo $n \to n - 1$ obtemos
+        \begin{align*}
+            P'_n(x) &= (2n - 1) P_{n - 1} + P'_{n - 2}(x) \\
+            P'_{n - 2}(x) &= (2n - 5) P_{n - 3} + P'_{n - 4}(x) && n \to n - 2 \\
+            P'_{n - 4}(x) &= (2n - 9) P_{n - 5} + P'_{n - 6}(x) && n \to n - 2 \\
+            \vdots
+        \end{align*}
+        Somando as equa\c{c}\~{o}es acima obtemos
+        \begin{align*}
+            P'_n(x) &= (2n - 1) P_{n + 1}(x) + (2n - 5) P_{n - 3} + (2n - 9) P_{n - 5}(x) + \ldots.
+        \end{align*}
+        Se $n$ \'{e} par, a \'{u}ltima rela\c{c}\~{a}o \'{e}
+        \begin{align*}
+            P_2(x) &= 3 P_1(x) + P'_0(x) = 3 P_1(x)
+        \end{align*}
+        e se $n$ \'{e} \'{i}mpar, a \'{u}ltima rela\c{c}\~{a}o \'{e}
+        \begin{align*}
+            P_1(x) &= P_0(x) + 0 = P_0(x).
+        \end{align*}
+        Logo,
+        \begin{align*}
+            \Delta_n &= \begin{cases}
+                3 P_1(x), & \text{n par}, \\
+                P_0(x), & \text{n \'{i}mpar}.
+            \end{cases}
+        \end{align*}
+    \end{solution}
+
+    \question[P2 de 2011] Sejam $P_n(x)$ os polin\^{o}mios de Legendre ($n = 0, 1, 2, \ldots$). Mostre que
+    \begin{parts}
+        \part $P_n(1) = 1$,
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                g(x, t) &= \frac{1}{\sqrt{1 - 2 x t + t^2}} \\
+                &= \sum_{n = 0}^\infty P_n(x) t^n.
+            \end{align*}
+            Para $x = 1$ temos
+            \begin{align*}
+                \sum_{n = 0}^\infty P_n(1) t^n &= \frac{1}{\sqrt{1 - 2 t + t^2}} \\
+                &= \frac{1}{1 - t} \\
+                &= \sum_{n = 0}^\infty t^n \\
+                &= 1.
+            \end{align*}
+        \end{solution}
+
+        \part $\int_0^1 P_{2n}(x) \,\mathrm{d}x = 0$ ($n \neq 0$).
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \int_0^1 P_{n}(x) \,\mathrm{d}x &= \int_0^1 \left[ \frac{P'_{2n + 1}(x) - P'_{2n - 1}(x)}{2 (2n) + 1} \right] \,\mathrm{d}x \\
+                &= \frac{1}{4 n + 1} \left[ \left. P_{2n + 1}(x) \right|_0^1 - \left. P_{2n - 1}(x) \right|_0^1 \right] \\
+                &= \frac{1}{(4n + 1)} \left[ P_{2n + 1}(1) - P_{2n _ 1}(0) - P_{2n - 1}(1) + P_{2n - 1}(0) \right] \\
+                &= \frac{1}{(4n + 1)} \left[ - P_{2n _ 1}(0) + P_{2n - 1}(0) \right] \\
+                &= \frac{1}{(4n + 1)} \left[ - 0 + 0 \right]  && \bigstar \\
+                &= 0,
+            \end{align*}
+            onde $\bigstar$ decorre de
+            \begin{align*}
+                \sum_{n = 0}^\infty P_n(0) t^n &= \frac{1}{\sqrt{1 + t^2}} \\
+                &= \sum_{m = 0}^\infty \frac{(1/2)_m (-1)^m (t^2)^m}{m!} \\
+                P_{2n + 1}(0) &= 0.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[E de 2011] Sejam $P_n(x)$ os polin\^{o}mios de Legendre ($n = 0, 1, 2, \ldots$). Mostre que
+    \begin{align*}
+        (2n + 1) x P_n(x) &= (n + 1) P_{n + 1}(x) + n P_{n - 1}(x).
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            g(x, t) &= \frac{1}{\sqrt{1 - 2 x t + t^2}} \\
+            &= \sum_{n = 0}^\infty P_n(x) t^n.
+        \end{align*}
+        Derivando em rela\c{c}\~{a}o a $t$
+        \begin{align*}
+            \frac{\partial g(x, t)}{\partial t} &= \left( \frac{-1}{2} \right) \frac{-2 x + 2 t}{\left[ 1 - 2 x t + t^2 \right]^{3/2}} \\
+            &= \frac{x - t}{1 - 2 x t + t^2} g(x, t) \\
+            (x - t) g(x, t) &= (1 - 2 x t + t^2) \frac{\partial g(x, t)}{\partial t} \\
+            (x - t) \sum_{n = 0}^\infty P_n(x) t^n &= (1 - 2 x t + t^2) \sum_{n = 0}^\infty n P_n(x) t^{n - 1} \\
+            \sum_{n = 0}^\infty x P_n(x) t^n - \sum_{n = 0}^\infty P_n(x) t^{n + 1} &= \sum_{n = 0}^\infty n P_n(x) t^{n - 1} - \sum_{n = 0}^\infty 2 n x P_n(x) t^n + \sum_{n = 0}^\infty n P_n(x) t^{n + 1} \\
+            \sum_{n = 0}^\infty (2n + 1) x P_n(x) t^n - \sum_{n = 1}^\infty P_{n - 1}(x) t^n &= \sum_{n = 0}^\infty (n + 1) P_{n + 1}(x) t^n + \sum_{n = 1}^\infty (n - 1) P_{n - 1}(x) t^n \\
+            x P_0(x) + \sum_{n = 1}^\infty (2n + 1) x P_n(x) t^n &= P_1(x) + \sum_{n = 1}^\infty (n + 1) P_{n + 1}(x) t^n + \sum_{n = 1}^\infty n P_{n - 1}(x) t^n.
+        \end{align*}
+        Por fim, temos que
+        \begin{align*}
+            \begin{cases}
+                x P_0(x) = P_1(x), \\
+                (2n + 1) x P_n(x) = (n + 1) P_{n + 1}(x) + n P_{n - 1}(x), & n = 1, 2, \ldots.
+            \end{cases}
+        \end{align*}
     \end{solution}
 \end{questions}
 \end{document}

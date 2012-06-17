@@ -1,10 +1,11 @@
 % Filename: lista7.tex
+% 
 % This code is part of 'Solutions for MS550, M\'{e}todos de Matem\'{a}tica Aplicada I, and F520, M\'{e}todos Matem\'{a}ticos da F\'{i}sica I'
 % 
 % Description: This file corresponds to the solutions of homework sheet 7.
 % 
 % Created: 30.05.12 09:39:27 AM
-% Last Change: 06.06.12 09:44:25 PM
+% Last Change: 09.06.12 05:46:13 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -28,21 +29,18 @@
 \unframedsolutions
 \pointname{}
 
-% Para impress\~{a}o
-\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
-
-% Para ereaders (Kindle, Nook, Kobo, ...) and tablets (iPad, GalaxyTab, ...)
-% \usepackage[papersize={180mm,240mm},margin=2mm]{geometry}
-% \sloppy
+\input{paper_size.tex}
 
 % Pacotes
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{tikz}
 
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
@@ -89,31 +87,151 @@ Equa\c{c}\~{o}es eventualmente útil:
     % & I_\nu(x) = i^{-\nu} J_\nu(x) \label{eq:bessel_mod_pri_esp} \\
     & (1 - x^2) y'' - 2 x y' + \nu (\nu + 1) y = 0 \tag{EL} \label{eq:legendre} \\
     & P_\nu(x) = \,_2F_1(- \nu, \nu + 1, 1; (1 - x)/2) \tag{FL} \label{eq:legendre_funcao_pri_esp} \\
-    & (1 - 2 x t + t^2)^{-1/2} = \sum_{n = 0}^\infty P_n(x) t^n \tag{FGL} \label{eq:legendre_funcao_geratriz} \\
+    & g(-x, t) = (1 - 2 x t + t^2)^{-1/2} \tag{FGL} \label{eq:legendre_funcao_geratriz} \\
+    & g(-x, t) = \sum_{n = 0}^\infty P_n(x) t^n \tag{FGLS} \label{eq:legendre_funcao_geratriz_serie} \\
     & \int_{-1}^1 P_n(x) P_m(x) \,\mathrm{d}x = 2 \left( 2n + 1 \right)^{-1} \delta_{mn} \label{eq:legendre_ortog} \\
+    & Q_n(x) = \frac{1}{2^{n + 1}} \int_{-1}^1 \frac{(1 - y^2)^n}{(x - y)^{n + 1}} \,\mathrm{d}y \label{eq:legendre_funcao_seg_esp_integral} \\
+    & (1 - x^2) y'' - 2 x y' + \left( \nu (\nu + 1) - m^2 (1 - x^2)^{-1} \right) y = 0 \tag{ELA} \label{eq:legendre_ass} \\
+    & P_\nu^m(x) = (1 - x^2)^{m/2} \frac{\mathrm{d}^m}{\mathrm{d}x^m}P_\nu(x) \tag{FLA} \label{eq:legendre_ass_ funcao_pri_esp} \\
+    & \sum_{n = 0}^\infty P_{n + m}(x) t^n = \frac{(2m)!}{2^n m!} \frac{(1 - x^2)^{m/2}}{(1 - 2 x t + t^2)^{m + 1/2}} \label{eq:legendre_ass_funcao_geratriz} \\
+    & Q_\nu^m(x) = (1 - x^2)^{m/2} \frac{\mathrm{d}^m}{\mathrm{d}x^m}Q_\nu(x) \label{eq:legendre_ass_funcao_seg_esp} \\
     & F_{n}(x) = \frac{1}{\rho(x)} \frac{\mathrm{d}^n}{\mathrm{d} x^n}\left[ \rho(x) s^n(x) \right] \tag{FR} \label{eq:form_rodrigues}
 \end{align}
 
 \begin{questions}
-    \question Mostre, a partir da rela\c{c}\~{a}o de recorr\^{e}ncia que segue derivando a fun\c{c}\~{a}o geratriz, que
-    \begin{parts}
-        \part $(n + 1) P_n(x) = P'_{n + 1}(x) - x P'_n(x)$,
-        \begin{solution}
-            
-        \end{solution}
+    \question Mostre as rela\c{c}\~{o}es de recorr\^{e}ncia que seguem derivando a fun\c{c}\~{a}o geratriz.
+    \begin{solution}
+        Seja $g(x, t)$ a fun\c{c}\~{a}o geratriz de Legendre. Para $g(1, t)$ temos
+        \begin{align*}
+            g(1, t) &= \left( 1 - 2 t + t^2 \right)^{-1/2} && \text{por \eqref{eq:legendre_funcao_geratriz}} \\
+            &= \left[ \left( 1 - t \right)^2 \right]^{-1/2} \\
+            &= \left( 1 - t \right)^{-1} \\
+            &= \sum_{n = 0}^\infty t^n && \text{pela expans\~{a}o em Taylor}, \\
+            g(1, t) &= \sum_{n = 0}^\infty P_n(1) t^n && \text{por \eqref{eq:legendre_funcao_geratriz_serie},}
+        \end{align*}
+        de onde segue que
+        \begin{align}
+            P_n(1) = 1. \label{eq:legendre_rel_rec_n1}
+        \end{align}
+        Tomando agora $g(-x, t)$ temos
+        \begin{align*}
+            g(-x, t) &= \left( 1 - 2 (-x) t + t^2 \right)^{-1/2} && \text{por \eqref{eq:legendre_funcao_geratriz}} \\
+            &= \left( 1 - 2 x (-t) + (-t)^2 \right)^{-1/2} \\
+            &= \sum_{n = 0}^\infty P_n(x) (-1)^n t^n, \\
+            g(-x, t) &= \sum_{n = 0}^\infty P_n(-x) t^n && \text{por \eqref{eq:legendre_funcao_geratriz_serie}}
+        \end{align*}
+        de onde segue que
+        \begin{align}
+            P_n(-x) = (-1)^n P_n(x). \label{eq:legendre_rel_rec_nx}
+        \end{align}
+        Utilizando \eqref{eq:legendre_rel_rec_n1} e \eqref{eq:legendre_rel_rec_nx} segue que
+        \begin{align*}
+            P_n(-1) = (-1)^n.
+        \end{align*}
 
-        \part $(1 - x^2) P'_n(x) = P_{n - 1}(x) - n x P_n(x)$.
-        \begin{solution}
-            
-        \end{solution}
-    \end{parts}
+        Derivando $g(x, t)$ em rela\c{c}\~{a}o a $t$ temos
+        \begin{align*}
+            \frac{\partial g(x,t)}{\partial t} &= \frac{\partial}{\partial t}\left( 1 - 2 x t + t^2 \right)^{-1/2} && \text{por \eqref{eq:legendre_funcao_geratriz}} \\
+            &= \left( - 2 x + 2 t \right) (-1/2) \left( 1 - 2 x t + t^2 \right)^{-3/2} \\
+            &= \left( x - t \right) \left( 1 - 2 x t + t^2 \right)^{-1/2} \left( 1 - 2 x t + t^2 \right)^{-1} \\
+            &= \left( x - t \right) g(x, t) \left( 1 - 2 x t + t^2 \right)^{-1}, \\
+            \left( 1 - 2 x t + t^2 \right) \frac{\partial g(x, t)}{\partial t} &= (x - t) g(x, t).
+        \end{align*}
+        Usando \eqref{eq:legendre_funcao_geratriz_serie} na equa\c{c}\~{a}o anterior temos
+        \begin{align*}
+            \left( 1 - 2 x t + t^2 \right) \frac{\partial}{\partial t}\left[ \sum_{n = 0}^\infty P_n(x) t^n \right] &= (x - t) \left[ \sum_{n = 0}^\infty P_n(x) t^n \right] \\
+            \left( 1 - 2 x t + t^2 \right) \left[ \sum_{n = 0}^\infty P_n(x) n t^{n - 1} \right] &= (x - t) \left[ \sum_{n = 0}^\infty P_n(x) t^n \right] \\
+            \sum_{n = 0}^\infty P_n(x) n \left( t^{n - 1} - 2 x t^{n} + t^{n + 1} \right) &= \sum_{n = 0}^\infty P_n(x) (x t^n - t^{n + 1}).
+        \end{align*}
+        Agrupando as pot\^{e}ncias de $t$ segue que
+        \begin{align}
+            (2n + 1) x P_n(x) = (n + 1) P_{n + 1}(x) + n P_{n - 1}(x). \label{eq:legendre_rel_rec_2n+1}
+        \end{align}
+        Derivando $g(x, t)$ em rela\c{c}\~{a}o a $x$ temos
+        \begin{align*}
+            \frac{\partial g(x,t)}{\partial x} &= \frac{\partial}{\partial x}\left( 1 - 2 x t + t^2 \right)^{-1/2} && \text{por \eqref{eq:legendre_funcao_geratriz}} \\
+            &= \left( - 2 t \right) (-1/2) \left( 1 - 2 x t + t^2 \right)^{-3/2} \\
+            &= t \left( 1 - 2 x t + t^2 \right)^{-1/2} \left( 1 - 2 x t + t^2 \right)^{-1} \\
+            &= t g(x, t) \left( 1 - 2 x t + t^2 \right)^{-1}, \\
+            \left( 1 - 2 x t + t^2 \right) \frac{\partial g(x, t)}{\partial t} &= -t g(x, t).
+        \end{align*}
+        Usando \eqref{eq:legendre_funcao_geratriz_serie} na equa\c{c}\~{a}o anterior temos
+        \begin{align*}
+            \left( 1 - 2 x t + t^2 \right) \frac{\partial}{\partial x}\left[ \sum_{n = 0}^\infty P_n(x) t^n \right] &= t \left[ \sum_{n = 0}^\infty P_n(x) t^n \right] \\
+            \left( 1 - 2 x t + t^2 \right) \left[ \sum_{n = 0}^\infty P'_n(x) t^{n} \right] &= t \left[ \sum_{n = 0}^\infty P_n(x) t^n \right] \\
+            \sum_{n = 0}^\infty P'_n(x) \left( t^{n} - 2 x t^{n + 1} + t^{n + 2} \right) &= \sum_{n = 0}^\infty P_n(x) t^{n + 1}.
+        \end{align*}
+        Agrupando as pot\^{e}ncias de $t$ segue que
+        \begin{align*}
+            P_n(x) = P'_{n + 1}(x) - 2 x P'_n(x) + P'_{n - 1}(x). %  \label{eq:legendre_rel_rec_2der}
+        \end{align*}
+        Derivando \eqref{eq:legendre_rel_rec_2n+1} temos
+        \begin{align*}
+            (2n + 1) (P_n(x) + x P'_n(x)) = (n + 1) P'_{n + 1}(x) + n P'_{n - 1}(x)
+        \end{align*}
+        e usando o resultado na express\~{a}o anterior segue que
+        \begin{align}
+            (2n + 1)P_n(x) = P'_{n + 1}(x) - P'_{n - 1}(x). \label{eq:legendre_rel_rec_2n+1der}
+        \end{align}
 
-    \question Mostre que
+        TODO
+        \begin{align}
+            P'_{n - 1}(x) = -n P_n(x) + x P_n'(x). \label{eq:legendre_rel_rec_devn-1}
+        \end{align}
+
+        Substituindo \eqref{eq:legendre_rel_rec_devn-1} em \eqref{eq:legendre_rel_rec_2n+1der} segue que
+        \begin{align*}
+            (2n + 1) P_n(x) &= P'_{n + 1}(x) - \left[ -n P_n(x) + x P'_n(x) \right] \\
+            &= P'_{n + 1}(x) + n P_n(x) - x P'_n(x), \\
+            (n + 1) P_n(x) &= P'_{n + 1}(x) - x P'_n(x).
+        \end{align*}
+
+        Tomando $n \to n - 1$ na equa\c{c}\~{a}o anterior temos
+        \begin{align*}
+            n P_{n - 1}(x) &= P'_{n}(x) - x P'_{n - 1}(x)
+        \end{align*}
+        e somando com \eqref{eq:legendre_rel_rec_devn-1} multiplicado por $(-x)$ segue que
+        \begin{align*}
+            n P_{n - 1}(x) - x P'_{n - 1} &= P'_n(x) - x P'_{n - 1}(x) - \left[ -n x P_n(x) + x^2 P'_n(x) \right], \\
+            n P_{n - 1}(x) &= P'_n(x) + n x P_n(x) - x^2 P'_n(x), \\
+            n P_{n - 1}(x) - n x P_n(x) &= (1 - x^2) P'_n(x).
+        \end{align*}
+
+        Outras rela\c{c}\~{o}es:
+        \begin{align*}
+            & (1 - x^2) P'_n(x) = (n + 1) x P_n(x) - (n + 1) P_{n + 1}(x), \\
+            & P'_{n + 1}(x) = (n + 1) P_n(x) + x P'_n(x).
+        \end{align*}
+    \end{solution}
+
+    \question[Exerc\'{i}cio 12.1.7 do Arfken\nocite{Arfken:2005:Mathematical}] Mostre que
     \begin{align*}
         P_n(\cos \theta) = (-1)^n \frac{r^{n + 1}}{n!} \frac{\partial^n}{\partial z^n} \left( \frac{1}{r} \right).
     \end{align*}
     \begin{solution}
-        
+        Considere o diagrama abaixo \\ \hspace*{.2\textwidth}
+        \begin{tikzpicture}
+            \draw[->] (-.2,0) -- (6,0) node[below right]{$z$};
+            \draw[->] (0,-.2) -- (0,3);
+            \draw (0,0) -- (25:5) node[midway, above left]{$\vec{r_1}(x, y, z)$} -- (3,0) node[midway, below right]{$\vec{r_2}(x, y, z - \Delta z)$};
+            \draw (0,0) -- (3,0) node[midway, below]{$\vec{r_3}(x, y, z)$};
+            \draw (0:1) arc (0:25:1) node[below right]{$\theta$};
+        \end{tikzpicture} \\
+        Ent\~{a}o
+        \begin{align*}
+            |\vec{r_1} - \vec{r_3}| &= \sqrt{r_1^2 + r_3^2 - 2 r_1 r_3 \cos(\theta)}, \\
+            |\vec{r_1} - \vec{r_3}|^{-1} &= (r_1^2 + r_2^3 - 2 r_1 r_3 \cos(\theta))^{-1/2} \\
+            &= r_1^{-1} \sum_{n = 0}^\infty P_n(\cos(\theta)) (r_3 r_1^{-1})^n && \text{por \eqref{eq:legendre_funcao_geratriz} e \eqref{eq:legendre_funcao_geratriz_serie}} \\
+            &= \sum_{n = 0}^\infty P_n(\cos(\theta)) (\Delta z^n (-1)^n) r^{-n + 1}.
+        \end{align*}
+        Por outro lado
+        \begin{align*}
+            \left[ r (z - \Delta z) \right]^{-1} &= \sum_{n = 0}^\infty \frac{1}{n!} \frac{\mathrm{d}^n}{\mathrm{d}z^n}\left( \frac{1}{r} \right) (\Delta z)^n.
+        \end{align*}
+        Portanto,
+        \begin{align*}
+            P_n(\cos(\theta)) = \frac{(-1)^n r^{n + 1}}{n!} \frac{\mathrm{d}}{\mathrm{d}z^n}\left( \frac{1}{r} \right).
+        \end{align*}
     \end{solution}
 
     \question Mostre, usando explicitamente coordenadas esf\'{e}ricas $(r, \theta, \phi)$, que
@@ -301,18 +419,36 @@ Equa\c{c}\~{o}es eventualmente útil:
     \begin{parts}
         \part $(2n + 1) x Q_n(x) = (n + 1) Q_{n + 1}(x) + n Q_{n - 1}(x)$,
         \begin{solution}
-            
+            A partir de \eqref{eq:legendre_funcao_seg_esp_integral} temos que
+            \begin{align*}
+                (n + 1) Q_{n + 1} + n Q_{n - 1}(x) &= (n + 1) \frac{1}{2} \int_{-1}^1 \frac{P_{n + 1}(y)}{x - 1y} \,\mathrm{d}y + n \frac{1}{2} \int_{-1}^1 \frac{P_{n - 1}(y)}{x - y} \\
+                &= \frac{1}{2} \int_{-1}^1 \frac{(n + 1) P_{n + 1} + n P_{n - 1}}{x - y} \,\mathrm{d}y \\
+                &= (2n + 1) x Q_n(x),
+            \end{align*}
+            onde a \'{u}ltima passagem decorre de $(2n + 1) P_n(x) = (n + 1) P_{n + 1}(x) + n P_{n - 1}(x)$ (ver notas de aula).
         \end{solution}
 
         \part $(2n + 1) Q_n(x) = Q'_{n + 1}(x) - Q'_{n - 1}(x)$.
         \begin{solution}
-            
+            A partir de \eqref{eq:legendre_funcao_seg_esp_integral} temos que
+            \begin{align*}
+                Q'_{n + 1}(x) - Q'_{n - 1}(x) &= \frac{1}{2} \int_{-1}^1 \frac{P'_{n + 1}(y)}{x - y} \,\mathrm{d}y - \frac{1}{2} \int_{-1}^1 \frac{P'_{n - 1}(y)}{x - y} \,\mathrm{d}y \\
+                &= \frac{1}{2} \int_{-1}^1 \frac{P1_{n + 1} - P'_{n - 1}}{x - y} \,\mathrm{d}y \\
+                &= \frac{1}{2} \int_{-1}^1 \frac{(2n + 1) P_n(y)}{x - y} \,\mathrm{d}y \\
+                &= (2n + 1) Q_n(x).
+            \end{align*}
         \end{solution}
     \end{parts}
 
     \question Mostre que $Q_n(-x) = (-1)^{n + 1} Q_n(x)$.
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            Q_n(-x) &= \frac{1}{2} \int_{-1}^1 \frac{P_n(y)}{-x - y} \,\mathrm{d}y \\
+            &= \frac{1}{2} \int_{-1}^1 \frac{P_n(-u)}{- (x - u)} \,\mathrm{d}u && u = -y \\
+            &= \frac{1}{2} \int_{-1}^1 \frac{(-1)^n P_n(u)}{- (x - u)} \,\mathrm{d}u \\
+            &= (-1)^{n + 1} Q_n(x).
+        \end{align*}
     \end{solution}
 
     \question Mostre que
@@ -320,29 +456,100 @@ Equa\c{c}\~{o}es eventualmente útil:
         n \left[ P_n(x) Q_{n - 1}(x) - Q_n(x) Q_{n - 1}(x) \right] = P_1(x) Q_0(x) - P_0(x) Q_1(x) = 1.
     \end{align*}
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            I &= n \left[ P_n(x) Q_{n - 1}(x) - Q_n(x) P_{n - 1}(x) \right] \\
+            &= P_1(x) Q_0(x) - Q_1(x) P_0(x) && n = 1 \\
+            &= P_1(x) \frac{1}{2} \int_{-1}^1 \frac{P_0(y)}{x - y} \,\mathrm{d}y - \frac{1}{2} \int_{-1}^1 \frac{P_1(y)}{x - y} \,\mathrm{d}y P_0(x) \\
+            &= \frac{x}{2} \int_{-1}^1 \frac{1}{x - y} \,\mathrm{d}y - \frac{1}{2} \int_{-1}^1 \frac{y}{x - y} \,\mathrm{d}y \\
+            &= \frac{1}{2} \left[ x \left( \left. -\log(x - y) \right|_{y = -1}^1 \right) - \left. \left( x \log(y - x) - y \right) \right|_{y = -11}^1 \right] \\
+            &= 2^{-1} \left[ -x \log(x - 1) + x \log(x + 1) - x \log(1 - x) + 1 + x \log(-1 - x) + 1 \right] \\
+            &= 1.
+        \end{align*}
     \end{solution}
 
     \question Mostre que os polinômios de Legendre associados $P_n^m(x)$ satisfazem as seguintes rela\c{c}\~{o}es de recorr\^{e}ncia:
     \begin{parts}
         \part $P_n^{m + 1}(x) - 2 m x \left( 1 - x^2 \right)^{-1/2} P_n^m(x) + \left[ n (n _ 1) - m (m - 1) \right] P_n^{m - 1}(x) = 0$,
         \begin{solution}
-            
+            Sabemos que os polin\^{o}mios de Legendre associados $P_n^m(x)$ satisfazem \eqref{eq:legendre_ass} e portanto
+            \begin{align*}
+                0 &= (1 - x^2) \frac{\mathrm{d}^2}{\mathrm{d}x^2}P_n^m(x) - 2 x \frac{\mathrm{d}}{\mathrm{d}x}P_n^m(x) + \left( n (n + 1) - \frac{m^2}{1 - x^2} \right) P_n^m(x) \\
+                \begin{split}
+                    &= (1 - x^2) \frac{\mathrm{d}^2}{\mathrm{d}x^2}\left[ (1 - x^2)^{m/2} \frac{\mathrm{d}^m}{\mathrm{d}x^m}P_n(x) \right] - 2 x \frac{\mathrm{d}}{\mathrm{d}x}P_n^m(x) \\ &\quad {}+ \left( n (n + 1) - \frac{m^2}{1 - x^2} \right) P_n^m(x)
+                \end{split} \\
+                % \begin{split}
+                %     &= (1 - x^2)
+                % \end{split}
+                \begin{split}
+                    &= -m P_n^m + m (m - 2) x^2 (1 - x^2)^{-1} P_n^m - 2 m x (1 - x^2)^{-1/2} P_n^{m + 1} + \\ &\quad {}+ P_n^{m + 2} + 2 x^2 m (1 - x^2)^{-1} P_n^m - 2 x (1 - x^2)^{-1/2} P_n^{m + 1} \\ &\quad {} + \left( n + (n + 1) - m^2 (1 - x^2)^{-1} \right) P_n^m
+                \end{split} \\
+                \begin{split}
+                    &= P_n^{m + 2} + \left[ -2 x (m + 1) (1 - x^2)^{-1/2} \right] P_n^{m + 1} \\ &\quad {}+ \left[ -m (1 - x^2) + m (m + 2) x^2 + 2 x^2 m + n (n + 1) (1 - x^2) - m^2 \right] (1 - x)^{-1} P_n^m
+                \end{split} \\
+                \begin{split}
+                    &= P_n^{m + 2} + \left[ -2 x (m + 1) (1 - x^2)^{-1/2} \right] P_n^{m + 1} \\ &\quad {}+ \left[ -m + m x^2 + m^2 x - 2 m x^2 + 2 m x^2 + n (n + 1) (1 - x^2) - m^2 \right] (1 - x)^{-1} P_n^m
+                \end{split} \\
+                \begin{split}
+                    &= P_n^{m + 2} + \left[ -2 x (m + 1) (1 - x^2)^{-1/2} \right] P_n^{m + 1} \\ &\quad {}+ \left[ -m (1 - x^2) - m^2 (1 - x^2) + n (n + 1) (1 - x^2) \right] (1 - x)^{-1} P_n^m
+                \end{split} \\
+                \begin{split}
+                    &= P_n^{m + 2} + \left[ -2 x (m + 1) (1 - x^2)^{-1/2} \right] P_n^{m + 1} \\ &\quad {}+ \left[ m (m + 1) + n (n _ 1) \right] P_n^m.
+                \end{split}
+            \end{align*}
+            Fazendo $m \to m - 1$ segue que
+            \begin{align*}
+                0 = P_n^{m + 1} - 2 x m (1 - x^2)^{-1/2} P_n^m + \left[ n (n + 1) - (m - 1) m \right] P_n^{m - 1}.
+            \end{align*}
         \end{solution}
 
         \part $(2 n + 1) x P _n^m(x) = (n + m) P_{n - 1}^m(x) + (n - m + 1) P_{n + 1}^m (x) = 0$,
         \begin{solution}
-            
+            Derivando \eqref{eq:legendre_ass_funcao_geratriz} em rela\c{c}\~{a}o a $t$ temos que
+            \begin{align*}
+                \frac{(2 m)!}{2^m m!} \frac{(2m + 1) (x - t)}{(1 - 2 x t + t^2)^{m + 3/2}} &= \sum_{n = 0}^\infty P_{n + m}^m(x) n t^{n - 1}, \\
+                (2m + 1) (x - t) \sum_{n = 0}^\infty P_{n + m}^m(x) t^n &= \sum_{n = 0}^\infty P_{n + m}^m(x) n t^{n - 1} (1 - 2 x t + t^2) \\
+                \begin{split}
+                    (2m + 1) x P_{n + m}^m - (2m + 1) P_{n + m - 1}^m &= (n + 1) P_{n + m + 1}^m \\ &\quad {}- 2 n x P_{n + m}^m + (n + 1) P_{n + m - 1}^n
+                \end{split} \\
+                \left[ (2m + 1) x + 2 n x \right] P_{n + m}^m &= \left[ (2m + 1) + (n - 1) \right] P_{n + m - 1}^m + (n + 1) P_{n + m + 1}^m.
+            \end{align*}
+            Fazendo $n = k - m$ segue que
+            \begin{align*}
+                \left[ x (2 k + 1) \right] P_k^m &= \left( m + k \right) P_{k = 1}^m + \left( k - m + 1 \right) P_{k + 1}.
+            \end{align*}
         \end{solution}
 
         \part $(2n + 1) (1 - x^2)^{1/2} P_n^m(x) = P_{n + 1}^{m + 1}(x) - P_{n - 1}^{m + 1}(x)$,
         \begin{solution}
-            
+            Por \eqref{eq:legendre_rel_rec_2n+1der} segue que
+            \begin{align*}
+                (2 n + 1) P_n^m(x) &= P_{n + 1}^{m + 1}(x) - P_{n - 1}^{m + 1}(x)
+            \end{align*}
+            TODO
         \end{solution}
 
         \part $(1 - x^2)^{1/2} {P_n^m}'(x) = 2^{-1} P_n^{m + 1}(x) - 2^{-1} (n + m) (n - m + 1) P_n^{m - 1}(x)$.
         \begin{solution}
-            
+            Segue de \eqref{eq:legendre_ass} ao efetuar a mudan\c{c}a de vari\'{a}vel representada por $y(x) = (1 - x^2)^{m/2} w(x)$ que
+            \begin{align*}
+                (1 - x^2) w'' - 2 (m + 1) x w' + (\nu - m) (\nu + m + 1) w &= 0.
+            \end{align*}
+            Como $P_n^{m - 1}(x)$ satisfaz a equa\c{c}\~{a}o acima temos que
+            \begin{align*}
+                0 &= (1 - x^2) P_n^{m + 1}(x) - 2 m x P_n^m(x) + (n - m + 1) (m + m) P_n^{m - 1}(x) \\
+                \begin{split}
+                    &= (1 - x^2)^{m/2} P_n^{m + 1}(x) - 2 m x (1 - x^2)^{m/2 - 1} P_n^m(x) \\ &\quad {}+ (n + m) (n - m + 1) (1 - x^2)^{m/2 - 1} P_n^{m - 1}
+                \end{split} \\
+                \begin{split}
+                    &= (1 - x^2)^{-1/2} P_n^{m + 1}(x) - 2\left[ -P_n^{m \prime}(x) + (1 - x^2)^{-1/2} P_n^{m + 1}(x) \right] \\ &\quad +{} (n + m) (n - m + 1) (1 - x^2)^{-1/2} P_n^{m - 1}(x)
+                \end{split} \\
+                &= (1 - x^2)^{1/2} 2 P_n^{m\prime}(x) - P_n^{m + 1}(x) + (n + m) (n - m + 1) P_n^{m - 1}(x).
+            \end{align*}
+            Da equa\c{c}\~{a}o acima segue que
+            \begin{align*}
+                \sqrt{1 - x^2} P_n^{m\prime} &= 2^{-1} P_n^{m + 1}(x) - 2^{-1} (n + m) (n - m + 1) P_n^{m - 1}(x).
+            \end{align*}
         \end{solution}
     \end{parts}
 
@@ -355,7 +562,22 @@ Equa\c{c}\~{o}es eventualmente útil:
         P_n^{-m}(x) &= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m(x).
     \end{align*}
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            P_n^{-m}(x) &= \frac{(1 - x^2)^{-m/2}}{2^n n!} \frac{\mathrm{d}^{n - m}}{\mathrm{d}x^{n - m}}(x^2 - 1)^n \\
+            &= \frac{(1 - x^2)^{-m/2}}{2^n n!} \frac{\mathrm{d}^{n - m}}{\mathrm{d}x^{n - m}}\left[ (x - 1) (x + 1) \right]^n \\
+            &= \frac{(1 - x^2)^{-m/2}}{2^n n!} \frac{\mathrm{d}^{n - m}}{\mathrm{d}x^{n - m}}\left[ (x - 1)^n (x + 1)^n \right] \\
+            &= \frac{(1 - x^2)^{-m/2}}{2^n n!} \sum_{k = 0}^{n - m} \frac{(n - m)!}{(n - m - k)! k!} \frac{\mathrm{d}^k}{\mathrm{d}x^k}(x - 1)^n \frac{\mathrm{d}^{n - m - k}}{\mathrm{d}x^{m - n - k}}(x + 1)^n \\
+            &= \frac{(1 - x^2)^{-m/2}}{2^n n!} \sum_{k = 0}^{n - m} \frac{(n - m)!}{(n - m - k)! k!} \left[ \frac{n!}{(n - k)!}(x - 1)^{n - k} \frac{n!}{(m - k)!} (x + 1)^{m + k} \right], \\
+            P_n^m(x) &= \frac{(1 - x^2)^{m/2}}{2^n n!} \sum_{k = m}^n \frac{(n + m)!}{(n - m - k)! k!} \left[ \frac{n!}{(n - k)!} (x - 1)^{n - k} \frac{n!}{(k - m)!} (x + 1)^{k - m} \right] \\
+            &= \frac{(1 - x^2)^{-m/2}}{2^n n!} (1 - x^2)^m \sum_{j = 0}^{n - m} \frac{(n + m)!}{(n - j)! (m + j)!} \left[ \frac{n!}{(n - m - j)!} (x - 1)^{n - m - j} \frac{n!}{j!} (x + 1)^j \right] \\
+            &= \frac{(-1)^m (1 - x^2)^{-m/2}}{2^n n!} \sum_{j = 0}^{n - m} \frac{(n + m)!}{(n -m - j)! j!} \left[ \frac{n!}{(n - j)!} (x - 1)^{n - j} \frac{n!}{(m + j)!} (x + 1)^{m + j} \right] \\
+            &= \frac{(n + m)!}{(n - m)!} (-1)^m P_n^{-m}.
+        \end{align*}
+        Logo, segue que
+        \begin{align*}
+            P_n^{-m}(x) &= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m(x).
+        \end{align*}
     \end{solution}
 
     \question Mostre que
@@ -366,7 +588,20 @@ Equa\c{c}\~{o}es eventualmente útil:
         \end{cases}
     \end{align*}
     \begin{solution}
-        
+        Para $x = 0$ temos que \eqref{eq:legendre_ass_funcao_geratriz} assume a forma
+        \begin{align*}
+            \frac{(2 m)!}{2^m m!} \frac{1}{(1 + t^2)^{m + 1/2}} &= \sum_{n = 0}^\infty P_{n + m}^m(0) t^n \\
+            &= \sum_{k = m}^\infty P_k^m(0) t^{k - m} \\
+            &= \frac{(2 m)!}{2^m m!} \sum_{n = 0}^\infty \frac{(-1)^n}{n!} (m + 1/2)_n t^{2n} \\
+            &= \frac{(2 m)!}{2^m m!} \sum_{n = 0}^\infty \frac{(-1)^n}{n!} \frac{(2 m + 2 n - 1)!!}{(2 m - 1)!!} \frac{t^{2n}}{2^n} \\
+            &= \frac{(2 m)!}{2^m m!} \sum_{k = 0}^\infty \frac{(-1)^{(k - m)/2}}{\left( (k - m)/2 \right)!} \frac{(m + k - 1)!!}{(2 m - 1)!!} \frac{t^{k + m}}{2^{k - m/2}} \\
+            &= \frac{(2 m)!}{2^m m!} \sum_{k = 0}^\infty \frac{(-1)^{(k - m)/2}}{(k - m)!!} \frac{2^{(k - m)/2}}{2^{k - m/2}} \frac{(m + k - 1)!!}{(2 m - 1)!!} t^{k - m} \\
+            &= \sum_{k = 0}^\infty \frac{(-1)^{(k - m)/2}}{(k - m)!} (m + k - 1)!! t^{k - m}.
+        \end{align*}
+        Logo, segue que
+        \begin{align*}
+            P_k^m(0) = (-1)^{(k - m)/2} \frac{(m + k - 1)!!}{(k - m)!!}.
+        \end{align*}
     \end{solution}
 
     \question Sejam $P_n^m(x)$ as fun\c{c}\~{o}es associadas de Legendere de primeira es\'{e}cie. Mostre que
@@ -519,4 +754,6 @@ Equa\c{c}\~{o}es eventualmente útil:
         \end{align*}
     \end{solution}
 \end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
 \end{document}

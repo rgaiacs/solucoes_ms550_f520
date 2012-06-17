@@ -1,10 +1,11 @@
 % Filename: lista6.tex
+% 
 % This code is part of 'Solutions for MS550, M\'{e}todos de Matem\'{a}tica Aplicada I, and F520, M\'{e}todos Matem\'{a}ticos da F\'{i}sica I'
 % 
 % Description: This file corresponds to the solutions of homework sheet 6.
 % 
 % Created: 25.03.12 10:25:19 AM
-% Last Change: 05.06.12 05:23:59 PM
+% Last Change: 09.06.12 04:34:55 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -28,15 +29,11 @@
 \unframedsolutions
 \pointname{}
 
-% Para impress\~{a}o
-\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
-
-% Para ereaders (Kindle, Nook, Kobo, ...) and tablets (iPad, GalaxyTab, ...)
-% \usepackage[papersize={180mm,240mm},margin=2mm]{geometry}
-% \sloppy
+\input{paper_size.tex}
 
 % Pacotes
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -712,6 +709,45 @@ Equa\c{c}\~{o}es eventualmente útil:
             &= \sum_{n = 0}^\infty \frac{t^n}{n!} J_n(x) && \text{por \eqref{eq:bessel_pri_esp}}.
         \end{align*}
     \end{solution}
+
+    \question A fun\c{c}\~{a}o geratriz das fun\c{c}\~{o}es de Bessel \'{e} $g(x, t) = \exp(x (t - t^{-1}) / 2)$.
+    \begin{parts}
+        \part Use-a para mostrar que $J_n(u + v) = \sum_{m = -\infty}^\infty J_m(u) J_{n - m}(v)$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \exp\left( (u + v) (t + t^{-1}) / 2 \right) &= \exp\left( u (t + t^{-1}) / 2 \right) \exp\left( v (t + t^{-1}) / 2 \right) \\
+                \sum_{n = -\infty}^\infty J_n(u + v) t^n &= \sum_{m = -\infty}^\infty J_m(u) t^m \sum_{k = -\infty}^\infty J_k(v) t^k \\
+                \sum_{n = -\infty}^\infty J_n(u + v) t^n &= \sum_{m = -\infty}^\infty \sum_{k = -\infty}^\infty J_m(u) J_k(v) t^{m + k} \\
+                &= \sum_{n = -\infty}^\infty \left( \sum_{m = -\infty}^\infty J_m(u) J_{n - m}(v) \right) t^n && m + k = n.
+            \end{align*}
+            Pela \'{u}tima equa\c{c}\~{a}o conclu\'{i}mos que$J_n(u + v) = \sum_{m = -\infty}^\infty J_m(u) J_{n - m}(v)$.
+        \end{solution}
+
+        \part Mostre que $| J_0(x) | \leq 1$ e que $| J_n(x) | \leq 2^{-1/2}$ para $n = 1, 2, 3, \ldots$.
+        \begin{solution}
+            Tomando $n = 0$, $u = -v = x$ temos que
+            \begin{align*}
+                J_0(0) &= \sum_{m = -\times}^\infty J_m(x) J_{-m}(-x) \\
+                &= \sum_{m = -\infty}^\infty J_m(x) (-1)^m J_m(-x) && \text{por \eqref{eq:bessel_prim_esp_neg}} \\
+                &= \sum_{m = -\infty}^\infty J_m(x) (-1)^m (-1)^m J_m(x) \\
+                &= \sum_{m = -\infty}^\infty J_m^2(x) \\
+                &= J_0^2(x) + \sum_{m = -\infty}^{-1} J_m^2(x) + \sum_{m = 1}^\infty J_m^2(x) \\
+                &= J_0^2(x) + 2 \sum_{m = 1}^\infty J_m^2(x).
+            \end{align*}
+            Pela defini\c{c}\~{a}o de $J_m(x)$ temos que $J_0(0) = 1$ e portanto
+            \begin{align*}
+                1 &= J_0^2(x) + 2 \sum_{m = 1}^\infty J_m^2(x)
+            \end{align*}
+            que implica em
+            \begin{align*}
+                \begin{cases}
+                    J_0^2(x) \leq 1, \\
+                    2 J_m^2(x) \leq 1, & m = 1, 2, \ldots.
+                \end{cases}
+            \end{align*}
+        \end{solution}
+    \end{parts}
 \end{questions}
 \bibliographystyle{plain}
 \bibliography{bibliography}

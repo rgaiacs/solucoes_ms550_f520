@@ -1,4 +1,5 @@
 % Filename: lista1.tex
+% 
 % This code is part of 'Solutions for MS550, M\'{e}todos de Matem\'{a}tica Aplicada I, and F520, M\'{e}todos Matem\'{a}ticos da F\'{i}sica I'
 % 
 % Description: This file corresponds to the solutions of homework sheet 1.
@@ -28,15 +29,11 @@
 \unframedsolutions
 \pointname{}
 
-% Para impress\~{a}o
-\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
-
-% Para ereaders (Kindle, Nook, Kobo, ...) and tablets (iPad, GalaxyTab, ...)
-% \usepackage[papersize={180mm,240mm},margin=2mm]{geometry}
-% \sloppy
+\input{paper_size.tex}
 
 % Pacotes
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -311,6 +308,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
     Mostre que $\rot \vec{V} = \vec{e}_z$.
     \begin{solution}
         Para utilizar \eqref{eq:rot} precisamos do fator de escala e das componentes dos vetores tangentes. Primeira vamos calcular os fatores de escala utilizando \eqref{eq:fator_escala}:
+
         \begin{align*}
               h_u &= \sqrt{u^2 + v^2}, \\
               h_v &= \sqrt{v^2 + u^2}, \\

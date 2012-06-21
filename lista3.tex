@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 3.
 % 
 % Created: 25.03.12 10:25:19 AM
-% Last Change: 30.05.12 04:40:57 PM
+% Last Change: 19.06.12 08:40:50 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -121,8 +121,8 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         onde $A, B \in \mathbb{C}$, $r \in \mathbb{R} \geq 0$, $A = \alpha_1 + i \beta_1$, $B = \alpha_2 + i \beta_2$ e $\alpha_1, \alpha_2, \beta_1, \beta_2 \in \mathbb{R}$ (ver detalhes na figura abaixo).
         \begin{center}
             \begin{tikzpicture}
-                \draw[->] (-1,0) -- (4,0) node[above right] {$\text{Re}(z)$};
-                \draw[->] (0,-1) -- (0,4) node[above right] {$\text{Im}(z)$};
+                \draw[->] (-1,0) -- (4,0) node[above right] {$\mathrm{Re}(z)$};
+                \draw[->] (0,-1) -- (0,4) node[above right] {$\mathrm{Im}(z)$};
                 \draw (0,0) -- (60:3) node[above right] {$r$};
                 \draw (1,0) arc (0:60:1);
             \end{tikzpicture}
@@ -134,12 +134,12 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         \begin{align*}
             y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln r \right) \\
             &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right) \cos \left( \ln r \right) + \left( \alpha_1 + i \beta_1 - \alpha_2 - i\beta_2 \right) i \sin\left( \ln r \right), \\
-            \text{Re} y\left( z \right) &= \alpha_1 \cos\left( \ln r \right) + \alpha_2 \cos\left( \ln r \right) - \beta_1 \sin\left( \ln r \right) + \beta_2 \sin\left( \ln r \right), \\
-            \text{Im} y\left( z \right) &= \beta_1 \cos\left( \ln r \right) + \beta_2 \cos\left( \ln r \right) + \alpha_1 \sin\left( \ln r \right) - \alpha_2 \sin\left( \ln r \right).
+            \mathrm{Re} y\left( z \right) &= \alpha_1 \cos\left( \ln r \right) + \alpha_2 \cos\left( \ln r \right) - \beta_1 \sin\left( \ln r \right) + \beta_2 \sin\left( \ln r \right), \\
+            \mathrm{Im} y\left( z \right) &= \beta_1 \cos\left( \ln r \right) + \beta_2 \cos\left( \ln r \right) + \alpha_1 \sin\left( \ln r \right) - \alpha_2 \sin\left( \ln r \right).
         \end{align*}
-        Para que a solu\c{c}\~{a}o da equa\c{c}\~{a}o seja real, $\text{Im} y\left( z) \right) = 0$. Da\'{i}, $\beta_1 = -\beta_2$ e $\alpha_1 = \alpha_2$. Substituindo na express\~{a}o anterior para $\text{Re} y\left( z \right)$, tem-se
+        Para que a solu\c{c}\~{a}o da equa\c{c}\~{a}o seja real, $\mathrm{Im} y\left( z) \right) = 0$. Da\'{i}, $\beta_1 = -\beta_2$ e $\alpha_1 = \alpha_2$. Substituindo na express\~{a}o anterior para $\mathrm{Re} y\left( z \right)$, tem-se
         \begin{align*}
-            \text{Re} y\left( z \right) &= 2\alpha_1 \cos\left( \ln r \right) + 2 \beta_2 \sin\left( \ln r \right).
+            \mathrm{Re} y\left( z \right) &= 2\alpha_1 \cos\left( \ln r \right) + 2 \beta_2 \sin\left( \ln r \right).
         \end{align*}
 
         Para $\theta = \pi$ temos $\ln z = \ln r + i \pi$. Com isso temos:
@@ -170,12 +170,12 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
          Com $\omega\left(r\right) \text{ e } \psi\left(r\right) \in \mathbb{R}$. Com isso,
         \begin{align*}
              y\left( z \right) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin\left( \ln z \right) \\
-             \text{Re}y\left( z \right) &= -\left[\left(\beta_1 + \beta_2 \right)\omega \left(r\right) + \left(\alpha_1 - \alpha_2\right)\psi \left(r\right)\right]\\
-             \text{Im}y\left( z \right) &= \left(\alpha_1 + \alpha_2\right)\omega \left(r\right) - \left(\beta_1 - \beta_2\right)\psi \left(r\right).
+             \mathrm{Re}y\left( z \right) &= -\left[\left(\beta_1 + \beta_2 \right)\omega \left(r\right) + \left(\alpha_1 - \alpha_2\right)\psi \left(r\right)\right]\\
+             \mathrm{Im}y\left( z \right) &= \left(\alpha_1 + \alpha_2\right)\omega \left(r\right) - \left(\beta_1 - \beta_2\right)\psi \left(r\right).
         \end{align*}
         n\~{a}o pode ser definida para $\theta = \pi$. Logo, n\~{a}o \'{e} real no semi-eixo real negativo.
          
-        Para que a solu\c c\~{a}o seja real, $\text{Im} y\left(z\right) = 0$, o que implica que $\alpha_1 = - \alpha_2$ e $\beta_1 = \beta_2$.
+        Para que a solu\c c\~{a}o seja real, $\mathrm{Im} y\left(z\right) = 0$, o que implica que $\alpha_1 = - \alpha_2$ e $\beta_1 = \beta_2$.
 
        Portanto n\~{a}o podem ser satisfeitas ao mesmo tempo, ent\~{a}o nenhuma solu\c c\~{a}o real no semi-eixo real positivo do plano complexo pode ser real no semi-eixo real negativo, como queriamos demonstrar.
     \end{solution}

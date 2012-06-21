@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 8.
 % 
 % Created: 21.05.12 08:46:45 PM
-% Last Change: 16.06.12 11:18:03 AM
+% Last Change: 19.06.12 08:51:45 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -460,7 +460,55 @@
             \lim_{x \to 0^+} | y(x) | < \infty.
         \end{cases}$
         \begin{solution}
-            
+            Para $y(x) = x^r$ temos que
+            \begin{align*}
+                r^2 + \lambda = 0 \Rightarrow r = \pm i \sqrt{\lambda}.
+            \end{align*}
+            Para $\lambda = 0$, temos que
+            \begin{align*}
+                y = A x^0 + B x^0 \ln(x) = A + B \ln(x).
+            \end{align*}
+            Quando $x = 1$ temos
+            \begin{align*}
+                0 &= y(1) = A + B \ln(1) \Rightarrow A = 0.
+            \end{align*}
+            Quando $x \to 0^+$ temos
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | < \infty \Rightarrow \lim_{x \to 0^+} | B \ln(x) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y(x) &= \bar{A} x^{i k} + \bar{B} x^{-i k} \\
+                &= \bar{A} \exp(i k \ln(x)) + \bar{B} \exp(-i k \ln(x)) \\
+                &= A \cos(k \ln(x)) + B \sin(k \ln(x)).
+            \end{align*}
+            Quando $x = 1$ temos
+            \begin{align*}
+                0 = y(1) = A \cos(k \ln(x)) + B \sin(k \ln(x)) \Rightarrow A = 0.
+            \end{align*}
+            Quando $x \to 0^+$ temos
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | < \infty \Rightarrow \lim_{x \to 0^+} | B \sin(k \ln(x)) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda > 0$ temos que $-1 \leq | B \sin(k \ln(x))  \leq 1$ que implica em $y(x) = \sin(k \ln(x))$, $k \geq 1$.
+
+            Para $\lambda = - k^2$, fazendo $\lambda = - k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y(x) = A x^k + B x^{-k}.
+            \end{align*}
+            Quando $x = 1$ temos
+            \begin{align*}
+                0 = y(1) = A + B \Rightarrow A = - B.
+            \end{align*}
+            Quando $x \to 0^+$ temos
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | = \lim_{x \to 0^+} | x^k - x^{-k} | = -\infty.
+            \end{align*}
+            Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k \ln(x))$ com $k \geq 1$ quando $\lambda > 0$.
         \end{solution}
 
         \part $\begin{cases}
@@ -469,7 +517,49 @@
             \lim_{x \to \infty} | y(x) | < \infty.
         \end{cases}$
         \begin{solution}
-            
+            Para $\lambda = 0$, temos que
+            \begin{align*}
+                y'' = 0 \Rightarrow y = A + B x.
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = A.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            \end{align*}
+            Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = C.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            Para $\lambda < 0$ temos
+            \begin{align*}
+                y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = E.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            \end{align*}
+            Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
         \end{solution}
 
         \part $\begin{cases}
@@ -478,7 +568,49 @@
             \lim_{x \to 0^-} | y(x) | < \infty.
         \end{cases}$
         \begin{solution}
-            
+            Verifica-se que $x y11 + y' + \lambda x y = 0$ \'{e} ua equa\c{c}\~{a}o de Bessel de ordem zero. Fazendo a substitui\c{c}\~{a}o de $\sqrt{\lambda} x \to t$ temos
+            \begin{align*}
+                t y'' + y' + t y = 0
+            \end{align*}
+            e para $\lambda = \alpha^2$ com $\alpha > 0$ temos
+            \begin{align*}
+                y(r) = A J_0(\sqrt{\lambda} x) + B Y_0(\sqrt{\lambda} x).
+            \end{align*}
+            Como 
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | < \infty \Rightarrow B = 0 \text{ e } y(x) = A J_0(\sqrt{\lambda} x)
+            \end{align*}
+            e quando $x = 0$ temos
+            \begin{align*}
+                0 = A J_0(\sqrt{\lambda}) \Rightarrow \sqrt{\lambda} = k_0 n.
+            \end{align*}
+            Portanto, $y_n(x) = J_0(k_0 n x)$ com $\lambda = k_0 n^2$.
+
+            Para $\lambda = 0$ temos
+            \begin{align*}
+                x y'' + y' = 0 \Rightarrow y(x) = c_1 \ln(x) + c_2.
+            \end{align*}
+            Quando $x \to 0^+$ temos
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | = \infty.
+            \end{align*}
+            Portanto, quando $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda < 0$, fazendo $\lambda = - \alpha^2$ com $\alpha > 0$ temos
+            \begin{align*}
+                t y'' + y' - t y = 0 \Rightarrow y(x) = A I_0(\alpha x) + B K_0(\alpha x).
+            \end{align*}
+            Quando $x \to 0^+$ temos
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | < 0 \Rightarrow B = 0.
+            \end{align*}
+            Quando $x = 1$ temos
+            \begin{align*}
+                0 = y(1) = A I_0(\alpha) \Rightarrow \alpha = 0 \text{ ou } A = 0.
+            \end{align*}
+            Portanto, quando $\lambda < 0$ existe apenas a solu\c{c}\~{a}o trivial.
+
+            Assim sendo, al\'{e}m da solu\c{c}\~{a}o trivial temos $y_n(x) = J_0(k_0 n x)$ com $\lambda = k_0 n^2$ quando $\lambda > 0$.
         \end{solution}
         
         \part $\begin{cases}
@@ -487,7 +619,100 @@
             \lim_{x \to b} | y(x) | < \infty.
         \end{cases}$
         \begin{solution}
-            
+            % TODO
+
+            % Para $\lambda = 0$, temos que
+            % \begin{align*}
+            %     y'' = 0 \Rightarrow y = A + B x.
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = A.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            % \begin{align*}
+            %     y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = C.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            % \end{align*}
+            % Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            % Para $\lambda < 0$ temos
+            % \begin{align*}
+            %     y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = E.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
+            Fazendo $x = a + t \left( b - a \right)$ temos que
+            \begin{align*}
+                t &= \left( x - a \right) / \left( b - a \right), \\
+                x &= a \to t = 0, \\
+                x &= b \to t = 1, \\
+                \frac{\mathrm{d}}{\mathrm{d}x} &= \frac{\mathrm{d}}{\mathrm{d}t} \frac{\mathrm{d}t}{\mathrm{d}x} = \frac{1}{b - a} \frac{\mathrm{d}}{\mathrm{d}t}.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                0 &= \frac{\mathrm{d}^2y}{\mathrm{d}x^2} \left( - x^2 + \left( a + b \right) x - a b \right) + \frac{\mathrm{d}}{\mathrm{d}x} \left( -2 x + (a + b) \right) \mathrm{d}y \\
+                \begin{split}
+                    &= \frac{\mathrm{d}^2}{\mathrm{d}t^2} \frac{1}{(b - a)^2} \left[ - \left( a + t \left( b - a \right) \right)^2 + \left( a + b \right) \left( a + t \left( b - a \right) \right) - a b \right] \\ &\quad {}+ \frac{\mathrm{d}}{\mathrm{d}t} y \frac{1}{b - a} \left[ -2 a + 2 t \left( b - a \right) + \left( a + b) \right) \right] + \lambda y 
+                \end{split} \\
+                \begin{split}
+                    &= \frac{\mathrm{d}^2 y}{\mathrm{d}t^2} \frac{1}{(b - a)^2} \left[ -a t \left( b - a \right) + b t \left( b - a \right) - t^2 \left( b - a \right)^2 \right] \\ &\quad {}+ \frac{\mathrm{d}y}{\mathrm{d}t} \frac{1}{(b - a)} \left[ -2 t \left( b - a \right) + b - a \right] + \lambda y
+                \end{split} \\
+                &= t \left( 1 - t \right) \frac{\mathrm{d}^2y}{\mathrm{d}t^2} + \left( 1 - 2 t \right) \frac{\mathrm{d}y}{\mathrm{d}t} + \lambda y.
+            \end{align*}
+            Para $t = \left( 1 - \bar{x} \right) / 2$ temos
+            \begin{align*}
+                \left( 1 - \bar{x}^2 \right) y'' - 2 \bar{x} y' + \lambda y &= 0.
+            \end{align*}
+            Para $\lambda = v \left( v + 1 \right)$ temos
+            \begin{align*}
+                y &= A P_v (\bar{x}) + B Q_v(\bar{x}) \\
+                &= A P_v(1 - 2 t) + B Q_v(1 - 2 t) \\
+                &= A \,_2F_1(-v, v + 1, 1; t) + B Q_v(1 - 2 t).
+            \end{align*}
+            Ent\~{a}o, quando $x \to \pm 1$ temos que $\lim_{x \to \pm 1} | y | < \infty$ e portanto $B = 0$.o
+
+            Como 
+            \begin{align*}
+                _2F_1(-v, v + 1, 1; t) &= \sum_{n = 0}^\infty \frac{(-v)_n (v + 1)_n}{(1)_n} \frac{t^n}{n!}
+            \end{align*}
+            e deseja-se que seja infinito para $t = 0$ e $t = 1$ temos que se $v \in \mathbb{N}$ obtemos os polin\^{o}mios de Legendre de modo que satisfaz a condi\c{c}\~{a}o desejada. J\'{a} para o caso geral corresponde temos
+            \begin{align*}
+                \sum_{n = 0}^\infty \frac{(-v)_n (v + 1)_n}{n!} \frac{1}{n!}
+            \end{align*}
+            e assim
+            \begin{align*}
+                \frac{a_{n + 1}}{a_n} &= \frac{(-v)_{n + 1} (v + 1)_{n + 1}}{\left( (n + 1)! \right)^2} \to \frac{(n!)^2}{(-v)_n (v + 1)_n} = \frac{(n - v) (n + 1 - v + 1)}{(n + 1)^2} \to 1.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                _2F_1(-v, v + 1, 1; 1) &= \frac{1}{B(v + 1, v)} \int_0^1 t^v \left( 1 - t \right)^{-v - 1} \left( 1 - t \right)^v \,\mathrm{d}t \\
+                &= \frac{1}{B(v + 1, - v)} \int_0^1 t^{v} (1 - t)^-1 \,\mathrm{d}t \\
+                &= \frac{B(v + 1, 0)}{B(v + 1, - v)}.
+            \end{align*}
+            Por fim, $y(t) = P_n(1 - 2t)$ para $\lambda_n = n(n + 1)$ e $y_n(x) = P_n(1 - 2 (x - a)/(b - a))$.
         \end{solution}
 
         \part $\begin{cases}
@@ -496,7 +721,64 @@
             y(1) = 1.
         \end{cases}$
         \begin{solution}
-            
+            % TODO
+
+            % Para $\lambda = 0$, temos que
+            % \begin{align*}
+            %     y'' = 0 \Rightarrow y = A + B x.
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = A.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            % \begin{align*}
+            %     y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = C.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            % \end{align*}
+            % Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            % Para $\lambda < 0$ temos
+            % \begin{align*}
+            %     y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = E.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
+            Temos que a solu\c{c}\~{a}o \'{e} da forma
+            \begin{align*}
+                y(x) &= A \exp(x) + B \exp(-x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 &= y(0) = A + B \to B = - A.
+            \end{align*}
+            Quando $x \to 1$ temos
+            \begin{align*}
+                1 &= y(1) = A \exp(1) + B \exp(-1) = 2 A \sinh(1) \to A = \frac{1}{2 \sinh(1)}.
+            \end{align*}
+            Portanto, a solu\c{c}\~{a}o \'{e} $y = \sinh(x) / \sinh(1)$.
         \end{solution}
 
         \part $\begin{cases}
@@ -505,7 +787,70 @@
             y'(1) = 1.
         \end{cases}$
         \begin{solution}
-            
+            % TODO
+
+            % Para $\lambda = 0$, temos que
+            % \begin{align*}
+            %     y'' = 0 \Rightarrow y = A + B x.
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = A.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            % \begin{align*}
+            %     y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = C.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            % \end{align*}
+            % Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            % Para $\lambda < 0$ temos
+            % \begin{align*}
+            %     y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = E.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
+            Temos que a solu\c{c}\~{a}o \'{e} da forma $y(x) = \exp(r x)$. Portanto,
+            \begin{align*}
+                r^2 + 4 r + 7 = 0 \to r = \left( -4 \pm \sqrt{16 - 28} \right) / 2 = -2 \pm i \sqrt{3}
+            \end{align*}
+            e consequentemente
+            \begin{align*}
+                y(x) &= \exp(-2 x) \left( A \cos(\sqrt{3} x) + B \sin(\sqrt{3} x) \right).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 &= y(0) = A \to y = \exp(-2 x) B \sin(\sqrt{3} x).
+            \end{align*}
+            Quando $x = 1$ temos que
+            \begin{align*}
+                y'(x) &= -2 \exp(-2 x) B \sin(\sqrt{3} x) + \sqrt{3} \exp(- 2 x) B \cos(\sqrt{3} x), \\
+                1 &= y'(1) = B \left[ -2 \exp(-2) \sin(\sqrt{3}) + \sqrt{3}\exp(-2) \cos(\sqrt{3}) \right] \\
+                &= \to B = \exp(2) / \left( -2 \sin(\sqrt{3} + \sqrt{3} \cos(\sqrt{3}) \right).
+            \end{align*}
+            Portanto, a solu\c{c}\~{a}o \'{e} $y = \exp(2) \left( -2 \sin(\sqrt{3}) + \sqrt{3} \cos(\sqrt{3}) \right)^{-1} \exp(-2x) \sin(\sqrt{3} x)$.
         \end{solution}
 
         \part $\begin{cases}
@@ -514,7 +859,69 @@
             y(\pi/4) = 0.
         \end{cases}$
         \begin{solution}
-            
+            % TODO
+
+            % Para $\lambda = 0$, temos que
+            % \begin{align*}
+            %     y'' = 0 \Rightarrow y = A + B x.
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = A.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            % \begin{align*}
+            %     y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = C.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            % \end{align*}
+            % Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            % Para $\lambda < 0$ temos
+            % \begin{align*}
+            %     y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = E.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
+            Temos que a solu\c{c}\~{a}o \'{e} da forma $y(x) = \exp(r x)$. Portanto,
+            \begin{align*}
+                r^2 - 6 r + 25 = 0 \to r = \left( 6 \pm \sqrt{36 - 100} \right) / 2 = \left( 6 \pm 8 i \right) / 2 = 3 \pm 4 i
+            \end{align*}
+            e consequentemente
+            \begin{align*}
+                y(x) = \exp(3 x) \left( A \cos(4x) + B \sin(4x) \right).
+            \end{align*}
+            Quando $x = \pi/4$ temos
+            \begin{align*}
+                0 &= y(\pi/4) = \exp(3 \pi / 4) \left( A \cos(\pi) + B \sin(\pi) \right) \to A = 0.
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                y'(x) &= B \left( \exp(3 x) 3 \sin(4 x) + \exp(3 x) 4 \cos(4 x) \right), \\
+                1 &= y'(0) = B(4) \to B = 1/4.
+            \end{align*}
+            Portanto, a solu\c{c}\~{a}o \'{e} $y(x) = \left( 1/4 \right) \exp(3 x) \sin(4x)$. 
         \end{solution}
 
         \part $\begin{cases}
@@ -523,7 +930,76 @@
             y(2) = 3.
         \end{cases}$
         \begin{solution}
-            
+            % TODO
+
+            % Para $\lambda = 0$, temos que
+            % \begin{align*}
+            %     y'' = 0 \Rightarrow y = A + B x.
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = A.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            % \begin{align*}
+            %     y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = C.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            % \end{align*}
+            % Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            % Para $\lambda < 0$ temos
+            % \begin{align*}
+            %     y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            % \end{align*}
+            % Quando $x = 0$ temos
+            % \begin{align*}
+            %     0 = y(0) = E.
+            % \end{align*}
+            % Quando $x \to \infty$ temos
+            % \begin{align*}
+            %     \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            % \end{align*}
+            % Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            % Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
+            Temos que a solu\c{c}\~{a}o \'{e} da forma $y(x) = \exp(r x)$. Portanto,
+            \begin{align*}
+                r^2 - 6 r + 25 = 0 \to r = \left( 6 \pm \sqrt{36 - 100} \right) / 2 = \left( 6 \pm 8 i \right) / 2 = 3 \pm 4 i
+            \end{align*}
+            e consequentemente
+            \begin{align*}
+                y(x) &= \exp(3 x) \left( A \cos(4 x) + B \sin(4 x) \right).
+            \end{align*}
+            Uma solu\c{c}\~{a}o particular \'{e} da forma $\bar{A} x + \bar{B}$ e portanto
+            \begin{align*}
+                2 (\bar{A}) + \bar{A} + \bar{B} = x \to \bar{A} = 1, \bar{B} = -2.
+            \end{align*}
+            Logo, a solu\c{c}\~{a}o \'{e} da forma
+            \begin{align*}
+                y(x) &= x - 2 + \exp(3 x) \left( A \cos(4 x) + B \sin(4 x) \right).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 &= y(0) = -2 + A \to A = 2.
+            \end{align*}
+            Quando $x = 2$ temos
+            \begin{align*}
+                3 &= y(2) = \exp(6) \left( 2 \cos(8) + B \sin(8) \right) \to B = - 2 \cot(8).
+            \end{align*}
+            Portanto, a solu\c{c}\~{a}o \'{e} $y = x - 2 + \exp(3 x) \left( 2 \cos(4 x) - 2 \cot(8) \sin(4 x) \right)$.
         \end{solution}
 
         \part $\begin{cases}
@@ -532,6 +1008,51 @@
             y(2) = 0.
         \end{cases}$
         \begin{solution}
+            TODO
+
+            Para $\lambda = 0$, temos que
+            \begin{align*}
+                y'' = 0 \Rightarrow y = A + B x.
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = A.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            \end{align*}
+            Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = C.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            Para $\lambda < 0$ temos
+            \begin{align*}
+                y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = E.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            \end{align*}
+            Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
             
         \end{solution}
 
@@ -541,6 +1062,51 @@
             y(3 \pi 2^{-1}) = 0.
         \end{cases}$
         \begin{solution}
+            TODO
+
+            Para $\lambda = 0$, temos que
+            \begin{align*}
+                y'' = 0 \Rightarrow y = A + B x.
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = A.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            \end{align*}
+            Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = C.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            Para $\lambda < 0$ temos
+            \begin{align*}
+                y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = E.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            \end{align*}
+            Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
             
         \end{solution}
 
@@ -549,6 +1115,51 @@
             y(0) = y''(0) = y(1) = y''(1) = 0.
         \end{cases}$
         \begin{solution}
+            TODO
+
+            Para $\lambda = 0$, temos que
+            \begin{align*}
+                y'' = 0 \Rightarrow y = A + B x.
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = A.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            \end{align*}
+            Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = C.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            Para $\lambda < 0$ temos
+            \begin{align*}
+                y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = E.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            \end{align*}
+            Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
             
         \end{solution}
 
@@ -557,6 +1168,51 @@
             y(0) = y'(0) = y''(1) = y'''(1) = 0.
         \end{cases}$
         \begin{solution}
+            TODO
+
+            Para $\lambda = 0$, temos que
+            \begin{align*}
+                y'' = 0 \Rightarrow y = A + B x.
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = A.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            \end{align*}
+            Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = C.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            Para $\lambda < 0$ temos
+            \begin{align*}
+                y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = E.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            \end{align*}
+            Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
             
         \end{solution}
 
@@ -566,6 +1222,51 @@
             \lim_{x \to 1} | y(x) | < \infty.
         \end{cases}$
         \begin{solution}
+            TODO
+
+            Para $\lambda = 0$, temos que
+            \begin{align*}
+                y'' = 0 \Rightarrow y = A + B x.
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = A.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | B x | = \infty.
+            \end{align*}
+            Portanto, para $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos que
+            \begin{align*}
+                y'' + k^2 y = 0 \Rightarrow y = C \cos(k x) + D \sin(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = C.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | D \sin(k x) | < \infty.
+            \end{align*}
+            Portanto, para $\lambda > 0$ temos $y(x) = \sin(k x)$ com $k > 0$.
+
+            Para $\lambda < 0$ temos
+            \begin{align*}
+                y'' - k^2 y = 0 \Rightarrow y = E \cosh(k x) + F \sinh(k x).
+            \end{align*}
+            Quando $x = 0$ temos
+            \begin{align*}
+                0 = y(0) = E.
+            \end{align*}
+            Quando $x \to \infty$ temos
+            \begin{align*}
+                \lim_{x \to \infty} | y(x) | = \lim_{x \to \infty} | F \sinh(k x) | = \infty.
+            \end{align*}
+            Portanto, para $\lambda < 0$ n\~{a}o existe solu\c{c}\~{a}o.
+
+            Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
             
         \end{solution}
     \end{parts}

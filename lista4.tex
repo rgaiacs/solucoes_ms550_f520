@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 4.
 % 
 % Created: 18.04.12 05:32:59 PM
-% Last Change: 30.05.12 04:41:18 PM
+% Last Change: 19.06.12 08:41:34 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -154,11 +154,11 @@
         \end{align*} \\
     \end{solution}
 
-    \question Mostre que $\text{Res }_{z = -n} \Gamma(z) = \left( -1 \right)^n / n!, \quad n = 0, 1, 2, \ldots$
+    \question Mostre que $\mathrm{Res}_{z = -n} \Gamma(z) = \left( -1 \right)^n / n!, \quad n = 0, 1, 2, \ldots$
     \begin{solution}
         Temos que
         \begin{align*}
-            \text{Res}_{z = -n} \Gamma(z) &= \lim_{z \to - n} \left( z - (-n) \right) \Gamma(z) \\
+            \mathrm{Res}_{z = -n} \Gamma(z) &= \lim_{z \to - n} \left( z - (-n) \right) \Gamma(z) \\
             &= \lim_{z \to -n} \left( z + n \right) \lim_{k \to \infty} \left( k! k^z \right) / \left( z (z + 1) \ldots \right) \\
             &= \lim_{k \to \infty} \lim_{z \to -n} (z + n) k! k^z / \left( z (z + 1) \ldots (z + n - 1) (z + n) (z + n + 1) \ldots \right) \\
             &= \lim_{k \to \infty} k! / \left( k^n (-1)^n (n) (n - 1) \ldots (1) (1) \ldots (k - n) \right) \\

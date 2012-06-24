@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 7.
 % 
 % Created: 30.05.12 09:39:27 AM
-% Last Change: 19.06.12 08:51:34 AM
+% Last Change: 24.06.12 11:58:23 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -62,40 +62,46 @@
 \setcounter{page}{1}
 Equa\c{c}\~{o}es eventualmente útil:
 \begin{align}
-    & f(x) = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n \tag{ST} \label{eq:ser_taylor} \\
-    & \Gamma(z) = \int_0^\infty e^{-t} t^{z - 1} dt \tag{GE} \label{eq:gamma_euler} \\
-    & \Gamma(z + 1) = z \Gamma(z), \ \Gamma(z) \Gamma(1 - z) = \pi / \sin(\pi z) \label{eq:gamma_rel} \\
-    & 2^{2 z - 1} \Gamma(z) \Gamma(z + 1/2) = \sqrt{\pi} \Gamma(2 z) \label{eq:gamma_dup_legendre} \\
-    & B(z, w) = \frac{\Gamma(z) \Gamma(w)}{\Gamma(z + w)} \tag{BG} \label{eq:beta} \\
-    & B(z, w) = 2 \int_0^{\pi / 2} \cos^{2z - 1} \theta \sin^{2w - 1} \theta d\theta \tag{BT} \label{eq:beta_trig} \\
-    & B(z, w) = \int_0^1 t^{z - 1} (1 - t)^{w - 1} dt \tag{BI} \label{eq:beta_int} \\
-    & (\alpha)_n = \alpha (\alpha + 1) \ldots (\alpha + n - 1), \ (\alpha)_0 = 1 \tag{SP} \label{eq:sim_poch} \\
-    & (\alpha)_n = \frac{\Gamma(\alpha + n)}{\Gamma(\alpha)} \label{eq:sim_poch_gamma} \\
-    & \frac{(\alpha)_n}{m!} = \binom{\alpha + n - 1}{n}, \ \frac{(-\alpha)_n}{n!} = (-1)^n \binom{\alpha}{n} \label{eq:sim_poch_binom} \\
-    & z(1 - z)y'' + \left[ \gamma - (\alpha + \beta + 1) z \right] y' - \alpha \beta y = 0 \tag{EH} \label{eq:hiperg} \\
-    & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SH} \label{eq:ser_hiperg} \\
-    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} dt \label{eq:hiperg_int} \\
-    % & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{\alpha \beta}{\gamma} \,{}_2F_1(\alpha + 1, \beta + 1, \gamma + 1; z) \label{eq:hiperg_der} \\
-    % & zy'' + (\gamma - z)y' - \alpha y = 0 \tag{EHC} \label{eq:hiper_con} \\
-    % & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SHC} \label{eq:ser_hiperg_con}
-    % & x^2 y'' + x y' + (x^2 - \nu^2) y = 0 \tag{EB} \label{eq:bessel} \\
-    % & J_\nu(x) = \sum_{k = 0}^\infty \frac{(-1)^k}{k! \Gamma(k + \nu + 1)} \left( \frac{x}{2} \right)^{2k + \nu} \label{eq:bessel_pri_esp} \\
-    % & J_\nu(x) = \frac{x^\nu \exp(-i x)}{2^\nu \Gamma(\nu + 1)} \,_1F_1(\nu + 1/2, 2\nu + 1; 2 i x) \label{eq:bessel_pri_esp_hiperg_con} \\
-    % & J_{-\nu}(x) = (-1)^\nu J_\nu(x) \label{eq:bessel_prim_esp_neg} \\
-    % & \exp(x (t - t^{-1}) / 2) = \sum_{k = -\infty}^{+\infty} t^k J_k(x) \tag{GFB} \label{eq:bessel_pri_esp_geratriz} \\
-    % & x^2 y'' + x y' - (x^2 + v^2) y = 0 \tag{EBM} \label{eq:bessel_mod} \\
-    % & I_\nu(x) = i^{-\nu} J_\nu(x) \label{eq:bessel_mod_pri_esp} \\
-    & (1 - x^2) y'' - 2 x y' + \nu (\nu + 1) y = 0 \tag{EL} \label{eq:legendre} \\
-    & P_\nu(x) = \,_2F_1(- \nu, \nu + 1, 1; (1 - x)/2) \tag{FL} \label{eq:legendre_funcao_pri_esp} \\
-    & g(-x, t) = (1 - 2 x t + t^2)^{-1/2} \tag{FGL} \label{eq:legendre_funcao_geratriz} \\
-    & g(-x, t) = \sum_{n = 0}^\infty P_n(x) t^n \tag{FGLS} \label{eq:legendre_funcao_geratriz_serie} \\
+    & f(x) = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n; \tag{ST} \label{eq:ser_taylor} \\
+    & \Gamma(z) = \int_0^\infty e^{-t} t^{z - 1} \,\mathrm{d}t; \tag{GE} \label{eq:gamma_euler} \\
+    & \Gamma(z + 1) = z \Gamma(z); \label{eq:gamma_rel} \\
+    & \Gamma(z) \Gamma(1 - z) = \pi / \sin(\pi z); \label{eq:gamma_sin} \\
+    & 2^{2 z - 1} \Gamma(z) \Gamma(z + 1/2) = \sqrt{\pi} \Gamma(2 z); \label{eq:gamma_dup_legendre} \\
+    & B(z, w) = \frac{\Gamma(z) \Gamma(w)}{\Gamma(z + w)}; \tag{BG} \label{eq:beta} \\
+    & B(z, w) = 2 \int_0^{\pi / 2} \cos^{2z - 1} \theta \sin^{2w - 1} \theta \,\mathrm{d}\theta; \tag{BT} \label{eq:beta_trig} \\
+    & B(z, w) = \int_0^1 t^{z - 1} (1 - t)^{w - 1} \,\mathrm{d}t; \tag{BI} \label{eq:beta_int} \\
+    & (\alpha)_n = \alpha (\alpha + 1) \ldots (\alpha + n - 1), \ (\alpha)_0 = 1; \tag{SP} \label{eq:sim_poch} \\
+    & (\alpha)_n = \frac{\Gamma(\alpha + n)}{\Gamma(\alpha)}; \label{eq:sim_poch_gamma} \\
+    & \frac{(\alpha)_n}{m!} = \binom{\alpha + n - 1}{n}, \ \frac{(-\alpha)_n}{n!} = (-1)^n \binom{\alpha}{n}; \label{eq:sim_poch_binom} \\
+    & (1 - x)^{-\alpha} = \sum_{n = 0}^\infty \frac{(\alpha)_n}{n!} x^n; \label{eq:newton_binom_with_poch} \\
+    & z(1 - z)y'' + \left[ \gamma - (\alpha + \beta + 1) z \right] y' - \alpha \beta y = 0; \tag{EH} \label{eq:hiperg} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!}; \tag{SH} \label{eq:ser_hiperg} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} \,\mathrm{d}t; \label{eq:hiperg_int} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{\alpha \beta}{\gamma} \,{}_2F_1(\alpha + 1, \beta + 1, \gamma + 1; z); \label{eq:hiperg_der} \\
+    % & zy'' + (\gamma - z)y' - \alpha y = 0; \tag{EHC} \label{eq:hiper_con} \\
+    % & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!}; \tag{SHC} \label{eq:ser_hiperg_con}
+    % & x^2 y'' + x y' + (x^2 - \nu^2) y = 0; \tag{EB} \label{eq:bessel} \\
+    % & J_\nu(x) = \sum_{k = 0}^\infty \frac{(-1)^k}{k! \Gamma(k + \nu + 1)} \left( \frac{x}{2} \right)^{2k + \nu}; \label{eq:bessel_pri_esp} \\
+    % & J_\nu(x) = \frac{x^\nu \exp(-i x)}{2^\nu \Gamma(\nu + 1)} \,_1F_1(\nu + 1/2, 2\nu + 1; 2 i x); \label{eq:bessel_pri_esp_hiperg_con} \\
+    % & J_{-\nu}(x) = (-1)^\nu J_\nu(x); \label{eq:bessel_prim_esp_neg} \\
+    % & \exp(x (t - t^{-1}) / 2) = \sum_{k = -\infty}^{+\infty} t^k J_k(x); \tag{GFB} \label{eq:bessel_pri_esp_geratriz} \\
+    % & x^2 y'' + x y' - (x^2 + v^2) y = 0; \tag{EBM} \label{eq:bessel_mod} \\
+    % & I_\nu(x) = i^{-\nu} J_\nu(x); \label{eq:bessel_mod_pri_esp} \\
+    & (1 - x^2) y'' - 2 x y' + \nu (\nu + 1) y = 0; \tag{EL} \label{eq:legendre} \\
+    & P_\nu(x) = \,_2F_1(- \nu, \nu + 1, 1; (1 - x)/2), \tag{FL} \label{eq:legendre_funcao_pri_esp} \\
+    \intertext{quando $\nu \in \mathbb{Z}$ verifica-se que $P_\nu(x)$ \'{e} um polin\^{o}mio de grau $n$ em $x$;}
+    & Q_\nu(x) = \frac{\sqrt{\pi} \Gamma(\nu + 1)}{\Gamma(\nu + 3/2) (2 x)^{\nu + 1}} \,_2F_1\left(\frac{\nu + 2}{2}, \frac{\nu + 1}{2}, \nu + \frac{3}{2}; \frac{1}{x^2}\right); \label{eq:legendre_funcao_seg_esp} \\
+    & g(x, t) = (1 - 2 x t + t^2)^{-1/2}; \tag{FGL} \label{eq:legendre_funcao_geratriz} \\
+    & g(x, t) = \sum_{n = 0}^\infty P_n(x) t^n; \tag{FGLS} \label{eq:legendre_funcao_geratriz_serie} \\
+    & P_\nu(x) = \sum_{k = 0}^{\lfloor n/2 \rfloor} \frac{(-1)^k \left( 2n - 2k \right)!}{2^n k! \left( n - k \right)! \left( n - 2k \right)!} x^{n - 2k} \tag{FLS} \label{eq:legendre_serie} \\
+    & P_n(x) = \frac{1}{2^n n!} \frac{\mathrm{d}^n}{\mathrm{d}x^n}\left[ \left( x^2 - 1 \right)^n \right] \tag{FLR} \label{eq:legendre_rodrigues} \\
+    & Q_n(x) = \frac{1}{2^{n + 1}} \int_{-1}^1 \frac{(1 - y^2)^n}{(x - y)^{n + 1}} \,\mathrm{d}y; \label{eq:legendre_funcao_seg_esp_integral} \\
     & \int_{-1}^1 P_n(x) P_m(x) \,\mathrm{d}x = 2 \left( 2n + 1 \right)^{-1} \delta_{mn} \label{eq:legendre_ortog} \\
-    & Q_n(x) = \frac{1}{2^{n + 1}} \int_{-1}^1 \frac{(1 - y^2)^n}{(x - y)^{n + 1}} \,\mathrm{d}y \label{eq:legendre_funcao_seg_esp_integral} \\
-    & (1 - x^2) y'' - 2 x y' + \left( \nu (\nu + 1) - m^2 (1 - x^2)^{-1} \right) y = 0 \tag{ELA} \label{eq:legendre_ass} \\
-    & P_\nu^m(x) = (1 - x^2)^{m/2} \frac{\mathrm{d}^m}{\mathrm{d}x^m}P_\nu(x) \tag{FLA} \label{eq:legendre_ass_ funcao_pri_esp} \\
-    & \sum_{n = 0}^\infty P_{n + m}(x) t^n = \frac{(2m)!}{2^n m!} \frac{(1 - x^2)^{m/2}}{(1 - 2 x t + t^2)^{m + 1/2}} \label{eq:legendre_ass_funcao_geratriz} \\
-    & Q_\nu^m(x) = (1 - x^2)^{m/2} \frac{\mathrm{d}^m}{\mathrm{d}x^m}Q_\nu(x) \label{eq:legendre_ass_funcao_seg_esp} \\
-    & F_{n}(x) = \frac{1}{\rho(x)} \frac{\mathrm{d}^n}{\mathrm{d} x^n}\left[ \rho(x) s^n(x) \right] \tag{FR} \label{eq:form_rodrigues}
+    & (1 - x^2) y'' - 2 x y' + \left( \nu (\nu + 1) - m^2 (1 - x^2)^{-1} \right) y = 0; \tag{ELA} \label{eq:legendre_ass} \\
+    & P_\nu^m(x) = (1 - x^2)^{m/2} \frac{\mathrm{d}^m}{\mathrm{d}x^m}P_\nu(x); \tag{FLA} \label{eq:legendre_ass_ funcao_pri_esp} \\
+    & \sum_{n = 0}^\infty P_{n + m}(x) t^n = \frac{(2m)!}{2^n m!} \frac{(1 - x^2)^{m/2}}{(1 - 2 x t + t^2)^{m + 1/2}}; \label{eq:legendre_ass_funcao_geratriz} \\
+    & Q_\nu^m(x) = (1 - x^2)^{m/2} \frac{\mathrm{d}^m}{\mathrm{d}x^m}Q_\nu(x); \label{eq:legendre_ass_funcao_seg_esp} \\
+    & F_{n}(x) = \frac{1}{\rho(x)} \frac{\mathrm{d}^n}{\mathrm{d} x^n}\left[ \rho(x) s^n(x) \right]. \tag{FR} \label{eq:form_rodrigues}
 \end{align}
 
 \begin{questions}
@@ -174,10 +180,11 @@ Equa\c{c}\~{o}es eventualmente útil:
             (2n + 1)P_n(x) = P'_{n + 1}(x) - P'_{n - 1}(x). \label{eq:legendre_rel_rec_2n+1der}
         \end{align}
 
-        TODO
+        Outra rela\c{c}\~{a}o \'{e}
         \begin{align}
             P'_{n - 1}(x) = -n P_n(x) + x P_n'(x). \label{eq:legendre_rel_rec_devn-1}
         \end{align}
+        % TODO Escrever a demonstra\c{c}\~{a}o da rela\c{c}\~{a}o acima.
 
         Substituindo \eqref{eq:legendre_rel_rec_devn-1} em \eqref{eq:legendre_rel_rec_2n+1der} segue que
         \begin{align*}
@@ -526,7 +533,7 @@ Equa\c{c}\~{o}es eventualmente útil:
             \begin{align*}
                 (2 n + 1) P_n^m(x) &= P_{n + 1}^{m + 1}(x) - P_{n - 1}^{m + 1}(x)
             \end{align*}
-            TODO
+            % TODO Demonstrar a equa\c{c}\~{a}o acima.
         \end{solution}
 
         \part $(1 - x^2)^{1/2} {P_n^m}'(x) = 2^{-1} P_n^{m + 1}(x) - 2^{-1} (n + m) (n - m + 1) P_n^{m - 1}(x)$.
@@ -635,9 +642,9 @@ Equa\c{c}\~{o}es eventualmente útil:
         Fazendo $x = \cos \theta$ temos que $(1 - x^2)^{1/2} = \sin \theta$, $\theta \in [0, \pi]$. Se $x \in [-1, 1]$ ent\~{a}o $\theta \in [0, \pi]$ e portanto $P_n^n(\cos \theta) = (2n - 1)!! \sin^n \theta$.
     \end{solution}
 
-    \question Seja $P_n$ o $n$-\'{e}simo polin\^{o}mio de Legendre ($n = 0, 1, 2, \ldots$). Calcule $P_n(0)$.
+    \question[T6 de 2010] Seja $P_n$ o $n$-\'{e}simo polin\^{o}mio de Legendre ($n = 0, 1, 2, \ldots$). Calcule $P_n(0)$.
     \begin{solution}
-        
+        % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
 
     \question[E de 2010] Seja $P_n$ o $n$-\'{e}simo polin\^{o}mio de Legendre. Mostre que
@@ -646,7 +653,7 @@ Equa\c{c}\~{o}es eventualmente útil:
     \end{align*}
     $x, x' \in (-1, 1)$. Dica: lembre-se que os polin\^{o}mios de Legendere forma um conjunto ortogonal completo, com $\int_{-1}^1 P_n(x) P_m(x) \,\mathrm{d}x = 2 (2 n + 1)^{-1} \delta_{nm}$.
     \begin{solution}
-        
+        % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
 
     \question[T6 de 2011] Seja $P_n(x)$ ($n = 0, 1, 2, \ldots$) os polin\^{o}mios de Legendere. Mostre que
@@ -748,6 +755,62 @@ Equa\c{c}\~{o}es eventualmente útil:
             \end{cases}
         \end{align*}
     \end{solution}
+
+    \question[T6 de 2012] Sejam $P_n(x)$ os polin\^{o}mios de Legendre de ordem $n$. Mostre que:
+    \begin{parts}
+        \part $P'_{2n}(0) = 0$ e $P'_{2n + 1}(0) = (-1)^n \left[ (2n + 1)! \right] / \left[ 2^{2n} (n!)^2 \right]$, $n = 0, 1, 2, \ldots$
+        \begin{solution}
+            Por \eqref{eq:legendre_funcao_geratriz} e \eqref{eq:legendre_funcao_geratriz_serie} temos que
+            \begin{align*}
+                \sum_{k = 0}^\infty P_k(x) t^k &= \frac{1}{\sqrt{1 - 2 x t + t^2}}.
+            \end{align*}
+            Derivando a equa\c{c}\~{a}o acima em rela\c{c}\~{a}o a $x$ obtemos
+            \begin{align*}
+                \sum_{k = 0}^\infty P'_k(x) t^k &= \frac{t}{\left[ 1 - 2 x t + t^2 \right]^{3/2}}.
+            \end{align*}
+            Fazendo $x = 0$ na equa\c{c}\~{a}o acima temos
+            \begin{align*}
+                \sum_{k = 0}^\infty P'_k(0) t^k &= \frac{t}{\left[ 1 + t^2 \right]^{3/2}} \\
+                &= t \left[ 1 + t^2 \right]^{-3/2} \\
+                &= t \sum_{n = 0}^\infty \frac{(3/2)_n}{n!} \left( -t^2 \right)^n && \text{por \eqref{eq:newton_binom_with_poch}} \\
+                &= t \sum_{n = 0}^\infty \frac{(3/2)_n}{n!} (-1)^n t^{2n} \\
+                &= \sum_{n = 0}^\infty \frac{(3/2)_n}{n!} (-1)^n t^{2n + 1}.
+            \end{align*}
+            Comparando termo a termo a equa\c{c}\~{a}o acima concluimos que
+            \begin{align*}
+                P'_{2n}(0) &= 0, \\
+                P'_{2n + 1}(0) &= (-1)^n \frac{(3/2)_n}{n!}.
+            \end{align*}
+            Mas
+            \begin{align*}
+                \left( \frac{3}{2} \right)_n &= \frac{3}{2} \frac{5}{2} \ldots \left( \frac{2}{2} + n - 1 \right) \\
+                &= \frac{1}{2^n} \frac{(2 \cdot 3) (4 \ldots 5) \left( (2n) (2n + 1) \right)}{2 \cdot 4 \ldots 2n} \\
+                &= \frac{1}{2^{2n}} \frac{(2n + 1)!}{n!}.
+            \end{align*}
+            Portanto, $P'_{2n}(0) = 0$ e $P'_{2n + 1}(0) = (-1)^n \left[ (2n + 1)! \right] / \left[ 2^{2n} (n!)^2 \right]$, $n = 0, 1, 2, \ldots$.
+        \end{solution}
+
+        \part $\int_{-1}^1 x^2 P_{n + 1}(x) P_{n - 1}(x) \,\mathrm{d}x = \left[ 2n (n + 1) \right] / \left[ \left( 4 n^2 - 1 \right) \left( 2 n + 3 \right) \right]$, $n = 1, 2, \ldots$
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                I &= \int_{-1}^1 x^2 P_{n + 1}(x) P_{n - 1}(x) \,\mathrm{d}x \\
+                &= \int_{-1}^1 \left[ x P_{n + 1}(x) \right] \left[ x P_{n - 1}(x) \right] \,\mathrm{d}x \\
+                &= \int_{-1}^1 \left[ \frac{(n + 2)}{(2n + 3)} P_{n + 2}(x) + \frac{(n + 1)}{(2n + 3)} P_n(x) \right] \left[ \frac{1}{(2n - 1)} P_{n}(x) + \frac{(n - 1)}{(2n - 1)} P_{n - 2}(x) \right] \,\mathrm{d}x \\
+                \begin{split}
+                    &= \frac{(n + 2) n}{(2n + 2) (2n - 1)} \int_{-1}^1 P_{n + 2}(x) P_{n}(x) \,\mathrm{d}x + \frac{(n + 2) (n - 1)}{(2n + 3) (2n + 1)} \int_{-1}^1 P_{n + 2}(x) P_{n - 2}(x) \,\mathrm{d}x \\
+                    &\quad {}+ \frac{n (n + 1)}{(2 n + 3) (2n - 1)} \int_{-1}^1 P_n(x) P_n(x) \,\mathrm{d}x + \frac{(n + 1) (n - 1)}{(2n + 3) (2n - 1)} \int_{-1}^1 P_n(x) P_{n - 2}(x) \,\mathrm{d}x
+                \end{split} \\
+                \begin{split}
+                    &= \frac{(n + 2) n}{(2n + 2) (2n - 1)} 0 + \frac{(n + 2) (n - 1)}{(2n + 3) (2n + 1)} 0 \\
+                    &\quad {}+ \frac{n (n + 1)}{(2 n + 3) (2n - 1)} \frac{2}{2n + 1} + \frac{(n + 1) (n - 1)}{(2n + 3) (2n - 1)} 0
+                \end{split} \\
+                &= \frac{n (n + 1)}{(2 n + 3) (2n - 1)} \frac{2}{2n + 1}  \\
+                &= \frac{2 n (n + 1)}{(2n + 3) (4n^2 - 1)},
+            \end{align*}
+            onde a terceira igualdade decorre de \eqref{eq:legendre_rel_rec_2n+1}.
+        \end{solution}
+    \end{parts}
 \end{questions}
 \bibliographystyle{plain}
 \bibliography{bibliography}

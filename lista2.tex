@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 2.
 % 
 % Created: 10.03.12 08:00:00 PM
-% Last Change: 19.06.12 08:39:43 AM
+% Last Change: 24.06.12 11:36:33 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -49,8 +49,8 @@
 
 % Novos comandos
 \newcommand{\devd}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
-\newcommand{\devdt}[2]{\frac{\mathrm{d$^2$} #1}{\mathrm{d} #2^2}}
-\newcommand{\devdtm}[3]{\frac{\mathrm{d$^2$} #1}{\mathrm{d} #2 \mathrm{d} #3}}
+\newcommand{\devdt}[2]{\frac{\mathrm{d}^2 #1}{\mathrm{d} #2^2}}
+\newcommand{\devdtm}[3]{\frac{\mathrm{d}^2 #1}{\mathrm{d} #2 \mathrm{d} #3}}
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\grad}{\mbox{grad }}
 \newcommand{\diver}{\mbox{div }}
@@ -268,7 +268,7 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
-        y11 + \frac{1}{x} y' = 0.
+        y'' + \frac{1}{x} y' = 0.
         \]
         Verificamos que $q(x) = \frac{1}{x}$ n\~{a}o \'{e} anal\'{i}tica em $x_0 = 0$ mas $x p(x) = x$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
 
@@ -330,12 +330,12 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
         \]
         Para essa mudan\c{c}a de vari\'{a}vel temos
         \begin{align*}
-            \devd{y}{x} &= \devd{y}{z} \devd{z}{x} = \devd{y}{z} \left( \frac{-1}{x^2} \right), \\
+            \devdt{y}{x} &= \devdt{y}{z} \devd{z}{x} = \devd{y}{z} \left( \frac{-1}{x^2} \right), \\
             \devdt{y}{x} &=\devd{}{x} \left[ \frac{-1}{x^2} \devd{y}{z} \right] = \frac{2}{x^3} \devd{y}{z} + \devdtm{y}{x}{y}, \\
             \devdtm{y}{x}{z} &= \devd{}{z} \left[ \devd{y}{x} \right] = \devd{}{z} \left[ \devd{y}{z} \left( \frac{-1}{x^2} \right) \right] = \frac{1}{x^4} \devdt{y}{z}.
         \end{align*}
 
-        Efetuando a mudan\c{c}\~{a}o de vari\'{a}vel temos
+        Efetuando a mudan\c{c}a de vari\'{a}vel temos
         \begin{align*}
             \frac{1}{z^4} \left( 2 z^3 \devd{y}{z} + z^4 \devdt{y}{z} \right) + \frac{2}{z^3} \left( - z^2 \devd{y}{z} \right) - w^2 z &= 0 \\
             \devdt{y}{z} - w^2 y &= 0.
@@ -1029,11 +1029,6 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
             4 k + 2 b_2 &= 0 \rightarrow b_2 = 0 = b_3 = b_4 = \ldots, \\
             y_2(x) &= b_0 + b_1 x = 1 - x.
         \end{align*}
-    \end{solution}
-
-    \question[T2 de 2011]
-    \begin{solution}
-        
     \end{solution}
 
     \question[T2 de 2012] Seja a equa\c{c}\~{a}o diferencial $x(1 - x) y'' + (1 - 5x) y' - 4y = 0$. Ao utilizar o m\'{e}todo de Frobenius para resolver essa equa\c{c}\~{a}o encontramos que a equa\c{c}\~{a}o indicial correspondete apresenta ra\'{i}zes reais iguais a $r_1 = r_2 = 0$, e com isso obtemos que uma das solu\c{c}\~{o}es em forma de s\'{e}rie dessa equa\c{c}\~{a}o \'{e}

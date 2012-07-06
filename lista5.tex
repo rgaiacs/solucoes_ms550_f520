@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 5.
 % 
 % Created: 25.03.12 10:25:19 AM
-% Last Change: 24.06.12 11:51:55 AM
+% Last Change: 25.06.12 07:05:57 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -45,7 +45,7 @@
 \allowdisplaybreaks[4]
 
 % Novos ambientes
-% \newenvironment{fwsolution}{\begin{EnvFullwi\,\mathrm{d}th}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwi\,\mathrm{d}th}}
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
@@ -86,7 +86,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
     
     Dica: Como indicado nas notas de aula a demonstra\c{c}\~{a}o pode ser realizada utilizando a representa\c{c}\~{a}o integral da fun\c{c}\~{a}o hipergeom\'{e}trica, \eqref{eq:hiperg_int}, com as mudan\c{c}as de vari\'{a}vel $t \to 1 - t$, $t \to (1 - z - tz)^{-1}$ e $t \to (1 - t)/(1 - tz)$, conhecidas como transforma\c{c}\~{o}es hipergeom\'{e}tricas de Euler.
     \begin{parts}
-        \part $_2F_1(\alpha, \beta, \gamma; z) = (1 - z)^{\gamma - \alpha - \beta} {}_2F_1(\gamma - \alpha, \gamma - \beta, \gamma; z)$,
+        \part[P2 de 2012] $_2F_1(\alpha, \beta, \gamma; z) = (1 - z)^{\gamma - \alpha - \beta} {}_2F_1(\gamma - \alpha, \gamma - \beta, \gamma; z)$,
         \begin{solution}
             Temos que
             \begin{align*}
@@ -252,22 +252,6 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
 
         \part $1 + \binom{a}{1} z + \binom{a}{2} z^2 + \ldots \binom{a}{m} z^m = \binom{a}{m} z^m \,_2F_1(-m, 1, a - m + 1; - z^{-1})$;
         \begin{solution}
-            % Temos que
-            % \begin{align*}
-            %     \binom{a}{m} z^m\,_2F_1(-m, 1, a - m + 1, -z^{-1}) &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n (1)_n}{(a - m + 1)_n} \frac{(-z)^{-n}}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
-            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} \frac{(1)_n}{n!} (-z)^{-n} \\
-            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} (-z)^{-n} && \text{por \eqref{eq:sim_poch}} \\
-            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-1)^n (m + n)!}{(m - 1)!}  (-1)^{-n}z^{-n} && \text{por ???} \\
-            %     &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-1)^n (m + n)! (-1)^{-n}}{(m - 1)!} z^{-n} \\
-            %     &= \frac{a!}{m! (a - m)!} z^m \sum_{n = 0}^\infty \frac{(m + n)!}{(m - 1)!}z^{-n} \\
-            %     &= \bigstar
-            % \end{align*}
-            % onde
-            % \begin{align*}
-            %     \begin{split}
-            %         \bigstar &= \frac{a!}{m! (a - m)! (m - 1)!} z^m + \frac{a! (m + 1)!}{m! (a - m)! (m - 1)!} z^{m - 1} \\ &{}+  \frac{a! (m + 2)!}{m! (a - m)! (m - 1)!} z^{m - 2} + \ldots \\ &{}+ \frac{a! (m + m - 1)!}{m! (a - m)! (m - 1)!} z^{m - m + 1} + \frac{a! (m - m)!}{m! (a - m)! (m - 1)!} z^{m - m}
-            %     \end{split}
-            % \end{align*}
             Temos que
             \begin{align*}
                 I &= \binom{a}{m} z^m \,_1F_1(-m, 1, a - m + 1; -z^{-1}) \\
@@ -456,32 +440,6 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
     \begin{solution}
         Temos que $f(y) = \,_2F_1(-n, \alpha + \beta + n + 1, \alpha + 1; y)$ satisfaz a equa\c{c}\~{a}o hipergeom\'{e}trica dada por
         \begin{align*}
-<<<<<<< HEAD
-            y (1 - y) f''(y) + \left[ (\alpha + 1) - ( (-n) + (\alpha + \beta + n + 1) + 1)y \right] f'(y) - (-n) (\alpha + \beta + n + 1) f(y) &= 0 && \text{por \eqref{eq:hiperg}}
-        \end{align*}
-        que pode ser simplificada para
-        \begin{align*}
-            y (1 - y) f''(y) + \left[ (\alpha + 1) - (\alpha + \beta + 2)y \right] f'(y) + n (\alpha + \beta + n + 1) f(y) = 0.
-        \end{align*}
-        Para $y = (1 - z)/2$ temos que
-        \begin{align}
-            \frac{d}{dy} &= \left( \frac{-1}{2} \right) \frac{d}{dz}, \\
-            \frac{d^2}{dy^2} &= \left( \frac{-1}{2} \right) \left( \frac{-1}{2} \right) \frac{d^2}{dz^2} = \frac{1}{4} \frac{d^2}{dz^2}.
-        \end{align}
-        Ent\~{a}o para $\phi = f( (1 - z)/2 )$ temos a seguinte equa\c{c}\~{a}o hipergeom\'{e}trica
-        \begin{align*}
-            \frac{1 - z}{2} \left( 1 - \frac{1 - z}{2} \right) \phi'' + \left[ (\alpha + 1) - (\alpha + \beta + 2) \frac{1 - z}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi = 0
-        \end{align*}
-        que pode ser simplificada para
-        \begin{align*}
-            \frac{1 - z}{2} \left( \frac{1 + z}{2} \right) \phi'' + \left[ \frac{2(\alpha + 1) - (\alpha + \beta + 2) (1 - z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
-            \frac{1 - z}{2} \left( \frac{1 + z}{2} \right) \phi'' + \left[ \frac{2(\alpha + 1) - (\alpha + \beta + 2) (1 - z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
-            \frac{1 - z^2}{4} \phi'' + \left[ \frac{2\alpha + 2 - \alpha - \beta - 2 + (\alpha + \beta + 2)z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
-            \frac{1 - z^2}{4} \phi'' + \left[ \frac{\alpha - \beta + (\alpha + \beta + 2)z)}{2} \right] \phi' + n (\alpha + \beta + n + 1) \phi &= 0 \\
-            (1 - z^2) \frac{\phi''}{4} \phi'' + \left[ - \alpha + \beta - (\alpha + \beta + 2)z)\right] \frac{-\phi'}{2} + n (\alpha + \beta + n + 1) \phi &= 0 \\
-            (1 - z^2) y'' + \left[ - \alpha + \beta - (\alpha + \beta + 2)z)\right] y' + n (\alpha + \beta + n + 1) y &= 0.
-        \end{align*}
-=======
             \begin{split}
                 y (1 - y) f''(y) + \left[ (\alpha + 1) - ( (-n) + (\alpha + \beta + n + 1) + 1)y \right] f'(y) \\ {}- (-n) (\alpha + \beta + n + 1) f(y) &= 0
             \end{split}
@@ -525,7 +483,6 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             \end{split}
         \end{align*}
         que \'{e} a equa\c{c}\~{a}o desejada.
->>>>>>> work
     \end{solution}
 
     \question[Ver exemplo 4.7 das notas de aula] Os polinômios de Hermite $H_n(z)$ podem ser escritos em termos da fun\c{c}\~{a}o hipergeom\'{e}trica confluente como

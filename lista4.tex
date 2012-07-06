@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 4.
 % 
 % Created: 18.04.12 05:32:59 PM
-% Last Change: 24.06.12 11:49:55 AM
+% Last Change: 05.07.12 09:54:21 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -45,7 +45,7 @@
 \allowdisplaybreaks[4]
 
 % Novos ambientes
-% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+% \newenvironment{fwsolution}{\begin{EnvFullwi\,\mathrm{d}th}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwi\,\mathrm{d}th}}
 
 % Novos comandos
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
@@ -59,14 +59,36 @@
 \input{cover.tex}
 \newpage
 \setcounter{page}{1}
+
+Equa\c{c}\~{o}es eventualmente útil:
+\begin{align}
+    % & f(x) = \sum_{n = 0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n \tag{ST} \label{eq:ser_taylor} \\
+    & \Gamma(z) = \int_0^\infty e^{-t} t^{z - 1} \,\mathrm{d}t \tag{GE} \label{eq:gamma_euler} \\
+    & \Gamma(z) = \lim_{n \to \infty} \frac{n! n^2}{z (z + 1) \ldots (z + n)}, z \neq 0, -1, -2, \ldots \label{eq:gamma_gauss} \\
+    & \Gamma(z + 1) = z \Gamma(z) \label{eq:gamma_rel} \\
+    & \Gamma(z) \Gamma(1 - z) = \pi / \sin(\pi z) \label{eq:gamma_sin} \\
+    & 2^{2 z - 1} \Gamma(z) \Gamma(z + 1/2) = \sqrt{\pi} \Gamma(2 z) \label{eq:gamma_dup_legendre} \\
+    & B(z, w) = \frac{\Gamma(z) \Gamma(w)}{\Gamma(z + w)} \tag{BG} \label{eq:beta} \\
+    & B(z, w) = 2 \int_0^{\pi / 2} \cos^{2z - 1} \theta \sin^{2w - 1} \theta \,\mathrm{d}\theta \tag{BT} \label{eq:beta_trig} \\
+    & B(z, w) = \int_0^1 t^{z - 1} (1 - t)^{w - 1} \,\mathrm{d}t \tag{BI} \label{eq:beta_int} \\
+    & (\alpha)_n = \alpha (\alpha + 1) \ldots (\alpha + n - 1), \ (\alpha)_0 = 1 \tag{SP} \label{eq:sim_poch} \\
+    & (\alpha)_n = \frac{\Gamma(\alpha + n)}{\Gamma(\alpha)} \label{eq:sim_poch_gamma} \\
+    & \frac{(\alpha)_n}{m!} = \binom{\alpha + n - 1}{n}, \ \frac{(-\alpha)_n}{n!} = (-1)^n \binom{\alpha}{n} \label{eq:sim_poch_binom} % \\
+    % & z(1 - z)y'' + \left[ \gamma - (\alpha + \beta + 1) z \right] y' - \alpha \beta y = 0 \tag{EH} \label{eq:hiperg} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SH} \label{eq:ser_hiperg} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} \,\mathrm{d}t \label{eq:hiperg_int} \\
+    % & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{\alpha \beta}{\gamma} \,{}_2F_1(\alpha + 1, \beta + 1, \gamma + 1; z) \label{eq:hiperg_der} \\
+    % & zy'' + (\gamma - z)y' - \alpha y = 0 \tag{EHC} \label{eq:hiper_con} \\
+    % & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SHC} \label{eq:ser_hiperg_con}
+\end{align}
 \begin{questions}
-    \question Mostre que $\Gamma(z) = \int_0^1 \left[ \ln(1/t) \right]^{z - 1} dt$.
+    \question Mostre que $\Gamma(z) = \int_0^1 \left[ \ln(1/t) \right]^{z - 1} \,\mathrm{d}t$.
     \begin{solution}
         Fazendo $t = e^{-y}$ temos
         \begin{align*}
             \exp (y) &= 1 / t \\
             y &= \ln \left( 1 / t \right) \\
-            dy &= \frac{\left( - 1 / t^2 \right)}{1 / t} dt = \frac{-1}{t} dt.
+            dy &= \frac{\left( - 1 / t^2 \right)}{1 / t} \,\mathrm{d}t = \frac{-1}{t} \,\mathrm{d}t.
         \end{align*}
 
         Avaliando os extremos:
@@ -76,31 +98,31 @@
         \end{align*}
         Ent\~{a}o
         \begin{align*}
-            \Gamma(z) &= \int_1^0 t \left[ \ln \left( 1 / t \right) \right]^{z - 1} \left( -1 / t \right) dt \\
-            &= \int_0^1 \left[ \ln \left( 1 / t \right) \right]^{z - 1} dt.
+            \Gamma(z) &= \int_1^0 t \left[ \ln \left( 1 / t \right) \right]^{z - 1} \left( -1 / t \right) \,\mathrm{d}t \\
+            &= \int_0^1 \left[ \ln \left( 1 / t \right) \right]^{z - 1} \,\mathrm{d}t.
         \end{align*}
     \end{solution}
 
     \question Use a fun\c{c}\~{a}o gama para mostrar os seguintes resultados:
     \begin{parts}
-        \part $\int_0^\infty \exp \left( - x^4 \right) dx = \Gamma(5/5)$.
+        \part $\int_0^\infty \exp \left( - x^4 \right) \,\mathrm{d}x = \Gamma(5/4)$.
         \begin{solution}
-            Fazendo $x^4 = t$ ent\~{a}o $x = t^{1 / 4}$. E portanto $dt = 4 x^3 dx = 4 t^{3 / 4} dx$ implica que $dx = \left( 1 / 4 \right) t^{-3 / 4} dt$. Logo
+            Fazendo $x^4 = t$ ent\~{a}o $x = t^{1 / 4}$. E portanto $\,\mathrm{d}t = 4 x^3 \,\mathrm{d}x = 4 t^{3 / 4} \,\mathrm{d}x$ implica que $\,\mathrm{d}x = \left( 1 / 4 \right) t^{-3 / 4} \,\mathrm{d}t$. Logo
             \begin{align*}
-                \int_0^\infty \exp (-x^4) dx &= \int_0^\infty \exp (-t ) \frac{1}{4} t^{-3 / 4} dt \\
-                &= \frac{1}{4} \int_0^\infty \exp (-t) t^{-3 / 4} dt \\
+                \int_0^\infty \exp (-x^4) \,\mathrm{d}x &= \int_0^\infty \exp (-t ) \frac{1}{4} t^{-3 / 4} \,\mathrm{d}t \\
+                &= \frac{1}{4} \int_0^\infty \exp (-t) t^{-3 / 4} \,\mathrm{d}t \\
                 &= \frac{1}{4} \Gamma \left( 1 / 4 \right).
             \end{align*}
 
             Como $\Gamma \left( z + 1 \right) = z \Gamma \left( z \right)$, $\left( 1 / 4 \right) \Gamma \left( 1 / 4 \right) = \Gamma \left( 5 / 4 \right)$ e portanto
             \begin{align*}
-                \int_0^\infty exp (-x^4) dx = \Gamma \left( 5 / 4 \right).
+                \int_0^\infty exp (-x^4) \,\mathrm{d}x = \Gamma \left( 5 / 4 \right).
             \end{align*}
         \end{solution}
 
-        \part $\int_0^\infty x^{2s + 1} \exp \left( -a x^2 \right) dx = \Gamma(s + 1_ / \left( 2 a^{s + 1} \right)$.
+        \part $\int_0^\infty x^{2s + 1} \exp \left( -a x^2 \right) \,\mathrm{d}x = \Gamma(s + 1) / \left( 2 a^{s + 1} \right)$.
         \begin{solution}
-            Fazendo $t = a x^2$, temos $dt = 2 a x dx$. E avaliando os extremos:
+            Fazendo $t = a x^2$, temos $\,\mathrm{d}t = 2 a x \,\mathrm{d}x$. E avaliando os extremos:
             \begin{align*}
                 x \to 0, t \to 0, \\
                 x \to \infty, t \to \infty.
@@ -108,15 +130,15 @@
             
             Logo,
             \begin{align*}
-                \int_0^\infty \left( x^2 \right)^s \exp \left( -a x^2 \right) x dx &= \int_0^\infty \left( t / a \right)^s \exp \left( -t \right) \frac{dt}{2a} \\
+                \int_0^\infty \left( x^2 \right)^s \exp \left( -a x^2 \right) x \,\mathrm{d}x &= \int_0^\infty \left( t / a \right)^s \exp \left( -t \right) \frac{\,\mathrm{d}t}{2a} \\
                 &= \frac{1}{2 a^{s + 1}} \int_0^\infty \exp \left( -t \right) t^s \\
                 &= \frac{1}{2 a^{s + 1}} \Gamma \left( s + 1 \right).
             \end{align*}
         \end{solution}
 
-        \part $\int_0^1 x^k \ln x dx = -1 / \left( k + 1 \right)^2$.
+        \part $\int_0^1 x^k \ln x \,\mathrm{d}x = -1 / \left( k + 1 \right)^2$.
         \begin{solution}
-            Fazendo $x = \exp \left( -w \right)$, temos $w = \ln \left( 1 / x \right) = - \ln \left( x \right)$ e consequentemente $dw = \frac{-1}{x} dx = - \exp \left( w \right) dw$ que implica em $dx = - \exp \left( -w \right) dw$. Avaliando os extremos,
+            Fazendo $x = \exp \left( -w \right)$, temos $w = \ln \left( 1 / x \right) = - \ln \left( x \right)$ e consequentemente $dw = \frac{-1}{x} \,\mathrm{d}x = - \exp \left( w \right) dw$ que implica em $\,\mathrm{d}x = - \exp \left( -w \right) dw$. Avaliando os extremos,
             \begin{align*}
                 x \to 0, w \to \infty, \\
                 x \to 1, w \to 0.
@@ -126,7 +148,7 @@
             \begin{align*}
                 \int_\infty^0 \exp \left( -w k \right) \left( -w \right) \left( -\exp \left( -w \right) \right) dw &= - \int_0^\infty \exp \left( -w \left( k + 1 \right) \right) w dw.
             \end{align*}
-            Fazendo $w \left( k + 1 \right) = t$ temos $w = t / \left( k + 1 \right)$ e consequentemente $dt = \left( k + 1 \right) dw \to dw = dt / \left( k + 1 \right)$. Avaliando os extremos
+            Fazendo $w \left( k + 1 \right) = t$ temos $w = t / \left( k + 1 \right)$ e consequentemente $\,\mathrm{d}t = \left( k + 1 \right) dw \to dw = \,\mathrm{d}t / \left( k + 1 \right)$. Avaliando os extremos
             \begin{align*}
                 w \to 0, t \to 0, \\
                 w \to \infty, t \to \infty.
@@ -134,7 +156,7 @@
 
             Logo,
             \begin{align*}
-                - \int_0^\infty \exp \left( -t \right) \left( t / \left( k + 1 \right) \right) \left( 1 / \left( k + 1 \right) \right) dt &= \left( -1 / \left( k + 1 \right) \right) \int_0^\infty \exp \left( -t \right) t dt \\
+                - \int_0^\infty \exp \left( -t \right) \left( t / \left( k + 1 \right) \right) \left( 1 / \left( k + 1 \right) \right) \,\mathrm{d}t &= \left( -1 / \left( k + 1 \right) \right) \int_0^\infty \exp \left( -t \right) t \,\mathrm{d}t \\
                 &= \frac{-1}{\left( k + 1 \right)^2} \Gamma \left( 2 \right) \\
                 &= \frac{-1}{\left( k + 1 \right)^2} \Gamma \left( 1 + 1 \right) \\
                 &= - \Gamma \left( 1 \right) / \left( k + 1 \right)^2 \\
@@ -162,7 +184,7 @@
             &= \lim_{z \to -n} \left( z + n \right) \lim_{k \to \infty} \left( k! k^z \right) / \left( z (z + 1) \ldots \right) \\
             &= \lim_{k \to \infty} \lim_{z \to -n} (z + n) k! k^z / \left( z (z + 1) \ldots (z + n - 1) (z + n) (z + n + 1) \ldots \right) \\
             &= \lim_{k \to \infty} k! / \left( k^n (-1)^n (n) (n - 1) \ldots (1) (1) \ldots (k - n) \right) \\
-            &= \left( (-1)^ / n! \right) \lim_{k \to \infty} \left( k (k - 1) \ldots (k - n) \ldots (1) \right) / \left( k^n (k - n) \ldots (1) \right) \\
+            &= \left( (-1)^n / n! \right) \lim_{k \to \infty} \left( k (k - 1) \ldots (k - n) \ldots (1) \right) / \left( k^n (k - n) \ldots (1) \right) \\
             &= \left( (-1)^n / n! \right) \lim_{k \to \infty} \left( 1 - 1 /k \right) \ldots \left( 1 - (n - 1) / k \right) \\
             &= (-1)^n / n!
         \end{align*}
@@ -193,14 +215,14 @@
         \begin{align*}
             (x + i y)! &= \Gamma(x + i y + 1), \\
             | (x + i y)! | &= | \Gamma(x + i y + 1) | \\
-            &= \left| \int_0^\infty \exp(-t) t^{x + iy} dt \right| \\
+            &= \left| \int_0^\infty \exp(-t) t^{x + iy} \,\mathrm{d}t \right| \\
             &\leq \int_0^\infty | \exp(-t) t^{x + i y} | dy \\
-            &\leq \int_0^\infty | \exp(-t) t^x \exp(i y \ln t) | dt \\
-            &\leq \int_0^\infty | \exp(-t) t^x | | \exp(i y \ln t) | dt \\
-            &\leq \int_0^\infty | \exp(-t) t^x dt && | \exp(i y \ln t) | = 1 \\
+            &\leq \int_0^\infty | \exp(-t) t^x \exp(i y \ln t) | \,\mathrm{d}t \\
+            &\leq \int_0^\infty | \exp(-t) t^x | | \exp(i y \ln t) | \,\mathrm{d}t \\
+            &\leq \int_0^\infty | \exp(-t) t^x \,\mathrm{d}t && | \exp(i y \ln t) | = 1 \\
             &= x! \leq | x! |.
         \end{align*}
-        Como $| \int_0^\infty \exp(-t) t^x dt | = | \Gamma(x + 1) | = | x! |$, tem-se que $ | (x + i y)! | \leq | x! |$.
+        Como $| \int_0^\infty \exp(-t) t^x \,\mathrm{d}t | = | \Gamma(x + 1) | = | x! |$, tem-se que $ | (x + i y)! | \leq | x! |$.
     \end{solution}
 
     \question Seja $f(z) = \left( 1 + z \right)^\alpha$.
@@ -262,21 +284,26 @@
         \end{solution}
     \end{parts}
 
-    \question Mostre que $\int_{-1}^n \left( 1 + x \right)^a \left( 1 - x \right)^b dx = 2^{a + b + 1} B(a + 1, b + 1)$, onde $B(a, b)$ \'{e} a fun\c{c}\~{a}o beta.
+    \question Mostre que $\Gamma(1/2 + x) \Gamma(1/2 - x) = \pi / \cos(\pi x)$.
+    \begin{solution}
+        % TODO escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Mostre que $\int_{-1}^1 \left( 1 + x \right)^a \left( 1 - x \right)^b \,\mathrm{d}x = 2^{a + b + 1} B(a + 1, b + 1)$, onde $B(a, b)$ \'{e} a fun\c{c}\~{a}o beta.
     \begin{solution}
         Temos que a fun\c{c}\~{a}o beta corresponde a
         \begin{align*}
-            B(a, b) &= \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt.
+            B(a, b) &= \int_0^1 t^{a - 1} (1 - t)^{b - 1} \,\mathrm{d}t.
         \end{align*}
-        Fazendo $t = (1 + x)/2$ temos que $x = 2t - 1$ e $dt = dx/2$. E os extremos ficam $t = 0 \to x = -1$ e $ = 1 \to x = 1$. Substituindo na dfini\c{c}\~{a}o da fun\c{c}\~{a}o beta
+        Fazendo $t = (1 + x)/2$ temos que $x = 2t - 1$ e $\,\mathrm{d}t = \,\mathrm{d}x/2$. E os extremos ficam $t = 0 \to x = -1$ e $ = 1 \to x = 1$. Substituindo na dfini\c{c}\~{a}o da fun\c{c}\~{a}o beta
         \begin{align*}
-            B(a, b) &= \int_{-1}^1 \left( \frac{1 + x}{2} \right)^{a - 1} \left( \frac{1 - x}{2} \right)^{b - 1} \frac{dx}{2} \\
-            &= \int_{-1}^1 \frac{(1 + x)^a}{2^2} \frac{(1 - x)^b}{2^b} \frac{dx}{2} \\
-            &= \frac{1}{2^{a + b + 1}} \int_{-1}^1 (1 + x)^a (1 - x)^b dx.
+            B(a, b) &= \int_{-1}^1 \left( \frac{1 + x}{2} \right)^{a - 1} \left( \frac{1 - x}{2} \right)^{b - 1} \frac{\,\mathrm{d}x}{2} \\
+            &= \int_{-1}^1 \frac{(1 + x)^a}{2^2} \frac{(1 - x)^b}{2^b} \frac{\,\mathrm{d}x}{2} \\
+            &= \frac{1}{2^{a + b + 1}} \int_{-1}^1 (1 + x)^a (1 - x)^b \,\mathrm{d}x.
         \end{align*}
         Portanto,
         \begin{align*}
-            \int_{-1}^1 (1 + x)^a (1 - x)^b dx &= 2^{a + b + 1} B(a + 1, b + 1).
+            \int_{-1}^1 (1 + x)^a (1 - x)^b \,\mathrm{d}x &= 2^{a + b + 1} B(a + 1, b + 1).
         \end{align*}
     \end{solution}
 
@@ -310,28 +337,45 @@
         \end{solution}
     \end{parts}
 
-    \question Mostre que
+    \question[P2 de 2006] Mostre que
     \begin{align*}
-        \int_{-1}^1 \left( 1 - x^2 \right)^{1/2} x^{2n} dx = \begin{cases}
+        \int_{-1}^1 \left( 1 - x^2 \right)^{1/2} x^{2n} \,\mathrm{d}x = \begin{cases}
             \pi / 2, & n = 0; \\
             \pi \left( 2n - 1 \right)!! / \left( 2n + 2 \right)!!, & n = 1, 2, \ldots
         \end{cases}
     \end{align*}
     \begin{solution}
+        % TODO Verificar solu\c{c}\~{a}o.
         Temos que
         \begin{align*}
-            \int_{-1}^1 (1 - x^2)^{1/2} x^{2n} dx &= 2 \int_0^1 (1 - x^2)^{1/2} x^2 dx.
+            \int_{-1}^1 (1 - x^2)^{1/2} x^{2n} \,\mathrm{d}x &= 2 \int_0^1 (1 - x^2)^{1/2} x^2 \,\mathrm{d}x.
         \end{align*}
-        Fazendo $x^2 = t$, $dx = dt/2x = dt/2t^{1/2}$. Os extremos ficam com $x = 0 \to t = 0$ e $x = 1 \to t  = 1$. Logo,
+        Fazendo $x^2 = t$, $\,\mathrm{d}x = \,\mathrm{d}t/2x = \,\mathrm{d}t/2t^{1/2}$. Os extremos ficam com $x = 0 \to t = 0$ e $x = 1 \to t  = 1$. Logo,
         \begin{align*}
-            2 \int_0^1 (1 - t)^{1/2} t^b t^{1/2} /2 dt = \int_0^1 (1 - t)^{1/2} t^{n - 1/2} dt \\
+            2 \int_0^1 (1 - t)^{1/2} t^b t^{1/2} /2 \,\mathrm{d}t = \int_0^1 (1 - t)^{1/2} t^{n - 1/2} \,\mathrm{d}t \\
             &= B(3/2, n + 1/2) \\
             &= B(n + 1/2, 3/2).
         \end{align*}
-        TODO
     \end{solution}
 
-    \question Mostre que $\int_t^z dx \ \left( \left( z - x \right)^{1 - \alpha} \left( x - t \right)^{\alpha} \right) = \pi / \left( \sin \pi \alpha \right)$.
+    \question Mostre que
+    \begin{align*}
+        \int_t^z \frac{1}{\left( z - x \right)^{1 - \alpha} \left( x - t \right)^{\alpha}} \,\mathrm{d}x &= \frac{\pi}{\sin \pi \alpha}.
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+        % Substitui\c{c}\~{o}es a utilizar: x - t \to y e y \to (z - t) w.
+    \end{solution}
+
+    \question Mostre que
+    \begin{align*}
+        \int_0^{\pi/2} \sin^n \theta \,\mathrm{d}\theta &= \int_0^{\pi/2} \cos^n \theta \,\mathrm{d}\theta = \frac{\sqrt{\pi}}{2} \frac{\Gamma\left( (n + 1) / 2 \right)}{\Gamma\left( (n + 2) / 2 \right)}.
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Mostre que a \'{a}rea limitada pela curva $x^2 + y^2 = 1$ \'{e} $\left[ \Gamma(1/4) \right]^2 / 2 \sqrt{\pi}$.
     \begin{solution}
         % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
@@ -359,25 +403,33 @@
         Como $\sum_{k = 1}^\infty 1/k^{n + 1} = \zeta(n + 1)$ temos $\psi_n(1) = (-1)^{k + 1} n! \zeta(n + 1)$.
     \end{solution}
 
-    \question Mostre que $\psi_0(z) = -\gamma + \int_0^\infty dt / \left( e^t - 1 \right) - \int_0^\infty \left( e^{\left( 1 - z \right) t} \right) dt / \left( e^t - 1 \right)$.
+    \question Mostre que $\psi_0(z) = -\gamma + \int_0^\infty \,\mathrm{d}t / \left( e^t - 1 \right) - \int_0^\infty \left( e^{\left( 1 - z \right) t} \right) \,\mathrm{d}t / \left( e^t - 1 \right)$.
     \begin{solution}
         % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
 
-    \question Mostre que $n! \zeta(n + 1) = \int_0^\infty t^n dt / \left( e^t - 1 \right)$.
+    \question Mostre que $n! \zeta(n + 1) = \int_0^\infty t^n \,\mathrm{d}t / \left( e^t - 1 \right)$.
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question[P2 de 2006] Seja $\Gamma(z)$ a fun\c{c}\~{a}o gama e $y \in \mathbb{R}$. Mostre que
+    \begin{align*}
+        \left| \Gamma(1/2 + i y) \right|^2 &= \pi / \cosh(\pi y).
+    \end{align*}
     \begin{solution}
         % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
 
     \question[E de 2011] Mostre que
     \begin{align*}
-        \int_{-1}^1 \left( \frac{1 + x}{1 - x} \right)^{1/4} dx &= \frac{\pi}{\sqrt{2}}.
+        \int_{-1}^1 \left( \frac{1 + x}{1 - x} \right)^{1/4} \,\mathrm{d}x &= \frac{\pi}{\sqrt{2}}.
     \end{align*}
     \begin{solution}
         Temos que
         \begin{align*}
-            \int_{-1}^1 (1 + x)^{1/4} (1 - x)^{-1/4} dx &= \int_0^1 2^{1/4} t^{1/4} (1 - t)^{-1/4} 2 dt && t = (1 + x)/2 \\
-            &= 2 \int_0^1 t^{5/4 - 1} (1 - t)^{3/4 - 1} dt \\
+            \int_{-1}^1 (1 + x)^{1/4} (1 - x)^{-1/4} \,\mathrm{d}x &= \int_0^1 2^{1/4} t^{1/4} (1 - t)^{-1/4} 2 \,\mathrm{d}t && t = (1 + x)/2 \\
+            &= 2 \int_0^1 t^{5/4 - 1} (1 - t)^{3/4 - 1} \,\mathrm{d}t \\
             &= 2 B(5/4, 3/4) \\
             &= \frac{2 \Gamma(5/4) \Gamma(3/4)}{\Gamma(2)} \\
             &= \frac{2(1/4) \Gamma(1/4) \Gamma(1 - 1/4)}{1 \Gamma(1)} \\

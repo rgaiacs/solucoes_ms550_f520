@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 8.
 % 
 % Created: 21.05.12 08:46:45 PM
-% Last Change: 24.06.12 11:57:19 AM
+% Last Change: 25.06.12 08:15:14 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -81,7 +81,25 @@ Se \eqref{eq:EDOL} tiver coeficientes constantes, i.e., se $a_i(x)$ for constant
 \begin{align*}
     a_n \frac{\mathrm{d}^ny}{\mathrm{d}x^n} + a_{n - 1} \frac{\mathrm{d}^{n - 1}y}{\mathrm{d}x^{n - 1}} + \ldots + a_1 \frac{\mathrm{d}y}{\mathrm{d}x} + a_0 y &= f(x). \tag{EDOLCC} \label{eq:EDOLCC}
 \end{align*}
-O m\'{e}todo padr\~{a}o para encontrar $y_h(x)$ \'{e} tentar solu\c{c}\~{o}es da forma $y(x) = A \exp(r x)$, $A \neq 0$. Substituindo $y(x) = A \exp(r x)$ em \eqref{eq:EDOLCC} e notando que $\exp(r x) \neq 0$ obtemos uma equa\c{c}\~{a}o polinomial em $r$ de ordem $n$ denominada equa\c{c}\~{a}o auxiliar. % TODO descrever os casos poss\'{i}veis
+O m\'{e}todo padr\~{a}o para encontrar $y_h(x)$ \'{e} tentar solu\c{c}\~{o}es da forma $y(x) = A \exp(r x)$, $A \neq 0$. Substituindo $y(x) = A \exp(r x)$ em \eqref{eq:EDOLCC} e notando que $\exp(r x) \neq 0$ obtemos uma equa\c{c}\~{a}o polinomial em $r$ de ordem $n$ representada por
+\begin{align*}
+    a_n r^n + a_{n - 1} \lambda^{n - 1} + \ldots + a_1 \lambda_1 + a_0 = 0
+\end{align*}
+que \'{e} denominada equa\c{c}\~{a}o indicial. Ao resolver a equa\c{c}\~{a}o indicial ocorre um dos tr\^{e}s casos abaixo:
+\begin{description}
+    \item[Todas as ra\'{i}zes s\~{a}o reais e distintas.] Neste caso as $n$ solu\c{c}\~{o}es para \eqref{eq:EDOLCC} s\~{a}o da forma $\exp(r_i x)$, $i = 1, \ldots, n$.
+    \item[Alguma das ra\'{i}zes \'{e} complexa.] Se todos os coeficientes em \eqref{eq:EDOLCC}, $a_i$, forem reais ent\~{a}o as ra\'{i}zes complexas ocorrem aos pares conjugados, i.e., se $\alpha + i \beta$ \'{e} uma raiz da equa\c{c}\~{a}o indicial ent\~{a}o $\alpha - i \beta$ tamb\'{e}m \'{e} e podemos escrever
+        \begin{align*}
+            c_1 \exp\left( (\alpha + i \beta) x \right) + c_2 \exp\left( (\alpha - i \beta) x \right) &= \exp(\alpha x) \left( d_1 \cos(\beta x) + d_2 \sin(\beta x) \right) \\
+            &= A \exp(\alpha x) \sin(\beta x + \phi) \\
+            &\quad \text{ ou } A \exp(\alpha x) \cos(\beta x + \phi)
+        \end{align*}
+    \item[Existem ra\'{i}zes repetidas.] Se, por exemplo, $\lambda_1$ for $k$, $k > 1$, solu\c{c}\~{a}o da equa\c{c}\~{a}o indicial ent\~{a}o n\~{a}o encontramos $n$ solu\c{c}\~{o}es linearmente independentes. Mas por substitui\c{c}\~{a}o direta em \eqref{eq:EDOLCC} verifica-se que
+        \begin{align*}
+            x \exp(\lambda_1 x), x^2 \exp(\lambda_1 x), \ldots, x^{k - 1} \exp(\lambda_1 x)
+        \end{align*}
+        s\~{a}o solu\c{c}\~{o}es e pelo Wronskiano que s\~{a}o linearmente independentes, logo temos nosso conjunto de solu\c{c}\~{o}es linearmente independentes. Este racioc\'{i}nio \'{e} v\'{a}lido para qualquer uma das ra\'{i}zes repetidas.
+\end{description}
 
 Se \eqref{eq:EDOL} tiver coeficientes lineares, i.e., se $a_i(x)$ for uma fun\c{c}\~{a}o linear, ent\~{a}o temos
 \begin{align*}
@@ -148,20 +166,19 @@ Algumas equa\c{c}\~{o}es diferenciais ordin\'{a}rias lineares de segunda ordem s
             y(1) = 0.
         \end{cases}$
         \begin{solution}
-            Para $\lambda = 0$ temos que $y'' = 0$ que implica em $y' = c$ que por sua vez implica em $y = c x + d$. Quando $x = 1$ temos
+            Para $\lambda = 0$ temos que
             \begin{align*}
-                0 &= y(1) = c + d \Rightarrow d = -c.
+                y'' + \lambda y = y'' = 0 \Rightarrow y = a x + b.
+            \end{align*}
+            Quando $x = 1$ temos
+            \begin{align*}
+                0 &= y(1) = a + b \Rightarrow a = -b.
             \end{align*}
             Quando $x = 0$ temos
             \begin{align*}
-                0 &= y(0) + y'(0) = -c + c = 0.
+                0 &= y(0) + y'(0) = -a + a = 0.
             \end{align*}
-            Portanto,
-            \begin{align*}
-                y(x) = c x + d
-            \end{align*}
-            \'{e} solu\c{c}\~{a}o.
-
+            Portanto, para $\lambda = 0$ temos que $y(x) = a x - a = a (x - 1)$ \'{e} solu\c{c}\~{a}o.
 
             Para $\lambda > 0$, fazemos $\lambda = k^2$ com $k > 0$, e assim temos $y'' + k^2 y = 0$. Logo $y = \exp(rx)$ \'{e} solu\c{c}\~{a}o e temos
             \begin{align*}
@@ -208,7 +225,7 @@ Algumas equa\c{c}\~{o}es diferenciais ordin\'{a}rias lineares de segunda ordem s
         \end{solution}
 
         \part $\begin{cases}
-            x^2 y'' + x y' + \lambda y = 0, & 0 < x < 1, \\
+            x^2 y'' + x y' + \lambda y = 0, & 1 < x < e, \\
             y(1) = 0, \\
             y(e) = 0.
         \end{cases}$
@@ -642,55 +659,61 @@ Algumas equa\c{c}\~{o}es diferenciais ordin\'{a}rias lineares de segunda ordem s
             Assim sendo, temos como solu\c{c}\~{a}o apenas $y(x) = \sin(k x)$ com $k > 0$ quando $\lambda > 0$.
         \end{solution}
 
-        \part $\begin{cases}
+        \part[P2 de 2012] $\begin{cases}
             x y'' + y' + \lambda x y = 0, & 0 < x < 1, \\
             y(1) = 0, \\
-            \lim_{x \to 0^-} | y(x) | < \infty.
+            \lim_{x \to 0^+} | y(x) | < \infty.
         \end{cases}$
         \begin{solution}
-            Verifica-se que $x y11 + y' + \lambda x y = 0$ \'{e} ua equa\c{c}\~{a}o de Bessel de ordem zero. Fazendo a substitui\c{c}\~{a}o de $\sqrt{\lambda} x \to t$ temos
+            Multiplicando a equa\c{c}\~{a}o diferencial por $x$ temos
             \begin{align*}
-                t y'' + y' + t y = 0
+                x^2 y'' + x y' + \lambda x^2 y &= 0
             \end{align*}
-            e para $\lambda = \alpha^2$ com $\alpha > 0$ temos
-            \begin{align*}
-                y(r) = A J_0(\sqrt{\lambda} x) + B Y_0(\sqrt{\lambda} x).
-            \end{align*}
-            Como 
-            \begin{align*}
-                \lim_{x \to 0^+} | y(x) | < \infty \Rightarrow B = 0 \text{ e } y(x) = A J_0(\sqrt{\lambda} x)
-            \end{align*}
-            e quando $x = 0$ temos
-            \begin{align*}
-                0 = A J_0(\sqrt{\lambda}) \Rightarrow \sqrt{\lambda} = k_0 n.
-            \end{align*}
-            Portanto, $y_n(x) = J_0(k_0 n x)$ com $\lambda = k_0 n^2$.
+            que \'{e} uma equa\c{c}\~{a}o de Bessel de ordem zero.
 
             Para $\lambda = 0$ temos
             \begin{align*}
-                x y'' + y' = 0 \Rightarrow y(x) = c_1 \ln(x) + c_2.
+                x y'' + y' = (x y')' = 0 \Rightarrow y(x) = c_1 \ln(x) + c_2.
             \end{align*}
             Quando $x \to 0^+$ temos
             \begin{align*}
-                \lim_{x \to 0^+} | y(x) | = \infty.
-            \end{align*}
-            Portanto, quando $\lambda = 0$ n\~{a}o existe solu\c{c}\~{a}o.
-
-            Para $\lambda < 0$, fazendo $\lambda = - \alpha^2$ com $\alpha > 0$ temos
-            \begin{align*}
-                t y'' + y' - t y = 0 \Rightarrow y(x) = A I_0(\alpha x) + B K_0(\alpha x).
-            \end{align*}
-            Quando $x \to 0^+$ temos
-            \begin{align*}
-                \lim_{x \to 0^+} | y(x) | < 0 \Rightarrow B = 0.
+                \lim_{x \to 0^+} | y(x) | < \infty \to x_1 = 0.
             \end{align*}
             Quando $x = 1$ temos
             \begin{align*}
-                0 = y(1) = A I_0(\alpha) \Rightarrow \alpha = 0 \text{ ou } A = 0.
+                0 &= y(1) = c_2.
             \end{align*}
-            Portanto, quando $\lambda < 0$ existe apenas a solu\c{c}\~{a}o trivial.
+            Portanto, quando $\lambda = 0$ existe apenas a solu\c{c}\~{a}o trivial.
 
-            Assim sendo, al\'{e}m da solu\c{c}\~{a}o trivial temos $y_n(x) = J_0(k_0 n x)$ com $\lambda = k_0 n^2$ quando $\lambda > 0$.
+            Para $\lambda > 0$, fazendo $\lambda = k^2$ com $k > 0$, temos
+            \begin{align*}
+                x^2 y'' + x y' + k^2 x^2 y = 0 \Rightarrow y = A J_0(k x) + B Y_0(k x)
+            \end{align*}
+            onde $J_0(k x)$ \'{e} a equa\c{c}\~{a}o de Bessel de primeira esp\'{e}cie e ordem zero e $Y_0(k x)$ \'{e} a equa\c{c}\~{a}o de Bessel de segunda esp\'{e}cie e ordem zero. Quando $x \to 0^+$ temos que
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | < \infty \Rightarrow B = 0
+            \end{align*}
+            pois $\lim_{x \to 0^+} y(x) \to -\infty$. Quando $x = 1$ temos que
+            \begin{align*}
+                0 = y(1) = A J_0(k) \Rightarrow J_0(k) = 0 \Rightarrow k = \alpha_{0n}
+            \end{align*}
+            onde $\alpha_{0n}$ \'{e} o $n$-\'{e}simo zero de $J_0(x)$ para $n = 1, 2, \ldots$. Portanto, quando $\lambda > 0$ temos como solu\c{c}\~{a}o o autopar $(\alpha_{0n}^2, J_0(\alpha_{0n} x)$.
+
+            Para $\lambda < 0$, fazendo $\lambda = - k^2$ com $k > 0$, temos
+            \begin{align*}
+                x^2 y'' + x y' - k^2 x^2 y = 0 \Rightarrow y = A I_0(k x) + B K_0(k x),
+            \end{align*}
+            onde $I_0(k x)$ \'{e} a fun\c{c}\~{a}o de Bessel modificada de primeira esp\'{e}cie e ordem zero e $K_0(k x)$ \'{e} a fun\c{c}\~{a}o de Bessel modificada de segunda esp\'{e}cie e ordem zero. Quando $x \to 0^+$ temos
+            \begin{align*}
+                \lim_{x \to 0^+} | y(x) | < \infty \Rightarrow B = 0
+            \end{align*}
+            pois $\lim_{x \to 0^+} K_0(x) \to \infty$. Quando $x = 1$ temos
+            \begin{align*}
+                0 = y(1) = A I_0(k) \Rightarrow A = 0
+            \end{align*}
+            pois $I_0(k) \neq 0$. Portanto, quando $\lambda < 0$ existe apenas a solu\c{c}\~{a}o trivial.
+
+            Assim sendo, al\'{e}m da solu\c{c}\~{a}o trivial temos o autopar $(\alpha_{0n}^2, J_0(\alpha_{0n} x)$.
         \end{solution}
         
         \part $\begin{cases}

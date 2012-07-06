@@ -40,6 +40,7 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{tikz}
 
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
@@ -621,14 +622,6 @@ Equa\c{c}\~{o}es eventualmente útil:
         \end{solution}
     \end{parts}
 
-    \question[P2 de 2006] Fa\c{c}a um esbo\c{c}o do gr\'{a}fico das fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie e de ordem zero, um e dois.
-    \begin{solution}
-        Como apresentado nas notas de aula, as fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie apresentam comportamento oscilat\'{o}rio e que apenas $J_0(x)$ n\~{a}o se anula para $x = 0$.
-        \begin{center}
-            \includegraphics[width=0.8\textwidth]{BesselJPlot.png}
-        \end{center}
-    \end{solution}
-
     \question[P3 de 2006] As fun\c{c}\~{o}es de Bessel esf\'{e}ricas $j_n(x)$ s\~{a}o definidas atrav\'{e}s de
     \begin{align*}
         j_n(x) &= (\pi / (2x) )^{1/2} J_{n + 1/2}(x),
@@ -748,6 +741,96 @@ Equa\c{c}\~{o}es eventualmente útil:
             \end{align*}
         \end{solution}
     \end{parts}
+
+    \question[P2 de 2012] Sejam $J_m(x)$ as fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie e ordem $m$. Mostre que
+    \begin{parts}
+        \part $\int_0^\infty J_{2n + 1}(\alpha x) \,\mathrm{d}x = a^{-1}, n = 0, 1, 2, \ldots$
+        \begin{solution}
+            Utilizando a rela\c{c}\~{a}o
+            \begin{align*}
+                J_{\nu - 1}(x) - J_{\nu + 1}(x) = 2 J'_\nu(x)
+            \end{align*}
+            temos, para $\nu \neq 0$, que
+            \begin{align*}
+                I &= \int_0^\infty J_{\nu + 1}(x) \,\mathrm{d}x - \int_0^\infty J_{\nu + 1}(x) \,\mathrm{d}x \\
+                &= 2 \int_0^\infty J'_\nu(x) \,\mathrm{d}x \\
+                &= 2 \left. \left[ J\nu(x) \right] \right|_0^\infty \\
+                &= 0 - 0 \\
+                & 0.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                \int_0^\infty J_{\nu + 1}(x) \,\mathrm{d}x &= \int_0^\infty J_{\nu - 1}(x) \,\mathrm{d}x
+            \end{align*}
+            para $\nu \neq 0$. Consequentemente
+            \begin{align*}
+                \int_0^\infty J_{2n + 1}(x) \,\mathrm{d}x = \int_{0}^\infty J_{2n - 1}(x) \,\mathrm{d}x = \ldots \int_0^\infty J_1(x) \,\mathrm{d}x.
+            \end{align*}
+            Mas
+            \begin{align*}
+                \frac{\mathrm{d}}{\mathrm{d}x}\left( x^{-\nu} J_\nu(x) \right) = - x^{-\nu} J_{\nu + 1}(x) \Rightarrow \frac{\mathrm{d}}{\mathrm{d}x}\left( J_0(x) \right) = - J_1(x)
+            \end{align*}
+            de modo que
+            \begin{align*}
+                \int_0^\infty J_1(x) \,\mathrm{d}x &= - \int_0^\infty \frac{\mathrm{d}}{\mathrm{d}x}J_0(x) \,\mathrm{d}x \\
+                &= \left. - J_0(x) \right|_0^\infty \\
+                &= 0 - \left( - J_0(0) \right) \\
+                &= 1
+            \end{align*}
+            e portanto
+            \begin{align*}
+                \int_0^\infty J_{2n + 1}(x) \,\mathrm{d}x &= 1, n = 0, 1, 2, \ldots
+            \end{align*}
+        \end{solution}
+
+        \part $\int_0^\infty \frac{J_{2n}(x)}{x} \,\mathrm{d}x = (2n)^{-1}, n = 1, 2, \ldots$
+        \begin{solution}
+            Utilizando a rela\c{c}\~{a}o
+            \begin{align*}
+                \frac{2 \nu}{x} J_\nu(x) &= J_{\nu + 1}(x) + J_{\nu - 1}(x)
+            \end{align*}
+            temos, para $\nu = 2n$, que
+            \begin{align*}
+                I &= 2 \left( 2n \right) \int_0^\infty J_{2n}(x) x^{-1} \,\mathrm{d}x \\
+                &= \int_{0}^\infty J_{2n + 1}(x) \,\mathrm{d}x + \int_0^\infty J_{2n - 1}(x) \,\mathrm{d}x \\
+                &= 1 + 1 \\
+                &= 2
+            \end{align*}
+            e portanto
+            \begin{align*}
+                \int_0^\infty J_{2n}(x) x^{-1} \,\mathrm{d}x &= (2n)^{-1}, n = 1, 2, \ldots
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[P2 de 2006, P2 de 2012] Em um mesmo gr\'{a}fico fa\c{c}a um esbo\c{c}o do comportamento das fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie de ordem zero, um e dois, identificando claramente os limites $x \to 0$, $x \to \infty$ e os zeros dessas fun\c{c}\~{o}es. Fa\c{c}a o mesmo para as fun\c{c}\~{o}es de Bessel modificadas de primeira esp\'{e}cie de ordem zero, um e dois.
+    \begin{solution}
+        Como apresentado nas notas de aula, as fun\c{c}\~{o}es de Bessel de primeira esp\'{e}cie apresentam comportamento oscilat\'{o}rio e que apenas $J_0(x)$ n\~{a}o se anula para $x = 0$.
+        % TODO Procurar uma maneira mais adequada para o gr\'{a}fico abaixo.
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[->] (-1,0) -- (10,0);
+                \draw[->] (0,-2) -- (0,4);
+
+                \draw[domain=1:10] plot(\x - 1, {8 * sin( (\x) r) / (\x + 1)}) node[below right]{$J_0(x)$};
+                \draw[domain=0:9] plot(\x, {6 * sin(\x r) / (\x + 1)}) node[above right]{$J_1(x)$};
+                \draw[domain=0:9] plot(\x, {4 * sin(.7 * \x r) / (\x + 1)}) node[right]{$J_2(x)$};
+            \end{tikzpicture}
+        \end{center}
+
+        E as fun\c{c}\~{o}es de Bessel modificada de primeira esp\'{e}cie  % TODO Completar frase.
+        % TODO Procurar uma maneira mais adequada para o gr\'{a}fico abaixo.
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[->] (-1,0) -- (10,0);
+                \draw[->] (0,-1) -- (0,7);
+
+                \draw[domain=0:10] plot(\x, {exp(\x / 4) / 2}) node[left]{$I_0(x)$};
+                \draw[domain=0:10] plot(\x, {(exp(\x / 4.1) - 1) / 2}) node[above right]{$I_1(x)$};
+                \draw[domain=0:10] plot(\x, {(exp(\x / 5) - 1) / 2}) node[right]{$I_2(x)$};
+            \end{tikzpicture}
+        \end{center}
+    \end{solution}
 \end{questions}
 \bibliographystyle{plain}
 \bibliography{bibliography}

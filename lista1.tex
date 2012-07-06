@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 1.
 % 
 % Created: 07.03.12 04:00:00 PM
-% Last Change: 24.06.12 11:26:20 AM
+% Last Change: 04.07.12 10:36:46 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -61,26 +61,26 @@
 \setcounter{page}{1}
 Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
 \begin{align}
-    \devp{\vec{r}}{q_i} &= \devp{x}{q_i} \vec{e}_x + \devp{y}{q_i} \vec{e}_y + \devp{z}{q_i} \vec{e}_z,
+    & \devp{\vec{r}}{q_i} = \devp{x}{q_i} \vec{e}_x + \devp{y}{q_i} \vec{e}_y + \devp{z}{q_i} \vec{e}_z,
     \label{eq:vetor_tangente} \\
-    h_i &= \sqrt{\left(\devp{x}{q_i}\right)^2 + \left(\devp{y}{q_i}\right)^2 + \left(\devp{z}{q_i}\right)^2},
+    & h_i = \sqrt{\left(\devp{x}{q_i}\right)^2 + \left(\devp{y}{q_i}\right)^2 + \left(\devp{z}{q_i}\right)^2},
     \label{eq:fator_escala} \\
-    \vec{e}_{q_i} &= \frac{1}{h_i} \devp{\vec{r}}{q_i}
+    & \vec{e}_{q_i} = \frac{1}{h_i} \devp{\vec{r}}{q_i}
     \label{eq:vetor_tang_unit} \\
-    \vec{e}_{q_i} &= \sum_j \left( \vec{e}_{q_i} \cdot \vec{e}_{p_j} \right) \vec{e}_{p_j}
+    &\vec{e}_{q_i} = \sum_j \left( \vec{e}_{q_i} \cdot \vec{e}_{p_j} \right) \vec{e}_{p_j}
     \label{eq:vetor_mud_coor} \\
-    \grad f = \nabla f &= \frac{1}{h_1} \devp{f}{q_1} \vec{e}_{q_1} + \frac{1}{h_2} \devp{f}{q_2} \vec{e}_{q_2} + \frac{1}{h_3} \devp{f}{q_3} \vec{e}_{q_3},
+    & \grad f = \nabla f = \frac{1}{h_1} \devp{f}{q_1} \vec{e}_{q_1} + \frac{1}{h_2} \devp{f}{q_2} \vec{e}_{q_2} + \frac{1}{h_3} \devp{f}{q_3} \vec{e}_{q_3},
     \label{eq:grad} \\
-    \diver \vec{V} = \nabla \cdot \vec{V} &= \frac{1}{h_1 h_2 h_3} \left[\devp{h_2 h_3 V_1}{q_1} + \devp{h_3 h_1 V_2}{q_2} + \devp{h_1 h_2 V_3}{q_3}\right],
+    & \diver \vec{V} = \nabla \cdot \vec{V} = \frac{1}{h_1 h_2 h_3} \left[\devp{h_2 h_3 V_1}{q_1} + \devp{h_3 h_1 V_2}{q_2} + \devp{h_1 h_2 V_3}{q_3}\right],
     \label{eq:div} \\
-    \rot \vec{V} = \nabla \times \vec{V} &= \frac{1}{h_1 h_2 h_3} \begin{vmatrix}
+    & \rot \vec{V} = \nabla \times \vec{V} = \frac{1}{h_1 h_2 h_3} \begin{vmatrix}
         h_1 \vec{e}_{q_1} & h_2 \vec{e}_{q_2} & h_3 \vec{e}_{q_3} \\
         \devp{}{q_1}      & \devp{}{q_2}      & \devp{}{q_3}      \\
         h_1 V_1           & h_2 V_2           & h_3 V_3           
     \end{vmatrix},
     \label{eq:rot} \\
     \begin{split}
-        \nabla^2 f &= \frac{1}{h_1 h_2 h_3} \left[\devp{}{q_1}\left(\frac{h_2 h_3}{h_1} \devp{}{q_1}\right)\right. \\ &\quad\left. + \devp{}{q_2}\left(\frac{h_1 h_3}{h_2} \devp{}{q_2}\right) + \devp{}{q_3}\left(\frac{h_1 h_2}{h_3} \devp{}{q_3}\right)\right] f,
+        & \nabla^2 f = \frac{1}{h_1 h_2 h_3} \left[\devp{}{q_1}\left(\frac{h_2 h_3}{h_1} \devp{}{q_1}\right)\right. \\ &\qquad\quad\left. + \devp{}{q_2}\left(\frac{h_1 h_3}{h_2} \devp{}{q_2}\right) + \devp{}{q_3}\left(\frac{h_1 h_2}{h_3} \devp{}{q_3}\right)\right] f,
     \end{split}
     \label{eq:laplaciano} \\
     & \begin{cases}
@@ -93,8 +93,11 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
         x = r \sin \theta \cos \phi \\
         y = r \sin \theta \sin \phi \\
         z = r \cos \theta
-    \end{cases}. && \text{coordenadas esf\'{e}ricas}
-    \label{eq:coor_esf}
+    \end{cases}, && \text{coordenadas esf\'{e}ricas}
+    \label{eq:coor_esf} \\
+    & \nabla \cdot (f \vec{V}) = \vec{V} \cdot \nabla f + f \nabla \cdot \vec{V}, \\
+    & \nabla \times (f \vec{V} = f \nabla \times \vec{V} + \nabla f \times \vec{V}, \\
+    & \nabla(f g) = f \nabla g + g \nabla f.
 \end{align}
 
 \begin{questions}
@@ -634,7 +637,7 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
     \begin{parts}
         \part Sejam as coordenadas esf\'{e}ricas $(r, \theta, \phi)$ dadas por
         \begin{align*}
-            x &= r \sin \theta \cos \phi, & y &= r \sin \theta \cos \phi, & z &= r \cos \theta,
+            x &= r \sin \theta \cos \phi, & y &= r \sin \theta \sin \phi, & z &= r \cos \theta,
         \end{align*}
         onde $0 \leq r \leq \infty$, $0 \leq \theta \leq \pi$ e $0 \leq \phi \leq 2 \pi$. Mostre que os vetores tangentes unit\'{a}rios $\left\{ \vec{e}_r, \vec{e}_\theta, \vec{e}_\phi \right\}$ s\~{a}o dados por
         \begin{align*}
@@ -680,7 +683,8 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
             \end{align*}
             Mas
             \begin{align*}
-                \devp{r \vec{e}_r}{r} &= \left( \devp{r}{r} \right) \vec{e}_r + r \left( \devp{\vec{e}_r}{r} \right) &= \vec{e}_r, \\
+                \devp{r \vec{e}_r}{r} &= \left( \devp{r}{r} \right) \vec{e}_r + r \left( \devp{\vec{e}_r}{r} \right) \\
+                &= \vec{e}_r, \\
                 \devp{r \vec{e}_r}{\theta} &= \left( \devp{r}{\theta} \right) \vec{e}_r + r \left( \devp{\vec{e}_r}{\theta} \right) \\
                 &= r \left( \cos \theta \cos \phi \vec{i} + \cos \theta \sin \phi \vec{j} - \sin \theta \vec{k} \right) = r \vec{e}_\theta, \\
                 \devp{r \vec{e}_r}{\phi} &= \left( \devp{r}{\phi} \right) \vec{e}_r + r \left( \devp{\vec{e}_r}{\phi} \right) \\

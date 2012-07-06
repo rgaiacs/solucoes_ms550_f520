@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 2.
 % 
 % Created: 10.03.12 08:00:00 PM
-% Last Change: 24.06.12 11:36:33 AM
+% Last Change: 04.07.12 11:23:44 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -78,29 +78,32 @@ O Teorema de Frobenius ser\'{a} útil na resolu\c{c}\~{a}o das quest\~{o}es e po
     \end{align*}
     com ra\'{i}zes $r_1$ e $r_2$ com $r_1 \geq r_2$ no caso de ra\'{i}zes reais. Ent\~{a}o em cada um dos intervalos $-\rho < x < 0$ e $0 < x < \rho$ a equa\c{c}\~{a}o tem uma solu\c{c}\~{a}o $y_1(x)$ da forma
     \begin{align*}
-        y_1(x) &= |x|^{r_1} \left( 1 + \sum_{n = 1}^\infty a_n(r_1) x^n \right).
+        y_1(x) &= |x|^{r_1} \left( 1 + \sum_{n = 1}^\infty a_n x^n \right).
     \end{align*}
     Al\'{e}m disso, temos tamb\'{e}m uma segunda solu\c{c}\~{a}o LI $y_2(x)$ de acordo com os casos:
     \begin{enumerate}
         \item Se $r_1 - r_2 \not\in \mathbb{N}$ temos
             \begin{align*}
-                y_x(x) &= |x|^{r_2} \left( 1 + \sum_{n = 1}^\infty a_n(r_2) x^n \right).
+                y_x(x) &= |x|^{r_2} \left( 1 + \sum_{n = 1}^\infty b_n x^n \right).
             \end{align*}
         \item Se $r_1 - r_2 = 0$ temos
             \begin{align*}
-                y_2(x) &= y_1(x) \ln |x| + |x|^{r_2} \sum_{n = 1}^\infty b_n(r_2) x^n.
+                y_2(x) &= y_1(x) \ln |x| + |x|^{r_2} \sum_{n = 1}^\infty b_n x^n.
             \end{align*}
         \item Se $r_1 - r_2 \in \mathbb{N}$ temos
             \begin{align*}
-                y_2(x) = k y_1(x) \ln |x| + |x|^{r_2} \sum_{n = 0}^\infty c_n(r_2) x^n.
+                y_2(x) = k y_1(x) \ln |x| + |x|^{r_2} \sum_{n = 0}^\infty b_n x^n.
             \end{align*}
     \end{enumerate}
-    onde a constante $k$ pode ser nula. Os coeficientes $a_n(r_1)$, $a_n(r_2)$, $b_n(r_2)$, $c_n(r_2)$ e a constante $k$ s\~{a}o determinados substituindo as s\'{e}ries em quest\~{a}o na equa\c{c}\~{a}o. Al\'{e}m disso, as s\'{e}ries s\~{a}o convergentes em $-\rho < x < \rho$, de modo que as eventuais singularidades das solu\c{c}\~{o}es devem-se ao termo $|x|^r$ e $\ln |x|$, ou seja, podemos ter p\'{o}los ou pontos de ramifica\c{c}\~{a}o.
+    onde a constante $k$ pode ser nula. Os coeficientes $a_n$, $a_n$, $b_n$, $c_n$ e a constante $k$ s\~{a}o determinados substituindo as s\'{e}ries em quest\~{a}o na equa\c{c}\~{a}o. Al\'{e}m disso, as s\'{e}ries s\~{a}o convergentes em $-\rho < x < \rho$, de modo que as eventuais singularidades das solu\c{c}\~{o}es devem-se ao termo $|x|^r$ e $\ln |x|$, ou seja, podemos ter p\'{o}los ou pontos de ramifica\c{c}\~{a}o.
 \end{quote}
 
 Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 = 0$ exceto quando indicado).
 \begin{questions}
     \question $x^2 y'' + x y' + \left( x^2 - 1/4 \right) y = 0$.
+    % Resposta
+    % y_1 = x^{-1/2} \cos x
+    % y_2 = x^{-1/2} \sin x
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -189,6 +192,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $x\left( 1 - x \right) y'' - 3 y' + 2y = 0$.
+    % Resposta
+    % y_1 = x^2 + 2 x + 3
+    % y_2 = x^4 / (1 - x)^2
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -250,7 +256,7 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
 
         Para $r = r_2 = 4$, temos
         \[
-        a+n = \frac{\left( n + 3 \right) \left( n + 2 \right) - 2}{\left( n + 4 \right) n} a_{n - 1} = \frac{\left( n + 4 \right) \left( n + 1 \right)}{n \left( n + 4 \right)} a_{n - 1} = \frac{n + 1}{n} a_{n - 1}.
+        a_n = \frac{\left( n + 3 \right) \left( n + 2 \right) - 2}{\left( n + 4 \right) n} a_{n - 1} = \frac{\left( n + 4 \right) \left( n + 1 \right)}{n \left( n + 4 \right)} a_{n - 1} = \frac{n + 1}{n} a_{n - 1}.
         \]
         Logo, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e} expressa por
         \[
@@ -265,6 +271,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $x y'' + y' = 0$.
+    % Resposta
+    % y_1 = 1
+    % y_2 = \ln(x)
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -323,6 +332,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $x^4 y'' + 2 x^3 y' - w^2 y = 0$, $x_0 = + \infty$.
+    % Resposta
+    % y_1 = \sum_{k = 0}^\infty (w x)^{-2 k} / (2k)!
+    % y_2 = \sum_{k = 0}^\infty (w x)^{-2k - 1} / (2k + 1)!
     \begin{solution}
         Primeiramente fa\c{c}amos uma mudan\c{c}a de vari\'{a}vel:
         \[
@@ -383,6 +395,8 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $y'' + x y' + y = 0$.
+    % Resposta
+    % a_0 e a_1 arbitr\'{a}rios, a_k = - \frac{1}{k} a_{k - 2}, k \geq 2
     \begin{solution}
         Inicialmente verificamos que $p(x) = 1$ e $q(x) = x$ s\~{a}o fun\c{c}\~{o}es anal\'{i}ticas em torno de $x_0 = 0$. Ent\~{a}o a solu\c{c}\~{a}o \'{e} do tipo
         \[
@@ -422,6 +436,8 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $y'' + 5 x^3 y = 0$.
+    % Resposta
+    % a_0 e a_1 arbitr\'{a}rios, a_2 = a_3 = a_4 = 0 e a_k = - \frac{5}{k(k - 1)} a_{k - 5)}, k \geq 5
     \begin{solution}
         Inicialmente verificamos que $p(x) = 1$ e $q(x) = 0$ s\~{a}o fun\c{c}\~{o}es anal\'{i}ticas em torno de $x_0$. Logo, a solu\c{c}\~{a}o \'{e} do tipo
         \[
@@ -461,6 +477,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $4 x y'' + 2 \left( 1 - x \right) y' - y = 0$.
+    % Resposta
+    % a_k = \frac{1}{2k} a_{k - 1}, k \geq 1
+    % a_k = \frac{1}{2k + 1} a_{k - 1}, k \geq 1
     \begin{solution}
         Inicialmente manipulamos a equa\c{c}\~{a}o tal que
         \[
@@ -514,7 +533,6 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
         y_1(x) = \sum_{n = 0}^\infty \frac{a_0 x^n}{2^n n!} = e^x \sum_{n = 0}^\infty \frac{a_0}{2^n}.
         \]
 
-
         Para $r = r_2 = \frac{1}{2}$, temos
         \begin{align*}
             \left( 2 n + 1 \right) \left( 2 n + 1 - 1 \right) a_n - \left( 2 n + 1 - 1 \right) a_{n - 1} &= 0 \\
@@ -531,6 +549,10 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $x^2 y'' + x y' + \left( x^3 - 2 \right) y = 0$.
+    % Resposta
+    % a_1 = a_2 = 0
+    % a_k = - \frac{1}{k(k + 2 \sqrt{2}} a_{k - 3}, k \geq 3
+    % a_k = - \frac{1}{k(k - 2 \sqrt{2}} a_{k - 3}, k \geq 3
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -603,6 +625,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $3 \left( x^2 + x \right) y'' + \left( x + 2 \right) y' - y = 0$.
+    % Resposta
+    % a_{k + 1} = - \frac{(3k - 2)(3k + 2)}{(3k + 3)(3k + 4)} a_k, k \geq 1
+    % y_2 = 1 + x / 2
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -673,6 +698,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $2 x y'' + y' - y = 0$.
+    % Resposta
+    % a_k = \frac{1}{k (2k - 1)} a_{k - 1}, k \geq 1
+    % a_k = \frac{1}{k (2k _ 1)} a_{k - 1}, k \geq 1
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -727,6 +755,10 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $8 x^2 y'' + 2 x y' + \left( 1 - x \right) y = 0$.
+    % Resposta
+    % a_k = a_{k - 1} / \left[ 8 (k + r) (k + r - 1) + 2 (k + r) + 1 \right], k \geq 1
+    % r_1 = -1/2
+    % r_2 = -1/4
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -785,6 +817,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $\left( x - 1 \right) y'' - x y' + y = 0$, $x_0 = 1$.
+    % Resposta
+    % a_k = \frac{1}{k + 2} a_{k - 1}, k \geq 1
+    % y_2 = x
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -865,6 +900,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $x^2 \left( 1 + x \right) y'' + x \left( 1 + x \right) y' - y = 0$.
+    % Resposta
+    % a_k = - \frac{k}{k + 2} a_{k - 1}, k \geq 1
+    % y_2 = 1 + x^{-1}
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \[
@@ -949,6 +987,9 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
     \end{solution}
 
     \question $x y'' + \left( x - 1 \right) y' - y = 0$.
+    % Resposta
+    % a_k = - \frac{1}{k + 2}, k \geq 1
+    % y_2 = 1 - x
     \begin{solution}
         Manipulando a equa\c{c}\~{a}o temos
         \begin{align*}
@@ -1031,46 +1072,31 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
         \end{align*}
     \end{solution}
 
-    \question[T2 de 2012] Seja a equa\c{c}\~{a}o diferencial $x(1 - x) y'' + (1 - 5x) y' - 4y = 0$. Ao utilizar o m\'{e}todo de Frobenius para resolver essa equa\c{c}\~{a}o encontramos que a equa\c{c}\~{a}o indicial correspondete apresenta ra\'{i}zes reais iguais a $r_1 = r_2 = 0$, e com isso obtemos que uma das solu\c{c}\~{o}es em forma de s\'{e}rie dessa equa\c{c}\~{a}o \'{e}
+    \question[T2 de 2011] Encontre a solu\c{c}\~{a}o geral, na forma de s\'{e}rie, da equa\c{c}\~{a}o diferencial
     \begin{align*}
-        y_1(x) &= \sum_{n = 0}^\infty (n + 1)^2 x^n.
+        x (1 - x) y'' - 3 x y' - y &= 0.
     \end{align*}
-    Utilize o m\'{e}todo de Frobenius para encontrar uma segunda solu\c{c}\~{a}o $y_2(x)$ linearmente independente.
     \begin{solution}
-        Pelo m\'{e}todo de Frobenius a segunda solu\c{c}\~{a}o linearmente \'{e} dada pela forma
+        % TODO Terminar de digitar.
+        % TODO Melhorar a reda\c{c}\~{a}o.
+        Verificamos que $p(x)$ e $q(x)$ n\~{a}o s\~{a}o anal\'{i}ticas mas $x p(x)$ e $x^2 q(x)$ s\~{a}o. Logo, $x_0$ \'{e} ponto singular regular.
+
+        Ent\~{a}o a solu\c{c}\~{a}o por s\'{e}rie \'{e} do tipo
         \begin{align*}
-            y_2(x) &= y_1(x) \ln x + x^{r_1} \sum_{n = 1}^\infty a_n x^n \\
-            &= y_1(x) \ln x + \sum_{n = 1}^\infty a_n x^n && r_1 = r_2 = 0.
+            y(x) &= \sum_{n = 0}^\infty a_n x^{n + r}.
         \end{align*}
-        Derivando a segunda solu\c{c}\~{a}o temos
+        Consequentemente
         \begin{align*}
-            y_2'(x) &= y_1' \ln x + y_1 (1/x) + \sum_{n = 1}^\infty n a_n x^{n - 1}, \\
-            y_2''(x) &= y_1'' \ln x + 2 y_1' (1/x) - y_1 (1/x^2) + \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1}
+            y'(x) &= \sum_{n = 0}^\infty \left( n + r \right) a_n x^{n + r - 1}, \\
+            y''(x) &= \sum_{n = 0}^\infty \left( n + r \right) \left( n + r - 1 \right) a_n x^{n + r - 2}.
         \end{align*}
-        e substituindo na equa\c{c}\~{a}o diferencial
+        
+        Substituindo a solu\c{c}\~{a}o na equa\c{c}\~{a}o temos
         \begin{align*}
             \begin{split}
-                \left[ x (1 - x) y_1'' + (1 - 5x) y_1' - 4y_1 \right] \ln x + 2 y_1' - y_1 (1/x) & \\
-                {}+ \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1} - 2 x y_1' + y_1 - \sum_{n - 1}^\infty n (n - 1) a_n x^n + y_1 (1/n) & \\
-                {}+ \sum_{n = 1}^\infty n a_n x^{n - 1} - 5y_1 - 5 \sum_{n = 1}^\infty n a_n x^n - 4 \sum_{n = 1}^\infty a_n x^n &= 0.
-            \end{split} \\
-            \begin{split}
-                2 y_1' + \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1} - 2 x y_1' + y_1 - \sum_{n = 1}^\infty n (n - 1) a_n a^n & \\
-                {}+ \sum_{n = 1}^\infty n a_n x^{n - 1} - 5 y_1 - 5 \sum_{n = 1}^\infty n a_n x^n - 4 \sum_{n = 1}^\infty a_n x^n &= 0.
+                \sum_{n = 0}^\infty a_n \left( n + r \right) \left( n + r - 1 \right) x^{n + r - 1} - \sum_{n = 0}^\infty a_n \left( n + r \right) \left( n + r - 1 \right) x^{n + r} & \\ {}- \sum_{n = 0}^\infty 3 a_n \left( n + r \right) x^{n + r} - \sum_{n = 0}^\infty a_n x^{n + r} &= 0.
             \end{split}
         \end{align*}
-        Usando a express\~{a}o de $y_1(x)$ temos 
-        \begin{align*}
-            \begin{split}
-                2 \sum_{n = 1}^\infty n (n + 1)^2 x^{n - 1} + \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1} - 2 \sum_{n = 1}^\infty n (n + 1)^2 x^n - \sum_{n = 1}^\infty n (n - 1) a_n x^n & \\
-                {}+ \sum_{n = 1}^\infty n a_n x^{n - 1} - 4 \sum_{n = 1}^\infty (n + 1)^2 x^n - 5 \sum_{n = 1}^\infty n a_n x^n - 4 \sum_{n = 1}^\infty a_n x^n &= 0.
-            \end{split}
-        \end{align*}
-        Ent\~{a}o,o\begin{align*}
-            a_{n + 1} &= \left( \frac{n + 2}{n + 1} \right) \left[ (\frac{n + 2}{n + 1} a_n - 2 \right], \\
-            a_n &= -2 (n + 1).
-        \end{align*}
-        Portanto, $y_2(x) = y_1(x) \ln x - 2 \sum_{n = 1}^\infty n (n + 1) x^n$, onde $y_1(x) = \sum_{n = 1}^\infty (n + 1)^2 x^n$.
     \end{solution}
 
     \question[P1 de 2011] Seja a equa\c{c}\~{a}o diferencial $x (1 + x) y'' + y' = 0$. Ao utilizar o m\'{e}todo de Frobenius para resolver essa equa\c{c}\~{a}o diferencial encontramos que a equa\c{c}\~{a}o indicial correspondente apresenta ra\'{i}zes iguais $r_1 = r_2 = 0$. Podemos tamb\'{e}m notar que uma solu\c{c}\~{a}o dessa equa\c{c}\~{a}o diferencial \'{e} $y_1(x) = 1$. Utilize o m\'{e}todo de Frobenius para encontrar uma segunda solu\c{c}\~{a}o $y_2(x)$ linearmente indenpendente.
@@ -1176,6 +1202,48 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
         Concluimos ent\~{a}o que $a_n = \left( (-1)^{n + 1} / n! \right) \sum_{k = 1}^\infty (1/k)$.
 
         Portanto, $y_2(x) = y_1(x) \ln x + x \sum_{n = 1}^\infty (-1)^{n + 1} H_n x^n / n!$ onde $y_1(x) = x \exp(-x)$ e $H_n = \sum_{k = 1}^n (1/k)$.
+    \end{solution}
+
+    \question[T2 de 2012, P1 de 2012] Seja a equa\c{c}\~{a}o diferencial $x(1 - x) y'' + (1 - 5x) y' - 4y = 0$. Ao utilizar o m\'{e}todo de Frobenius para resolver essa equa\c{c}\~{a}o encontramos que a equa\c{c}\~{a}o indicial correspondete apresenta ra\'{i}zes reais iguais a $r_1 = r_2 = 0$, e com isso obtemos que uma das solu\c{c}\~{o}es em forma de s\'{e}rie dessa equa\c{c}\~{a}o \'{e}
+    \begin{align*}
+        y_1(x) &= \sum_{n = 0}^\infty (n + 1)^2 x^n.
+    \end{align*}
+    Utilize o m\'{e}todo de Frobenius para encontrar uma segunda solu\c{c}\~{a}o $y_2(x)$ linearmente independente.
+    \begin{solution}
+        Pelo m\'{e}todo de Frobenius a segunda solu\c{c}\~{a}o linearmente \'{e} dada pela forma
+        \begin{align*}
+            y_2(x) &= y_1(x) \ln x + x^{r_1} \sum_{n = 1}^\infty a_n x^n \\
+            &= y_1(x) \ln x + \sum_{n = 1}^\infty a_n x^n && r_1 = r_2 = 0.
+        \end{align*}
+        Derivando a segunda solu\c{c}\~{a}o temos
+        \begin{align*}
+            y_2'(x) &= y_1' \ln x + y_1 (1/x) + \sum_{n = 1}^\infty n a_n x^{n - 1}, \\
+            y_2''(x) &= y_1'' \ln x + 2 y_1' (1/x) - y_1 (1/x^2) + \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1}
+        \end{align*}
+        e substituindo na equa\c{c}\~{a}o diferencial
+        \begin{align*}
+            \begin{split}
+                \left[ x (1 - x) y_1'' + (1 - 5x) y_1' - 4y_1 \right] \ln x + 2 y_1' - y_1 (1/x) & \\
+                {}+ \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1} - 2 x y_1' + y_1 - \sum_{n - 1}^\infty n (n - 1) a_n x^n + y_1 (1/n) & \\
+                {}+ \sum_{n = 1}^\infty n a_n x^{n - 1} - 5y_1 - 5 \sum_{n = 1}^\infty n a_n x^n - 4 \sum_{n = 1}^\infty a_n x^n &= 0.
+            \end{split} \\
+            \begin{split}
+                2 y_1' + \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1} - 2 x y_1' + y_1 - \sum_{n = 1}^\infty n (n - 1) a_n a^n & \\
+                {}+ \sum_{n = 1}^\infty n a_n x^{n - 1} - 5 y_1 - 5 \sum_{n = 1}^\infty n a_n x^n - 4 \sum_{n = 1}^\infty a_n x^n &= 0.
+            \end{split}
+        \end{align*}
+        Usando a express\~{a}o de $y_1(x)$ temos 
+        \begin{align*}
+            \begin{split}
+                2 \sum_{n = 1}^\infty n (n + 1)^2 x^{n - 1} + \sum_{n = 1}^\infty n (n - 1) a_n x^{n - 1} - 2 \sum_{n = 1}^\infty n (n + 1)^2 x^n - \sum_{n = 1}^\infty n (n - 1) a_n x^n & \\
+                {}+ \sum_{n = 1}^\infty n a_n x^{n - 1} - 4 \sum_{n = 1}^\infty (n + 1)^2 x^n - 5 \sum_{n = 1}^\infty n a_n x^n - 4 \sum_{n = 1}^\infty a_n x^n &= 0.
+            \end{split}
+        \end{align*}
+        Ent\~{a}o,o\begin{align*}
+            a_{n + 1} &= \left( \frac{n + 2}{n + 1} \right) \left[ (\frac{n + 2}{n + 1} a_n - 2 \right], \\
+            a_n &= -2 (n + 1).
+        \end{align*}
+        Portanto, $y_2(x) = y_1(x) \ln x - 2 \sum_{n = 1}^\infty n (n + 1) x^n$, onde $y_1(x) = \sum_{n = 1}^\infty (n + 1)^2 x^n$.
     \end{solution}
 \end{questions}
 \end{document}

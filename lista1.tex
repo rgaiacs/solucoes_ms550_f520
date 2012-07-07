@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 1.
 % 
 % Created: 07.03.12 04:00:00 PM
-% Last Change: 04.07.12 10:36:46 PM
+% Last Change: 07.07.12 05:30:07 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -552,6 +552,104 @@ Algumas express\~{o}es \'{u}teis na resolu\c{c}\~{a}o das quest\~{o}es:
             &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + \frac{V_\phi \sin \theta \vec{e}_\phi}{\sin \theta} \\
             &= V_r \vec{e}_r + V_\theta \vec{e}_\theta + V_\phi \vec{e}_\phi.
         \end{align*}
+    \end{solution}
+
+    % TODO Incluir T1 de 2008.
+
+    % TODO Incluir T2 de 2008.
+
+    \question[P1 de 2008] Considere o campo vetorial
+    \begin{align*}
+        \vec{F} &= (x^2 + y^2 + z^2)^n (x \vec{x} + y \vec{y} + z \vec{z}).
+    \end{align*}
+    \begin{parts}
+        \part Escreva $\vec{F}$ em coordenadas cil\'{i}ndricas.
+        \begin{solution}
+            Em coordenadas cil\'{i}ndricas temos
+            \begin{align*}
+                \vec{F} &= (r^2 + z^2)^n (r \vec{r} + z \vec{z}).
+            \end{align*}
+        \end{solution}
+
+        \part Calcule $\nabla \cdot \vec{F}$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \nabla \cdot \vec{F} &= \devp{x (x^2 + y^2 + z^2)^n}{x} + \devp{y (x^2 + y^2 + z^2)^n}{y} + \devp{z (x^2 + y^2 + z^2)^n}{z} \\  \\
+                &= 3 (x^2 + y^2 + z^2) + \left( x \devp{}{x} + y \devp{}{x} + z \devp{}{z} \right) \left( x^2 + y^2 + z^2 \right)^n \\
+                &= (2n + 3) \left( x^2 + y^2 + z^2 \right)^n.
+            \end{align*}
+        \end{solution}
+
+        \part Calcule $\nabla \times \vec{F}$.
+        \begin{solution}
+            Temos que, para a componente $\vec{i}$,
+            \begin{align*}
+                \left( \devp{F_z}{y} - \devp{F_y}{z} \right) \vec{i} &= z \devp{(x^2 + y^2 + z^2)^n}{y} - y \devp{(x^2 + y^2 + z^2)^n}{z} \\
+                &= n (x^2 + y^2 + z^2)^{n - 1} \left( z \devp{y^2}{y} - y \devp{z^2}{z} \right) \\
+                &= 0.
+            \end{align*}
+            Portanto, $\nabla \times \vec{F} = 0$.
+        \end{solution}
+
+        \part Determine uma fun\c{c}\~{a}o escalar $\phi$ tal que $\vec{F} = - \nabla \phi$.
+        \begin{solution}
+            Em coordenadas esf\'{e}ricas temos que $\vec{F} = r^{2n + 1} \vec{r}$ e portanto $\phi = - r^{2n + 2} / (2n + 2)$, $n \neq - 1$, e $\phi = - \ln r$, $n = -1$.
+        \end{solution}
+
+        \part Para que valores de $n$ a fun\c{c}\~{a}o escalar $\phi$ diverge na origem?
+        \begin{solution}
+            A fun\c{c}\~{a}o $\phi$ diverge na origem para $n < 0$.
+        \end{solution}
+    \end{parts}
+
+    \question[E de 2008] Considere o seguinte campo vetorial em $\mathbb{R}^3$
+    \begin{align*}
+        \vec{F} &= \ln\left( x^2 + y^2 + z^2 \right) \left( x \vec{x} + y \vec{y} + z \vec{z} \right).
+    \end{align*}
+    \begin{parts}
+        \part Escreva $\vec{F}$ em coordenadas cil\'{i}ndricas.
+        \begin{solution}
+            % TODO Detalhar solu\c{c}\~{a}o.
+            Temos que
+            \begin{align*}
+                \vec{F} &= \ln(r^2 + z^2) \left( r \vec{r} + z \vec{z} \right).
+            \end{align*}
+        \end{solution}
+
+        \part Calcule $\oint_\Gamma \vec{F} \cdot \mathrm{d}\vec{s}$, sendo $\Gamma$ o c\'{i}rculo unit\'{a}rio com centro na origem contido no plano $z = 0$.
+        \begin{solution}
+            % TODO Detalhar solu\c{c}\~{a}o.
+            A integral \'{e} zero pois o campo \'{e} radial.
+        \end{solution}
+
+        \part Calcule $\nabla \cdot \vec{F}$.
+        \begin{solution}
+            % TODO Detalhar solu\c{c}\~{a}o.
+            Temos que
+            \begin{align*}
+                \sum_i \left[ \partial_i \left( i \ln(x^2 + y^2 + z^2) \right) \right] &= 3 \ln(x^2 + y^2 + z^2) + 2
+            \end{align*}
+            e portanto $\nabla \cdot \vec{F} = 0$.
+        \end{solution}
+
+        \part Determine a fun\c{c}\~{a}o escalar $\phi$ tal que $\vec{F} = - \nabla \phi$.
+        \begin{solution}
+            Em coordenadas esf\'{e}ricas temos que $\vec{F} = 2 r \vec{r} \ln r$, de onde tem-se que
+            \begin{align*}
+                \phi = -2 \int r \ln r \,\mathrm{d}r \\
+                &= r~2 \left( 1/2 - \ln r \right).
+            \end{align*}
+        \end{solution}
+    \end{parts}
+    
+    \question[E de 2010] Considere o campo vetorial dado, em coordenadas esf\'{e}ricas, por
+    \begin{align*}
+        \vec{F} &= \frac{2 P \cos \theta}{r^3} \vec{r} + \frac{P \sin \theta}{r^3} \vec{\theta}, r \geq P/2,
+    \end{align*}
+    onde $P > 0$. Calcule $\int_C \vec{F} \cdot \mathrm{d}\vec{r}$ onde $C$ \'{e} o segmento de reta orientado que liga $A$ a $B$, onde $A$ e $B$ s\~{a}o dados por $A = P(0,0,-1)$ e $B = P(1,1,1)$ em coordenadas cartesianas.
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
 
     \question[T1 de 2011] Sejam $(u, v, z)$ as coordenadas cil\'{i}ndricas parab\'{o}licas, definidas como

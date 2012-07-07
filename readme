@@ -15,7 +15,11 @@ Aqui você encontrará as soluções das listas de exercícios, testes e provas 
  - MS550: Métodos de Matemática Aplicada I,
  - F520: Métodos Matemáticos da Física I.
 
-Cada questão encontra-se identificada pela atividade e ano em que apareceu (eventualmente também algum livro-texto), e.g., \question[P2 de 2011, E de 2011] que corresponde a segunda prova de 2011 e ao exame de 2011.
+Para obter o arquivo pdf com as soluções recomenda-se utilizar o comando
+ $ make
+que foi testado no UBUNTU 12.04 com a versão 2011 do TeX Live instalado.
+
+Algumas questões encontra-se identificada pela atividade e ano em que apareceu (eventualmente também algum livro-texto), e.g., \question[P2 de 2011, E de 2011] que corresponde a segunda prova de 2011 e ao exame de 2011.
 
 A seguir encontra-se uma listas dos anos, seguido pelo professor responsável, utilizados para compor esse material:
  - 2006 (Jaime Vaz)

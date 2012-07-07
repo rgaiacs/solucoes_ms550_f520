@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 5.
 % 
 % Created: 25.03.12 10:25:19 AM
-% Last Change: 25.06.12 07:05:57 PM
+% Last Change: 07.07.12 05:30:31 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -73,13 +73,12 @@ Equa\c{c}\~{o}es eventualmente útil:
     & (\alpha)_n = \frac{\Gamma(\alpha + n)}{\Gamma(\alpha)} \label{eq:sim_poch_gamma} \\
     & \frac{(\alpha)_n}{m!} = \binom{\alpha + n - 1}{n}, \ \frac{(-\alpha)_n}{n!} = (-1)^n \binom{\alpha}{n} \label{eq:sim_poch_binom} \\
     & z(1 - z)y'' + \left[ \gamma - (\alpha + \beta + 1) z \right] y' - \alpha \beta y = 0 \tag{EH} \label{eq:hiperg} \\
-    & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SH} \label{eq:ser_hiperg} \\
-    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} \,\mathrm{d}t \label{eq:hiperg_int} \\
-    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{\alpha \beta}{\gamma} \,{}_2F_1(\alpha + 1, \beta + 1, \gamma + 1; z) \label{eq:hiperg_der} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!}, \gamma \neq 0, -1, -2, \ldots \tag{RSHF} \label{eq:hiperg_ser} \\
+    & {}_2F_1(\alpha, \beta, \gamma; z) = \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1- t)^{\gamma - \beta - 1} (1 - tz)^{-\alpha} \,\mathrm{d}t \tag{RIFH}\label{eq:hiperg_int} \\
+    & {}_2F_1^{(n)}(\alpha, \beta, \gamma; z) = \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \,{}_2F_1(\alpha + n, \beta + n, \gamma + n; z) \label{eq:hiperg_der} \\
     & zy'' + (\gamma - z)y' - \alpha y = 0 \tag{EHC} \label{eq:hiper_con} \\
-    & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{SHC} \label{eq:ser_hiperg_con}
+    & {}_1F_1(\alpha, \gamma; z) = \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \tag{RSFHC} \label{eq:hiperg_con_ser}
 \end{align}
-Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0, -1, -2, \ldots$
 
 \begin{questions}
     \question Mostre as rela\c{c}\~{o}es de Kumer listadas abaixo.
@@ -90,14 +89,15 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
+                I &= \,{}_2F_1(\alpha, \beta, \gamma; z) \\
+                &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
                 &= \frac{1}{B(\gamma - \beta, \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t && B(z,w) = B(w,z) \\
                 &= \frac{1}{B(\gamma - \beta, \beta)} \bigstar,
             \end{align*}
             onde
             \begin{align*}
                 \bigstar &= \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t \\
-                &= \int_0^1 \left( \frac{1 - v}{1 - vz} \right)^{\beta - 1} \left( 1 - \frac{1 - v}{1 - vz} \right)^{\gamma - \beta - 1} \left( 1 - \frac{z (1 - v)}{1 - vz} \right)^{-\alpha} \frac{1 - z}{(1 - vz)^2} \,\mathrm{d}v && t = \frac{1 - v}{1 - vz} \\
+                &= \int_0^1 \left( \frac{1 - v}{1 - vz} \right)^{\beta - 1} \left( 1 - \frac{1 - v}{1 - vz} \right)^{\gamma - \beta - 1} \left( 1 - \frac{z (1 - v)}{1 - vz} \right)^{-\alpha} \frac{1 - z}{(1 - vz)^2} \,\mathrm{d}v \\
                 &= \int_0^1 \frac{(1 - v)^{\beta - 1} (1 - vz - 1 + v)^{\gamma - \beta - 1} (1 - vz - z + zv)^{-\alpha} (1 - z)}{(1 - vz)^{\beta - 1 + \gamma - \beta - 1 - \alpha + 2}} \,\mathrm{d}v \\
                 &= \int_0^1 \frac{(1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z)^{\gamma - \beta - 1} (1 - z)^{-\alpha} (1 - z)}{(1 - vz)^{\gamma - \alpha}} \,\mathrm{d}v \\
                 &= \int_0^1 (1 - vz)^{-\gamma + \alpha} (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z)^{\gamma - \beta - \alpha} \,\mathrm{d}v \\
@@ -105,7 +105,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             \end{align*}
             Portanto,
             \begin{align*}
-                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\gamma - \beta, \beta)} (1-z)^{\gamma - \alpha - \beta} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} (1 - vz)^{-\gamma + \alpha} \,\mathrm{d}v \\
+                I &= \,{}_2F_1(\alpha, \beta, \gamma; z) \\
+                &= \frac{1}{B(\gamma - \beta, \beta)} (1-z)^{\gamma - \alpha - \beta} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} (1 - vz)^{-\gamma + \alpha} \,\mathrm{d}v \\
                 &= (1 - z)^{\gamma - \alpha - \beta} \,_2F_1(\gamma - \alpha, \gamma - \beta, \gamma; z).
             \end{align*}
         \end{solution}
@@ -114,14 +115,15 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
+                I &= \,{}_2F_1(\alpha, \beta, \gamma; z) \\
+                &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
                 &= \frac{1}{B(\gamma - \beta, \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t && B(z,w) = B(w,z) \\
                 &= \frac{1}{B(\gamma - \beta, \beta)} \bigstar,
             \end{align*}
             onde
             \begin{align*}
                 \bigstar &= \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t z)^{-\alpha} \,\mathrm{d}t \\
-                &= \int_1^0 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - (1-v)z)^{-\alpha} (-\,\mathrm{d}v) && t = 1 - v \\
+                &= \int_1^0 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - (1-v)z)^{-\alpha} (-\,\mathrm{d}v) \\
                 &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - (1-v)z)^{-\alpha} \,\mathrm{d}v \\
                 &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z + vz)^{-\alpha} \,\mathrm{d}v \\
                 &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} \left[ \frac{(1 - z)^{-\alpha}}{(1 - z)^{-\alpha}} \left( (1 - z) + vz \right)^{-\alpha} \right] \,\mathrm{d}v \\
@@ -131,7 +133,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             \end{align*}
             Portanto,
             \begin{align*}
-                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\gamma - \beta, \beta)} (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} \,\mathrm{d}v \\
+                I &= {}_2F_1(\alpha, \beta, \gamma; z) \\
+                &= \frac{1}{B(\gamma - \beta, \beta)} (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} \,\mathrm{d}v \\
                 &= (1 - z)^{-\alpha} \,_2F_1(\alpha, \gamma - \beta, \gamma; z / (z - 1)).
             \end{align*}
         \end{solution}
@@ -140,16 +143,17 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(\alpha, \beta, \gamma; z) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                I &= \,{}_2F_1(\alpha, \beta, \gamma; z) \\
+                &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \sum_{n = 0}^\infty \frac{(\beta)_n (\alpha)_n}{(\gamma)_n} \frac{z^n}{n!} \\
-                &= \,_2F_1(\beta, \alpha, \gamma; z) && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \,_2F_1(\beta, \alpha, \gamma; z) && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \frac{1}{B(\alpha, \gamma - \alpha)} \int_0^1 t^{\alpha - 1} (1 - t)^{\gamma - \alpha - 1} (1 - tz)^{-\beta} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
                 &= \frac{1}{B(\alpha, \gamma - \alpha)} \bigstar,
             \end{align*}
             onde
             \begin{align*}
                 \bigstar &= \int_0^1 t^{\alpha - 1} (1 - t)^{\gamma - \alpha - 1} (1 - tz)^{-\beta} \,\mathrm{d}t \\
-                &= \int_1^0 (1 - v)^{\alpha - 1} v^{\gamma - \alpha - 1} \left( 1 - (1 - v)z \right)^{-\beta} (- \,\mathrm{d}v) && t = 1 - v \\
+                &= \int_1^0 (1 - v)^{\alpha - 1} v^{\gamma - \alpha - 1} \left( 1 - (1 - v)z \right)^{-\beta} (- \,\mathrm{d}v) \\
                 &= \int_0^1 (1 - v)^{\alpha - 1} v^{\gamma - \alpha - 1} \left( 1 - (1 - v)z \right)^{-\beta} \,\mathrm{d}v \\
                 &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} (1 - z + vz)^{-\alpha} \,\mathrm{d}v \\
                 &= \int_0^1 (1 - v)^{\beta - 1} v^{\gamma - \beta - 1} \left[ \frac{(1 - z)^{-\alpha}}{(1 - z)^{-\alpha}} \left( (1 - z) + vz \right)^{-\alpha} \right] \,\mathrm{d}v \\
@@ -159,7 +163,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             \end{align*}
             Portanto,
             \begin{align*}
-                {}_2F_1(\alpha, \beta, \gamma; z) &= \frac{1}{B(\alpha, \gamma - \alpha)} (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} \,\mathrm{d}v \\
+                I &= \,{}_2F_1(\alpha, \beta, \gamma; z) \\
+                &= \frac{1}{B(\alpha, \gamma - \alpha)} (1 - z)^{-\alpha} \int_0^1 v^{\gamma - \beta - 1} (1 - v)^{\beta - 1} \left( 1 - \frac{vz}{z - 1} \right)^{-\alpha} \,\mathrm{d}v \\
                 &= (1 - z)^{-\beta} \,_2F_1(\gamma - \alpha, \beta, \gamma; z / (z - 1)).
             \end{align*}
         \end{solution}
@@ -172,14 +177,15 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
     \begin{solution}
         Temos que
         \begin{align*}
-            {}_2F_1(\alpha, \beta, \gamma; 1) &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t)^{-\alpha} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
+            I &= \,{}_2F_1(\alpha, \beta, \gamma; 1) \\
+            &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - t)^{-\alpha} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
             &= \frac{1}{B(\beta, \gamma - \beta)} \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - \alpha - 1} \,\mathrm{d}t \\
             &= \frac{1}{B(\beta, \gamma - \beta)} B(\alpha - \beta - \alpha, \beta) && \text{por \eqref{eq:beta_int}} \\
             &= \frac{\Gamma(\beta + \gamma - \beta)}{\Gamma(\beta) \Gamma(\gamma - \beta)} \frac{\Gamma(\beta) \Gamma(\gamma - \beta - \gamma)}{\Gamma(\beta + \gamma - \beta - \alpha)} && \text{por \eqref{eq:beta}} \\
             &= \frac{\Gamma(\gamma)}{\Gamma(\beta) \Gamma(\gamma - \beta)} \frac{\Gamma(\beta) \Gamma(- \beta)}{\Gamma(\gamma - \alpha)} \\
             &= \frac{\Gamma(\gamma) \Gamma(\gamma - \alpha - \beta)}{\Gamma(\gamma - \beta) \Gamma(\gamma - \alpha)}.
         \end{align*}
-        As condi\c{c}\~{o}es s\~{a}o importantes para a converg\^{e}ncia de \eqref{eq:ser_hiperg}.
+        As condi\c{c}\~{o}es s\~{a}o importantes para a converg\^{e}ncia de \eqref{eq:hiperg_ser}.
     \end{solution}
 
     \question[Exame de 2006] Mostre que
@@ -189,9 +195,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
     \begin{solution}
         Temos que
         \begin{align*}
-            % {}_1F_1(\alpha, \gamma; t) &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{t^n}{n!} 
-            \int_0^\infty e^{-st} \,_1F_1(\alpha, \gamma, t) \,\mathrm{d}t &= \int_0^\infty e^{-st} \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{t^n}{n!} \,\mathrm{d}t && \text{por \eqref{eq:ser_hiperg}} \\
-            % &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \int_0^\infty e^{-st} \frac{t^n}{n!} \,\mathrm{d}t \\
+            I &= \int_0^\infty e^{-st} \,_1F_1(\alpha, \gamma, t) \,\mathrm{d}t \\ 
+            &= \int_0^\infty e^{-st} \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{t^n}{n!} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_ser}} \\
             &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \int_0^\infty e^{-st} t^n \,\mathrm{d}t \\
             &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \int_0^\infty e^{-u} \frac{u^n}{s^n} \frac{\mathrm{d}u}{s} && st = u \\
             &= \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{1}{n!} \frac{1}{s^{n + 1}} \int_0^\infty e^{-u} u^n \,\mathrm{d}u \\
@@ -201,13 +206,13 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             &= s^{-1} \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} s^{-n} \\
             &= s^{-1} \sum_{n = 0}^\infty \frac{(\alpha)_n}{(\gamma)_n} \frac{(1)_n}{n!} s^{-n} \\
             &= s^{-1} \sum_{n = 0}^\infty \frac{(\alpha)_n (1)_n}{(\gamma)_n} \frac{s^{-n}}{n!} \\
-            &= s^{-1} \,_2F_1(\alpha, 1, \gamma; s^{-1}) && \text{por \eqref{eq:ser_hiperg}}.
+            &= s^{-1} \,_2F_1(\alpha, 1, \gamma; s^{-1}) && \text{por \eqref{eq:hiperg_ser}}.
         \end{align*}
     \end{solution}
 
     \question Mostre que a s\'{e}rie hipergeom\'{e}trica ${}_2F_1(\alpha, \beta, \gamma; z)$ reduz-se a um polin\^{o}mio quando $\alpha$ ou $\beta$ \'{e} um número inteiro negativo.
     \begin{solution}
-        Como $_2F_1(\alpha, \beta, \gamma; z) = \,_2F_1(\beta, \alpha, \gamma; z)$ faremos a an\'{a}lise apenas para $\alpha$ em $_2F_1(\alpha, \beta, \gamma; z)$ pois para $\beta$ \'{e} id\^{e}ntico.
+        Sabemos que $_2F_1(\alpha, \beta, \gamma; z) = \,_2F_1(\beta, \alpha, \gamma; z)$, ver \eqref{eq:hiperg_ser}, faremos a an\'{a}lise apenas para $\alpha$ em $_2F_1(\alpha, \beta, \gamma; z)$ pois para $\beta$ \'{e} id\^{e}ntico.
 
         Quando $\alpha$ \'{e} inteiro negativo, i.e., $\alpha = -k$, $k \in \mathbb{N}$ e $k < n$ temos que
         \begin{align*}
@@ -215,7 +220,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \end{align*}
         Verificamos ent\~{a}o que a s\'{e}rie \'{e} n\~{a}o nula at\'{e} $n = k - 1$. Ent\~{a}o,
         \begin{align*}
-            {}_2F_1(-k, \beta, \gamma; z) &= \sum_{n = 0}^{k - 1} \frac{(-k)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+            {}_2F_1(-k, \beta, \gamma; z) &= \sum_{n = 0}^{k - 1} \frac{(-k)_n (\beta)_n}{(\gamma)_n} \frac{z^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
             &= \sum_{n = 0}^{k - 1} \frac{(-k)_n (\beta)_n}{(\gamma)_n n!} z^n 
         \end{align*}
         que \'{e} um polinômio de grau $k - 1$.
@@ -227,7 +232,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(\alpha, \beta, \beta; z) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\beta)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                {}_2F_1(\alpha, \beta, \beta; z) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\beta)_n}{(\beta)_n} \frac{z^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \sum_{n = 0}^\infty (\alpha)_n \frac{z^n}{n!} \\
                 &= 1 + \alpha z + \frac{\alpha (\alpha + 1)}{2!}z^2 + \frac{\alpha (\alpha + 1) (\alpha + 2)}{3!}z^3 + \ldots \\
                 &= (1 - z)^{-\alpha}
@@ -239,7 +244,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(-k, 1, 1; 1 - z) &= \sum_{n = 0}^\infty \frac{(-k)_n (1)_n}{(1)_n} \frac{(1 - z)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                {}_2F_1(-k, 1, 1; 1 - z) &= \sum_{n = 0}^\infty \frac{(-k)_n (1)_n}{(1)_n} \frac{(1 - z)^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \sum_{n = 0}^\infty (-k)_n \frac{(1 - z)^n}{n!} \\
                 &= \sum_{n = 0}^\infty \frac{(-k)_n}{n!} (1 - z)^n \\
                 % &= \sum_{n = 0}^\infty \frac{(-1)^n (k)_n}{n!} (1 - z)^n \\
@@ -255,7 +260,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             Temos que
             \begin{align*}
                 I &= \binom{a}{m} z^m \,_1F_1(-m, 1, a - m + 1; -z^{-1}) \\
-                &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n (1)_n}{(a - m + 1)_n} \frac{(-z^{-1})^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n (1)_n}{(a - m + 1)_n} \frac{(-z^{-1})^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} \frac{(1)_n}{n!} (-z^{-1})^n \\
                 &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n}{(a - m + 1)_n} (-z^{-1})^n && (1)_n = n! \\
                 &= \binom{a}{m} z^m \sum_{n = 0}^\infty \frac{(-m)_n (-1)^{n}}{(a - m + 1)_n} z^{-n} \\
@@ -284,7 +289,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(1, 1, 2; z) &= \sum_{n = 0}^\infty \frac{(1)_n (1)_n}{(2)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                {}_2F_1(1, 1, 2; z) &= \sum_{n = 0}^\infty \frac{(1)_n (1)_n}{(2)_n} \frac{z^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \sum_{n = 0}^\infty \frac{n! n!}{(n + 1)!} \frac{z^n}{n!} && (2)_n = (n + 1)! \\
                 &= \sum_{n = 0}^\infty \frac{z^n}{n + 1} \\
                 &= z^{-1} \sum_{n = 0}^\infty \frac{z^{n + 1}}{n + 1} \\
@@ -298,7 +303,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             Temos que
             \begin{align*}
                 I &= {}_2F_1(1/2, 1, 3/2; z^2) \\
-                &= \sum_{n = 0}^\infty \frac{(1/2)_n (1)_n}{(3/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty \frac{(1/2)_n (1)_n}{(3/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \sum_{n = 0}^\infty \frac{(1/2)_n n!}{(3/2)_n} \frac{(z^2)^n}{n!} \\
                 &= \sum_{n = 0}^\infty \frac{(1/2)_n}{(3/2)_n} \frac{n!}{n!} (z^2)^n \\
                 &= \sum_{n = 0}^\infty \frac{(1/2)_n}{(3/2)_n} \frac{(z^2)^n}{n!} \\
@@ -315,7 +320,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             Temos que
             \begin{align*}
                 I &= {}_2F_1(1/2, 1/2, 3/2; z^2) \\
-                &= \sum_{n = 0}^\infty \frac{(1/2)_n (1/2)_n}{(3/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty \frac{(1/2)_n (1/2)_n}{(3/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= 1 + \sum_{n = 1}^\infty \frac{( (1/2) (3/2) (5/2) \ldots ((2n - 1)/2) )^2}{(3/2) (5/2) \ldots ((2n + 1)/2)} (z^2)^n \\
                 &= 1 + \sum_{n = 1}^\infty \frac{(1/2) (3/2) (5/2) \ldots ((2n - 1)/2)}{2n + 1} (z^2)^n \\
                 &= 1 + \sum_{n = 1}^\infty \frac{(1)(3) \ldots (2n - 1)}{2^n (2n + 1)} (z^2)^n \\
@@ -333,7 +338,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             Ent\~{a}o temos 
             \begin{align*}
                 I &= {}_2F_1(a/2, -a/2, 1/2; \sin^2 z) \\
-                &= \sum_{n = 0}^\infty \frac{(a/2)_n (-a/2)_n}{(1/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:ser_hiperg}} \\
+                &= \sum_{n = 0}^\infty \frac{(a/2)_n (-a/2)_n}{(1/2)_n} \frac{(z^2)^n}{n!} && \text{por \eqref{eq:hiperg_ser}} \\
                 &= \sum_{n = 0}^\infty \frac{(a/2)_n (-a/2)_n}{(1/2)_n} \frac{z^{2n}}{n!} \\
                 \begin{split}
                     &= 1 + \frac{(a/2)(-a/2)}{(1/2)} z^2 z \\ &\quad {}+ \frac{(a/2)(-a/2)(a/2 + 1)(-a/2 + 1)}{2! (1/2)(3/2)} z^4 z + \ldots
@@ -368,7 +373,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(1/2, 1/2, 1; k^2) &= \frac{1}{B(1/2,1 - 1/2)} \int_0^1 t^{1/2 - 1} (1 - t)^{1 - 1/2 - 1} (1 - tk^2)^{-1/2} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
+                I &= \,{}_2F_1(1/2, 1/2, 1; k^2) \\
+                &= \frac{1}{B(1/2,1 - 1/2)} \int_0^1 t^{1/2 - 1} (1 - t)^{1 - 1/2 - 1} (1 - tk^2)^{-1/2} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
                 &= \frac{1}{B(1/2, 1 - 1/2)} \int_0^1 t^{-1/2} (1 - t)^{-1/2} (1 - tk^2)^{-1/2} \,\mathrm{d}t \\
                 &= \frac{1}{B(1/2, -1/2)} \bigstar,
             \end{align*}
@@ -392,7 +398,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_2F_1(-1/2, 1/2, 1; k^2) &= \frac{1}{B(1/2, 1 - 1/2)} \int_0^1 t^{1/2 - 1} (1 - t)^{1 - 1/2} (1 - k^2 t)^{1/2} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
+                I &= \,{}_2F_1(-1/2, 1/2, 1; k^2) \\
+                &= \frac{1}{B(1/2, 1 - 1/2)} \int_0^1 t^{1/2 - 1} (1 - t)^{1 - 1/2} (1 - k^2 t)^{1/2} \,\mathrm{d}t && \text{por \eqref{eq:hiperg_int}} \\
                 &= \frac{1}{B(1/2, 1 - 1/2)} \int_0^1 t^{-1/2} (1 - t)^{1/2} (1 - k^2 t)^{1/2} \,\mathrm{d}t \\
                 &= \frac{1}{B(1/2, 1/2)} \bigstar,
             \end{align*}
@@ -416,7 +423,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \begin{solution}
             Temos que
             \begin{align*}
-                {}_1F_1(a, a - 1; z) &= \sum_{n = 0}^\infty \frac{(a)_n}{(a - 1)_n} \frac{z^n}{n!} && \text{por \eqref{eq:ser_hiperg_con}} \\
+                {}_1F_1(a, a - 1; z) &= \sum_{n = 0}^\infty \frac{(a)_n}{(a - 1)_n} \frac{z^n}{n!} && \text{por \eqref{eq:hiperg_con_ser}} \\
                 &= \sum_{n = 0}^\infty \frac{a (a + 1) \ldots (a + n - 1)}{(a - 1) a \ldots (a + n - 2)} \frac{z^n}{n!} && \text{por \eqref{eq:sim_poch}} \\
                 &= \sum_{n = 0}^\infty \frac{a + n - 1}{a - 1} \frac{z^n}{n!} \\
                 &= \sum_{n = 0}^\infty \left( 1 + \frac{n}{a - 1} \right) \frac{z^n}{n!} \\
@@ -452,8 +459,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \end{align*}
         Para $y = (1 - z)/2$ temos que
         \begin{align*}
-            \frac{d}{dy} &= \left( \frac{-1}{2} \right) \frac{d}{dz}, \\
-            \frac{d^2}{dy^2} &= \left( \frac{-1}{2} \right) \left( \frac{-1}{2} \right) \frac{d^2}{dz^2} = \frac{1}{4} \frac{d^2}{dz^2}.
+            \frac{\mathrm{d}}{\mathrm{d}y} &= \left( \frac{-1}{2} \right) \frac{\mathrm{d}}{\mathrm{d}z}, \\
+            \frac{\mathrm{d}^2}{\mathrm{d}y^2} &= \left( \frac{-1}{2} \right) \left( \frac{-1}{2} \right) \frac{\mathrm{d}^2}{\mathrm{d}z^2} = \frac{1}{4} \frac{\mathrm{d}^2}{\mathrm{d}z^2}.
         \end{align*}
         Ent\~{a}o para $\phi = f( (1 - z)/2 )$ temos a seguinte equa\c{c}\~{a}o hipergeom\'{e}trica
         \begin{align*}
@@ -485,7 +492,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         que \'{e} a equa\c{c}\~{a}o desejada.
     \end{solution}
 
-    \question[Ver exemplo 4.7 das notas de aula] Os polinômios de Hermite $H_n(z)$ podem ser escritos em termos da fun\c{c}\~{a}o hipergeom\'{e}trica confluente como
+    \question[P2 de 2006, T4 de 2012, Ver exemplo 4.7 das notas de aula] Os polinômios de Hermite $H_n(z)$ podem ser escritos em termos da fun\c{c}\~{a}o hipergeom\'{e}trica confluente como
     \begin{align*}
         H_n(z) &= 2^n U(-n/2, 1/2, z^2).
     \end{align*}
@@ -504,8 +511,8 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
         \end{align*}
         Para $y = z^2$ temos que
         \begin{align*}
-            \frac{d}{dy} &= 2 z \frac{d}{dz}, \\
-            \frac{d^2}{dy^2} &= 2 \frac{df}{dz} + 4 z^2 \frac{d}{dz}.
+            \frac{\mathrm{d}}{\mathrm{d}y} &= 2 z \frac{\mathrm{d}}{\mathrm{d}z}, \\
+            \frac{\mathrm{d}^2}{\mathrm{d}y^2} &= 2 \frac{\mathrm{d}}{\mathrm{d}z} + 4 z^2 \frac{\mathrm{d}^2}{\mathrm{d}z^2}.
         \end{align*}
         Ent\~{a}o para $\phi = f(z^2)$ temos a seguinte equa\c{c}\~{a}o hipergeom\'{e}trica confluente
         \begin{align*}
@@ -620,7 +627,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
     \begin{solution}
         Temos que
         \begin{align*}
-            {}_2F_1(-n, b, b; z) &= \sum_{k = 0}^\infty \frac{(-n)_k (b)_k}{(b)_k} \frac{z^k}{k!} && \text{\eqref{eq:ser_hiperg}} \\
+            {}_2F_1(-n, b, b; z) &= \sum_{k = 0}^\infty \frac{(-n)_k (b)_k}{(b)_k} \frac{z^k}{k!} && \text{\eqref{eq:hiperg_ser}} \\
             &= \sum_{k = 0}^\infty (-n)_k \frac{z^k}{k!} \\
             &= \sum_{k = 0}^n (-n)_k \frac{z^k}{k!} && (-n)_k = 0, k = n + 1, n + 2, \ldots \\
             &= \sum_{k = 0}^n \frac{(-1)^k n!}{(n - k)!} \frac{z^k}{k!} && \text{\eqref{eq:sim_poch}} \\
@@ -641,10 +648,10 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
             \begin{split}
                  &= \frac{1}{B(\beta, (\beta -\alpha + 1) - \beta)} \\ &\quad \int_0^1 t^{\beta - 1} (1 - t)^{(\beta - \alpha + 1) - \beta - 1} (1 - t(-1))^{-\alpha} \,\mathrm{d}t
             \end{split} \\
-            &= \frac{1}{B(\beta, 1 - \alpha} \int_0^1 t^{\beta - 1} (1 - t)^{-\alpha} (1 + t)^{-\alpha} \,\mathrm{d}t \\
-            &= \frac{1}{B(\beta, 1 - \alpha} \int_0^1 t^{\beta - 1} (1 - t^2)^{-\alpha} \,\mathrm{d}t && (1 - t)(1 + t) = 1 - t^2 \\
-            &= \frac{1}{B(\beta, 1 - \alpha} \int_0^1 (y^{1/2})^{\beta - 1} (1 - y)^{-\alpha} (1 / 2) y^{-1/2} dy && t = y^{1/2} \\
-            &= \frac{1}{2 B(\beta, 1 - \alpha} \int_0^1 y^{\beta / 2 - 1} (1 - y)^{-\alpha} dy \\
+            &= \frac{1}{B(\beta, 1 - \alpha)} \int_0^1 t^{\beta - 1} (1 - t)^{-\alpha} (1 + t)^{-\alpha} \,\mathrm{d}t \\
+            &= \frac{1}{B(\beta, 1 - \alpha)} \int_0^1 t^{\beta - 1} (1 - t^2)^{-\alpha} \,\mathrm{d}t && (1 - t)(1 + t) = 1 - t^2 \\
+            &= \frac{1}{B(\beta, 1 - \alpha)} \int_0^1 (y^{1/2})^{\beta - 1} (1 - y)^{-\alpha} (1 / 2) y^{-1/2} dy && t = y^{1/2} \\
+            &= \frac{1}{2 B(\beta, 1 - \alpha)} \int_0^1 y^{\beta / 2 - 1} (1 - y)^{-\alpha} dy \\
             &= \frac{B(\beta / 2, -\alpha + 1)}{2 B(\beta, 1 - \alpha)} && \text{por \eqref{eq:beta_int}} \\
             &= \frac{1}{2} \frac{\Gamma(\beta/2) \Gamma(1 - \alpha) \Gamma(1 - \alpha + \beta)}{\Gamma(1 - \alpha + \beta/2) \Gamma(\beta) \Gamma(1 - \alpha)} && \text{por \eqref{eq:beta}} \\
             &= \frac{\beta}{2} \frac{\Gamma(\beta / 2) \Gamma(1 + \beta - \alpha)}{\Gamma(\beta) \Gamma(1 + \beta / 2 - \alpha)} \\
@@ -659,7 +666,7 @@ Destaca-se que \eqref{eq:ser_hiperg} \'{e} v\'{a}lida apenas para $\gamma \neq 0
     \begin{solution}
         Temos que
         \begin{align*}
-            {}_2F_1(\alpha, \alpha/2 + 1, \alpha/2; x) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\alpha/2 + 1)_n}{(\alpha/2)_n} \frac{x^n}{n!} && \text{\eqref{eq:ser_hiperg}} \\
+            {}_2F_1(\alpha, \alpha/2 + 1, \alpha/2; x) &= \sum_{n = 0}^\infty \frac{(\alpha)_n (\alpha/2 + 1)_n}{(\alpha/2)_n} \frac{x^n}{n!} && \text{\eqref{eq:hiperg_ser}} \\
             &= \sum_{n = 0}^\infty \frac{(\alpha)_n (1 + 2 n / \alpha)(\alpha/2)_n}{(\alpha/2)_ n} \frac{x^n}{n!} && \bigstar \\
             &= \sum_{n = 0}^\infty (\alpha)_n \frac{x^2}{n!} \\
             &= \sum_{n = 0}^\infty (\alpha)_n \frac{x^n}{n!} + \frac{2}{\alpha} \sum_{n = 1}^\infty n(\alpha)_n \frac{x^n}{n!} \\

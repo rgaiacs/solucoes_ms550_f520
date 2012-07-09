@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 4.
 % 
 % Created: 18.04.12 05:32:59 PM
-% Last Change: 05.07.12 09:54:21 PM
+% Last Change: 09.07.12 04:50:42 PM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -18,7 +18,7 @@
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 % Customiza\c{c}\~{a}o da classe exam
-\newcommand{\mycheader}{Lista 4 - Fun\c{c}\~{a} Gama}
+\newcommand{\mycheader}{Lista 4 - Fun\c{c}\~{a}o Gama}
 \header{MS550, F520}{\mycheader}{\thepage/\numpages}
 \headrule
 \footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
@@ -88,7 +88,7 @@ Equa\c{c}\~{o}es eventualmente útil:
         \begin{align*}
             \exp (y) &= 1 / t \\
             y &= \ln \left( 1 / t \right) \\
-            dy &= \frac{\left( - 1 / t^2 \right)}{1 / t} \,\mathrm{d}t = \frac{-1}{t} \,\mathrm{d}t.
+            \mathrm{d}y &= \frac{\left( - 1 / t^2 \right)}{1 / t} \,\mathrm{d}t = \frac{-1}{t} \,\mathrm{d}t.
         \end{align*}
 
         Avaliando os extremos:
@@ -138,7 +138,7 @@ Equa\c{c}\~{o}es eventualmente útil:
 
         \part $\int_0^1 x^k \ln x \,\mathrm{d}x = -1 / \left( k + 1 \right)^2$.
         \begin{solution}
-            Fazendo $x = \exp \left( -w \right)$, temos $w = \ln \left( 1 / x \right) = - \ln \left( x \right)$ e consequentemente $dw = \frac{-1}{x} \,\mathrm{d}x = - \exp \left( w \right) dw$ que implica em $\,\mathrm{d}x = - \exp \left( -w \right) dw$. Avaliando os extremos,
+            Fazendo $x = \exp \left( -w \right)$, temos $w = \ln \left( 1 / x \right) = - \ln \left( x \right)$ e consequentemente $\,\mathrm{d}x = - \exp \left( -w \right) \,\mathrm{d}w$. Avaliando os extremos,
             \begin{align*}
                 x \to 0, w \to \infty, \\
                 x \to 1, w \to 0.
@@ -146,9 +146,9 @@ Equa\c{c}\~{o}es eventualmente útil:
 
             Logo,
             \begin{align*}
-                \int_\infty^0 \exp \left( -w k \right) \left( -w \right) \left( -\exp \left( -w \right) \right) dw &= - \int_0^\infty \exp \left( -w \left( k + 1 \right) \right) w dw.
+                \int_\infty^0 \exp \left( -w k \right) \left( -w \right) \left( -\exp \left( -w \right) \right) \,\mathrm{d}w &= - \int_0^\infty \exp \left( -w \left( k + 1 \right) \right) w \,\mathrm{d}w.
             \end{align*}
-            Fazendo $w \left( k + 1 \right) = t$ temos $w = t / \left( k + 1 \right)$ e consequentemente $\,\mathrm{d}t = \left( k + 1 \right) dw \to dw = \,\mathrm{d}t / \left( k + 1 \right)$. Avaliando os extremos
+            Fazendo $w \left( k + 1 \right) = t$ temos $w = t / \left( k + 1 \right)$ e consequentemente $\,\mathrm{d}t = \left( k + 1 \right) \,\mathrm{d}w \to \,\mathrm{d}w = \,\mathrm{d}t / \left( k + 1 \right)$. Avaliando os extremos
             \begin{align*}
                 w \to 0, t \to 0, \\
                 w \to \infty, t \to \infty.
@@ -156,7 +156,8 @@ Equa\c{c}\~{o}es eventualmente útil:
 
             Logo,
             \begin{align*}
-                - \int_0^\infty \exp \left( -t \right) \left( t / \left( k + 1 \right) \right) \left( 1 / \left( k + 1 \right) \right) \,\mathrm{d}t &= \left( -1 / \left( k + 1 \right) \right) \int_0^\infty \exp \left( -t \right) t \,\mathrm{d}t \\
+                I &= - \int_0^\infty \exp \left( -t \right) \left( t / \left( k + 1 \right) \right) \left( 1 / \left( k + 1 \right) \right) \,\mathrm{d}t \\
+                &= \left( -1 / \left( k + 1 \right) \right) \int_0^\infty \exp \left( -t \right) t \,\mathrm{d}t \\
                 &= \frac{-1}{\left( k + 1 \right)^2} \Gamma \left( 2 \right) \\
                 &= \frac{-1}{\left( k + 1 \right)^2} \Gamma \left( 1 + 1 \right) \\
                 &= - \Gamma \left( 1 \right) / \left( k + 1 \right)^2 \\
@@ -173,7 +174,7 @@ Equa\c{c}\~{o}es eventualmente útil:
             &= \frac{\exp(\gamma x) \prod_{n = 1}^\infty \left( 1 + x / n \right) \exp(-x / n)}{\left( \exp(\gamma x) \right)^a a \prod \left( 1 + a x / n \right) \exp(-a x / n}, \\
             \lim_{x \to 0} \frac{\Gamma(a x)}{\Gamma(x)} &= \lim_{x \to 0} \left( \frac{\exp(\gamma x (1 - a)}{a} \right) \lim_{x \to 0} \left( \frac{\prod_{n = 1}^\infty (1 + x / n)v \exp(- x / n)}{\prod_{n = 1}^\infty (1 + a x q n) \exp(-x / n)} \right) \\
             &= \left( 1 / a \right).
-        \end{align*} \\
+        \end{align*}
     \end{solution}
 
     \question Mostre que $\mathrm{Res}_{z = -n} \Gamma(z) = \left( -1 \right)^n / n!, \quad n = 0, 1, 2, \ldots$
@@ -216,7 +217,7 @@ Equa\c{c}\~{o}es eventualmente útil:
             (x + i y)! &= \Gamma(x + i y + 1), \\
             | (x + i y)! | &= | \Gamma(x + i y + 1) | \\
             &= \left| \int_0^\infty \exp(-t) t^{x + iy} \,\mathrm{d}t \right| \\
-            &\leq \int_0^\infty | \exp(-t) t^{x + i y} | dy \\
+            &\leq \int_0^\infty | \exp(-t) t^{x + i y} | \mathrm{d}y \\
             &\leq \int_0^\infty | \exp(-t) t^x \exp(i y \ln t) | \,\mathrm{d}t \\
             &\leq \int_0^\infty | \exp(-t) t^x | | \exp(i y \ln t) | \,\mathrm{d}t \\
             &\leq \int_0^\infty | \exp(-t) t^x \,\mathrm{d}t && | \exp(i y \ln t) | = 1 \\
@@ -229,24 +230,24 @@ Equa\c{c}\~{o}es eventualmente útil:
     \begin{parts}
         \part Mostre que
         \begin{align*}
-            \left. \frac{d^n f}{d z^n} \right|_{z = 0} &= \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - n + 1}
+            \left. \frac{\mathrm{d}^n f}{\mathrm{d}z^n} \right|_{z = 0} &= \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - n + 1}
         \end{align*}
         e use esse resultado para mostrar que $\left( 1 + z \right)^\alpha = \sum_{n= 0}^\infty \binom{\alpha}{n} z^n$, onde $\binom{\alpha}{n} = \alpha! / \left( n! \left( \alpha - n \right)! \right) = \Gamma(\alpha + 1) / \left( n! \Gamma(\alpha - n + 1) \right)$.
         \begin{solution}
             Temos que
             \begin{align*}
-                \left[ \frac{d^n f}{d z^n} \right]_{z = 0} &= \left[ \frac{d^n \left[ (1 + z)^\alpha \right]}{d z^n} \right]_{z = 0} \\
+                \left[ \frac{\mathrm{d}^n f}{\mathrm{d}z^n} \right]_{z = 0} &= \left[ \frac{\mathrm{d}^n \left[ (1 + z)^\alpha \right]}{\mathrm{d} z^n} \right]_{z = 0} \\
                 &= \left[ \alpha (\alpha - 1) \ldots (\alpha - n + 1) (1 + z)^{\alpha - n} \right]_{z = 0} \\
                 &= \alpha (\alpha - 1) \ldots (\alpha - n + 1) && z = 0.
             \end{align*}
             Como $\Gamma(\alpha + 1) = \alpha \Gamma(\alpha)$ ent\~{a}o $\alpha = \Gamma(\alpha + 1) / \Gamma(\alpha)$ e portanto
             \begin{align*}
-                \left[ \frac{d^n f}{d z^n} \right]_{z = 0} &= \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha)} \frac{\Gamma(\alpha)}{\Gamma(\alpha - 1)} \ldots \frac{\Gamma(\alpha - n - 1}{\Gamma(\alpha - n)} \frac{\Gamma(\alpha - n)}{\Gamma(\alpha - n + 1} \\
+                \left[ \frac{\mathrm{d}^n f}{\mathrm{d}z^n} \right]_{z = 0} &= \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha)} \frac{\Gamma(\alpha)}{\Gamma(\alpha - 1)} \ldots \frac{\Gamma(\alpha - n - 1}{\Gamma(\alpha - n)} \frac{\Gamma(\alpha - n)}{\Gamma(\alpha - n + 1} \\
                 &= \Gamma(\alpha + 1) / \Gamma(\alpha - n + 1).
             \end{align*}
             Expandindo $(1 + z)^\alpha$ em s\'{e}rie de Taylor (em torno de $z = 0$):
             \begin{align*}
-                \left( 1 + z \right)^\alpha &= \sum_{n = 0}^\infty (1 / n!) z^n \left[ \frac{d^n (1 + z)^\alpha}{d z^n} \right]_{z = 0}\\
+                \left( 1 + z \right)^\alpha &= \sum_{n = 0}^\infty (1 / n!) z^n \left[ \frac{\mathrm{d}^n (1 + z)^\alpha}{\mathrm{d}z^n} \right]_{z = 0}\\
                 &= \sum_{n = 0}^\infty \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - n + 1)} \frac{z^n}{n!} \\
                 &= \sum_{n = 0}^\infty (\alpha / n) z^n,
             \end{align*}
@@ -352,7 +353,7 @@ Equa\c{c}\~{o}es eventualmente útil:
         \end{align*}
         Fazendo $x^2 = t$, $\,\mathrm{d}x = \,\mathrm{d}t/2x = \,\mathrm{d}t/2t^{1/2}$. Os extremos ficam com $x = 0 \to t = 0$ e $x = 1 \to t  = 1$. Logo,
         \begin{align*}
-            2 \int_0^1 (1 - t)^{1/2} t^b t^{1/2} /2 \,\mathrm{d}t = \int_0^1 (1 - t)^{1/2} t^{n - 1/2} \,\mathrm{d}t \\
+            2 \int_0^1 (1 - t)^{1/2} t^b t^{1/2} /2 \,\mathrm{d}t &= \int_0^1 (1 - t)^{1/2} t^{n - 1/2} \,\mathrm{d}t \\
             &= B(3/2, n + 1/2) \\
             &= B(n + 1/2, 3/2).
         \end{align*}
@@ -380,7 +381,7 @@ Equa\c{c}\~{o}es eventualmente útil:
         % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
 
-    \question Mostre que $d \left( z \right)_n / d z = \left( z \right)_n \left[ \psi_0 \left( z + n \right) - \psi_0\left( z \right) \right]$, onde $\left( z \right)_n = z \left( z + 1 \right) \cdots \left( z + n - 1 \right)$ \'{e} o s\'{i}mbolo de Pochammer e $\psi_0$ \'{e} a fun\c{c}\~{a}o digama.
+    \question Mostre que $\mathrm{d} \left( z \right)_n / \mathrm{d} z = \left( z \right)_n \left[ \psi_0 \left( z + n \right) - \psi_0\left( z \right) \right]$, onde $\left( z \right)_n = z \left( z + 1 \right) \cdots \left( z + n - 1 \right)$ \'{e} o s\'{i}mbolo de Pochammer e $\psi_0$ \'{e} a fun\c{c}\~{a}o digama.
     \begin{solution}
         % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
@@ -421,6 +422,42 @@ Equa\c{c}\~{o}es eventualmente útil:
         % TODO Escrever solu\c{c}\~{a}o.
     \end{solution}
 
+    \question[T4 de 2011] Use as defini\c{c}\~{o}es e propriedades das fun\c{c}\~{o}es gama e beta para mostrar que:
+    \begin{parts}
+        \part $\int_0^{1/2} \sqrt{\tan \theta} \,\mathrm{d}\theta = \pi / \sqrt{2}$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \int_0^{\pi/2} \sqrt{\tan \theta} \,\mathrm{d}\theta &= \int_0^{\pi/2} \sin^{1/2} \theta \cos^{-1/2} \theta \,\mathrm{d}\theta \\
+                &= \int_0^{\pi/2} \sin^{2 (3/4) - 1} \theta \cos^{2 (1/4) - 1} \theta \,\mathrm{d}\theta \\
+                &= 2^{-1} B(3/4, 1/4) \\
+                &= 2^{-1} \frac{\Gamma(3/4) \Gamma(1/4)}{\Gamma(1)} \\
+                &= 2^{-1} \Gamma(1/4) \Gamma(1 - 1/4) \\
+                &= \pi \left( 2 \sin(\pi/4) \right)^{-1} \\
+                &= \pi \left( 2 (\sqrt{2} / 2) \right)^{-1} \\
+                &= \pi / \sqrt{2}.
+            \end{align*}
+        \end{solution}
+
+        \part $\int_{-1}^1 \left( (1 + x) / (1 - x) \right)^{1/2} \,\mathrm{d}x = \pi$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                I &= \int_{-1}^1 \left( \frac{1 + x}{1 - x} \right)^{1/2} \,\mathrm{d}x \\
+                &= \int_0^1 \left( \frac{1 + 2 t - 1}{1 - 2 t + 1} \right)^{1/2} 2 \,\mathrm{d}t && x \to 2 t - 1 \\
+                &= 2 \int_0^1 t^{1/2} \left( 1 - t \right)^{-1/2} \,\mathrm{d}t \\
+                &= 2 \int_0^1 t^{3/2 - 1} \left( 1 - t \right)^{1/2 - 1} \,\mathrm{d}t \\
+                &= 2 B(3/2, 1/2) \\
+                &= 2 \frac{\Gamma(3/2) \Gamma(1/2)}{\Gamma(2)} \\
+                &= \frac{2 \Gamma(3/2) \Gamma(1/2)}{1 \Gamma(1)} \\
+                &= 2 (1/2) \Gamma(1/2) \Gamma(1/2) \\
+                &= \Gamma(1/2) \Gamma(1 - 1/2) \\
+                &= \pi / (\sin \pi / 2) \\
+                &= \pi.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
     \question[E de 2011] Mostre que
     \begin{align*}
         \int_{-1}^1 \left( \frac{1 + x}{1 - x} \right)^{1/4} \,\mathrm{d}x &= \frac{\pi}{\sqrt{2}}.
@@ -428,13 +465,32 @@ Equa\c{c}\~{o}es eventualmente útil:
     \begin{solution}
         Temos que
         \begin{align*}
-            \int_{-1}^1 (1 + x)^{1/4} (1 - x)^{-1/4} \,\mathrm{d}x &= \int_0^1 2^{1/4} t^{1/4} (1 - t)^{-1/4} 2 \,\mathrm{d}t && t = (1 + x)/2 \\
+            I &= \int_{-1}^1 (1 + x)^{1/4} (1 - x)^{-1/4} \,\mathrm{d}x \\
+            &= \int_0^1 2^{1/4} t^{1/4} (1 - t)^{-1/4} 2 \,\mathrm{d}t && t = (1 + x)/2 \\
             &= 2 \int_0^1 t^{5/4 - 1} (1 - t)^{3/4 - 1} \,\mathrm{d}t \\
             &= 2 B(5/4, 3/4) \\
             &= \frac{2 \Gamma(5/4) \Gamma(3/4)}{\Gamma(2)} \\
             &= \frac{2(1/4) \Gamma(1/4) \Gamma(1 - 1/4)}{1 \Gamma(1)} \\
             &= \frac{1}{2} \frac{\pi}{\sin(\pi/4)} \\
             &= \pi / \sqrt{2}.
+        \end{align*}
+    \end{solution}
+
+    \question[P1 de 2012] Mostre que
+    \begin{align*}
+        \int_0^{\pi/2} \left( \frac{1}{\sin \theta} - 1 \right)^{1/4} \frac{\cos \theta}{\sin^{1/2} \theta} \,\mathrm{d}\theta &= \frac{\left[ \Gamma(1/4) \right]^2}{2 \sqrt{\pi}}.
+    \end{align*}
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            I &= \int_0^{\pi/2} \left( \frac{1}{\sin \theta} - 1 \right) \frac{\cos \theta}{\sin^{1/2} \theta} \,\mathrm{d}\theta \\
+            &= \int_0^1 \left( \frac{1}{t} - 1 \right)^{1/4} \frac{1}{t^{1/2}} \,\mathrm{d}t && \sin \theta \to t \\
+            &= \int_0^1 t^{-3/4} \left( 1 - t \right)^{1/4} \,\mathrm{d}t \\
+            &= \int_0^1 t^{1/4 - 1} \left( 1 - t \right)^{5/4 - 1} \,\mathrm{d}t \\
+            &= B(1/4, 5/4) \\
+            &= \frac{\Gamma(1/4) \Gamma(5/4)}{\Gamma(3/2)} \\
+            &= \frac{(1/4) (1/4) \Gamma(1/4)}{(1/2) \Gamma(1/2)} \\
+            &= \frac{\left[ \Gamma(1/4) \right]^2}{2 \sqrt{\pi}}.
         \end{align*}
     \end{solution}
 \end{questions}

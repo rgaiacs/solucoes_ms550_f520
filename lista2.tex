@@ -164,29 +164,44 @@ Resolva as equa\c{c}\~{o}es diferenciais abaixo utilizando s\'{e}ries (use $x_0 
             &= x^{-1/2} \sin x.
         \end{align*}
 
-        Para $r = r_2 = -1/2$, temos
+        Para a segunda solução, visto que $r_1 - r_2 = 1 \in \mathbb{N}$, temos
+        
         \begin{align*}
-            \left[ \left( 1 - \frac{1}{2} \right)^2 - \frac{1}{4} \right] a_1 &= 0 \\
-            0a_1 &= 0 && a_1 \text{ \'{e} livre}
+        		y_2 = k y_1 \ln x + \sum^\infty_{n=0}b_n x^{n+r_2}
         \end{align*}
-        e
+        
+        Substituindo na equação original e efetuando as manipulações necessárias chegamos em:
+        
         \begin{align*}
-            \left[ \left( n - \frac{1}{2}^2 - \frac{1}{4} \right) \right] a_n + a_{n - 2} &= 0 \\
-            \left( n^2 - n \right) a_n + a_{n - 2} &= 0 \\
-            a_n &= \frac{-a_{n - 2}}{n (n - 1)}, n = 2, 3, 4, \ldots
+        		k \left[-x^{-\frac{1}{2}} \sin{x} + 2 x^{\frac{1}{2}} \cos{x}\right] + \sum^\infty_{n=2}\left[n(n-1)b_n + b_{n-2}\right]x^{n-\frac{1}{2}} = 0
         \end{align*}
-
-        Logo, a rela\c{c}\~{a}o de recorr\^{e}ncia \'{e} expressa por
+        
+        Com $b_0$ e $b_1$ livres. O lado esquerdo da expressão implica que $k = 0$. Pelo lado direito chegamos na seguinte relação de recorrência:
+        
         \begin{align*}
-            a_{2k} &= \frac{(-1)^k a_0}{(2k)!}, k = 0, 1, 2, \ldots \\
-            a_{2k + 1} &= \frac{(-1)^k a_1}{(2k + 1)!}, k = 0, 1, 2, \ldots
+			b_n = -\frac{b_{n-2}}{n(n-1)}, n \ge 2        
         \end{align*}
-        e a solu\c{c}\~{a}o assume a seguinte forma:
+        
+        Testando vemos que, 
         \begin{align*}
-            y_2(x) &= \sum_{n = 0}^\infty a_{2n} x^{2n - 1/2} + \sum_{n = 0}^\infty a_{2n + 1} x^{2n + 1 - 1/2} \\
-            &= x^{-1/2} \sum_{n = 0}^\infty \frac{(-1)^k a_0 x^{2n}}{(2n)!} + x^{-1/2} \sum_{n = 0}^\infty \frac{(-1)^n a_1 x^{2n + 1}}{(2n + 1)!} \\
-            &= x^{-1/2} \sin x + x^{-1/2} \cos x.
+			b_2 &= -\frac{b_0}{2.1}\\
+			b_3 &= -\frac{b_1}{3.2}\\
+			b_4 &= -\frac{b_2}{4.3} = \frac{b_0}{4.3.2.1}\\
+			b_5 &= -\frac{b_3}{5.4} = \frac{b_1}{5.4.3.2}			        
         \end{align*}
+        
+        Tomando $b_0 =1$ e $b_1 = 0$ chegamos na seguinte solução da relação de recorrência:
+        \begin{align*}
+			b_n = \frac{\left(-1\right)^n}{\left(2n\right)!}, n \ge 0       
+        \end{align*}
+        
+        portanto,
+        
+        \begin{align*}
+        		y_2 &= \sum^\infty_{n=0}\frac{\left(-1\right)^n}{\left(2n\right)!} x^{2n-\frac{1}{2}} \\
+        			&= x^{-\frac{1}{2}}\cos{x}
+        \end{align*}
+       
         E por \'{u}ltimo a solu\c{c}\~{a}o geral \'{e}
         \begin{align*}
             y(x) &= x^{-1/2} \left( \sin x + \cos x \right).

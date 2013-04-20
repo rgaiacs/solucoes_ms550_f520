@@ -158,7 +158,7 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
             \cos\left(\ln r + i \pi\right) = \cos\left(\ln r\right) \cos\left(i \pi\right) - \sin\left(\ln r\right) \sin\left(i \pi\right).
         \end{align*}
 
-        Al\'{e}m disso, lembrando que $\cos\left(z\right) = (e^{iz}+e^{-iz})/2$, $\sin\left(z\right) = (e^{iz}-e^{-iz})/(2i)$, $\cosh\left(z\right) = (e^{-z}+e^{z})/2$, $\sinh\left(z\right) = (e^{-z}-e^{z})/2$, ent\~{a}o $\cos\left(i \pi\right) = i\cosh \pi$ e $\sin\left(i \pi\right) = i\sinh \pi$. Como $\cosh$ e $\sinh \in \mathbb{R}$, ent\~{a}o,  
+        Al\'{e}m disso, lembrando que $\cos\left(z\right) = (e^{iz}+e^{-iz})/2$, $\sin\left(z\right) = (e^{iz}-e^{-iz})/(2i)$, $\cosh\left(z\right) = (e^{-z}+e^{z})/2$, $\sinh\left(z\right) = (e^{-z}-e^{z})/2$, ent\~{a}o $\cos\left(i \pi\right) = \cosh \pi$ e $\sin\left(i \pi\right) = i\sinh \pi$. Como $\cosh\left(\pi\right)$ e $\sinh\left(\pi\right) \in \mathbb{R}$, ent\~{a}o,  
         \begin{align*}
             y(z) &= \left( A + B \right) \cos\left( \ln z \right) + \left( A - B \right) i \sin \left( \ln z \right) \\
             &= \left( \alpha_1 + i \beta_1 + \alpha_2 + i\beta_2 \right)\left( \cos\left(\ln r\right) \cos\left(i \pi\right) - \sin\left(\ln r\right) \sin\left(i \pi\right)\right) \\
@@ -173,11 +173,8 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
              \mathrm{Re}y\left( z \right) &= -\left[\left(\beta_1 + \beta_2 \right)\omega \left(r\right) + \left(\alpha_1 - \alpha_2\right)\psi \left(r\right)\right]\\
              \mathrm{Im}y\left( z \right) &= \left(\alpha_1 + \alpha_2\right)\omega \left(r\right) - \left(\beta_1 - \beta_2\right)\psi \left(r\right).
         \end{align*}
-        n\~{a}o pode ser definida para $\theta = \pi$. Logo, n\~{a}o \'{e} real no semi-eixo real negativo.
          
-        Para que a solu\c c\~{a}o seja real, $\mathrm{Im} y\left(z\right) = 0$, o que implica que $\alpha_1 = - \alpha_2$ e $\beta_1 = \beta_2$.
-
-       Portanto n\~{a}o podem ser satisfeitas ao mesmo tempo, ent\~{a}o nenhuma solu\c c\~{a}o real no semi-eixo real positivo do plano complexo pode ser real no semi-eixo real negativo, como queriamos demonstrar.
+        Para que a solu\c c\~{a}o seja real, $\mathrm{Im} y\left(z\right) = 0$, o que implica que $\alpha_1 = - \alpha_2$ e $\beta_1 = \beta_2$, o oposto das restrições encontradas anteriormente. Portanto, nenhuma solu\c c\~{a}o real no semi-eixo real positivo do plano complexo pode ser real no semi-eixo real negativo, como queriamos demonstrar.
     \end{solution}
 
     \question {}
@@ -281,10 +278,10 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
         \begin{align*}
             w'' + \underbrace{\frac{2\left( z^\rho \phi \right)' + p \left( z^\rho \phi \right)}{z^\rho \phi}}_{P(z)} w' + \underbrace{\frac{\left( z^\rho \phi \right)'' + p \left( z^\rho \phi \right)' + q\left( z^\rho \phi \right)}{z^\rho \phi}}_{Q(z)} w &= 0.
         \end{align*}
-        Ent\~{a}o
+        Ent\~{a}o,
         \begin{align*}
-            I'(r) &= r \left( r - 1 \right) r P(0) + Q(0) = 0, \\
-            P(0) &= \lim_{z \to 0} z P(z) = \lim_{z \to 0} 2 z \phi' / \phi + \lim_{z \to 0} 2\rho + \lim_{z \to 0} p z \left( z \right) = 0 \\
+            I(r) &= r \left( r - 1 \right) + P(0) + Q(0) = 0, \\
+            P(0) &= \lim_{z \to 0} z P(z) = \lim_{z \to 0} 2 z \phi' / \phi + \lim_{z \to 0} 2\rho + \lim_{z \to 0} z p \left( z \right) = 0 \\
             &= 2\rho + \lim_{z \to 0} z \left( A / z + \sum_{n = 0}^\infty \underbrace{a_n}_0 z^n \right) \\
             &= 2 \rho + A, \\
             Q(0) &= \lim_{z \to 0} z^2 Q(z) \\
@@ -299,9 +296,9 @@ Antes de apresentar as solu\c{c}\~{o}es \'{e} importante destacar os abuso de no
             \end{split} \\
             &= \rho \left( \rho - 1 \right) + \rho A + B_1.
         \end{align*}
-        Portanto,
+        Portanto com a mudança de variável temos que
         \begin{align*}
-            I'(r) &= r \left( r - 1 \right) + r 2 \rho + A r + \rho \left( \rho - 1 \right) + \rho A + B_1 \\
+            I(r) &= r \left( r - 1 \right) + r 2 \rho + A r + \rho \left( \rho - 1 \right) + \rho A + B_1 \\
             &= r^2 - r + 2 \rho r + A r + \rho^2 - \rho + \rho A + B_1 \\
             &= \left( r + \rho \right)^2 - \left( r + \rho \right) + \left( r + \rho \right) A + B_1 \\
             &= \left( r + \rho \right)\left( r + p - 1 \right) + \left( r + \rho \right) A + B_1 \\

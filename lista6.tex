@@ -179,9 +179,12 @@ Equa\c{c}\~{o}es eventualmente útil:
             &= i \left( \frac{\exp(i \theta) + \exp(-i \theta)}{2} \right) \\
             &= i \cos \theta.
         \end{align*}
-        Logo, por \eqref{eq:bessel_pri_esp_geratriz} para $t = i \exp(i \theta)$ temos
+        Logo, através da função geratriz \eqref{eq:bessel_pri_esp_geratriz}, para $t = i \exp(i \theta)$ temos que
         \begin{align*}
-            \exp(i x \cos \theta) &= \sum_{k = -\infty}^{+\infty} (i \exp(i \theta))^k J_k(x) \\
+            \exp(i x \cos \theta) &= \exp(x \left(i \cos \theta \right))\\
+            &= \exp\left(x \frac{\left(t-t^{-1}\right)}{2}\right) \\
+           &= \sum_{k = -\infty}^{+\infty} t^k J_k(x) \\
+            &= \sum_{k = -\infty}^{+\infty} (i \exp(i \theta))^k J_k(x) \\
             &= \sum_{k = -\infty}^{+\infty} i^k \exp(i k \theta) J_k(x).
         \end{align*}
     \end{solution}
